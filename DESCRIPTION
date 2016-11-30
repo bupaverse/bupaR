@@ -1,10 +1,10 @@
-Package: bpaR
+Package: bupaR
 Type: Package
-Title: Process Analytics in R	
+Title: Business Process Analytics in R	
 Version: 0.1.0
 Author: Gert Janssenswillen
 Maintainer: Gert Janssenswillen <gert.janssenswillen@uhasselt.be>
-Description: bpaR is a collection of functions and other packages which can be used for (business) process analysis in R. 
+Description: bupaR is a collection of functions and other packages which can be used for (business) process analysis in R. 
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
