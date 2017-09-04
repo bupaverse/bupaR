@@ -12,15 +12,7 @@ case_id(eventlog)
 \description{
 Get the case classifier of an object of class \code{eventlog}
 }
-\examples{
-
-
-data(example_log)
-case_id(example_log)
-
-}
 \seealso{
 \code{\link{eventlog}}, \code{\link{activity_id}},
 \code{\link{lifecycle_id}}, \code{\link{activity_instance_id}}
 }
-

@@ -16,4 +16,3 @@ Returns a \code{tbl_df}  containing a list of all resources in the event log, wi
 \seealso{
 \code{\link{resource_id}}, \code{\link{eventlog}}
 }
-

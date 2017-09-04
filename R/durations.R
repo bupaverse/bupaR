@@ -9,11 +9,7 @@
 #' @param units The time unit in which the throughput times should be reported.
 #'
 #'
-#' @examples
 #'
-#'
-#' data(example_log)
-#' durations(example_log)
 #'
 #' @export durations
 

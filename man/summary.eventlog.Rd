@@ -14,4 +14,3 @@
 \description{
 Generic summary function for eventlog class
 }
-

@@ -8,11 +8,7 @@
 #' \code{eventlog}.
 #'
 #'
-#' @examples
-#'
-#'
-#' data(example_log)
-#' cases(example_log)
+
 #'
 #' @export cases
 

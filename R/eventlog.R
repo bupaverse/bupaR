@@ -24,8 +24,23 @@
 #' \code{\link{activity_instance_id}},\code{\link{lifecycle_id}},
 #'  \code{\link{timestamp}}
 #'
-#'
+#' @examples
+#' \dontrun{
+#' data <- data.frame(case = rep("A",5),
+#' activity_id = c("A","B","C","D","E"),
+#' activity_instance_id = 1:5,
+#' lifecycle_id = rep("complete",5),
+#' timestamp = 1:5,
+#' resource = rep("resource 1", 5))
+#' eventlog(data,case_id = "case",
+#' activity_id = "activity_id",
+#' activity_instance_id = "activity_instance_id",
+#' lifecycle_id = "lifecycle_id",
+#' timestamp = "timestamp",
+#' resource_id = "resource")
+#' }
 #' @export eventlog
+
 
 eventlog <- function(eventlog,
 					 case_id = NULL,
@@ -98,7 +113,9 @@ eventlog <- function(eventlog,
 	else {
 		if(!(timestamp %in% colnames(eventlog)))
 			stop("Timestamp classifier not found")
-		else
+		else if(!any(c("POSIXct","Date") %in% (eventlog %>% pull(!!as.symbol(timestamp)) %>% class()))) {
+			stop("Timestamp should be a POSIXct or Date variable.")
+		} else
 			attr(eventlog, "timestamp") <- timestamp
 	}
 	if(is.null(resource_id)) {
@@ -117,6 +134,49 @@ eventlog <- function(eventlog,
 	}
 	return(eventlog)
 }
+#' @rdname eventlog
+#' @export ieventlog
+ieventlog <- function(eventlog){
+
+	ui <- miniPage(
+		gadgetTitleBar("Create eventlog"),
+		miniContentPanel(
+			fillRow(fillCol(
+				selectizeInput("case_id", "Case identifier", choices = c("",colnames(eventlog)),
+							   selected = ifelse(is.null(attr(eventlog, "case_id")), NA, attr(eventlog, "case_id"))),
+				selectizeInput("activity_id", "Activity identifier", choices = c("",colnames(eventlog)),
+							   selected = ifelse(is.null(attr(eventlog, "activity_id")), NA, attr(eventlog, "activity_id"))),
+
+				selectizeInput("activity_instance_id", "Activity instance", choices =  c("",colnames(eventlog)),
+							   selected = ifelse(is.null(attr(eventlog, "activity_instance_id")), NA, attr(eventlog, "activity_instance_id")))),
+
+			fillCol(
+				selectizeInput("lifecycle_id", "Lifecycle", choices =  c("",colnames(eventlog)),
+							   selected = ifelse(is.null(attr(eventlog, "lifecycle_id")), NA, attr(eventlog, "lifecycle_id"))),
+				selectizeInput("timestamp", "Timestamp", choices =  c("",colnames(eventlog)),
+							   selected = ifelse(is.null(attr(eventlog, "timestamp")), NA, attr(eventlog, "timestamp"))),
+
+				selectizeInput("resource_id", "Resource identifier",  choices =  c("",colnames(eventlog)),
+							   selected = ifelse(is.null(attr(eventlog, "resource_id")), NA, attr(eventlog, "resource_id"))))
+
+		))
+	)
+
+	server <- function(input, output, session){
+		observeEvent(input$done, {
+			stopApp(eventlog(eventlog = eventlog,
+							 case_id = input$case_id,
+							 activity_id = input$activity_id,
+							 activity_instance_id = input$activity_instance_id,
+							 lifecycle_id = input$lifecycle_id,
+							 timestamp = input$timestamp,
+							 resource_id = input$resource_id))
+		})
 
 
+	}
+
+	runGadget(ui, server, viewer = dialogViewer("Create event log", height = 400))
+
+}
 

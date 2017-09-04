@@ -14,4 +14,3 @@ re_map(eventlog, eventlog_mapping)
 \description{
 Construct and eventlog using an existing mapping.
 }
-

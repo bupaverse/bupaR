@@ -13,13 +13,6 @@ activities(eventlog)
 \description{
 Returns a \code{tbl_df}  containing a list of all activity types in the event log, with their absolute and relative frequency
 }
-\examples{
-
-data(example_log)
-activities(example_log)
-
-}
 \seealso{
 \code{\link{activity_id}},\code{\link{activity_instance_id}}, \code{\link{eventlog}}
 }
-

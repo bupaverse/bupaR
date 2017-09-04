@@ -3,9 +3,7 @@
 #' @param eventlog An object of class \code{eventlog}.
 #' @seealso \code{\link{eventlog}}, \code{\link{case_id}}, \code{\link{activity_instance_id}},
 #' \code{\link{timestamp}}
-#' @examples
-#' data(example_log)
-#' resource_id(example_log)
+
 #' @export resource_id
 
 resource_id <- function(eventlog){

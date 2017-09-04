@@ -6,11 +6,8 @@
 #'
 #' @seealso \code{\link{eventlog}}, \code{\link{activity_id}},
 #' \code{\link{lifecycle_id}}, \code{\link{activity_instance_id}}
-#' @examples
 #'
 #'
-#' data(example_log)
-#' case_id(example_log)
 #'
 #' @export case_id
 #'

@@ -13,4 +13,3 @@ n_activities(eventlog)
 \description{
 Returns the number of activities in an event log
 }
-

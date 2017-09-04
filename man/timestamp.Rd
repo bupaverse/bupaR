@@ -12,15 +12,6 @@ timestamp(eventlog)
 \description{
 Get the  timestamp classifier of an object of class \code{eventlog}
 }
-\examples{
-
-
-data(example_log)
-timestamp(example_log)
-
-
-}
 \seealso{
 \code{\link{eventlog}}
 }
-

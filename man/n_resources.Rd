@@ -13,4 +13,3 @@ n_resources(eventlog)
 \description{
 Returns the number of resources in an event log
 }
-

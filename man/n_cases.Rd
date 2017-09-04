@@ -13,4 +13,3 @@ n_cases(eventlog)
 \description{
 Returns the number of cases in an event log
 }
-

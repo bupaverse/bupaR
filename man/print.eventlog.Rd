@@ -14,4 +14,3 @@
 \description{
 Generic print function for eventlog
 }
-

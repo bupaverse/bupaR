@@ -12,12 +12,7 @@ resource_id(eventlog)
 \description{
 Get the resource classifier of an object of class \code{eventlog}.
 }
-\examples{
-data(example_log)
-resource_id(example_log)
-}
 \seealso{
 \code{\link{eventlog}}, \code{\link{case_id}}, \code{\link{activity_instance_id}},
 \code{\link{timestamp}}
 }
-

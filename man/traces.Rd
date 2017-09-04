@@ -19,13 +19,6 @@ both is returned.}
 together with their absolute and relative frequencies.
 Activity sequences are based on the start timestamp of activities.
 }
-\examples{
-
-data(example_log)
-traces(example_log)
-
-}
 \seealso{
 \code{\link{cases}}, \code{\link{eventlog}}
 }
-

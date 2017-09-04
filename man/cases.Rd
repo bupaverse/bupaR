@@ -14,11 +14,3 @@ cases(eventlog)
 Provides a fine-grained summary of an event log with characteristics for each case:  the number of events,
 the number of activity types, the timespan, the trace, the duration and the first and last event type.
 }
-\examples{
-
-
-data(example_log)
-cases(example_log)
-
-}
-

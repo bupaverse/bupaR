@@ -2,15 +2,25 @@
 % Please edit documentation in R/utils.R
 \docType{import}
 \name{reexports}
+\alias{reexports}
 \alias{\%>\%}
 \alias{reexports}
+\alias{sample_n}
+\alias{reexports}
+\alias{slice}
+\alias{reexports}
+\alias{group_by}
+\alias{reexports}
+\alias{mutate}
 \title{Objects exported from other packages}
+\keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{dplyr}{\code{\link[dplyr]{sample_n}}, \code{\link[dplyr]{slice}}, \code{\link[dplyr]{group_by}}, \code{\link[dplyr]{mutate}}}
+
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
 }}
-\keyword{internal}
 

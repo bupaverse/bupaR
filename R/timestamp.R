@@ -5,11 +5,7 @@
 #' @param eventlog An object of class \code{eventlog}.
 #'
 #' @seealso \code{\link{eventlog}}
-#' @examples
-#'
-#'
-#' data(example_log)
-#' timestamp(example_log)
+
 #'
 #'
 #' @export timestamp

@@ -13,4 +13,3 @@ n_traces(eventlog)
 \description{
 Returns the number of traces in an event log
 }
-

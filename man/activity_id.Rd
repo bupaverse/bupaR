@@ -12,12 +12,7 @@ activity_id(eventlog)
 \description{
 Get the activity classifier of an object of class \code{eventlog}.
 }
-\examples{
-data(example_log)
-activity_id(example_log)
-}
 \seealso{
 \code{\link{eventlog}}, \code{\link{case_id}}, \code{\link{activity_instance_id}},
 \code{\link{timestamp}}
 }
-

@@ -4,9 +4,7 @@
 #' @seealso \code{\link{eventlog}}, \code{\link{activity_id}},
 #' \code{\link{timestamp}},
 #' \code{\link{case_id}}
-#' @examples
-#' data(example_log)
-#' activity_instance_id(example_log)
+
 #' @export
 activity_instance_id <- function(eventlog){
 	if("eventlog" %in% class(eventlog))

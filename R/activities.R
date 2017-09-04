@@ -9,10 +9,6 @@
 #'
 #' @seealso \code{\link{activity_id}},\code{\link{activity_instance_id}}, \code{\link{eventlog}}
 #'
-#' @examples
-#'
-#' data(example_log)
-#' activities(example_log)
 #'
 #' @export activities
 

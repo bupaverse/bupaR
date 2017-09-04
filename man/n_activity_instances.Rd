@@ -13,4 +13,3 @@ n_activity_instances(eventlog)
 \description{
 Returns the number of activity instances in an event log
 }
-

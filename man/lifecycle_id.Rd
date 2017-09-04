@@ -15,4 +15,3 @@ Get the life_cycle_id of an object of class \code{eventlog}
 \seealso{
 \code{\link{eventlog}}, \code{\link{activity_instance_id}}
 }
-

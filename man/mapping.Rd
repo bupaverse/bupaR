@@ -13,4 +13,3 @@ mapping(eventlog)
 \description{
 Prints the mapping of an event log object.
 }
-

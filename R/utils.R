@@ -2,7 +2,23 @@
 #' @export
 magrittr::`%>%`
 
-load <- c("edeaR","petrinetR")
+#' @importFrom dplyr sample_n
+#' @export
+dplyr::sample_n
+
+#' @importFrom dplyr slice
+#' @export
+dplyr::slice
+
+#' @importFrom dplyr group_by
+#' @export
+dplyr::group_by
+
+#' @importFrom dplyr mutate
+#' @export
+dplyr::mutate
+
+load <- c("edeaR","petrinetR", "eventdataR","processmapR","processmonitR","xesreadR")
 
 .onAttach <- function(...) {
 	needed <- load[!is_attached(load)]
@@ -10,8 +26,24 @@ load <- c("edeaR","petrinetR")
 	if (length(needed) == 0)
 		return()
 
-	packageStartupMessage(paste0("Loading bpaR: ", needed, collapse = "\n"))
-	lapply(needed, library, character.only = TRUE, warn.conflicts = FALSE)
+	needed_installed <- suppressWarnings(suppressPackageStartupMessages(sapply(needed, require, character.only = TRUE, warn.conflicts = FALSE)))
+
+	no_installed <- needed[!needed_installed]
+
+	if(length(no_installed) > 0) {
+		packageStartupMessage(paste0("bupaR works best with the following package(s) installed: ", toString(no_installed),
+			". \nDo you want to install these?\n"))
+		answer <- readline("Y/N: ")
+
+		if(answer == "Y"){
+			lapply(no_installed, install.packages)
+		}
+
+		if(answer == "Y"){
+			suppressWarnings(suppressPackageStartupMessages(sapply(no_installed, require, character.only = TRUE, warn.conflicts = FALSE)))
+		}
+	}
+
 
 }
 
@@ -41,7 +73,7 @@ traces_light <- function(eventlog){
 				 .(timestamp_classifier = min(timestamp_classifier)),
 				 by = .(case_classifier, activity_instance_classifier,  event_classifier)]
 
-	cases <- cases[order(timestamp_classifier), .(trace = paste(event_classifier, collapse = ",")),
+	cases <- cases[order(timestamp_classifier, event_classifier), .(trace = paste(event_classifier, collapse = ",")),
 				   by = .(case_classifier)]
 
 	#	cases <- eventlog %>%

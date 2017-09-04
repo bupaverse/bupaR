@@ -12,10 +12,8 @@
 #' both is returned.
 #'
 #' @seealso \code{\link{cases}}, \code{\link{eventlog}}
-#' @examples
 #'
-#' data(example_log)
-#' traces(example_log)
+
 #'
 #' @export traces
 
@@ -33,7 +31,7 @@ traces <- function(eventlog,
 				 .(timestamp_classifier = min(timestamp_classifier)),
 				 by = .(case_classifier, activity_instance_classifier,  event_classifier)]
 
-	cases <- cases[order(timestamp_classifier), .(trace = paste(event_classifier, collapse = ",")),
+	cases <- cases[order(timestamp_classifier, event_classifier), .(trace = paste(event_classifier, collapse = ",")),
 				   by = .(case_classifier)]
 
 	cases <- cases %>% mutate(trace_id = as.numeric(factor(trace)))
