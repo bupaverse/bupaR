@@ -2,9 +2,15 @@
 % Please edit documentation in R/n_activity_instances.R
 \name{n_activity_instances}
 \alias{n_activity_instances}
+\alias{n_activity_instances.eventlog}
+\alias{n_activity_instances.grouped_eventlog}
 \title{n_activity_instances}
 \usage{
 n_activity_instances(eventlog)
+
+\method{n_activity_instances}{eventlog}(eventlog)
+
+\method{n_activity_instances}{grouped_eventlog}(eventlog)
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class
@@ -12,4 +18,9 @@ n_activity_instances(eventlog)
 }
 \description{
 Returns the number of activity instances in an event log
+}
+\seealso{
+Other Eventlog count functions: \code{\link{n_activities}},
+  \code{\link{n_cases}}, \code{\link{n_events}},
+  \code{\link{n_resources}}, \code{\link{n_traces}}
 }

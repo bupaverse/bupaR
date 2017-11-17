@@ -1,15 +1,36 @@
 #' @title Sample function for eventlog
-#' @description Return a sample of n cases of an event log object
 #' @param tbl Eventlog
 #' @param size Number of cases to sample
 #' @param replace Sample with replacement or not
 #' @param weight N/A
 #' @param .env N/A
-#' @method sample_n eventlog
+#' @name sample_n
+#' @importFrom dplyr sample_n
+#' @export
+dplyr::sample_n
+
+#' @describeIn sample_n Sample n cases of eventlog
 #' @export
 
 sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env) {
 
+	##edear function
+	filter_case <- function(eventlog,
+							cases = NULL,
+							reverse = F){
+		stop_eventlog(eventlog)
+
+
+		if(reverse == F)
+			output <- filter(eventlog, !!as.symbol(case_id(eventlog)) %in% cases)
+
+		else
+			output <- filter(eventlog, !(!!as.symbol(case_id(eventlog)) %in% cases))
+
+		output <- re_map(output, mapping(eventlog))
+
+		return(output)
+	}
 
 	n_cases <- n_cases(tbl)
 
@@ -29,3 +50,23 @@ sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env) {
 		return()
 }
 
+
+#' @describeIn sample_n Stratified sampling of a grouped eventlog: sample n cases within each group
+#' @method sample_n grouped_eventlog
+#' @export
+
+sample_n.grouped_eventlog <- function(tbl, size, replace = FALSE, weight, .env) {
+
+	mapping <- mapping(tbl)
+
+	tbl %>%
+		nest() %>%
+		mutate(data = map(data, re_map, mapping)) %>%
+		mutate(data = map(data, sample_n, size = size, replace = replace)) %>%
+		unnest() %>%
+		re_map(mapping) %>%
+		return()
+
+
+
+}

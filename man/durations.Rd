@@ -2,9 +2,12 @@
 % Please edit documentation in R/durations.R
 \name{durations}
 \alias{durations}
+\alias{durations.eventlog}
 \title{Durations}
 \usage{
-durations(eventlog, units = "days")
+durations(eventlog, units)
+
+\method{durations}{eventlog}(eventlog, units = "days")
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class
@@ -16,3 +19,8 @@ durations(eventlog, units = "days")
 Computes the throughput times of each case.
 Throughput time is defined as the interval between the start of the first event and the completion of the last event.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Compute durations from eventlog
+}}
+

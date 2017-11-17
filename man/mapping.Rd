@@ -2,9 +2,12 @@
 % Please edit documentation in R/mapping.R
 \name{mapping}
 \alias{mapping}
+\alias{mapping.eventlog}
 \title{Mapping}
 \usage{
 mapping(eventlog)
+
+\method{mapping}{eventlog}(eventlog)
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class
@@ -12,4 +15,15 @@ mapping(eventlog)
 }
 \description{
 Prints the mapping of an event log object.
+}
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Retrieve identifier mapping from eventlog
+}}
+
+\seealso{
+Other Eventlog classifiers: \code{\link{activity_id}},
+  \code{\link{activity_instance_id}},
+  \code{\link{case_id}}, \code{\link{lifecycle_id}},
+  \code{\link{resource_id}}, \code{\link{timestamp}}
 }

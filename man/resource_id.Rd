@@ -2,17 +2,34 @@
 % Please edit documentation in R/resource_id.R
 \name{resource_id}
 \alias{resource_id}
+\alias{resource_id.eventlog}
+\alias{resource_id.eventlog_mapping}
 \title{Resource classifier}
 \usage{
-resource_id(eventlog)
+resource_id(x)
+
+\method{resource_id}{eventlog}(x)
+
+\method{resource_id}{eventlog_mapping}(x)
 }
 \arguments{
-\item{eventlog}{An object of class \code{eventlog}.}
+\item{x}{An \code{eventlog} of \code{eventlog_mapping}}
 }
 \description{
 Get the resource classifier of an object of class \code{eventlog}.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Retrieve resource identifier from eventlog
+
+\item \code{eventlog_mapping}: Retrieve resource identifier from eventlog mapping
+}}
+
 \seealso{
-\code{\link{eventlog}}, \code{\link{case_id}}, \code{\link{activity_instance_id}},
-\code{\link{timestamp}}
+\code{\link{eventlog}}, \code{\link{mapping}}
+
+Other Eventlog classifiers: \code{\link{activity_id}},
+  \code{\link{activity_instance_id}},
+  \code{\link{case_id}}, \code{\link{lifecycle_id}},
+  \code{\link{mapping}}, \code{\link{timestamp}}
 }

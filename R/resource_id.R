@@ -1,14 +1,21 @@
 #' @title Resource classifier
 #' @description Get the resource classifier of an object of class \code{eventlog}.
-#' @param eventlog An object of class \code{eventlog}.
-#' @seealso \code{\link{eventlog}}, \code{\link{case_id}}, \code{\link{activity_instance_id}},
-#' \code{\link{timestamp}}
+#' @param x An \code{eventlog} of \code{eventlog_mapping}
+#' @seealso \code{\link{eventlog}}, \code{\link{mapping}}
+#' @family Eventlog classifiers
+#' @export
 
-#' @export resource_id
+resource_id <- function(x) {
+	UseMethod("resource_id")
+}
 
-resource_id <- function(eventlog){
-	if("eventlog" %in% class(eventlog))
-		return(attr(eventlog, "resource_id"))
-	else
-		stop("Function only applicable on objects of type 'eventlog'")
+#' @describeIn resource_id Retrieve resource identifier from eventlog
+#' @export
+resource_id.eventlog <- function(x) {
+	return(attr(x, "resource_id"))
+}
+#' @describeIn resource_id Retrieve resource identifier from eventlog mapping
+#' @export
+resource_id.eventlog_mapping <- function(x) {
+	return(x$resource_id)
 }

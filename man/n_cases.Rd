@@ -2,9 +2,15 @@
 % Please edit documentation in R/n_cases.R
 \name{n_cases}
 \alias{n_cases}
+\alias{n_cases.eventlog}
+\alias{n_cases.grouped_eventlog}
 \title{n_cases}
 \usage{
 n_cases(eventlog)
+
+\method{n_cases}{eventlog}(eventlog)
+
+\method{n_cases}{grouped_eventlog}(eventlog)
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class
@@ -12,4 +18,17 @@ n_cases(eventlog)
 }
 \description{
 Returns the number of cases in an event log
+}
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Count number of cases for eventlog
+
+\item \code{grouped_eventlog}: Count number of cases for grouped eventlog
+}}
+
+\seealso{
+Other Eventlog count functions: \code{\link{n_activities}},
+  \code{\link{n_activity_instances}},
+  \code{\link{n_events}}, \code{\link{n_resources}},
+  \code{\link{n_traces}}
 }

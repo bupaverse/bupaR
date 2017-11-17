@@ -5,32 +5,26 @@
 #'
 #' @param eventlog The event log to be used. An object of class
 #' \code{eventlog}.
-#'
 #' @param units The time unit in which the throughput times should be reported.
-#'
-#'
-#'
-#'
 #' @export durations
-
-durations <- function(eventlog,
+durations <- function(eventlog, units) {
+	UseMethod("durations")
+}
+#' @describeIn durations Compute durations from eventlog
+#' @export
+durations.eventlog <- function(eventlog,
 					  units = "days") {
-	stop_eventlog(eventlog)
-
-	colnames(eventlog)[colnames(eventlog)==lifecycle_id(eventlog)] <- "life_cycle_classifier"
-	colnames(eventlog)[colnames(eventlog)==case_id(eventlog)] <- "case_classifier"
-	colnames(eventlog)[colnames(eventlog)==timestamp(eventlog)] <- "timestamp_classifier"
 
 	e <- eventlog
 
-	durations <- e %>% group_by(case_classifier) %>% summarize(s = min(timestamp_classifier), e = max(timestamp_classifier))
+	durations <- e %>% group_by(!!as.symbol(case_id(eventlog))) %>% summarize(s = min(!!as.symbol(timestamp(eventlog))),
+															   e = max(!!as.symbol(timestamp(eventlog))))
 
 	durations$duration <- durations$e - durations$s
 	durations$duration <- as.double(durations$duration, units = units)
 
-	durations <- durations %>% select(case_classifier, duration) %>% arrange(desc(duration))
+	durations <- durations %>% select(one_of(c(case_id(eventlog), "duration"))) %>% arrange(desc(!!as.symbol("duration")))
 
-	colnames(durations)[colnames(durations)=="case_classifier"] <- case_id(eventlog)
 	colnames(durations)[colnames(durations)=="duration"] <- paste("duration_in_", units, sep ="")
 
 	durations <- tbl_df(durations)

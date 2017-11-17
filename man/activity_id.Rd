@@ -2,17 +2,34 @@
 % Please edit documentation in R/activity_id.R
 \name{activity_id}
 \alias{activity_id}
+\alias{activity_id.eventlog}
+\alias{activity_id.eventlog_mapping}
 \title{Activity classifier}
 \usage{
-activity_id(eventlog)
+activity_id(x)
+
+\method{activity_id}{eventlog}(x)
+
+\method{activity_id}{eventlog_mapping}(x)
 }
 \arguments{
-\item{eventlog}{An object of class \code{eventlog}.}
+\item{x}{An \code{eventlog} of \code{eventlog_mapping}}
 }
 \description{
 Get the activity classifier of an object of class \code{eventlog}.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Retrieve activity identifier from eventlog
+
+\item \code{eventlog_mapping}: Retrieve activity identifier from eventlog mapping
+}}
+
 \seealso{
-\code{\link{eventlog}}, \code{\link{case_id}}, \code{\link{activity_instance_id}},
-\code{\link{timestamp}}
+\code{\link{eventlog}}, \code{\link{mapping}}
+
+Other Eventlog classifiers: \code{\link{activity_instance_id}},
+  \code{\link{case_id}}, \code{\link{lifecycle_id}},
+  \code{\link{mapping}}, \code{\link{resource_id}},
+  \code{\link{timestamp}}
 }

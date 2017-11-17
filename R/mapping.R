@@ -4,10 +4,14 @@
 #'
 #' @param eventlog The event log to be used. An object of class
 #' \code{eventlog}.
-#'
-#' @export mapping
-
+#' @family Eventlog classifiers
+#' @export
 mapping <- function(eventlog) {
+	UseMethod("mapping")
+}
+#' @describeIn mapping Retrieve identifier mapping from eventlog
+#' @export
+mapping.eventlog <- function(eventlog) {
 	mapping <- list()
 
 	mapping$case_identifier <- case_id(eventlog)
@@ -21,3 +25,4 @@ mapping <- function(eventlog) {
 
 	return(mapping)
 	}
+

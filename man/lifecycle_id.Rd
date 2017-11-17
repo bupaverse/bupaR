@@ -2,16 +2,32 @@
 % Please edit documentation in R/lifecycle_id.R
 \name{lifecycle_id}
 \alias{lifecycle_id}
+\alias{lifecycle_id.eventlog}
+\alias{lifecycle_id.eventlog_mapping}
 \title{Life cycle classifier}
 \usage{
-lifecycle_id(eventlog)
+lifecycle_id(x)
+
+\method{lifecycle_id}{eventlog}(x)
+
+\method{lifecycle_id}{eventlog_mapping}(x)
 }
 \arguments{
-\item{eventlog}{An object of class \code{eventlog}.}
+\item{x}{An \code{eventlog} of \code{eventlog_mapping}}
 }
 \description{
 Get the life_cycle_id of an object of class \code{eventlog}
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Retrieve lifecycle identifier from eventlog
+
+\item \code{eventlog_mapping}: Retrieve lifecycle identifier from eventlog mapping
+}}
+
 \seealso{
-\code{\link{eventlog}}, \code{\link{activity_instance_id}}
+Other Eventlog classifiers: \code{\link{activity_id}},
+  \code{\link{activity_instance_id}},
+  \code{\link{case_id}}, \code{\link{mapping}},
+  \code{\link{resource_id}}, \code{\link{timestamp}}
 }

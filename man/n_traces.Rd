@@ -2,9 +2,15 @@
 % Please edit documentation in R/n_traces.R
 \name{n_traces}
 \alias{n_traces}
+\alias{n_traces.eventlog}
+\alias{n_traces.grouped_eventlog}
 \title{n_traces}
 \usage{
 n_traces(eventlog)
+
+\method{n_traces}{eventlog}(eventlog)
+
+\method{n_traces}{grouped_eventlog}(eventlog)
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class
@@ -12,4 +18,17 @@ n_traces(eventlog)
 }
 \description{
 Returns the number of traces in an event log
+}
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Count number of traces for eventlog
+
+\item \code{grouped_eventlog}: Count number of traces for grouped eventlog
+}}
+
+\seealso{
+Other Eventlog count functions: \code{\link{n_activities}},
+  \code{\link{n_activity_instances}},
+  \code{\link{n_cases}}, \code{\link{n_events}},
+  \code{\link{n_resources}}
 }

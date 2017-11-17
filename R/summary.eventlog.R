@@ -2,6 +2,7 @@
 #' @description Generic summary function for eventlog class
 #' @param object Eventlog object
 #' @param ... Additional Arguments
+#' @rdname summary
 #' @method summary eventlog
 #' @export
 
@@ -17,10 +18,8 @@ summary.eventlog <- function(object, ...){
 	number_of_activities <- nrow(activities(eventlog))
 
 
-	colnames(eventlog)[colnames(eventlog)==timestamp(eventlog)] <- "timestamp_classifier"
-
-	first_event <- as.character(arrange(eventlog, timestamp_classifier)$timestamp_classifier[1])
-	last_event <- as.character(arrange(eventlog, timestamp_classifier)$timestamp_classifier[nrow(eventlog)])
+	first_event <- as.character(min(pull(eventlog, !!as.symbol(timestamp(eventlog)))))
+	last_event <- as.character(max(pull(eventlog, !!as.symbol(timestamp(eventlog)))))
 
 	events_per_case <- number_of_events/number_of_cases
 
@@ -41,4 +40,12 @@ summary.eventlog <- function(object, ...){
 	cat("\n\n")
 	NextMethod(object)
 
+}
+
+#' @describeIn summary Summary of grouped event log
+#' @export
+
+summary.grouped_eventlog <- function(object, ...) {
+	object <- eventlog(object)
+	NextMethod(object)
 }

@@ -1,14 +1,22 @@
 #' @title Activity instance classifier
 #' @description Get the activity instance classifier of an object of class \code{eventlog}.
-#' @param eventlog An object of class \code{eventlog}.
-#' @seealso \code{\link{eventlog}}, \code{\link{activity_id}},
-#' \code{\link{timestamp}},
-#' \code{\link{case_id}}
-
+#' @param x An \code{eventlog} of \code{eventlog_mapping}
+#' @family Eventlog classifiers
 #' @export
-activity_instance_id <- function(eventlog){
-	if("eventlog" %in% class(eventlog))
-		return(attr(eventlog, "activity_instance_id"))
-	else
-		stop("Function only applicable on objects of type 'eventlog'")
+activity_instance_id <- function(x){
+	UseMethod("activity_instance_id")
 }
+#' @describeIn activity_instance_id Retrieve activity instance identifier from eventlog
+#' @export
+
+activity_instance_id.eventlog <- function(x){
+	return(attr(x, "activity_instance_id"))
+}
+
+#' @describeIn activity_instance_id Retrieve activity instance identifier from eventlog mapping
+#' @export
+
+activity_instance_id.eventlog_mapping <- function(x){
+	return(x$activity_instance_id)
+}
+

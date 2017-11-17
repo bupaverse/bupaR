@@ -1,14 +1,14 @@
 Package: bupaR
 Type: Package
 Title: Business Process Analytics in R
-Version: 0.3.0
-Date: 2017-09-04
-Author: Gert Janssenswillen
-Maintainer: Gert Janssenswillen <gert.janssenswillen@uhasselt.be>
+Version: 0.3.1.9000
+Date: 2017-11-06
+Authors@R: person("Gert","Janssenswillen", email = "gert.janssenswillen@uhasselt.be", 
+  role = c("aut","cre"))
 Description: Functionalities for process analysis in R. This packages implements an S3-class for event log objects, and related handler functions. Imports related packages for subsetting event data, computation of descriptive statistics, handling of Petri Net objects and visualization of process maps. See also packages 'edeaR','processmapR', 'eventdataR' and 'processmonitR'.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
-Imports: magrittr, dplyr, data.table, shiny, miniUI, purrr
+Imports: magrittr, dplyr, data.table, shiny, miniUI, purrr, tidyr, glue, forcats
 URL: https://www.bupar.net

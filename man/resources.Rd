@@ -2,9 +2,15 @@
 % Please edit documentation in R/resources.R
 \name{resources}
 \alias{resources}
+\alias{resources.eventlog}
+\alias{resources.grouped_eventlog}
 \title{Resources}
 \usage{
 resources(eventlog)
+
+\method{resources}{eventlog}(eventlog)
+
+\method{resources}{grouped_eventlog}(eventlog)
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class
@@ -13,6 +19,13 @@ resources(eventlog)
 \description{
 Returns a \code{tbl_df}  containing a list of all resources in the event log, with there absolute and relative frequency
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Generate resource list for eventlog
+
+\item \code{grouped_eventlog}: Generate resource list for grouped eventlog
+}}
+
 \seealso{
 \code{\link{resource_id}}, \code{\link{eventlog}}
 }

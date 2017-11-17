@@ -1,18 +1,19 @@
 #' @title Timestamp classifier
-#'
 #' @description Get the  timestamp classifier of an object of class \code{eventlog}
-#'
-#' @param eventlog An object of class \code{eventlog}.
-#'
-#' @seealso \code{\link{eventlog}}
-
-#'
-#'
-#' @export timestamp
-#'
-timestamp <- function(eventlog){
-	if("eventlog" %in% class(eventlog))
-		return(attr(eventlog, "timestamp"))
-	else
-		stop("Function only applicable on objects of type 'eventlog'")
+#' @param x An \code{eventlog} of \code{eventlog_mapping}
+#' @seealso \code{\link{eventlog}}, \code{\link{mapping}}
+#' @family Eventlog classifiers
+#' @export
+timestamp <- function(x) {
+	UseMethod("timestamp")
+}
+#' @describeIn timestamp Retrieve timestamp identifier from eventlog
+#' @export
+timestamp.eventlog <- function(x){
+	return(attr(x, "timestamp"))
+}
+#' @describeIn timestamp Retrieve timestamp identifier from eventlog mapping
+#' @export
+timestamp.eventlog_mapping <- function(x) {
+	return(x$timestamp)
 }

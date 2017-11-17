@@ -2,79 +2,59 @@
 #' @export
 magrittr::`%>%`
 
-#' @importFrom dplyr sample_n
-#' @export
-dplyr::sample_n
-
-#' @importFrom dplyr slice
-#' @export
-dplyr::slice
-
-#' @importFrom dplyr group_by
-#' @export
-dplyr::group_by
-
-#' @importFrom dplyr mutate
-#' @export
-dplyr::mutate
-
-load <- c("edeaR","petrinetR", "eventdataR","processmapR","processmonitR","xesreadR")
-
-.onAttach <- function(...) {
-	needed <- load[!is_attached(load)]
-
-	if (length(needed) == 0)
-		return()
-
-	needed_installed <- suppressWarnings(suppressPackageStartupMessages(sapply(needed, require, character.only = TRUE, warn.conflicts = FALSE)))
-
-	no_installed <- needed[!needed_installed]
-
-	if(length(no_installed) > 0) {
-		packageStartupMessage(paste0("bupaR works best with the following package(s) installed: ", toString(no_installed),
-			". \nDo you want to install these?\n"))
-		answer <- readline("Y/N: ")
-
-		if(answer == "Y"){
-			lapply(no_installed, install.packages)
-		}
-
-		if(answer == "Y"){
-			suppressWarnings(suppressPackageStartupMessages(sapply(no_installed, require, character.only = TRUE, warn.conflicts = FALSE)))
-		}
-	}
-
-
-}
-
-is_attached <- function(x) {
-	paste0("package:", x) %in% search()
-}
 
 
 cases_light <- function(eventlog){
 	if(!("eventlog" %in% class(eventlog)))
 		stop("Function only applicable for eventlog object")
 
-	traces(eventlog, output_traces = FALSE, output_cases = TRUE)
+	eDT <- data.table::as.data.table(eventlog)
+	cases <- eDT[,
+				 list("timestamp_classifier" = min(get(timestamp(eventlog)))),
+				 by = list("A" = get(case_id(eventlog)), "B" = get(activity_instance_id(eventlog)), "C" = get(activity_id(eventlog)))]
+	cases <- cases[order(get("timestamp_classifier"), get("C")),
+				   list(trace = paste(get("C"), collapse = ",")),
+				   by = list("CASE" = get("A"))]
+	cases <- cases %>% mutate(trace_id = as.numeric(factor(!!as.symbol("trace")))) %>%
+		rename(!!as.symbol(case_id(eventlog)) := "CASE")
+	#	cases <- eventlog %>%
+	#		group_by(case_classifier, activity_instance_classifier, event_classifier) %>%
+	#		summarize(timestamp_classifier = min(timestamp_classifier)) %>%
+	#		group_by(case_classifier) %>%
+	#		arrange(timestamp_classifier) %>%
+	#		summarize(trace = paste(event_classifier, collapse = ",")) %>%
+	#		mutate(trace_id = as.numeric(factor(trace)))
+
+	casesDT <- data.table(cases)
+	cases <- cases %>% data.frame
+
+	#traces <- cases %>%
+	#	group_by(trace, trace_id) %>%
+	#	summarize(absolute_frequency = n()) %>%
+	#	ungroup() %>%
+	#	arrange(desc(absolute_frequency)) %>%
+	#	mutate(relative_frequency = absolute_frequency/sum(absolute_frequency))
+
+
+		return(cases)
+
 }
 
 
 traces_light <- function(eventlog){
 
-	colnames(eventlog)[colnames(eventlog) == case_id(eventlog)] <- "case_classifier"
-	colnames(eventlog)[colnames(eventlog) == activity_id(eventlog)] <- "event_classifier"
-	colnames(eventlog)[colnames(eventlog) == timestamp(eventlog)] <- "timestamp_classifier"
-	colnames(eventlog)[colnames(eventlog) == activity_instance_id(eventlog)] <- "activity_instance_classifier"
+
 
 	eDT <- data.table::data.table(eventlog)
 
-	cases <- eDT[,
-				 .(timestamp_classifier = min(timestamp_classifier)),
-				 by = .(case_classifier, activity_instance_classifier,  event_classifier)]
-
-	cases <- cases[order(timestamp_classifier, event_classifier), .(trace = paste(event_classifier, collapse = ",")),
-				   by = .(case_classifier)]
+		cases <- eDT[,
+				 list("timestamp_classifier" = min(get(timestamp(eventlog)))),
+				 by = list("A" = get(case_id(eventlog)), "B" = get(activity_instance_id(eventlog)), "C" = get(activity_id(eventlog)))]
+	cases <- cases[order(get("timestamp_classifier"), get("C")),
+				   list(trace = paste(get("C"), collapse = ",")),
+				   by = list("CASE" = get("A"))]
+	cases <- cases %>% mutate(trace_id = as.numeric(factor(!!as.symbol("trace")))) %>%
+		rename(!!as.symbol(case_id(eventlog)) := "CASE")
 
 	#	cases <- eventlog %>%
 	#		group_by(case_classifier, activity_instance_classifier, event_classifier) %>%
@@ -84,6 +64,10 @@ traces_light <- function(eventlog){
 	#		summarize(trace = paste(event_classifier, collapse = ",")) %>%
 	#		mutate(trace_id = as.numeric(factor(trace)))
 
+
+	.N <- NULL
+	absolute_frequency <- NULL
+	relative_frequency <- NULL
 
 	casesDT <- data.table(cases)
 

@@ -13,17 +13,36 @@
 #'
 #' @export resources
 
-
 resources <- function(eventlog) {
-	stop_eventlog(eventlog)
-	colnames(eventlog)[colnames(eventlog) == activity_instance_id(eventlog)] <- "activity_instance_classifier"
+	UseMethod("resources")
+}
+
+#' @describeIn resources Generate resource list for eventlog
+#' @export
+
+resources.eventlog <- function(eventlog) {
+
+	absolute_frequency <- NULL
+	relative_frequency <- NULL
 
 	output <- eventlog %>%
 		group_by_(resource_id(eventlog)) %>%
-		summarize("absolute_frequency" = n_distinct(activity_instance_classifier)) %>%
+		summarize("absolute_frequency" = n_distinct(!!as.symbol(activity_instance_id(eventlog)))) %>%
 		arrange(-absolute_frequency) %>%
 		mutate(relative_frequency = absolute_frequency/sum(absolute_frequency)) %>%
 		arrange(-relative_frequency)
 
 	return(output)
+}
+#' @describeIn resources Generate resource list for grouped eventlog
+#' @export
+resources.grouped_eventlog <- function(eventlog) {
+	mapping <- mapping(eventlog)
+
+	eventlog %>%
+		nest() %>%
+		mutate(data = map(data, re_map, mapping)) %>%
+		mutate(data = map(data, resources)) %>%
+		unnest() %>%
+		return()
 }

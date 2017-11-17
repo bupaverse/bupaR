@@ -2,17 +2,34 @@
 % Please edit documentation in R/case_id.r
 \name{case_id}
 \alias{case_id}
+\alias{case_id.eventlog}
+\alias{case_id.eventlog_mapping}
 \title{Case classifier}
 \usage{
-case_id(eventlog)
+case_id(x)
+
+\method{case_id}{eventlog}(x)
+
+\method{case_id}{eventlog_mapping}(x)
 }
 \arguments{
-\item{eventlog}{An object of class \code{eventlog}.}
+\item{x}{An \code{eventlog} of \code{eventlog_mapping}}
 }
 \description{
 Get the case classifier of an object of class \code{eventlog}
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Retrieve case identifier from eventlog
+
+\item \code{eventlog_mapping}: Retrieve case identifier from eventlog mapping
+}}
+
 \seealso{
-\code{\link{eventlog}}, \code{\link{activity_id}},
-\code{\link{lifecycle_id}}, \code{\link{activity_instance_id}}
+\code{\link{eventlog}}, \code{\link{mapping}}
+
+Other Eventlog classifiers: \code{\link{activity_id}},
+  \code{\link{activity_instance_id}},
+  \code{\link{lifecycle_id}}, \code{\link{mapping}},
+  \code{\link{resource_id}}, \code{\link{timestamp}}
 }

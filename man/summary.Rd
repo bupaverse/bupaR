@@ -2,9 +2,12 @@
 % Please edit documentation in R/summary.eventlog.R
 \name{summary.eventlog}
 \alias{summary.eventlog}
+\alias{summary.grouped_eventlog}
 \title{Generic summary function for eventlog class}
 \usage{
 \method{summary}{eventlog}(object, ...)
+
+\method{summary}{grouped_eventlog}(object, ...)
 }
 \arguments{
 \item{object}{Eventlog object}
@@ -14,3 +17,8 @@
 \description{
 Generic summary function for eventlog class
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{grouped_eventlog}: Summary of grouped event log
+}}
+

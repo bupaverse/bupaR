@@ -7,35 +7,41 @@
 #' @param eventlog The event log to be used. An object of class
 #' \code{eventlog}.
 #'
-#' @param output_traces,output_cases Logicals specifying what should be
-#' returned, a list of traces or a list of cases. If both are TRUE, a list of
-#' both is returned.
+#' @param ... Deprecated arguments
 #'
 #' @seealso \code{\link{cases}}, \code{\link{eventlog}}
 #'
 
-#'
+
 #' @export traces
 
-traces <- function(eventlog,
-				   output_traces = TRUE,
-				   output_cases = FALSE){
-	colnames(eventlog)[colnames(eventlog) == case_id(eventlog)] <- "case_classifier"
-	colnames(eventlog)[colnames(eventlog) == activity_id(eventlog)] <- "event_classifier"
-	colnames(eventlog)[colnames(eventlog) == timestamp(eventlog)] <- "timestamp_classifier"
-	colnames(eventlog)[colnames(eventlog) == activity_instance_id(eventlog)] <- "activity_instance_classifier"
+traces <- function(eventlog,...) {
+	UseMethod("traces")
+}
+
+#' @describeIn traces Construct traces list for eventlog
+#' @export
+
+traces.eventlog <- function(eventlog, ...){
+
+	if (exists("output_cases")) {
+		warning("argument output_cases is deprecated, please use function cases instead",
+				call. = FALSE)
+	}
+	if (exists("output_traces")) {
+		warning("argument output_traces is deprecated",
+				call. = FALSE)
+	}
 
 	eDT <- data.table::as.data.table(eventlog)
-
 	cases <- eDT[,
-				 .(timestamp_classifier = min(timestamp_classifier)),
-				 by = .(case_classifier, activity_instance_classifier,  event_classifier)]
-
-	cases <- cases[order(timestamp_classifier, event_classifier), .(trace = paste(event_classifier, collapse = ",")),
-				   by = .(case_classifier)]
-
-	cases <- cases %>% mutate(trace_id = as.numeric(factor(trace)))
-
+				 list("timestamp_classifier" = min(get(timestamp(eventlog)))),
+				 by = list("A" = get(case_id(eventlog)), "B" = get(activity_instance_id(eventlog)), "C" = get(activity_id(eventlog)))]
+	cases <- cases[order(get("timestamp_classifier"), get("C")),
+				   list(trace = paste(get("C"), collapse = ",")),
+				   by = list("CASE" = get("A"))]
+	cases <- cases %>% mutate(trace_id = as.numeric(factor(!!as.symbol("trace")))) %>%
+		rename(!!as.symbol(case_id(eventlog)) := "CASE")
 	#	cases <- eventlog %>%
 	#		group_by(case_classifier, activity_instance_classifier, event_classifier) %>%
 	#		summarize(timestamp_classifier = min(timestamp_classifier)) %>%
@@ -45,13 +51,14 @@ traces <- function(eventlog,
 	#		mutate(trace_id = as.numeric(factor(trace)))
 
 
-	colnames(cases)[colnames(cases) == "case_classifier"] <- case_id(eventlog)
+	.N <- NULL
+	absolute_frequency <- NULL
+	relative_frequency <- NULL
+	trace_id <- NULL
 
 	casesDT <- data.table(cases)
 	cases <- cases %>% data.frame
-
 	traces <- casesDT[, .(absolute_frequency = .N), by = .(trace, trace_id)]
-
 	traces <- traces[order(absolute_frequency, decreasing = T),relative_frequency:=absolute_frequency/sum(absolute_frequency)]
 	traces <- tbl_df(traces)
 	#traces <- cases %>%
@@ -61,15 +68,22 @@ traces <- function(eventlog,
 	#	arrange(desc(absolute_frequency)) %>%
 	#	mutate(relative_frequency = absolute_frequency/sum(absolute_frequency))
 
-	if(output_traces == TRUE && output_cases == TRUE)
-		return(list(traces,cases))
-	else if(output_traces == TRUE && output_cases == FALSE)
-		return(traces)
-	else if(output_traces == FALSE && output_cases == TRUE)
-		return(cases)
-	else
-		return(nrow(traces))
-
+	return(traces)
 }
+
+#' @describeIn traces Construct list of traces for grouped eventlog
+#' @export
+#'
+traces.grouped_eventlog <- function(eventlog, ...) {
+	mapping <- mapping(eventlog)
+
+	eventlog %>%
+		nest() %>%
+		mutate(data = map(data, re_map, mapping)) %>%
+		mutate(data = map(data, traces)) %>%
+		unnest() %>%
+		return()
+}
+
 
 

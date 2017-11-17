@@ -15,17 +15,17 @@ ieventlog(eventlog)
 \item{eventlog}{The data object to be used as event log. This can be a
 \code{data.frame} or \code{tbl_df}.}
 
-\item{case_id}{The case classifier of the event log.}
+\item{case_id}{The case classifier of the event log. A character vector containing variable names of length 1 or more.}
 
-\item{activity_id}{The activity classifier of the event log.}
+\item{activity_id}{The activity classifier of the event log. A character vector containing variable names of length 1 or more.}
 
 \item{activity_instance_id}{The activity instance classifier of the event log.}
 
 \item{lifecycle_id}{The life cycle classifier of the event log.}
 
-\item{timestamp}{The timestamp of the event log.}
+\item{timestamp}{The timestamp of the event log. Should refer to a Date or POSIXct field.}
 
-\item{resource_id}{The resource identifier of the event log.}
+\item{resource_id}{The resource identifier of the event log. A character vector containing variable names of length 1 or more.}
 }
 \description{
 A function to instantiate an object of class \code{eventlog} by specifying a

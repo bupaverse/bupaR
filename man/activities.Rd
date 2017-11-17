@@ -2,9 +2,15 @@
 % Please edit documentation in R/activities.R
 \name{activities}
 \alias{activities}
+\alias{activities.eventlog}
+\alias{activities.grouped_eventlog}
 \title{Activities}
 \usage{
 activities(eventlog)
+
+\method{activities}{eventlog}(eventlog)
+
+\method{activities}{grouped_eventlog}(eventlog)
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class
@@ -13,6 +19,13 @@ activities(eventlog)
 \description{
 Returns a \code{tbl_df}  containing a list of all activity types in the event log, with their absolute and relative frequency
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Generate activity list for eventlog
+
+\item \code{grouped_eventlog}: Generate activity list for grouped eventlog
+}}
+
 \seealso{
 \code{\link{activity_id}},\code{\link{activity_instance_id}}, \code{\link{eventlog}}
 }

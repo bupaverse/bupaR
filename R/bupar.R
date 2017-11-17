@@ -9,7 +9,13 @@
 #' @import dplyr
 #' @import shiny
 #' @import miniUI
+#' @importFrom tidyr unite
+#' @importFrom glue glue
+#' @importFrom forcats fct_collapse
 #' @importFrom purrr map
+#' @importFrom purrr pmap
+#' @importFrom tidyr nest
+#' @importFrom tidyr unnest
 #' @importFrom stats median
 #' @importFrom stats na.omit
 #' @importFrom stats quantile
@@ -18,10 +24,6 @@
 #' @importFrom utils setTxtProgressBar
 #' @importFrom utils txtProgressBar
 #' @importFrom utils data
-
-globalVariables(c(".",".N","absolute_frequency", "activity_instance_classifier","case_classifier", "duration",
-				  "event_classifier",
-				  "relative_frequency","timestamp_classifier","trace_id", "filter_case", "install.packages"))
-
-NULL
+globalVariables(c("."))
+"_PACKAGE"
 

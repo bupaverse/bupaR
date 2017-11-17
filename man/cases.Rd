@@ -2,15 +2,23 @@
 % Please edit documentation in R/cases.r
 \name{cases}
 \alias{cases}
+\alias{cases.eventlog}
 \title{Cases}
 \usage{
 cases(eventlog)
+
+\method{cases}{eventlog}(eventlog)
 }
 \arguments{
-\item{eventlog}{The event log to be used. An object of class
+\item{eventlog}{An eventlog object.
 \code{eventlog}.}
 }
 \description{
 Provides a fine-grained summary of an event log with characteristics for each case:  the number of events,
 the number of activity types, the timespan, the trace, the duration and the first and last event type.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Constructy list of cases in an eventlog
+}}
+

@@ -2,16 +2,34 @@
 % Please edit documentation in R/timestamp.R
 \name{timestamp}
 \alias{timestamp}
+\alias{timestamp.eventlog}
+\alias{timestamp.eventlog_mapping}
 \title{Timestamp classifier}
 \usage{
-timestamp(eventlog)
+timestamp(x)
+
+\method{timestamp}{eventlog}(x)
+
+\method{timestamp}{eventlog_mapping}(x)
 }
 \arguments{
-\item{eventlog}{An object of class \code{eventlog}.}
+\item{x}{An \code{eventlog} of \code{eventlog_mapping}}
 }
 \description{
 Get the  timestamp classifier of an object of class \code{eventlog}
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Retrieve timestamp identifier from eventlog
+
+\item \code{eventlog_mapping}: Retrieve timestamp identifier from eventlog mapping
+}}
+
 \seealso{
-\code{\link{eventlog}}
+\code{\link{eventlog}}, \code{\link{mapping}}
+
+Other Eventlog classifiers: \code{\link{activity_id}},
+  \code{\link{activity_instance_id}},
+  \code{\link{case_id}}, \code{\link{lifecycle_id}},
+  \code{\link{mapping}}, \code{\link{resource_id}}
 }

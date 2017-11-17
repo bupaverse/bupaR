@@ -8,17 +8,12 @@
 #' @param eventlog The data object to be used as event log. This can be a
 #' \code{data.frame} or \code{tbl_df}.
 #'
-#' @param case_id The case classifier of the event log.
-#'
-#' @param activity_id The activity classifier of the event log.
-#'
+#' @param case_id The case classifier of the event log. A character vector containing variable names of length 1 or more.
+#' @param activity_id The activity classifier of the event log. A character vector containing variable names of length 1 or more.
 #' @param activity_instance_id The activity instance classifier of the event log.
-#'
 #' @param lifecycle_id The life cycle classifier of the event log.
-#'
-#' @param timestamp The timestamp of the event log.
-#'
-#' @param resource_id The resource identifier of the event log.
+#' @param timestamp The timestamp of the event log. Should refer to a Date or POSIXct field.
+#' @param resource_id The resource identifier of the event log. A character vector containing variable names of length 1 or more.
 #'
 #' @seealso \code{\link{case_id}}, \code{\link{activity_id}},
 #' \code{\link{activity_instance_id}},\code{\link{lifecycle_id}},
@@ -50,63 +45,68 @@ eventlog <- function(eventlog,
 					 timestamp = NULL,
 					 resource_id = NULL){
 
-	eventlog <- tbl_df(as.data.frame(eventlog))
 
+
+	stopifnot(is.data.frame(eventlog))
+	eventlog <- tbl_df(as.data.frame(eventlog))
 	class(eventlog) <- c("eventlog",class(eventlog))
 
-	if(is.null(case_id)){
-		if(!is.null(case_id(eventlog)))
-			message("Recovered existing case_id")
-		else
-			stop("No case_id provided nor found")
-	}
-	else {
-		if(!(case_id %in% colnames(eventlog)))
-			stop("Case classifier not found")
-		else
-			attr(eventlog, "case_id") <- case_id
+
+	args_values <- as.list(environment())[c("case_id","activity_id","activity_instance_id","lifecycle_id","resource_id")]
+	args_names <- args_values %>% names
+
+	attribute_list <- pmap(list(args_values, args_names),
+		 ~list(attribute_name = ..2,
+		 	  attribute_values = ..1))
+
+
+	check_attributes <- function(eventlog, attribute_name, attribute_values) {
+		FUN <- ifelse(attribute_name == "case_id", bupaR::case_id,
+					  ifelse(  attribute_name == "activity_id", bupaR::activity_id,
+					  		 ifelse(  attribute_name == "activity_instance_id", bupaR::activity_instance_id,
+					  		 		 ifelse( attribute_name == "resource_id", bupaR::resource_id, bupaR::lifecycle_id))))
+
+
+
+		if(is.null(attribute_values)) {
+			if(!is.null(FUN(eventlog))) {
+				#message(glue("Recovered existing {attribute_name}"))
+			}
+			else {
+				stop(glue("No {attribute_name} provided nor found"))
+			}
+		} else if(length(attribute_values) == 1) {
+			if(!(attribute_values %in% colnames(eventlog))) {
+				stop(glue("{attribute_name} not found in data.frame"))
+			} else {
+				attr(eventlog, attribute_name) <- attribute_values
+			}
+		} else {
+			if(any(!(attribute_values %in% colnames(eventlog))))
+				stop(glue("One or more {attribute_name} not found"))
+			else {
+
+				merge_col <- eventlog[,attribute_values]
+				merged_values <- purrr::reduce(merge_col, paste, sep = "_")
+				eventlog[[paste0(attribute_values, collapse = "_")]] <- merged_values
+				attr(eventlog, attribute_name) <- paste0(attribute_values, collapse =  "_")
+			}
+		}
+		return(eventlog)
 	}
 
-	if(is.null(activity_id)){
-		if(!is.null(activity_id(eventlog)))
-			message("Recovered existing activity_id")
-		else
-			stop("No activity_id provided nor found")
-	}
-	else{
-		if(!(activity_id %in% colnames(eventlog)))
-			stop("Activity classifier not found")
-		else
-			attr(eventlog, "activity_id") <- activity_id
+
+	check_wrapper  <- function(eventlog, attributes) {
+		check_attributes(eventlog, attributes$attribute_name, attributes$attribute_values)
 	}
 
-	if(is.null(activity_instance_id)){
-		if(!is.null(activity_instance_id(eventlog)))
-			message("Recovered existing activity_instance_id")
-		else
-			stop("No activity instance id provided nor found")
-	}
-	else {
-		if(!(activity_instance_id %in% colnames(eventlog)))
-			stop("Activity instance id classifier not found")
-		else
-			attr(eventlog, "activity_instance_id") <- activity_instance_id
-	}
-	if(is.null(lifecycle_id)) {
-		if(!is.null(lifecycle_id(eventlog)))
-			message("Recovered existing lifecycle_id")
-		else
-			stop("No lifecycle id provided nor found")
-	}
-	else {
-		if(!(lifecycle_id %in% colnames(eventlog)))
-			stop("lifecycle id classifier not found")
-		else
-			attr(eventlog, "lifecycle_id") <- lifecycle_id
-	}
+	eventlog <- purrr::reduce(.x = attribute_list, .f = check_wrapper, .init = eventlog)
+
+
 	if(is.null(timestamp)) {
-		if(!is.null(timestamp(eventlog)))
-			message("Recovered existing timestamp")
+		if(!is.null(timestamp(eventlog))) {
+			#message("Recovered existing timestamp")
+		}
 		else
 			stop("No timestamp provided nor found")
 	}
@@ -118,20 +118,44 @@ eventlog <- function(eventlog,
 		} else
 			attr(eventlog, "timestamp") <- timestamp
 	}
-	if(is.null(resource_id)) {
-		if(!is.null(resource_id(eventlog)))
-			message("Recovered existing resource identifier")
-		else {
-			warning("No resource identifier provided nor found. Set to default: NA")
-			attr(eventlog, "resource_id") <- NA
-		}
+
+	eventlog %>%
+		group_by(!!as.symbol(activity_instance_id(eventlog))) %>%
+		summarize(n_cases = n_distinct(!!as.symbol(case_id(eventlog))),
+				  n_act = n_distinct(!!as.symbol(activity_id(eventlog))),
+				  n_resource = n_distinct(!!as.symbol(resource_id(eventlog)))) -> t
+
+	n_cases <- NULL
+	n_act <- NULL
+	n_resource <- NULL
+
+	t %>%
+		filter(n_cases > 1) -> violation_cases
+	t %>%
+		filter(n_act > 1) -> violation_activities
+	t %>%
+		filter(n_resource > 1) -> violation_resources
+
+
+	if(nrow(violation_cases) >0) {
+		stop(glue("The following activity instances are connected to more than one case: {paste(violation_cases %>% pull(1), collapse = \",\")}"))
 	}
-	else {
-		if(!(resource_id %in% colnames(eventlog)))
-			stop("Resource identifier not found")
-		else
-			attr(eventlog, "resource_id") <- resource_id
+	if(nrow(violation_activities) > 0) {
+		stop(glue("The following activity instances are connected to more than one activity: {paste(violation_activities %>% pull(1), collapse = \",\")}"))
 	}
+	if(nrow(violation_resources) > 0) {
+		stop(glue("The following activity instances are connected to more than one resource: {paste(violation_resources %>% pull(1), collapse = \",\")}"))
+	}
+
+	mapping <- mapping(eventlog)
+	eventlog[[case_id(mapping)]] <- as.character(eventlog[[case_id(mapping)]])
+	eventlog[[activity_id(mapping)]] <- as.factor(eventlog[[activity_id(mapping)]])
+	eventlog[[activity_instance_id(mapping)]] <- as.character(eventlog[[activity_instance_id(mapping)]])
+	eventlog[[resource_id(mapping)]] <- as.factor(eventlog[[resource_id(mapping)]])
+	eventlog[[lifecycle_id(mapping)]] <- as.factor(eventlog[[lifecycle_id(mapping)]])
+
+
+
 	return(eventlog)
 }
 #' @rdname eventlog
@@ -150,16 +174,16 @@ ieventlog <- function(eventlog){
 				selectizeInput("activity_instance_id", "Activity instance", choices =  c("",colnames(eventlog)),
 							   selected = ifelse(is.null(attr(eventlog, "activity_instance_id")), NA, attr(eventlog, "activity_instance_id")))),
 
-			fillCol(
-				selectizeInput("lifecycle_id", "Lifecycle", choices =  c("",colnames(eventlog)),
-							   selected = ifelse(is.null(attr(eventlog, "lifecycle_id")), NA, attr(eventlog, "lifecycle_id"))),
-				selectizeInput("timestamp", "Timestamp", choices =  c("",colnames(eventlog)),
-							   selected = ifelse(is.null(attr(eventlog, "timestamp")), NA, attr(eventlog, "timestamp"))),
+				fillCol(
+					selectizeInput("lifecycle_id", "Lifecycle", choices =  c("",colnames(eventlog)),
+								   selected = ifelse(is.null(attr(eventlog, "lifecycle_id")), NA, attr(eventlog, "lifecycle_id"))),
+					selectizeInput("timestamp", "Timestamp", choices =  c("",colnames(eventlog)),
+								   selected = ifelse(is.null(attr(eventlog, "timestamp")), NA, attr(eventlog, "timestamp"))),
 
-				selectizeInput("resource_id", "Resource identifier",  choices =  c("",colnames(eventlog)),
-							   selected = ifelse(is.null(attr(eventlog, "resource_id")), NA, attr(eventlog, "resource_id"))))
+					selectizeInput("resource_id", "Resource identifier",  choices =  c("",colnames(eventlog)),
+								   selected = ifelse(is.null(attr(eventlog, "resource_id")), NA, attr(eventlog, "resource_id"))))
 
-		))
+			))
 	)
 
 	server <- function(input, output, session){

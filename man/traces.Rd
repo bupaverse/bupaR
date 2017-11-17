@@ -2,23 +2,34 @@
 % Please edit documentation in R/traces.R
 \name{traces}
 \alias{traces}
+\alias{traces.eventlog}
+\alias{traces.grouped_eventlog}
 \title{Traces}
 \usage{
-traces(eventlog, output_traces = TRUE, output_cases = FALSE)
+traces(eventlog, ...)
+
+\method{traces}{eventlog}(eventlog, ...)
+
+\method{traces}{grouped_eventlog}(eventlog, ...)
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class
 \code{eventlog}.}
 
-\item{output_traces, output_cases}{Logicals specifying what should be
-returned, a list of traces or a list of cases. If both are TRUE, a list of
-both is returned.}
+\item{...}{Deprecated arguments}
 }
 \description{
 \code{traces} computes the different activity sequences of an event log
 together with their absolute and relative frequencies.
 Activity sequences are based on the start timestamp of activities.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Construct traces list for eventlog
+
+\item \code{grouped_eventlog}: Construct list of traces for grouped eventlog
+}}
+
 \seealso{
 \code{\link{cases}}, \code{\link{eventlog}}
 }
