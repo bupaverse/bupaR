@@ -10,7 +10,7 @@ summary.eventlog <- function(object, ...){
 
 	eventlog <- object
 
-	ca <- cases_light(eventlog)
+	ca <- case_list(eventlog)
 
 	number_of_events <- nrow(eventlog)
 	number_of_cases <- nrow(ca)

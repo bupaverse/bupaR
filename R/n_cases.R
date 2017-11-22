@@ -16,7 +16,6 @@ n_cases <- function(eventlog) {
 #' @export
 
 n_cases.eventlog <- function(eventlog) {
-	stop_eventlog(eventlog)
 	colnames(eventlog)[colnames(eventlog) == case_id(eventlog)] <- "case_classifier"
 	return(length(unique(eventlog$case_classifier)))
 }

@@ -16,9 +16,8 @@ cases <- function(eventlog) {
 #' @describeIn cases Constructy list of cases in an eventlog
 #' @export
 cases.eventlog <- function(eventlog){
-	stop_eventlog(eventlog)
 
-	traces_per_case <- cases_light(eventlog)
+	traces_per_case <- case_list(eventlog)
 	durations <- durations(eventlog)
 
 
