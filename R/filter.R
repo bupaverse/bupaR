@@ -1,0 +1,30 @@
+#' @title Filter event log
+#' @name filter
+#' @param .data Eventlog
+#' @param ... Conditions to filter
+#' @importFrom dplyr filter
+#' @export
+dplyr::filter
+
+#' @describeIn filter Filter eventlog
+#' @export
+filter.eventlog <- function(.data, ...) {
+	mapping <- mapping(eventlog)
+	eventlog %>%
+		as.data.frame() %>%
+		dplyr::filter(...) %>%
+		re_map(mapping) %>%
+		return()
+}
+#' @describeIn filter Filter eventlog
+#' @export
+
+filter.grouped_eventlog <- function(.data, ...) {
+	mapping <- mapping(eventlog)
+	eventlog %>%
+		as.data.frame() %>%
+		dplyr::filter(...) %>%
+		re_map(mapping) %>%
+		group_by_at(vars(one_of(paste(groups(eventlog)))))
+
+}
