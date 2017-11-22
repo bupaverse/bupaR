@@ -26,7 +26,7 @@ resources.eventlog <- function(eventlog) {
 	relative_frequency <- NULL
 
 	output <- eventlog %>%
-		group_by_(resource_id(eventlog)) %>%
+		group_by(!!as.symbol(resource_id(eventlog))) %>%
 		summarize("absolute_frequency" = n_distinct(!!as.symbol(activity_instance_id(eventlog)))) %>%
 		arrange(-absolute_frequency) %>%
 		mutate(relative_frequency = absolute_frequency/sum(absolute_frequency)) %>%

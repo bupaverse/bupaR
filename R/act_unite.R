@@ -12,7 +12,7 @@ act_unite <- function(eventlog, ...) {
 #' @export
 act_unite.eventlog <- function(eventlog, ...) {
 	eventlog %>%
-		mutate(!!activity_id(eventlog) := fct_collapse((!!as.symbol(activity_id(eventlog))), ...)) %>%
+		mutate(!!activity_id(eventlog) := forcats::fct_collapse((!!as.symbol(activity_id(eventlog))), ...)) %>%
 		return()
 }
 

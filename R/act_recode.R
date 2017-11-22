@@ -12,6 +12,6 @@ act_recode <- function(eventlog, ...) {
 #' @export
 act_recode.eventlog <- function(eventlog, ...) {
 	eventlog %>%
-		mutate(!!activity_id(eventlog) := forcats::fct_recode((!!as.symbol(activity_id(eventlog))), ...)) %>%
+		mutate(!!as.symbol(activity_id(eventlog)) := forcats::fct_recode((!!as.symbol(activity_id(eventlog))), ...)) %>%
 		return()
 }

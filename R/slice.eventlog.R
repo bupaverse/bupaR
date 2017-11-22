@@ -11,15 +11,11 @@ dplyr::slice
 
 slice.eventlog <- function(.data, ...) {
 
-	mapping <- mapping(.data)
 	.data %>%
 		pull(!!as.symbol(case_id(.data))) %>%
 		.[...] -> selection
 	.data %>%
-		filter((!!as.symbol(case_id(.data))) %in% selection) %>%
-		re_map(mapping) %>%
-		return
-
+		filter((!!as.symbol(case_id(.data))) %in% selection)
 }
 
 #' @describeIn slice Slice grouped eventlog: take slice of cases from each group.

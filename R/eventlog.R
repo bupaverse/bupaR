@@ -45,8 +45,6 @@ eventlog <- function(eventlog,
 					 timestamp = NULL,
 					 resource_id = NULL){
 
-
-
 	stopifnot(is.data.frame(eventlog))
 	eventlog <- tbl_df(as.data.frame(eventlog))
 	class(eventlog) <- c("eventlog",class(eventlog))
@@ -59,46 +57,6 @@ eventlog <- function(eventlog,
 		 ~list(attribute_name = ..2,
 		 	  attribute_values = ..1))
 
-
-	check_attributes <- function(eventlog, attribute_name, attribute_values) {
-		FUN <- ifelse(attribute_name == "case_id", bupaR::case_id,
-					  ifelse(  attribute_name == "activity_id", bupaR::activity_id,
-					  		 ifelse(  attribute_name == "activity_instance_id", bupaR::activity_instance_id,
-					  		 		 ifelse( attribute_name == "resource_id", bupaR::resource_id, bupaR::lifecycle_id))))
-
-
-
-		if(is.null(attribute_values)) {
-			if(!is.null(FUN(eventlog))) {
-				#message(glue("Recovered existing {attribute_name}"))
-			}
-			else {
-				stop(glue("No {attribute_name} provided nor found"))
-			}
-		} else if(length(attribute_values) == 1) {
-			if(!(attribute_values %in% colnames(eventlog))) {
-				stop(glue("{attribute_name} not found in data.frame"))
-			} else {
-				attr(eventlog, attribute_name) <- attribute_values
-			}
-		} else {
-			if(any(!(attribute_values %in% colnames(eventlog))))
-				stop(glue("One or more {attribute_name} not found"))
-			else {
-
-				merge_col <- eventlog[,attribute_values]
-				merged_values <- purrr::reduce(merge_col, paste, sep = "_")
-				eventlog[[paste0(attribute_values, collapse = "_")]] <- merged_values
-				attr(eventlog, attribute_name) <- paste0(attribute_values, collapse =  "_")
-			}
-		}
-		return(eventlog)
-	}
-
-
-	check_wrapper  <- function(eventlog, attributes) {
-		check_attributes(eventlog, attributes$attribute_name, attributes$attribute_values)
-	}
 
 	eventlog <- purrr::reduce(.x = attribute_list, .f = check_wrapper, .init = eventlog)
 
@@ -154,10 +112,54 @@ eventlog <- function(eventlog,
 	eventlog[[resource_id(mapping)]] <- as.factor(eventlog[[resource_id(mapping)]])
 	eventlog[[lifecycle_id(mapping)]] <- as.factor(eventlog[[lifecycle_id(mapping)]])
 
-
-
 	return(eventlog)
 }
+
+
+
+
+
+check_wrapper  <- function(eventlog, attributes) {
+	check_attributes(eventlog, attributes$attribute_name, attributes$attribute_values)
+}
+
+
+check_attributes <- function(eventlog, attribute_name, attribute_values) {
+	FUN <- ifelse(attribute_name == "case_id", bupaR::case_id,
+				  ifelse(  attribute_name == "activity_id", bupaR::activity_id,
+				  		 ifelse(  attribute_name == "activity_instance_id", bupaR::activity_instance_id,
+				  		 		 ifelse( attribute_name == "resource_id", bupaR::resource_id, bupaR::lifecycle_id))))
+
+
+
+	if(is.null(attribute_values)) {
+		if(!is.null(FUN(eventlog))) {
+			#message(glue("Recovered existing {attribute_name}"))
+		}
+		else {
+			stop(glue("No {attribute_name} provided nor found"))
+		}
+	} else if(length(attribute_values) == 1) {
+		if(!(attribute_values %in% colnames(eventlog))) {
+			stop(glue("{attribute_name} not found in data.frame"))
+		} else {
+			attr(eventlog, attribute_name) <- attribute_values
+		}
+	} else {
+		if(any(!(attribute_values %in% colnames(eventlog))))
+			stop(glue("One or more {attribute_name} not found"))
+		else {
+
+			merge_col <- eventlog[,attribute_values]
+			merged_values <- purrr::reduce(merge_col, paste, sep = "_")
+			eventlog[[paste0(attribute_values, collapse = "_")]] <- merged_values
+			attr(eventlog, attribute_name) <- paste0(attribute_values, collapse =  "_")
+		}
+	}
+	return(eventlog)
+}
+
+
 #' @rdname eventlog
 #' @export ieventlog
 ieventlog <- function(eventlog){

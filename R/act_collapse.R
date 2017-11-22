@@ -28,12 +28,12 @@ aggregate_subprocess <- function(eventlog, sub_name, sub_acts) {
 	mapping <- mapping(eventlog)
 
 	eventlog %>%
-		filter_attributes((!!as.symbol(activity_id(mapping))) %in% sub_acts) -> sub_log
+		filter((!!as.symbol(activity_id(mapping))) %in% sub_acts) -> sub_log
 
-	start_activities_activity(sub_log) %>%
+	start_activities_INTERN(sub_log) %>%
 		pull(!!as.symbol(activity_id(mapping))) -> start_act
 
-	end_activities_activity(sub_log) %>%
+	end_activities_INTERN(sub_log) %>%
 		pull(!!as.symbol(activity_id(mapping))) -> end_act
 
 	sub_log %>%
@@ -73,7 +73,7 @@ aggregate_subprocess <- function(eventlog, sub_name, sub_acts) {
 						 "LIFECYCLE_CLASSIFIER"))) -> aggregation
 
 	eventlog %>%
-		filter_attributes(!(!!as.symbol(activity_id(mapping))) %in% sub_acts) %>%
+		filter(!(!!as.symbol(activity_id(mapping))) %in% sub_acts) %>%
 		mutate(is_collapsed = F) %>%
 		bind_rows(aggregation) %>%
 		re_map(mapping) -> result
@@ -86,15 +86,7 @@ aggregate_subprocess <- function(eventlog, sub_name, sub_acts) {
 
 ### functions edeaR (bupaR cannot have edear dependency)
 
-
-filter_attributes <- function(eventlog, ...) {
-	mapping <- mapping(eventlog)
-	dplyr::filter(eventlog, ...) %>%
-		re_map(mapping) %>%
-		return()
-}
-
-end_activities_activity <- function(eventlog) {
+end_activities_INTERN <- function(eventlog) {
 
 	eventlog %>%
 		group_by(!!as.symbol(case_id(eventlog))) %>%
@@ -108,7 +100,7 @@ end_activities_activity <- function(eventlog) {
 
 }
 
-start_activities_activity <- function(eventlog) {
+start_activities_INTERN <- function(eventlog) {
 
 	eventlog %>%
 		group_by(!!as.symbol(case_id(eventlog))) %>%

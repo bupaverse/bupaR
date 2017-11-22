@@ -17,14 +17,12 @@ activities <- function(eventlog) {
 #' @export
 
 activities.eventlog <- function(eventlog) {
-	stop_eventlog(eventlog)
 
-	output <- eventlog %>%
+	eventlog %>%
 		group_by(!!as.symbol(activity_id(eventlog))) %>%
 		summarize("absolute_frequency" = n_distinct(!!as.symbol(activity_instance_id(eventlog)))) %>%
 		arrange(-!!as.symbol("absolute_frequency")) %>%
 		mutate("relative_frequency" := (!!as.symbol("absolute_frequency"))/sum( (!!as.symbol("absolute_frequency"))))
-	return(output)
 }
 
 #' @describeIn activities Generate activity list for grouped eventlog
@@ -37,7 +35,6 @@ activities.grouped_eventlog <- function(eventlog) {
 		nest() %>%
 		mutate(data = map(data, re_map, mapping)) %>%
 		mutate(data = map(data, activities)) %>%
-		unnest() %>%
-		return()
+		unnest()
 }
 

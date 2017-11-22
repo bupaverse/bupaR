@@ -29,10 +29,7 @@ activities_to_eventlog <- function(activity_log,
 				 activity_instance_id = "activity_instance_id",
 				 lifecycle_id = "lifecycle_id",
 				 timestamp = "timestamp",
-				 resource_id = resource_id) %>%
-		return()
-
-
+				 resource_id = resource_id)
 
 
 }

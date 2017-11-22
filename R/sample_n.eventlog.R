@@ -14,23 +14,6 @@ dplyr::sample_n
 
 sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env) {
 
-	##edear function
-	filter_case <- function(eventlog,
-							cases = NULL,
-							reverse = F){
-		stop_eventlog(eventlog)
-
-
-		if(reverse == F)
-			output <- filter(eventlog, !!as.symbol(case_id(eventlog)) %in% cases)
-
-		else
-			output <- filter(eventlog, !(!!as.symbol(case_id(eventlog)) %in% cases))
-
-		output <- re_map(output, mapping(eventlog))
-
-		return(output)
-	}
 
 	n_cases <- n_cases(tbl)
 
@@ -46,8 +29,7 @@ sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env) {
 	selection <- sample(case_ids, size = size, replace = replace)
 
 	tbl %>%
-		filter_case(cases = selection) %>%
-		return()
+		filter(eventlog, !!as.symbol(case_id(eventlog)) %in% selection)
 }
 
 

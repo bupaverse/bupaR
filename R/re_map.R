@@ -15,7 +15,5 @@ re_map <- function(eventlog, eventlog_mapping) {
 			activity_instance_id = eventlog_mapping$activity_instance_identifier,
 			lifecycle_id = eventlog_mapping$lifecycle_identifier,
 			timestamp = eventlog_mapping$timestamp_identifier,
-			resource_id = eventlog_mapping$resource_identifier) %>%
-		return()
-
+			resource_id = eventlog_mapping$resource_identifier)
 }
