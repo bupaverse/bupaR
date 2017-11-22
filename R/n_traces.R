@@ -13,7 +13,7 @@ n_traces <- function(eventlog) {
 #' @export
 
 n_traces.eventlog <- function(eventlog) {
-	return(nrow(traces_light(eventlog)))
+	return(nrow(trace_list(eventlog)))
 }
 
 #' @describeIn n_traces Count number of traces for grouped eventlog
