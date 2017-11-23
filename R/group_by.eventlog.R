@@ -54,6 +54,22 @@ group_by_activity.eventlog <- function(eventlog) {
 	group_by(eventlog, !!as.symbol(activity_id(eventlog)))
 }
 
+
+#' @title Group event log on activity instance id
+#' @description Group an event log by activity instance identifier
+#' @param eventlog Eventlog
+#' @export group_by_activity_instance
+group_by_activity_instance <- function(eventlog) {
+	UseMethod("group_by_activity_instance")
+}
+#' @describeIn group_by_activity_instance Group eventlog on activity instance identifier
+#' @export
+group_by_activity_instance.eventlog <- function(eventlog) {
+	group_by(eventlog, !!as.symbol(activity_instance_id(eventlog)))
+}
+
+
+
 #' @title Group event log on resource id
 #' @description Group an event log by resource identifier
 #' @param eventlog Eventlog
