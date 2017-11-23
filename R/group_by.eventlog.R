@@ -82,3 +82,6 @@ group_by_resource_activity.eventlog <- function(eventlog) {
 }
 
 
+
+
+
