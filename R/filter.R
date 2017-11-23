@@ -9,8 +9,8 @@ dplyr::filter
 #' @describeIn filter Filter eventlog
 #' @export
 filter.eventlog <- function(.data, ...) {
-	mapping <- mapping(eventlog)
-	eventlog %>%
+	mapping <- mapping(.data)
+	.data %>%
 		as.data.frame() %>%
 		dplyr::filter(...) %>%
 		re_map(mapping) %>%
@@ -20,8 +20,8 @@ filter.eventlog <- function(.data, ...) {
 #' @export
 
 filter.grouped_eventlog <- function(.data, ...) {
-	mapping <- mapping(eventlog)
-	eventlog %>%
+	mapping <- mapping(.data)
+	.data %>%
 		as.data.frame() %>%
 		dplyr::filter(...) %>%
 		re_map(mapping) %>%
