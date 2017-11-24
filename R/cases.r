@@ -47,3 +47,21 @@ cases.eventlog <- function(eventlog){
 
 
 }
+
+#' @title Get vector of case labels
+#' @description Retrieve a vector containing all unique case labels
+#' @param eventlog Eventlog
+#' @export
+case_labels <- function(eventlog) {
+	UseMethod("case_labels")
+}
+
+#' @describeIn case_labels Retrieve case labels from eventlog
+#' @export
+case_labels.eventlog <- function(eventlog) {
+	eventlog %>%
+		ungroup() %>%
+		pull(!!case_id_(eventlog)) %>%
+		unique()
+}
+

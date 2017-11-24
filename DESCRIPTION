@@ -10,5 +10,5 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
-Imports: magrittr, dplyr, data.table, shiny, miniUI, purrr, tidyr, glue, forcats
+Imports: magrittr, dplyr, data.table, shiny, miniUI, purrr, tidyr, glue, forcats, rlang
 URL: https://www.bupar.net

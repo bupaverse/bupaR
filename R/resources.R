@@ -46,3 +46,22 @@ resources.grouped_eventlog <- function(eventlog) {
 		unnest() %>%
 		return()
 }
+
+#' @title Get vector of resource labels
+#' @description Retrieve a vector containing all unique resource labels
+#' @param eventlog Eventlog
+#' @export
+resource_labels <- function(eventlog) {
+	UseMethod("resource_labels")
+}
+
+#' @describeIn resource_labels Retrieve resource labels from eventlog
+#' @export
+resource_labels.eventlog <- function(eventlog) {
+	eventlog %>%
+		ungroup() %>%
+		pull(!!resource_id(eventlog)) %>%
+		unique()
+}
+
+

@@ -18,3 +18,4 @@ activity_id.eventlog <- function(x){
 activity_id.eventlog_mapping <- function(x) {
 	return(x$activity_id)
 }
+
