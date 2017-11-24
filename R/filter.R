@@ -20,11 +20,12 @@ filter.eventlog <- function(.data, ...) {
 #' @export
 
 filter.grouped_eventlog <- function(.data, ...) {
+	groups <- groups(.data)
 	mapping <- mapping(.data)
 	.data %>%
 		as.data.frame() %>%
 		dplyr::filter(...) %>%
 		re_map(mapping) %>%
-		group_by_at(vars(one_of(paste(groups(eventlog)))))
+		group_by_at(vars(one_of(paste(groups))))
 
 }
