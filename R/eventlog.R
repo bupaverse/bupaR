@@ -102,7 +102,7 @@ eventlog <- function(eventlog,
 		stop(glue("The following activity instances are connected to more than one activity: {paste(violation_activities %>% pull(1), collapse = \",\")}"))
 	}
 	if(nrow(violation_resources) > 0) {
-		stop(glue("The following activity instances are connected to more than one resource: {paste(violation_resources %>% pull(1), collapse = \",\")}"))
+		warning(glue("The following activity instances are connected to more than one resource: {paste(violation_resources %>% pull(1), collapse = \",\")}"))
 	}
 
 	mapping <- mapping(eventlog)

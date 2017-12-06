@@ -29,7 +29,7 @@ sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env) {
 	selection <- sample(case_ids, size = size, replace = replace)
 
 	tbl %>%
-		filter(eventlog, !!as.symbol(case_id(eventlog)) %in% selection)
+		filter((!!as.symbol(case_id(tbl))) %in% selection)
 }
 
 
