@@ -8,23 +8,23 @@ load <- c("edeaR","petrinetR", "eventdataR","processmapR","processmonitR","xesre
 	if (length(needed) == 0)
 		return()
 
-	needed_installed <- suppressWarnings(suppressPackageStartupMessages(sapply(needed, require, character.only = TRUE, warn.conflicts = FALSE)))
+	needed_installed <- ((sapply(needed, require, character.only = TRUE, warn.conflicts = FALSE)))
 
-	no_installed <- needed[!needed_installed]
-
-	if(length(no_installed) > 0) {
-		packageStartupMessage(paste0("bupaR works best with the following package(s) installed: ", toString(no_installed),
-									 ". \nDo you want to install these?\n"))
-		answer <- readline("Y/N: ")
-
-		if(answer == "Y"){
-			map(no_installed, ~install.packages(.x))
-		}
-
-		if(answer == "Y"){
-			suppressWarnings(suppressPackageStartupMessages(sapply(no_installed, require, character.only = TRUE, warn.conflicts = FALSE)))
-		}
-	}
+	# no_installed <- needed[!needed_installed]
+	#
+	# if(length(no_installed) > 0) {
+	# 	packageStartupMessage(paste0("bupaR works best with the following package(s) installed: ", toString(no_installed),
+	# 								 ". \nDo you want to install these?\n"))
+	# 	answer <- readline("Y/N: ")
+	#
+	# 	if(answer == "Y"){
+	# 		map(no_installed, ~install.packages(.x))
+	# 	}
+	#
+	# 	if(answer == "Y"){
+	# 		suppressWarnings(suppressPackageStartupMessages(sapply(no_installed, require, character.only = TRUE, warn.conflicts = FALSE)))
+	# 	}
+	# }
 
 
 }
