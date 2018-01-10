@@ -6,7 +6,7 @@
 #' @param resource_id Column name of the resource identifier
 #' @param timestamps A vector of column names containing different timestamp. To column names will be transformed to lifecycle identifiers
 #'
-#'
+#' @export
 activities_to_eventlog <- function(activity_log,
 								   case_id,
 								   activity_id,
