@@ -40,16 +40,18 @@ aggregate_subprocess <- function(eventlog, sub_name, sub_acts) {
 		group_by(!!as.symbol(case_id(mapping)),
 				 !!as.symbol(activity_id(mapping)),
 				 !!as.symbol(activity_instance_id(mapping)),
-				 !!as.symbol(resource_id(mapping))) %>%
+				 !!as.symbol(resource_id(mapping)),
+				 .order) %>%
 		summarize("ts" = min(!!as.symbol(timestamp(mapping))),
 				  "max_ts" = max(!!as.symbol(timestamp(mapping)))) %>%
 		group_by(!!as.symbol(case_id(mapping))) %>%
-		arrange(!!as.symbol("ts")) %>%
+		arrange(!!as.symbol("ts"),
+				.order) %>%
 		mutate("cur_act" = !!as.symbol(activity_id(mapping)),
 			   "next_act" = lead(!!as.symbol(activity_id(mapping)))) %>%
 		mutate("end_sub_process" = (!!as.symbol("next_act")) %in% start_act & (!!as.symbol("cur_act")) %in% end_act) %>%
 		mutate(end_case = is.na(!!as.symbol("next_act"))) %>%
-		arrange(!!as.symbol(case_id(mapping)), !!as.symbol("ts")) %>%
+		arrange(!!as.symbol(case_id(mapping)), !!as.symbol("ts"), .order) %>%
 		ungroup() %>%
 		mutate("sub_process_instance" = lag(cumsum((!!as.symbol("end_sub_process")) + !!as.symbol("end_case")), default = 0)) %>%
 		group_by(!!as.symbol("sub_process_instance")) %>%
@@ -71,6 +73,9 @@ aggregate_subprocess <- function(eventlog, sub_name, sub_acts) {
 						 "end_case",
 						 "RESOURCE_CLASSIFIER",
 						 "LIFECYCLE_CLASSIFIER"))) -> aggregation
+
+	print(aggregation)
+	print(eventlog)
 
 	eventlog %>%
 		filter(!(!!as.symbol(activity_id(mapping))) %in% sub_acts) %>%
