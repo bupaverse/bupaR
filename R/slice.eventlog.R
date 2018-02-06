@@ -13,6 +13,7 @@ slice.eventlog <- function(.data, ...) {
 
 	.data %>%
 		pull(!!as.symbol(case_id(.data))) %>%
+		unique() %>%
 		.[...] -> selection
 	.data %>%
 		filter((!!as.symbol(case_id(.data))) %in% selection)
