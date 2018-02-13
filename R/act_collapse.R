@@ -77,11 +77,7 @@ aggregate_subprocess <- function(eventlog, sub_name, sub_acts) {
 						 "LIFECYCLE_CLASSIFIER"))) %>%
 		re_map(mapping)  -> aggregation
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> b6219406632340870329a302b13453662ebde5f7
 	suppressWarnings(eventlog %>%
 					 	filter(!(!!as.symbol(activity_id(mapping))) %in% sub_acts) %>%
 					 	mutate(is_collapsed = F) %>%
