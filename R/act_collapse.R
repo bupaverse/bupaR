@@ -54,7 +54,7 @@ aggregate_subprocess <- function(eventlog, sub_name, sub_acts) {
 		mutate(end_case = is.na(!!as.symbol("next_act"))) %>%
 		arrange(!!as.symbol(case_id(mapping)), !!as.symbol("ts"), min_order) %>%
 		ungroup() %>%
-		mutate("sub_process_instance" = lag(cumsum((!!as.symbol("end_sub_process")) + !!as.symbol("end_case")), default = 0)) %>%
+		mutate("sub_process_instance" = paste(sub_name, lag(cumsum((!!as.symbol("end_sub_process")) + !!as.symbol("end_case")), default = 0), sep = "_")) %>%
 		group_by(!!as.symbol("sub_process_instance")) %>%
 		slice(c(1,n())) %>%
 		mutate("RESOURCE_CLASSIFIER" = paste(sort(unique(!!as.symbol(resource_id(mapping)))), collapse = ",")) %>%
@@ -77,8 +77,11 @@ aggregate_subprocess <- function(eventlog, sub_name, sub_acts) {
 						 "LIFECYCLE_CLASSIFIER"))) %>%
 		re_map(mapping)  -> aggregation
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b6219406632340870329a302b13453662ebde5f7
 	suppressWarnings(eventlog %>%
 					 	filter(!(!!as.symbol(activity_id(mapping))) %in% sub_acts) %>%
 					 	mutate(is_collapsed = F) %>%
