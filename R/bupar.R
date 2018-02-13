@@ -9,6 +9,7 @@
 #' @import dplyr
 #' @import shiny
 #' @import miniUI
+#' @import eventdataR
 #' @importFrom tidyr unite
 #' @importFrom glue glue
 #' @importFrom forcats fct_collapse
