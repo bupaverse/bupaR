@@ -14,7 +14,11 @@
 #' @param lifecycle_id The life cycle classifier of the event log.
 #' @param timestamp The timestamp of the event log. Should refer to a Date or POSIXct field.
 #' @param resource_id The resource identifier of the event log. A character vector containing variable names of length 1 or more.
-#' @param order Configure how to handle sort events with equal timestamps: auto will use the order in the original data, alphabetical will sort the activity labels by alpabath, providing a column name will use this column for ordering (can be numeric of character)
+#' @param order Configure how to handle sort events with equal timestamps:
+#' auto will use the order in the original data,
+#' alphabetical will sort the activity labels by alpabath,
+#' providing a column name will use this column for ordering (can be numeric of character).
+#' The latter will never overrule timestamp orderings.
 #'
 #' @seealso \code{\link{case_id}}, \code{\link{activity_id}},
 #' \code{\link{activity_instance_id}},\code{\link{lifecycle_id}},

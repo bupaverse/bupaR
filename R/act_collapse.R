@@ -66,26 +66,26 @@ aggregate_subprocess <- function(eventlog, sub_name, sub_acts) {
 			   !!as.symbol(activity_instance_id(mapping)) := as.character(!!as.symbol("sub_process_instance")),
 			   !!as.symbol(timestamp(mapping)) := if_else((!!as.symbol("LIFECYCLE_CLASSIFIER")) == "start", !!as.symbol("ts"), (!!as.symbol("max_ts"))),
 			   !!as.symbol(activity_id(mapping)) := sub_name)  %>%
-		rename(.order = min_order) %>%
-		select(-one_of(c("ts",
-						 "max_ts",
-						 "cur_act",
-						 "next_act",
-						 "end_sub_process",
-						 "end_case",
-						 "RESOURCE_CLASSIFIER",
-						 "LIFECYCLE_CLASSIFIER"))) %>%
-		re_map(mapping)  -> aggregation
+		rename(.order = min_order) %>% return()
+		# select(-one_of(c("ts",
+		# 				 "max_ts",
+		# 				 "cur_act",
+		# 				 "next_act",
+		# 				 "end_sub_process",
+		# 				 "end_case",
+		# 				 "RESOURCE_CLASSIFIER",
+		# 				 "LIFECYCLE_CLASSIFIER"))) %>%
+		#re_map(mapping)  -> aggregation
 
 
-	suppressWarnings(eventlog %>%
-					 	filter(!(!!as.symbol(activity_id(mapping))) %in% sub_acts) %>%
-					 	mutate(is_collapsed = F) %>%
-					 	bind_rows(aggregation) %>%
-					 	re_map(mapping) -> result)
-
-	return(result)
-
+	# suppressWarnings(eventlog %>%
+	# 				 	filter(!(!!as.symbol(activity_id(mapping))) %in% sub_acts) %>%
+	# 				 	mutate(is_collapsed = F) %>%
+	# 				 	bind_rows(aggregation) %>%
+	# 				 	re_map(mapping) -> result)
+	#
+	# return(result)
+	#
 
 }
 

@@ -27,7 +27,11 @@ ieventlog(eventlog)
 
 \item{resource_id}{The resource identifier of the event log. A character vector containing variable names of length 1 or more.}
 
-\item{order}{Configure how to handle sort events with equal timestamps: auto will use the order in the original data, alphabetical will sort the activity labels by alpabath, providing a column name will use this column for ordering (can be numeric of character)}
+\item{order}{Configure how to handle sort events with equal timestamps:
+auto will use the order in the original data,
+alphabetical will sort the activity labels by alpabath,
+providing a column name will use this column for ordering (can be numeric of character).
+The latter will never overrule timestamp orderings.}
 }
 \description{
 A function to instantiate an object of class \code{eventlog} by specifying a
