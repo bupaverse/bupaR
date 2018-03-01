@@ -112,7 +112,7 @@ eventlog <- function(eventlog,
 	}
 
 
-	eventlog$.order_auto <- 1:nrow(eventlog)
+	eventlog$.order_auto <- seq_len(nrow(eventlog))
 
 
 	if(length(order) == 1 && order %in% c("auto","alphabetical",colnames(eventlog))) {

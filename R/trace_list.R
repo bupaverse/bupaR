@@ -16,6 +16,12 @@ trace_list <- function(eventlog){
 
 trace_list.eventlog <- function(eventlog){
 
+
+	if(nrow(eventlog) == 0) {
+		return(data.frame(trace = numeric(), absolute_frequency = numeric(), relative_frequency = numeric()))
+	}
+
+
 	eDT <- data.table::data.table(eventlog)
 
 	cases <- eDT[,
