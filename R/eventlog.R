@@ -129,8 +129,6 @@ eventlog <- function(eventlog,
 		}
 
 
-
-
 	} else {
 		stop("Order should be a character with value 'auto', 'alphabetical', or a valid column-name")
 	}
