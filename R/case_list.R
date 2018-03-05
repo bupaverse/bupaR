@@ -20,9 +20,9 @@ case_list.eventlog <- function(eventlog){
 
 	eDT <- data.table::as.data.table(eventlog)
 	cases <- eDT[,
-				 list("timestamp_classifier" = min(get(timestamp(eventlog)))),
-				 by = list("A" = get(case_id(eventlog)), "B" = get(activity_instance_id(eventlog)), "C" = get(activity_id(eventlog)), .order)]
-	cases <- cases[order(get("timestamp_classifier"), .order),
+				 list("timestamp_classifier" = min(get(timestamp(eventlog))), "min_order" = min(get(".order"))),
+				 by = list("A" = get(case_id(eventlog)), "B" = get(activity_instance_id(eventlog)), "C" = get(activity_id(eventlog)))]
+	cases <- cases[order(get("timestamp_classifier"), min_order),
 				   list(trace = paste(get("C"), collapse = ",")),
 				   by = list("CASE" = get("A"))]
 	cases <- cases %>% mutate(trace_id = as.numeric(factor(!!as.symbol("trace")))) %>%
