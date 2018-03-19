@@ -14,6 +14,11 @@
 #' @param lifecycle_id The life cycle classifier of the event log.
 #' @param timestamp The timestamp of the event log. Should refer to a Date or POSIXct field.
 #' @param resource_id The resource identifier of the event log. A character vector containing variable names of length 1 or more.
+#' @param order Configure how to handle sort events with equal timestamps:
+#' auto will use the order in the original data,
+#' alphabetical will sort the activity labels by alpabath,
+#' providing a column name will use this column for ordering (can be numeric of character).
+#' The latter will never overrule timestamp orderings.
 #'
 #' @seealso \code{\link{case_id}}, \code{\link{activity_id}},
 #' \code{\link{activity_instance_id}},\code{\link{lifecycle_id}},
@@ -43,7 +48,8 @@ eventlog <- function(eventlog,
 					 activity_instance_id = NULL,
 					 lifecycle_id = NULL,
 					 timestamp = NULL,
-					 resource_id = NULL){
+					 resource_id = NULL,
+					 order = "auto"){
 
 	stopifnot(is.data.frame(eventlog))
 	eventlog <- tbl_df(as.data.frame(eventlog))
@@ -54,8 +60,8 @@ eventlog <- function(eventlog,
 	args_names <- args_values %>% names
 
 	attribute_list <- pmap(list(args_values, args_names),
-		 ~list(attribute_name = ..2,
-		 	  attribute_values = ..1))
+						   ~list(attribute_name = ..2,
+						   	  attribute_values = ..1))
 
 
 	eventlog <- purrr::reduce(.x = attribute_list, .f = check_wrapper, .init = eventlog)
@@ -104,6 +110,31 @@ eventlog <- function(eventlog,
 	if(nrow(violation_resources) > 0) {
 		warning(glue("The following activity instances are connected to more than one resource: {paste(violation_resources %>% pull(1), collapse = \",\")}"))
 	}
+
+
+	eventlog$.order_auto <- seq_len(nrow(eventlog))
+
+
+	if(length(order) == 1 && order %in% c("auto","alphabetical",colnames(eventlog))) {
+		if(order == "auto") {
+
+			eventlog$.order <- eventlog$.order_auto
+
+		} else if(order == "alphabetical") {
+
+			eventlog$.order <- order(order(eventlog[[activity_id(eventlog)]], eventlog$.order_auto))
+
+		} else {
+			eventlog$.order <- order(order(eventlog[[order]], eventlog$.order_auto))
+		}
+
+
+	} else {
+		stop("Order should be a character with value 'auto', 'alphabetical', or a valid column-name")
+	}
+
+	eventlog$.order_auto <- NULL
+
 
 	mapping <- mapping(eventlog)
 	eventlog[[case_id(mapping)]] <- as.character(eventlog[[case_id(mapping)]])
