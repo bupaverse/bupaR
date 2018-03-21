@@ -25,6 +25,9 @@ act_collapse.eventlog <- function(eventlog, ...) {
 
 aggregate_subprocess <- function(eventlog, sub_name, sub_acts) {
 
+	min_order <- NULL
+	.order <- NULL
+
 	mapping <- mapping(eventlog)
 
 	eventlog %>%

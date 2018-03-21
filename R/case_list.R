@@ -17,6 +17,7 @@ case_list <- function(eventlog) {
 
 
 case_list.eventlog <- function(eventlog){
+	min_order <- NULL
 
 	eDT <- data.table::as.data.table(eventlog)
 	cases <- eDT[,

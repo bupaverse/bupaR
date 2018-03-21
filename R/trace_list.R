@@ -15,6 +15,7 @@ trace_list <- function(eventlog){
 #' @export
 
 trace_list.eventlog <- function(eventlog){
+	min_order <- NULL
 
 
 	if(nrow(eventlog) == 0) {
