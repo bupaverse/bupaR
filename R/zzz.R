@@ -1,6 +1,6 @@
 
 
-load <- c("edeaR","petrinetR", "eventdataR","processmapR","processmonitR","xesreadR")
+load <- c("edeaR", "eventdataR","processmapR","xesreadR")
 
 .onAttach <- function(...) {
 	needed <- load[!is_attached(load)]

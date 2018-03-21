@@ -13,6 +13,14 @@
 #'
 #' @param timestamp The timestamp of the event log.
 #'
+#'
+#'@param order Configure how to handle sort events with equal timestamps:
+#' auto will use the order in the original data,
+#' alphabetical will sort the activity labels by alpabath,
+#' providing a column name will use this column for ordering (can be numeric of character).
+#' The latter will never overrule timestamp orderings.
+#'
+#'
 #' @seealso \code{\link{eventlog}},\code{\link{case_id}}, \code{\link{activity_id}},
 #' \code{\link{activity_instance_id}},\code{\link{lifecycle_id}},
 #'  \code{\link{timestamp}}
@@ -21,7 +29,7 @@
 #' \dontrun{
 #' data <- data.frame(case = rep("A",5),
 #' activity_id = c("A","B","C","D","E"),
-#' timestamp = 1:5,
+#' timestamp = date_decimal(1:5))
 #' simple_eventlog(data,case_id = "case",
 #' activity_id = "activity_id",
 #' timestamp = "timestamp")
@@ -32,7 +40,8 @@
 simple_eventlog <- function(eventlog,
 					 case_id = NULL,
 					 activity_id = NULL,
-					 timestamp = NULL){
+					 timestamp = NULL,
+					 order = "auto"){
 
 	eventlog <- tbl_df(as.data.frame(eventlog)) %>%
 		mutate(activity_instance_id = 1:nrow(.),
@@ -50,7 +59,8 @@ simple_eventlog <- function(eventlog,
 			 activity_instance_id,
 			 lifecycle_id,
 			 timestamp,
-			 resource_id) %>%
+			 resource_id,
+			 order = order) %>%
 	return()
 }
 #' @rdname simple_eventlog

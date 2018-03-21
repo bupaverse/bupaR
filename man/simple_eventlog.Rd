@@ -6,7 +6,7 @@
 \title{Simple Eventlog}
 \usage{
 simple_eventlog(eventlog, case_id = NULL, activity_id = NULL,
-  timestamp = NULL)
+  timestamp = NULL, order = "auto")
 
 isimple_eventlog(eventlog)
 }
@@ -19,6 +19,12 @@ isimple_eventlog(eventlog)
 \item{activity_id}{The activity classifier of the event log.}
 
 \item{timestamp}{The timestamp of the event log.}
+
+\item{order}{Configure how to handle sort events with equal timestamps:
+auto will use the order in the original data,
+alphabetical will sort the activity labels by alpabath,
+providing a column name will use this column for ordering (can be numeric of character).
+The latter will never overrule timestamp orderings.}
 }
 \description{
 A function to instantiate an object of class \code{eventlog} by specifying a
@@ -28,7 +34,7 @@ A function to instantiate an object of class \code{eventlog} by specifying a
 \dontrun{
 data <- data.frame(case = rep("A",5),
 activity_id = c("A","B","C","D","E"),
-timestamp = 1:5,
+timestamp = date_decimal(1:5))
 simple_eventlog(data,case_id = "case",
 activity_id = "activity_id",
 timestamp = "timestamp")
