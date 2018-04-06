@@ -7,20 +7,20 @@
 \alias{fill.grouped_eventlog}
 \title{Fill event log}
 \usage{
-fill.eventlog(.data, ...)
+\method{fill}{eventlog}(data, ..., .direction)
 
-fill.grouped_eventlog(.data, ...)
+\method{fill}{grouped_eventlog}(data, ..., .direction)
 }
 \arguments{
-\item{.data}{Eventlog}
-
 \item{...}{options for fill}
-}
-\section{Functions}{
-\itemize{
-\item \code{fill.eventlog}: Fill eventlog
 
-\item \code{fill.grouped_eventlog}: Fill grouped eventlog
+\item{.data}{Eventlog}
+}
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: Fill eventlog
+
+\item \code{grouped_eventlog}: Fill grouped eventlog
 }}
 
 \keyword{internal}
