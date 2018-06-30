@@ -8,7 +8,9 @@
 print.eventlog <- function(x, ...) {
 	cat("Event log consisting of:\n")
 	cat(paste(n_events(x), "events\n", sep = " "))
-	cat(paste(nrow(trace_list(x)), "traces\n", sep = " "))
+	if(n_events(x) < 250000) {
+		cat(paste(nrow(trace_list(x)), "traces\n", sep = " "))
+	}
 	cat(paste(n_cases(x), "cases\n", sep = " "))
 	cat(paste(n_activities(x), "activities\n", sep = " "))
 	cat(paste(n_activity_instances(x), "activity instances\n\n", sep = " "))

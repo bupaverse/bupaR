@@ -1,7 +1,7 @@
 #' @title Unite multiple columns into one.
 
 #' @param .data Eventlog
-#' @param col The name of the new column
+#' @param col The name of the new column (character value)
 #' @param ... Columns to be united.
 #' @param sep Seperator
 #' @param remove Remove original columns
@@ -16,13 +16,10 @@ tidyr::unite
 unite.eventlog <- function(data, col, ..., sep = "_", remove = T) {
 
 	mapping <- mapping(data)
-	x <- NextMethod(data, col, ...)
-	x %>%
-		re_map(mapping) -> x
-
-
-	return(x)
-
+	data %>%
+		as.data.frame() %>%
+		unite(col = !!col, ..., sep = sep, remove = remove) %>%
+		re_map(mapping)
 }
 
 #' @describeIn unite Unite columns in grouped eventlog
@@ -32,10 +29,11 @@ unite.grouped_eventlog <- function(data, col, ..., sep = "_", remove = T) {
 
 	mapping <- mapping(data)
 	groups <- groups(data)
-	x <- NextMethod(data, ...)
-	x <- re_map(x, mapping)
-	x <- group_by_at(x, vars(one_of(paste(groups))))
 
-	return(x)
+	data %>%
+		as.data.frame() %>%
+		unite(col = !!col, ..., sep = sep, remove = remove) %>%
+		re_map(mapping) %>%
+		group_by_at(vars(one_of(paste(groups))))
 
 }

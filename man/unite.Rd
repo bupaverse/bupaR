@@ -12,7 +12,7 @@
 \method{unite}{grouped_eventlog}(data, col, ..., sep = "_", remove = T)
 }
 \arguments{
-\item{col}{The name of the new column}
+\item{col}{The name of the new column (character value)}
 
 \item{...}{Columns to be united.}
 
