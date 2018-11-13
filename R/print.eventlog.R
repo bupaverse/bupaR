@@ -6,14 +6,30 @@
 
 
 print.eventlog <- function(x, ...) {
-	cat("Event log consisting of:\n")
-	cat(paste(n_events(x), "events\n", sep = " "))
-	if(n_events(x) < 250000) {
-		cat(paste(nrow(trace_list(x)), "traces\n", sep = " "))
-	}
-	cat(paste(n_cases(x), "cases\n", sep = " "))
-	cat(paste(n_activities(x), "activities\n", sep = " "))
-	cat(paste(n_activity_instances(x), "activity instances\n\n", sep = " "))
+       nev <- n_events()
+        cat("Log of", nev, ngettext(nev, "event" "events"), "consisting of:\n")
+        if(nev < 250000) {
+                ntr <- nrow(trace_list(x))
+                cat(ntr, ngettext(ntr, "trace" "traces"), "\n")
+        }
+        ncs <- n_cases(x)
+        cat(ncs, ngettext(ncs, "case" "cases"), "\n")
+        nai <- n_activity_instances(x)
+        nac <- n_activities(x)
+        cat(
+                nai, ngettext(nai, "instance" "instances"), "of", 
+                nac, ngettext(nac, "activity" "activities"), "\n"
+        )
+        nrs <- n_resources(x)
+        cat(nrs, ngettext(nrs, "resource" "resources"), "\n")
+        timestamps <- x[[timestamp(x)]]
+        cat(
+                "Events occurred from", format(min(timestamps)), 
+                "until", format(max(timestamps)), "\n"
+        )
+        cat("Variables were mapped as follows:\n")
+        print(mapping(x))
+        cat("\n")
 	NextMethod(x)
 }
 
