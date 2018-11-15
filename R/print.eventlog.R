@@ -25,7 +25,7 @@ print.eventlog <- function(x, ...) {
         timestamps <- x[[timestamp(x)]]
         cat(
                 "Events occurred from", format(min(timestamps)), 
-                "until", format(max(timestamps)), "\n"
+                "until", format(max(timestamps)), "\n", "\n"
         )
         cat("Variables were mapped as follows:\n")
         print(mapping(x))
