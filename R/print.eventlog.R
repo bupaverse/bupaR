@@ -7,21 +7,21 @@
 
 print.eventlog <- function(x, ...) {
        nev <- n_events()
-        cat("Log of", nev, ngettext(nev, "event" "events"), "consisting of:\n")
+        cat("Log of", nev, ngettext(nev, "event", "events"), "consisting of:\n")
         if(nev < 250000) {
                 ntr <- nrow(trace_list(x))
-                cat(ntr, ngettext(ntr, "trace" "traces"), "\n")
+                cat(ntr, ngettext(ntr, "trace", "traces"), "\n")
         }
         ncs <- n_cases(x)
-        cat(ncs, ngettext(ncs, "case" "cases"), "\n")
+        cat(ncs, ngettext(ncs, "case", "cases"), "\n")
         nai <- n_activity_instances(x)
         nac <- n_activities(x)
         cat(
-                nai, ngettext(nai, "instance" "instances"), "of", 
-                nac, ngettext(nac, "activity" "activities"), "\n"
+                nai, ngettext(nai, "instance", "instances"), "of", 
+                nac, ngettext(nac, "activity", "activities"), "\n"
         )
         nrs <- n_resources(x)
-        cat(nrs, ngettext(nrs, "resource" "resources"), "\n")
+        cat(nrs, ngettext(nrs, "resource", "resources"), "\n")
         timestamps <- x[[timestamp(x)]]
         cat(
                 "Events occurred from", format(min(timestamps)), 
