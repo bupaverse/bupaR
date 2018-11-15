@@ -7,6 +7,7 @@
 
 print.eventlog <- function(x, ...) {
        nev <- n_events(x)
+
         cat("Log of", nev, ngettext(nev, "event", "events"), "consisting of:\n")
         if(nev < 250000) {
                 ntr <- nrow(trace_list(x))
