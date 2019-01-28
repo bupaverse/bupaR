@@ -1,6 +1,6 @@
 #' @title Re map
 #'
-#' @description Construct and eventlog using an existing mapping.
+#' @description Construct an eventlog using an existing mapping.
 #'
 #' @param eventlog The event log data to be used.
 #'
