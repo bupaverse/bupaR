@@ -108,6 +108,12 @@ aggregate_subprocess_entry_points <- function(eventlog, sub_name, sub_acts) {
 }
 
 aggregate_subprocess_consecutive <- function(eventlog, sub_name, sub_acts) {
+	.order <- NULL
+	min_order <- NULL
+	cur_act <- NULL
+	start_sub_process <- NULL
+	end_sub_process <- NULL
+	end_case <- NULL
 
 	mapping <- mapping(eventlog)
 

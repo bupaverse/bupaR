@@ -12,7 +12,7 @@ dplyr::sample_n
 #' @describeIn sample_n Sample n cases of eventlog
 #' @export
 
-sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env) {
+sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env, ...) {
 
 
 	n_cases <- n_cases(tbl)
@@ -37,7 +37,7 @@ sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env) {
 #' @method sample_n grouped_eventlog
 #' @export
 
-sample_n.grouped_eventlog <- function(tbl, size, replace = FALSE, weight, .env) {
+sample_n.grouped_eventlog <- function(tbl, size, replace = FALSE, weight, .env, ...) {
 
 	mapping <- mapping(tbl)
 
