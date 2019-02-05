@@ -46,6 +46,6 @@ summary.eventlog <- function(object, ...){
 #' @export
 
 summary.grouped_eventlog <- function(object, ...) {
-	object <- eventlog(object)
+	object <- eventlog(object, validate = FALSE)
 	NextMethod(object)
 }
