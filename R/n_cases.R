@@ -14,10 +14,8 @@ n_cases <- function(eventlog) {
 
 #' @describeIn n_cases Count number of cases for eventlog
 #' @export
-
 n_cases.eventlog <- function(eventlog) {
-	colnames(eventlog)[colnames(eventlog) == case_id(eventlog)] <- "case_classifier"
-	return(length(unique(eventlog$case_classifier)))
+	return(length(unique(eventlog[[case_id(eventlog)]])))
 }
 
 #' @describeIn n_cases Count number of cases for grouped eventlog

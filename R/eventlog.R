@@ -16,9 +16,12 @@
 #' @param resource_id The resource identifier of the event log. A character vector containing variable names of length 1 or more.
 #' @param order Configure how to handle sort events with equal timestamps:
 #' auto will use the order in the original data,
-#' alphabetical will sort the activity labels by alpabath,
+#' alphabetical will sort the activity labels by alphabet,
+#' sorted will assume that the data frame is already correctly sorted and has a column '.order',
 #' providing a column name will use this column for ordering (can be numeric of character).
 #' The latter will never overrule timestamp orderings.
+#' @param validate When `TRUE` some basic checks are run on the contents of the event log such as that activity instances are
+#'  not connected to more than one case or activity. Using `FALSE` improves the performance by skipping those checks.
 #'
 #' @seealso \code{\link{case_id}}, \code{\link{activity_id}},
 #' \code{\link{activity_instance_id}},\code{\link{lifecycle_id}},
@@ -49,10 +52,11 @@ eventlog <- function(eventlog,
 					 lifecycle_id = NULL,
 					 timestamp = NULL,
 					 resource_id = NULL,
-					 order = "auto"){
+					 order = "auto",
+					 validate = TRUE){
 
 	stopifnot(is.data.frame(eventlog))
-	eventlog <- tbl_df(as.data.frame(eventlog))
+	eventlog <- as_tibble(eventlog)
 	class(eventlog) <- c("eventlog",class(eventlog))
 
 
@@ -83,39 +87,14 @@ eventlog <- function(eventlog,
 			attr(eventlog, "timestamp") <- timestamp
 	}
 
-	eventlog %>%
-		group_by(!!as.symbol(activity_instance_id(eventlog))) %>%
-		summarize(n_cases = n_distinct(!!as.symbol(case_id(eventlog))),
-				  n_act = n_distinct(!!as.symbol(activity_id(eventlog))),
-				  n_resource = n_distinct(!!as.symbol(resource_id(eventlog)))) -> t
-
-	n_cases <- NULL
-	n_act <- NULL
-	n_resource <- NULL
-
-	t %>%
-		filter(n_cases > 1) -> violation_cases
-	t %>%
-		filter(n_act > 1) -> violation_activities
-	t %>%
-		filter(n_resource > 1) -> violation_resources
-
-
-	if(nrow(violation_cases) >0) {
-		stop(glue("The following activity instances are connected to more than one case: {paste(violation_cases %>% pull(1), collapse = \",\")}"))
+	if (validate) {
+		validate_eventlog(eventlog)
 	}
-	if(nrow(violation_activities) > 0) {
-		stop(glue("The following activity instances are connected to more than one activity: {paste(violation_activities %>% pull(1), collapse = \",\")}"))
-	}
-	if(nrow(violation_resources) > 0) {
-		warning(glue("The following activity instances are connected to more than one resource: {paste(violation_resources %>% pull(1), collapse = \",\")}"))
-	}
-
-
-	eventlog$.order_auto <- seq_len(nrow(eventlog))
-
 
 	if(length(order) == 1 && order %in% c("auto","alphabetical",colnames(eventlog))) {
+
+		eventlog$.order_auto <- seq_len(nrow(eventlog))
+
 		if(order == "auto") {
 
 			eventlog$.order <- eventlog$.order_auto
@@ -128,12 +107,11 @@ eventlog <- function(eventlog,
 			eventlog$.order <- order(order(eventlog[[order]], eventlog$.order_auto))
 		}
 
+		eventlog$.order_auto <- NULL
 
-	} else {
-		stop("Order should be a character with value 'auto', 'alphabetical', or a valid column-name")
+	} else if (order != "sorted" || !(".order" %in% colnames(eventlog))) {
+		stop("Order should be a character with value 'auto', 'alphabetical', 'sorted', or a valid column-name")
 	}
-
-	eventlog$.order_auto <- NULL
 
 
 	mapping <- mapping(eventlog)
@@ -237,3 +215,37 @@ ieventlog <- function(eventlog){
 
 }
 
+
+validate_eventlog <- function(eventlog) {
+
+	eventlog %>%
+		group_by(!!as.symbol(activity_instance_id(eventlog))) %>%
+		summarize(n_cases = n_distinct(!!as.symbol(case_id(eventlog))),
+				  n_act = n_distinct(!!as.symbol(activity_id(eventlog))),
+				  n_resource = n_distinct(!!as.symbol(resource_id(eventlog)))) -> t
+
+	n_cases <- NULL
+	n_act <- NULL
+	n_resource <- NULL
+
+	t %>%
+		filter(n_cases > 1) -> violation_cases
+	t %>%
+		filter(n_act > 1) -> violation_activities
+	t %>%
+		filter(n_resource > 1) -> violation_resources
+
+
+	if(nrow(violation_cases) >0) {
+		stop(glue("The following activity instances are connected to more than one case: {paste(violation_cases %>% pull(1), collapse = \",\")}"))
+	}
+	if(nrow(violation_activities) > 0) {
+		stop(glue("The following activity instances are connected to more than one activity: {paste(violation_activities %>% pull(1), collapse = \",\")}"))
+	}
+	if(nrow(violation_resources) > 0) {
+		warning(glue("The following activity instances are connected to more than one resource: {paste(violation_resources %>% pull(1), collapse = \",\")}"))
+	}
+
+	TRUE
+
+}

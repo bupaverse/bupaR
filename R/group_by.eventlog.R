@@ -118,7 +118,3 @@ ungroup_eventlog.eventlog <- function(eventlog) {
 		eventlog
 	}
 }
-
-is_grouped_eventlog <- function(eventlog) {
-	"grouped_eventlog" %in% class(eventlog)
-}
