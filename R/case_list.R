@@ -19,17 +19,19 @@ case_list <- function(eventlog) {
 case_list.eventlog <- function(eventlog){
 	min_order <- NULL
 
-	eDT <- data.table::as.data.table(eventlog)
-	cases <- eDT[,
-				 list("timestamp_classifier" = min(get(timestamp(eventlog))), "min_order" = min(get(".order"))),
-				 by = list("A" = get(case_id(eventlog)), "B" = get(activity_instance_id(eventlog)), "C" = get(activity_id(eventlog)))]
-	cases <- cases[order(get("timestamp_classifier"), min_order),
-				   list(trace = paste(get("C"), collapse = ",")),
-				   by = list("CASE" = get("A"))]
-	cases <- cases %>% mutate(trace_id = as.numeric(factor(!!as.symbol("trace")))) %>%
-		rename(!!as.symbol(case_id(eventlog)) := "CASE")
+	eDT <- data.table::data.table(eventlog)
+
+	# this is roughly 3x faster than grouping and relies on unique taking the first distinct value
+	# which corresponds to the event with the minimum timestamp and minimum .order
+  	data.table::setorderv(eDT, cols = c(case_id(eventlog), timestamp(eventlog), ".order"))
+	cases <- unique(eDT, by = c(case_id(eventlog), activity_instance_id(eventlog), activity_id(eventlog)))
+
+	cases <- cases[order(get(timestamp(eventlog)), get(".order")),
+				   list(trace = paste(get(activity_id(eventlog)), collapse = ",")),
+				   by = list(get(case_id(eventlog)))][,
+				   	trace_id := as.numeric(factor(get("trace")))
+				   ]
 
 	cases %>%
-		as.data.frame %>%
-		tbl_df
+		as_tibble
 }
