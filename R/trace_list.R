@@ -32,7 +32,7 @@ trace_list.eventlog <- function(eventlog){
 
 	cases <- cases[order(get(timestamp(eventlog)), get(".order")),
 				   list(trace = paste(get(activity_id(eventlog)), collapse = ",")),
-				   by = list(get(case_id(eventlog)))][,
+				   by = c(case_id(eventlog))][,
 				   	trace_id := as.numeric(factor(get("trace")))
 				   ]
 
