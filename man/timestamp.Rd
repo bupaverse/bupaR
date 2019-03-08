@@ -33,3 +33,4 @@ Other Eventlog classifiers: \code{\link{activity_id}},
   \code{\link{case_id}}, \code{\link{lifecycle_id}},
   \code{\link{mapping}}, \code{\link{resource_id}}
 }
+\concept{Eventlog classifiers}

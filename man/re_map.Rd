@@ -12,5 +12,5 @@ re_map(eventlog, eventlog_mapping)
 \item{eventlog_mapping}{An existing eventlog mapping created by the mapping function}
 }
 \description{
-Construct and eventlog using an existing mapping.
+Construct an eventlog using an existing mapping.
 }

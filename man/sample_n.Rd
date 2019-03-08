@@ -7,10 +7,11 @@
 \alias{sample_n.grouped_eventlog}
 \title{Sample function for eventlog}
 \usage{
-\method{sample_n}{eventlog}(tbl, size, replace = FALSE, weight, .env, ...)
-
-\method{sample_n}{grouped_eventlog}(tbl, size, replace = FALSE, weight, .env,
+\method{sample_n}{eventlog}(tbl, size, replace = FALSE, weight, .env,
   ...)
+
+\method{sample_n}{grouped_eventlog}(tbl, size, replace = FALSE, weight,
+  .env, ...)
 }
 \arguments{
 \item{tbl}{Eventlog}
