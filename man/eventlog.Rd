@@ -7,7 +7,7 @@
 \usage{
 eventlog(eventlog, case_id = NULL, activity_id = NULL,
   activity_instance_id = NULL, lifecycle_id = NULL, timestamp = NULL,
-  resource_id = NULL, order = "auto")
+  resource_id = NULL, order = "auto", validate = TRUE)
 
 ieventlog(eventlog)
 }
@@ -29,9 +29,13 @@ ieventlog(eventlog)
 
 \item{order}{Configure how to handle sort events with equal timestamps:
 auto will use the order in the original data,
-alphabetical will sort the activity labels by alpabath,
+alphabetical will sort the activity labels by alphabet,
+sorted will assume that the data frame is already correctly sorted and has a column '.order',
 providing a column name will use this column for ordering (can be numeric of character).
 The latter will never overrule timestamp orderings.}
+
+\item{validate}{When `TRUE` some basic checks are run on the contents of the event log such as that activity instances are
+not connected to more than one case or activity. Using `FALSE` improves the performance by skipping those checks.}
 }
 \description{
 A function to instantiate an object of class \code{eventlog} by specifying a

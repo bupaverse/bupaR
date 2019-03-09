@@ -28,3 +28,4 @@ Recode one or more activity labels through specifying their old and new label
 Other Activity processing functions: \code{\link{act_collapse}},
   \code{\link{act_unite}}
 }
+\concept{Activity processing functions}

@@ -28,3 +28,4 @@ Recode two or different more activity labels two a uniform activity label
 Other Activity processing functions: \code{\link{act_collapse}},
   \code{\link{act_recode}}
 }
+\concept{Activity processing functions}

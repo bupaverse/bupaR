@@ -32,3 +32,4 @@ Other Eventlog count functions: \code{\link{n_activities}},
   \code{\link{n_cases}}, \code{\link{n_events}},
   \code{\link{n_traces}}
 }
+\concept{Eventlog count functions}
