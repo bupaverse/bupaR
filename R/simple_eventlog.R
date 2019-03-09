@@ -13,12 +13,15 @@
 #'
 #' @param timestamp The timestamp of the event log.
 #'
-#'
-#'@param order Configure how to handle sort events with equal timestamps:
+#' @param order Configure how to handle sort events with equal timestamps:
 #' auto will use the order in the original data,
-#' alphabetical will sort the activity labels by alpabath,
+#' alphabetical will sort the activity labels by alphabet,
+#' sorted will assume that the data frame is already correctly sorted and has a column '.order',
 #' providing a column name will use this column for ordering (can be numeric of character).
 #' The latter will never overrule timestamp orderings.
+#'
+#' @param validate When `TRUE` some basic checks are run on the contents of the event log such as that activity instances are
+#'  not connected to more than one case or activity. Using `FALSE` improves the performance by skipping those checks.
 #'
 #'
 #' @seealso \code{\link{eventlog}},\code{\link{case_id}}, \code{\link{activity_id}},
@@ -41,7 +44,8 @@ simple_eventlog <- function(eventlog,
 					 case_id = NULL,
 					 activity_id = NULL,
 					 timestamp = NULL,
-					 order = "auto"){
+					 order = "auto",
+					 validate = TRUE){
 
 	eventlog <- tbl_df(as.data.frame(eventlog)) %>%
 		mutate(activity_instance_id = 1:nrow(.),
@@ -60,7 +64,8 @@ simple_eventlog <- function(eventlog,
 			 lifecycle_id,
 			 timestamp,
 			 resource_id,
-			 order = order) %>%
+			 order = order,
+			 validate = validate) %>%
 	return()
 }
 #' @rdname simple_eventlog

@@ -32,3 +32,4 @@ There are different strategies to collapse activity labels (argument ´method´)
 Other Activity processing functions: \code{\link{act_recode}},
   \code{\link{act_unite}}
 }
+\concept{Activity processing functions}
