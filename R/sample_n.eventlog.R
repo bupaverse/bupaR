@@ -39,16 +39,25 @@ sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env, ...) {
 
 sample_n.grouped_eventlog <- function(tbl, size, replace = FALSE, weight, .env, ...) {
 
+	groups <- groups(tbl)
 	mapping <- mapping(tbl)
 
 	tbl %>%
 		nest() %>%
+		# make sure that all grouping variables are in the nested data frames
+		do({
+			group_data <- select(., -data)
+			.$data <- purrr::imap(.$data, ~ cbind(.x, group_data[.y,]))
+			.
+		}) %>%
 		mutate(data = map(data, re_map, mapping)) %>%
 		mutate(data = map(data, sample_n, size = size, replace = replace)) %>%
+		# remove grouping variables to avoid duplicates
+		mutate(data = map(data, ~ select_at(as.data.frame(.x), .vars = vars(-one_of(paste(groups)))))) %>%
 		unnest() %>%
 		re_map(mapping) %>%
+		# result should retain grouping
+		group_by_at(vars(one_of(paste(groups)))) %>%
 		return()
-
-
 
 }
