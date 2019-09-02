@@ -44,6 +44,7 @@ trace_list.eventlog <- function(eventlog){
 	traces <- traces[order(absolute_frequency, decreasing = T)][
 		, relative_frequency:=absolute_frequency/sum(absolute_frequency)]
 	traces %>%
-		as_tibble
+		as_tibble %>%
+		arrange(-absolute_frequency)
 
 }
