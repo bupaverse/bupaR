@@ -44,8 +44,14 @@
 #' }
 #' @export eventlog
 
+eventlog <- function(eventlog, ...) {
+	UseMethod("eventlog")
+}
 
-eventlog <- function(eventlog,
+#' @describeIn eventlog Create event log from data.frame
+#' @export
+
+eventlog.data.frame  <- function(eventlog,
 					 case_id = NULL,
 					 activity_id = NULL,
 					 activity_instance_id = NULL,
