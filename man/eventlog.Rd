@@ -2,17 +2,11 @@
 % Please edit documentation in R/eventlog.R
 \name{eventlog}
 \alias{eventlog}
-\alias{eventlog.data.frame}
 \alias{ieventlog}
 \title{Eventlog}
 \usage{
 eventlog(eventlog, case_id, activity_id, activity_instance_id,
-  lifecycle_id, timestamp, resource_id, ...)
-
-\method{eventlog}{data.frame}(eventlog, case_id = NULL,
-  activity_id = NULL, activity_instance_id = NULL,
-  lifecycle_id = NULL, timestamp = NULL, resource_id = NULL,
-  order = "auto", validate = TRUE)
+  lifecycle_id, timestamp, resource_id, order, validate)
 
 ieventlog(eventlog)
 }
@@ -47,11 +41,6 @@ A function to instantiate an object of class \code{eventlog} by specifying a
 \code{data.frame} or \code{tbl_df} and appropriate case, activity and
 timestamp classifiers.
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{data.frame}: Create event log from data.frame
-}}
-
 \examples{
 \dontrun{
 data <- data.frame(case = rep("A",5),

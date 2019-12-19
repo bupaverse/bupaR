@@ -16,7 +16,7 @@ trace_list <- function(eventlog){
 
 trace_list.eventlog <- function(eventlog){
 	min_order <- NULL
-
+	trace_id <- NULL
 
 	if(nrow(eventlog) == 0) {
 		return(data.frame(trace = numeric(), absolute_frequency = numeric(), relative_frequency = numeric()))

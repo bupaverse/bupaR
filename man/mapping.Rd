@@ -10,7 +10,7 @@ mapping(eventlog)
 
 \method{mapping}{eventlog}(eventlog)
 
-\method{mapping}{activitylog}(activitylog)
+\method{mapping}{activitylog}(eventlog)
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class

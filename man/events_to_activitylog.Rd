@@ -4,11 +4,26 @@
 \alias{events_to_activitylog}
 \title{Events to activities}
 \usage{
-events_to_activitylog(eventlog)
+events_to_activitylog(eventlog, case_id, activity_id, activity_instance_id,
+  lifecycle_id, timestamp, resource_id, ...)
 }
 \arguments{
 \item{eventlog}{The event log to be converted. An object of class
-\code{eventlog}.}
+\code{eventlog} or \code{data.frame}}
+
+\item{case_id}{If eventlog is data.frame, the case classifier of the event log. A character vector containing variable names of length 1 or more.}
+
+\item{activity_id}{If eventlog is data.frame, the activity classifier of the event log. A character vector containing variable names of length 1 or more.}
+
+\item{activity_instance_id}{If eventlog is data.frame, the activity instance classifier of the event log.}
+
+\item{lifecycle_id}{If eventlog is data.frame, the life cycle classifier of the event log.}
+
+\item{timestamp}{If eventlog is data.frame, the timestamp of the event log. Should refer to a Date or POSIXct field.}
+
+\item{resource_id}{If eventlog is data.frame, the resource identifier of the event log. A character vector containing variable names of length 1 or more.}
+
+\item{...}{Additional argments, i.e. for fixing resource inconsistencies}
 }
 \description{
 Events to activities

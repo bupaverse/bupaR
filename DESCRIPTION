@@ -21,7 +21,9 @@ Imports:
 	glue, 
 	forcats, 
 	rlang, 
-	eventdataR (>= 0.2.0)
+	eventdataR (>= 0.2.0),
+	stringr,
+	lubridate
 URL: https://www.bupar.net, https://github.com/bupaverse/bupaR
 Suggests: 
 	testthat

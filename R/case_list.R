@@ -18,6 +18,7 @@ case_list <- function(eventlog) {
 
 case_list.eventlog <- function(eventlog){
 	min_order <- NULL
+	trace_id <- NULL
 
 	eDT <- data.table::data.table(eventlog)
 

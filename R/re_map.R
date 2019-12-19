@@ -2,9 +2,9 @@
 #'
 #' @description Construct an eventlog using an existing mapping.
 #'
-#' @param eventlog The event log data to be used.
+#' @param x The eventlog/activitylog data to be used.
 #'
-#' @param eventlog_mapping An existing eventlog mapping created by the mapping function
+#' @param mapping An existing eventlog mapping created by the mapping function
 #'
 #' @export re_map
 #'
