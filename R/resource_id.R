@@ -17,5 +17,15 @@ resource_id.eventlog <- function(x) {
 #' @describeIn resource_id Retrieve resource identifier from eventlog mapping
 #' @export
 resource_id.eventlog_mapping <- function(x) {
-	return(x$resource_id)
+	return(x$resource_identifier)
+}
+#' @describeIn resource_id Retrieve resource identifier from activitylog
+#' @export
+resource_id.activitylog <- function(x) {
+	return(attr(x, "resource_id"))
+}
+#' @describeIn resource_id Retrieve resource identifier from activitylog mapping
+#' @export
+resource_id.activitylog_mapping <- function(x) {
+	return(x$resource_identifier)
 }

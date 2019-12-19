@@ -4,6 +4,7 @@
 \alias{n_cases}
 \alias{n_cases.eventlog}
 \alias{n_cases.grouped_eventlog}
+\alias{n_cases.activitylog}
 \title{n_cases}
 \usage{
 n_cases(eventlog)
@@ -11,6 +12,8 @@ n_cases(eventlog)
 \method{n_cases}{eventlog}(eventlog)
 
 \method{n_cases}{grouped_eventlog}(eventlog)
+
+\method{n_cases}{activitylog}(eventlog)
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class
@@ -24,6 +27,8 @@ Returns the number of cases in an event log
 \item \code{eventlog}: Count number of cases for eventlog
 
 \item \code{grouped_eventlog}: Count number of cases for grouped eventlog
+
+\item \code{activitylog}: Count number of cases for activitylog
 }}
 
 \seealso{

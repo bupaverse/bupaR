@@ -7,15 +7,30 @@
 #' @param eventlog_mapping An existing eventlog mapping created by the mapping function
 #'
 #' @export re_map
-re_map <- function(eventlog, eventlog_mapping) {
-	stopifnot("eventlog_mapping" %in% class(eventlog_mapping))
-	eventlog(eventlog,
-			case_id = eventlog_mapping$case_identifier,
-			activity_id = eventlog_mapping$activity_identifier,
-			activity_instance_id = eventlog_mapping$activity_instance_identifier,
-			lifecycle_id = eventlog_mapping$lifecycle_identifier,
-			timestamp = eventlog_mapping$timestamp_identifier,
-			resource_id = eventlog_mapping$resource_identifier,
-			order = ".order",
-			validate = FALSE) # assumes that data is OK upon for `re_map`
+#'
+re_map <- function(x, mapping) {
+
+	if("eventlog_mapping" %in% class(mapping)) {
+		eventlog(x,
+				 case_id = mapping$case_identifier,
+				 activity_id = mapping$activity_identifier,
+				 activity_instance_id = mapping$activity_instance_identifier,
+				 lifecycle_id = mapping$lifecycle_identifier,
+				 timestamp = mapping$timestamp_identifier,
+				 resource_id = mapping$resource_identifier,
+				 order = ".order",
+				 validate = FALSE) # assumes that data is OK upon for `re_map`
+	} else if("activitylog_mapping" %in% class(mapping)) {
+		activitylog(x,
+					case_id = mapping$case_identifier,
+					activity_id = mapping$activity_identifier,
+					lifecycle_ids = mapping$lifecycle_identifiers,
+					resource_id = mapping$resource_identifier)
+
+	} else {
+		stop("Invalid mapping")
+	}
 }
+
+
+

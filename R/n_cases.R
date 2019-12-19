@@ -26,3 +26,8 @@ n_cases.grouped_eventlog <- function(eventlog) {
 		return()
 }
 
+#' @describeIn n_cases Count number of cases for activitylog
+#' @export
+n_cases.activitylog <- function(eventlog) {
+	return(length(unique(eventlog[[case_id(eventlog)]])))
+}

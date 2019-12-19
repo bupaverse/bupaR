@@ -3,11 +3,14 @@
 \name{mapping}
 \alias{mapping}
 \alias{mapping.eventlog}
+\alias{mapping.activitylog}
 \title{Mapping}
 \usage{
 mapping(eventlog)
 
 \method{mapping}{eventlog}(eventlog)
+
+\method{mapping}{activitylog}(activitylog)
 }
 \arguments{
 \item{eventlog}{The event log to be used. An object of class
@@ -19,12 +22,15 @@ Prints the mapping of an event log object.
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Retrieve identifier mapping from eventlog
+
+\item \code{activitylog}: Retrieve identifier mapping from activitylog
 }}
 
 \seealso{
 Other Eventlog classifiers: \code{\link{activity_id}},
   \code{\link{activity_instance_id}},
-  \code{\link{case_id}}, \code{\link{lifecycle_id}},
-  \code{\link{resource_id}}, \code{\link{timestamp}}
+  \code{\link{case_id}}, \code{\link{lifecycle_ids}},
+  \code{\link{lifecycle_id}}, \code{\link{resource_id}},
+  \code{\link{timestamp}}
 }
 \concept{Eventlog classifiers}

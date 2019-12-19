@@ -44,7 +44,7 @@
 #' }
 #' @export eventlog
 
-eventlog <- function(eventlog, ...) {
+eventlog <- function(eventlog, case_id, activity_id, activity_instance_id, lifecycle_id, timestamp, resource_id, ...) {
 	UseMethod("eventlog")
 }
 

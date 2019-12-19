@@ -4,6 +4,18 @@
 \name{reexports}
 \alias{reexports}
 \alias{\%>\%}
+\alias{ymd_hms}
+\alias{ymd_hm}
+\alias{ymd_h}
+\alias{ymd}
+\alias{dmy_hms}
+\alias{dmy_hm}
+\alias{dmy_h}
+\alias{dmy}
+\alias{mdy_hms}
+\alias{mdy_hm}
+\alias{mdy_h}
+\alias{mdy}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -11,6 +23,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{lubridate}{\code{\link[lubridate]{ymd_hms}}, \code{\link[lubridate]{ymd_hm}}, \code{\link[lubridate]{ymd_h}}, \code{\link[lubridate]{ymd}}, \code{\link[lubridate]{dmy_hms}}, \code{\link[lubridate]{dmy_hm}}, \code{\link[lubridate]{dmy_h}}, \code{\link[lubridate]{dmy}}, \code{\link[lubridate]{mdy_hms}}, \code{\link[lubridate]{mdy_hm}}, \code{\link[lubridate]{mdy_h}}, \code{\link[lubridate]{mdy}}}
+
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
 }}
 

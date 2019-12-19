@@ -65,3 +65,13 @@ case_labels.eventlog <- function(eventlog) {
 		unique()
 }
 
+#' @describeIn case_labels Retrieve case labels from activitylog
+#' @export
+case_labels.activitylog <- function(eventlog) {
+	eventlog %>%
+		ungroup() %>%
+		pull(!!case_id_(eventlog)) %>%
+		unique()
+}
+
+

@@ -17,6 +17,20 @@ activity_instance_id.eventlog <- function(x){
 #' @export
 
 activity_instance_id.eventlog_mapping <- function(x){
-	return(x$activity_instance_id)
+	return(x$activity_instance_identifier)
+}
+
+#' @describeIn activity_instance_id Retrieve activity instance identifier from activitylog
+#' @export
+
+activity_instance_id.activitylog <- function(x){
+	stop("Object is activity log. Each row is activity instance. No identifier available")
+}
+
+#' @describeIn activity_instance_id Retrieve activity instance identifier from activitylog mapping
+#' @export
+
+activity_instance_id.activitylog_mapping <- function(x){
+	stop("Object is activity log. Each row is activity instance. No identifier available")
 }
 

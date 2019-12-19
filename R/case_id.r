@@ -17,5 +17,17 @@ case_id.eventlog <- function(x) {
 #' @describeIn case_id Retrieve case identifier from eventlog mapping
 #' @export
 case_id.eventlog_mapping <- function(x) {
-	return(x$case_id)
+	return(x$case_identifier)
+}
+
+#' @describeIn case_id Retrieve case identifier from activitylog
+#' @export
+case_id.activitylog <- function(x) {
+	return(attr(x, "case_id"))
+}
+
+#' @describeIn case_id Retrieve case identifier from activitylog mapping
+#' @export
+case_id.activitylog_mapping <- function(x) {
+	return(x$case_identifier)
 }

@@ -4,7 +4,7 @@
 \alias{re_map}
 \title{Re map}
 \usage{
-re_map(eventlog, eventlog_mapping)
+re_map(x, mapping)
 }
 \arguments{
 \item{eventlog}{The event log data to be used.}

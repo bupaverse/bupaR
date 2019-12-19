@@ -16,6 +16,16 @@ activity_id.eventlog <- function(x){
 #' @describeIn activity_id Retrieve activity identifier from eventlog mapping
 #' @export
 activity_id.eventlog_mapping <- function(x) {
-	return(x$activity_id)
+	return(x$activity_identifier)
 }
 
+#' @describeIn activity_id Retrieve activity identifier from activitylog
+#' @export
+activity_id.activitylog <- function(x){
+	return(attr(x, "activity_id"))
+}
+#' @describeIn activity_id Retrieve activity identifier from activitylog mapping
+#' @export
+activity_id.activitylog_mapping <- function(x) {
+	return(x$activity_identifier)
+}

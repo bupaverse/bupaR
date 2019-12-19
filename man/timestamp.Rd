@@ -4,6 +4,8 @@
 \alias{timestamp}
 \alias{timestamp.eventlog}
 \alias{timestamp.eventlog_mapping}
+\alias{timestamp.activitylog}
+\alias{timestamp.activitylog_mapping}
 \title{Timestamp classifier}
 \usage{
 timestamp(x)
@@ -11,6 +13,10 @@ timestamp(x)
 \method{timestamp}{eventlog}(x)
 
 \method{timestamp}{eventlog_mapping}(x)
+
+\method{timestamp}{activitylog}(x)
+
+\method{timestamp}{activitylog_mapping}(x)
 }
 \arguments{
 \item{x}{An \code{eventlog} of \code{eventlog_mapping}}
@@ -23,6 +29,10 @@ Get the  timestamp classifier of an object of class \code{eventlog}
 \item \code{eventlog}: Retrieve timestamp identifier from eventlog
 
 \item \code{eventlog_mapping}: Retrieve timestamp identifier from eventlog mapping
+
+\item \code{activitylog}: Retrieve timestamp identifier from activitylog
+
+\item \code{activitylog_mapping}: Retrieve timestamp identifier from activitylog mapping
 }}
 
 \seealso{
@@ -30,7 +40,8 @@ Get the  timestamp classifier of an object of class \code{eventlog}
 
 Other Eventlog classifiers: \code{\link{activity_id}},
   \code{\link{activity_instance_id}},
-  \code{\link{case_id}}, \code{\link{lifecycle_id}},
-  \code{\link{mapping}}, \code{\link{resource_id}}
+  \code{\link{case_id}}, \code{\link{lifecycle_ids}},
+  \code{\link{lifecycle_id}}, \code{\link{mapping}},
+  \code{\link{resource_id}}
 }
 \concept{Eventlog classifiers}

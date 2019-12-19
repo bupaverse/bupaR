@@ -6,7 +6,8 @@
 \alias{ieventlog}
 \title{Eventlog}
 \usage{
-eventlog(eventlog, ...)
+eventlog(eventlog, case_id, activity_id, activity_instance_id,
+  lifecycle_id, timestamp, resource_id, ...)
 
 \method{eventlog}{data.frame}(eventlog, case_id = NULL,
   activity_id = NULL, activity_instance_id = NULL,

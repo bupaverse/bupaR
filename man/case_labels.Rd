@@ -3,11 +3,14 @@
 \name{case_labels}
 \alias{case_labels}
 \alias{case_labels.eventlog}
+\alias{case_labels.activitylog}
 \title{Get vector of case labels}
 \usage{
 case_labels(eventlog)
 
 \method{case_labels}{eventlog}(eventlog)
+
+\method{case_labels}{activitylog}(eventlog)
 }
 \arguments{
 \item{eventlog}{Eventlog}
@@ -18,5 +21,7 @@ Retrieve a vector containing all unique case labels
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Retrieve case labels from eventlog
+
+\item \code{activitylog}: Retrieve case labels from activitylog
 }}
 

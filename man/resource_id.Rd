@@ -4,6 +4,8 @@
 \alias{resource_id}
 \alias{resource_id.eventlog}
 \alias{resource_id.eventlog_mapping}
+\alias{resource_id.activitylog}
+\alias{resource_id.activitylog_mapping}
 \title{Resource classifier}
 \usage{
 resource_id(x)
@@ -11,6 +13,10 @@ resource_id(x)
 \method{resource_id}{eventlog}(x)
 
 \method{resource_id}{eventlog_mapping}(x)
+
+\method{resource_id}{activitylog}(x)
+
+\method{resource_id}{activitylog_mapping}(x)
 }
 \arguments{
 \item{x}{An \code{eventlog} of \code{eventlog_mapping}}
@@ -23,6 +29,10 @@ Get the resource classifier of an object of class \code{eventlog}.
 \item \code{eventlog}: Retrieve resource identifier from eventlog
 
 \item \code{eventlog_mapping}: Retrieve resource identifier from eventlog mapping
+
+\item \code{activitylog}: Retrieve resource identifier from activitylog
+
+\item \code{activitylog_mapping}: Retrieve resource identifier from activitylog mapping
 }}
 
 \seealso{
@@ -30,7 +40,8 @@ Get the resource classifier of an object of class \code{eventlog}.
 
 Other Eventlog classifiers: \code{\link{activity_id}},
   \code{\link{activity_instance_id}},
-  \code{\link{case_id}}, \code{\link{lifecycle_id}},
-  \code{\link{mapping}}, \code{\link{timestamp}}
+  \code{\link{case_id}}, \code{\link{lifecycle_ids}},
+  \code{\link{lifecycle_id}}, \code{\link{mapping}},
+  \code{\link{timestamp}}
 }
 \concept{Eventlog classifiers}

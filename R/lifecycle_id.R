@@ -15,5 +15,21 @@ lifecycle_id.eventlog <- function(x) {
 #' @describeIn lifecycle_id Retrieve lifecycle identifier from eventlog mapping
 #' @export
 lifecycle_id.eventlog_mapping <- function(x) {
-	return(x$lifecycle_id)
+	return(x$lifecycle_identifier)
 }
+
+#' @describeIn lifecycle_id Retrieve lifecycle identifier from activitylog
+#' @export
+lifecycle_id.activitylog <- function(x) {
+	warning(glue::glue("Object is activity log. Lifecycles are stored in {length(attr(x, \"lifecycle_ids\"))} columns."))
+	return(attr(x, "lifecycle_ids"))
+}
+
+#' @describeIn lifecycle_id Retrieve lifecycle identifier from activitylog mapping
+#' @export
+lifecycle_id.activitylog_mapping <- function(x) {
+	warning(glue::glue("Object is activity log. Lifecycles are stored in {length(x$lifecycle_identifiers)} columns."))
+	return(x$lifecycle_identifiers)
+}
+
+

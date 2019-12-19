@@ -17,3 +17,17 @@ timestamp.eventlog <- function(x){
 timestamp.eventlog_mapping <- function(x) {
 	return(x$timestamp)
 }
+
+#' @describeIn timestamp Retrieve timestamp identifier from activitylog
+#' @export
+timestamp.activitylog <- function(x){
+	warning(glue::glue("Object is activity log. Timestamps are stored in {length(attr(x, 'lifecycle_ids'))} columns."))
+	return(attr(x, "lifecycle_ids"))
+}
+#' @describeIn timestamp Retrieve timestamp identifier from activitylog mapping
+#' @export
+timestamp.activitylog_mapping <- function(x) {
+
+	warning(glue::glue("Object is activity log. Timestamps are stored in {length(x$lifecycle_identifiers)} columns."))
+	return(x$lifecycle_identifiers)
+}

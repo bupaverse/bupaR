@@ -4,6 +4,8 @@
 \alias{activity_instance_id}
 \alias{activity_instance_id.eventlog}
 \alias{activity_instance_id.eventlog_mapping}
+\alias{activity_instance_id.activitylog}
+\alias{activity_instance_id.activitylog_mapping}
 \title{Activity instance classifier}
 \usage{
 activity_instance_id(x)
@@ -11,6 +13,10 @@ activity_instance_id(x)
 \method{activity_instance_id}{eventlog}(x)
 
 \method{activity_instance_id}{eventlog_mapping}(x)
+
+\method{activity_instance_id}{activitylog}(x)
+
+\method{activity_instance_id}{activitylog_mapping}(x)
 }
 \arguments{
 \item{x}{An \code{eventlog} of \code{eventlog_mapping}}
@@ -23,12 +29,16 @@ Get the activity instance classifier of an object of class \code{eventlog}.
 \item \code{eventlog}: Retrieve activity instance identifier from eventlog
 
 \item \code{eventlog_mapping}: Retrieve activity instance identifier from eventlog mapping
+
+\item \code{activitylog}: Retrieve activity instance identifier from activitylog
+
+\item \code{activitylog_mapping}: Retrieve activity instance identifier from activitylog mapping
 }}
 
 \seealso{
 Other Eventlog classifiers: \code{\link{activity_id}},
-  \code{\link{case_id}}, \code{\link{lifecycle_id}},
-  \code{\link{mapping}}, \code{\link{resource_id}},
-  \code{\link{timestamp}}
+  \code{\link{case_id}}, \code{\link{lifecycle_ids}},
+  \code{\link{lifecycle_id}}, \code{\link{mapping}},
+  \code{\link{resource_id}}, \code{\link{timestamp}}
 }
 \concept{Eventlog classifiers}
