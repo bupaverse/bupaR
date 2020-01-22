@@ -17,7 +17,7 @@ convert_timestamps <- function(x, columns,  format = ymd_hms){
 		stop("columns should be a character vector with one or more elements.")
 	}
 	if(any(!(columns %in% names(x)))) {
-		warning(glue::glue("The following columns are not found and ignored: {str_c(columns[!(columns %in% names(x))], collapse = ', ')}.Did you spelled them wrong?"))
+		warning(glue::glue("The following columns are not found and ignored: {str_c(columns[!(columns %in% names(x))], collapse = ', ')}.Did you spell them wrong?"))
 		columns <- columns[(columns %in% names(x))]
 	}
 	if(!(deparse(substitute(format))  %in% c("ymd_hms", "ymd_hm", "ymd_h","ymd",
