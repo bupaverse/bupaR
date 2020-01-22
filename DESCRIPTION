@@ -3,8 +3,10 @@ Type: Package
 Title: Business Process Analysis in R
 Version: 0.4.2
 Date: 2019-02-19
-Authors@R: person("Gert","Janssenswillen", email = "gert.janssenswillen@uhasselt.be", 
-  role = c("aut","cre"))
+Authors@R: c(person("Gert","Janssenswillen", email = "gert.janssenswillen@uhasselt.be", role = c("aut","cre")),
+              person("Felix","Mannhardt",email = "Felix.Mannhardt@sintef.no", role = c("ctb"),
+               person("Niels","Martin",email = "niels.martin@uhasselt.be, role = c("ctb"),
+                person("Greg","Van Houdt",email = "greg.vanhoudt@uhasselt.be", role = c("ctb"))
 Description: Comprehensive Business Process Analysis toolkit. Creates S3-class for event log objects, and related handler functions. Imports related packages for filtering event data, computation of descriptive statistics, handling of 'Petri Net' objects and visualization of process maps. See also packages 'edeaR','processmapR', 'eventdataR' and 'processmonitR'.
 License: MIT + file LICENSE
 Encoding: UTF-8
