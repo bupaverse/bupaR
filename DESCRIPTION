@@ -25,7 +25,13 @@ Imports:
 	rlang, 
 	eventdataR (>= 0.2.0),
 	stringr,
-	lubridate
+	lubridate,
+	edeaR,
+	eventdataR,
+	processmapR,
+	xesreadR,
+	processmonitR,
+	petrinetR
 URL: https://www.bupar.net, https://github.com/bupaverse/bupaR
 Suggests: 
 	testthat
