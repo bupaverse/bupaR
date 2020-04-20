@@ -25,7 +25,8 @@ Recode two or different more activity labels two a uniform activity label
 \seealso{
 \code{\link{eventlog}}, \code{\link{activity_id}}, \code{\link{act_recode}}
 
-Other Activity processing functions: \code{\link{act_collapse}},
-  \code{\link{act_recode}}
+Other Activity processing functions: 
+\code{\link{act_collapse}()},
+\code{\link{act_recode}()}
 }
 \concept{Activity processing functions}

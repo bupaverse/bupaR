@@ -38,10 +38,13 @@ Get the case classifier of an object of class \code{eventlog}
 \seealso{
 \code{\link{eventlog}}, \code{\link{mapping}}
 
-Other Eventlog classifiers: \code{\link{activity_id}},
-  \code{\link{activity_instance_id}},
-  \code{\link{lifecycle_ids}}, \code{\link{lifecycle_id}},
-  \code{\link{mapping}}, \code{\link{resource_id}},
-  \code{\link{timestamp}}
+Other Eventlog classifiers: 
+\code{\link{activity_id}()},
+\code{\link{activity_instance_id}()},
+\code{\link{lifecycle_ids}()},
+\code{\link{lifecycle_id}()},
+\code{\link{mapping}()},
+\code{\link{resource_id}()},
+\code{\link{timestamp}()}
 }
 \concept{Eventlog classifiers}

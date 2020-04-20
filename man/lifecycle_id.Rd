@@ -36,10 +36,13 @@ Get the life_cycle_id of an object of class \code{eventlog}
 }}
 
 \seealso{
-Other Eventlog classifiers: \code{\link{activity_id}},
-  \code{\link{activity_instance_id}},
-  \code{\link{case_id}}, \code{\link{lifecycle_ids}},
-  \code{\link{mapping}}, \code{\link{resource_id}},
-  \code{\link{timestamp}}
+Other Eventlog classifiers: 
+\code{\link{activity_id}()},
+\code{\link{activity_instance_id}()},
+\code{\link{case_id}()},
+\code{\link{lifecycle_ids}()},
+\code{\link{mapping}()},
+\code{\link{resource_id}()},
+\code{\link{timestamp}()}
 }
 \concept{Eventlog classifiers}

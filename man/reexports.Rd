@@ -23,7 +23,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{lubridate}{\code{\link[lubridate]{ymd_hms}}, \code{\link[lubridate]{ymd_hm}}, \code{\link[lubridate]{ymd_h}}, \code{\link[lubridate]{ymd}}, \code{\link[lubridate]{dmy_hms}}, \code{\link[lubridate]{dmy_hm}}, \code{\link[lubridate]{dmy_h}}, \code{\link[lubridate]{dmy}}, \code{\link[lubridate]{mdy_hms}}, \code{\link[lubridate]{mdy_hm}}, \code{\link[lubridate]{mdy_h}}, \code{\link[lubridate]{mdy}}}
+  \item{lubridate}{\code{\link[lubridate]{dmy}}, \code{\link[lubridate]{dmy_h}}, \code{\link[lubridate]{dmy_hm}}, \code{\link[lubridate]{dmy_hms}}, \code{\link[lubridate]{mdy}}, \code{\link[lubridate]{mdy_h}}, \code{\link[lubridate]{mdy_hm}}, \code{\link[lubridate]{mdy_hms}}, \code{\link[lubridate]{ymd}}, \code{\link[lubridate]{ymd_h}}, \code{\link[lubridate]{ymd_hm}}, \code{\link[lubridate]{ymd_hms}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
 }}

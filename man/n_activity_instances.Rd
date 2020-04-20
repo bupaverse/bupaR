@@ -20,8 +20,11 @@ n_activity_instances(eventlog)
 Returns the number of activity instances in an event log
 }
 \seealso{
-Other Eventlog count functions: \code{\link{n_activities}},
-  \code{\link{n_cases}}, \code{\link{n_events}},
-  \code{\link{n_resources}}, \code{\link{n_traces}}
+Other Eventlog count functions: 
+\code{\link{n_activities}()},
+\code{\link{n_cases}()},
+\code{\link{n_events}()},
+\code{\link{n_resources}()},
+\code{\link{n_traces}()}
 }
 \concept{Eventlog count functions}

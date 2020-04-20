@@ -5,8 +5,17 @@
 \alias{ieventlog}
 \title{Eventlog}
 \usage{
-eventlog(eventlog, case_id, activity_id, activity_instance_id,
-  lifecycle_id, timestamp, resource_id, order, validate)
+eventlog(
+  eventlog,
+  case_id,
+  activity_id,
+  activity_instance_id,
+  lifecycle_id,
+  timestamp,
+  resource_id,
+  order,
+  validate
+)
 
 ieventlog(eventlog)
 }

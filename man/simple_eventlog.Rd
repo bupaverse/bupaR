@@ -5,8 +5,14 @@
 \alias{isimple_eventlog}
 \title{Simple Eventlog}
 \usage{
-simple_eventlog(eventlog, case_id = NULL, activity_id = NULL,
-  timestamp = NULL, order = "auto", validate = TRUE)
+simple_eventlog(
+  eventlog,
+  case_id = NULL,
+  activity_id = NULL,
+  timestamp = NULL,
+  order = "auto",
+  validate = TRUE
+)
 
 isimple_eventlog(eventlog)
 }

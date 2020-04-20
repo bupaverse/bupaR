@@ -4,8 +4,13 @@
 \alias{activities_to_eventlog}
 \title{Create event log from list of activity instances}
 \usage{
-activities_to_eventlog(activity_log, case_id, activity_id, resource_id,
-  timestamps)
+activities_to_eventlog(
+  activity_log,
+  case_id,
+  activity_id,
+  resource_id,
+  timestamps
+)
 }
 \arguments{
 \item{activity_log}{A data.frame where each row is an activity instances}

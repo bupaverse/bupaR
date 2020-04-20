@@ -25,7 +25,8 @@ Recode one or more activity labels through specifying their old and new label
 \seealso{
 \code{\link{eventlog}}, \code{\link{activity_id}}, \code{\link{act_unite}}
 
-Other Activity processing functions: \code{\link{act_collapse}},
-  \code{\link{act_unite}}
+Other Activity processing functions: 
+\code{\link{act_collapse}()},
+\code{\link{act_unite}()}
 }
 \concept{Activity processing functions}

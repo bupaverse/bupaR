@@ -8,8 +8,10 @@ load <- c("edeaR", "eventdataR","processmapR","xesreadR", "processmonitR", "petr
 	if (length(needed) == 0)
 		return()
 
-	needed_installed <- ((sapply(needed, require, character.only = TRUE, warn.conflicts = FALSE)))
-
+	suppressMessages({
+	suppressWarnings({
+		needed_installed <- ((sapply(needed, require, character.only = TRUE, warn.conflicts = FALSE)))
+	})})
 	# no_installed <- needed[!needed_installed]
 	#
 	# if(length(no_installed) > 0) {

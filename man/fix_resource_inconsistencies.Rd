@@ -6,16 +6,29 @@
 \alias{fix_resource_inconsistencies.eventlog}
 \title{Fix resource inconsistencies}
 \usage{
-fix_resource_inconsistencies(eventlog, filter_condition,
-  overwrite_missings, detected_problems, details)
+fix_resource_inconsistencies(
+  eventlog,
+  filter_condition,
+  overwrite_missings,
+  detected_problems,
+  details
+)
 
-\method{fix_resource_inconsistencies}{activitylog}(eventlog,
-  filter_condition = NULL, overwrite_missings = FALSE,
-  detected_problems = NULL, details = TRUE)
+\method{fix_resource_inconsistencies}{activitylog}(
+  eventlog,
+  filter_condition = NULL,
+  overwrite_missings = FALSE,
+  detected_problems = NULL,
+  details = TRUE
+)
 
-\method{fix_resource_inconsistencies}{eventlog}(eventlog,
-  filter_condition = NULL, overwrite_missings = FALSE,
-  detected_problems = NULL, details = TRUE)
+\method{fix_resource_inconsistencies}{eventlog}(
+  eventlog,
+  filter_condition = NULL,
+  overwrite_missings = FALSE,
+  detected_problems = NULL,
+  details = TRUE
+)
 }
 \arguments{
 \item{eventlog}{Event log object}

@@ -43,8 +43,7 @@ set_lifecycle_id(eventlog, lifecycle_id)
 
 \method{set_activity_instance_id}{eventlog}(eventlog, activity_instance_id)
 
-\method{set_activity_instance_id}{grouped_eventlog}(eventlog,
-  activity_instance_id)
+\method{set_activity_instance_id}{grouped_eventlog}(eventlog, activity_instance_id)
 
 \method{set_timestamp}{eventlog}(eventlog, timestamp)
 

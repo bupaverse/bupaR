@@ -7,8 +7,7 @@
 \usage{
 act_collapse(eventlog, ..., method)
 
-\method{act_collapse}{eventlog}(eventlog, ..., method = c("entry_points",
-  "consecutive"))
+\method{act_collapse}{eventlog}(eventlog, ..., method = c("entry_points", "consecutive"))
 }
 \arguments{
 \item{eventlog}{An \code{eventlog} object}
@@ -29,7 +28,8 @@ There are different strategies to collapse activity labels (argument ´method´)
 }}
 
 \seealso{
-Other Activity processing functions: \code{\link{act_recode}},
-  \code{\link{act_unite}}
+Other Activity processing functions: 
+\code{\link{act_recode}()},
+\code{\link{act_unite}()}
 }
 \concept{Activity processing functions}

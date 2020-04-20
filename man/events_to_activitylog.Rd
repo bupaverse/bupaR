@@ -4,8 +4,16 @@
 \alias{events_to_activitylog}
 \title{Events to activities}
 \usage{
-events_to_activitylog(eventlog, case_id, activity_id, activity_instance_id,
-  lifecycle_id, timestamp, resource_id, ...)
+events_to_activitylog(
+  eventlog,
+  case_id,
+  activity_id,
+  activity_instance_id,
+  lifecycle_id,
+  timestamp,
+  resource_id,
+  ...
+)
 }
 \arguments{
 \item{eventlog}{The event log to be converted. An object of class
