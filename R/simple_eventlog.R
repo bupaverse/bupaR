@@ -13,6 +13,8 @@
 #'
 #' @param timestamp The timestamp of the event log.
 #'
+#' @param resource_id The resource classifier of the event log (optional).
+#'
 #' @param order Configure how to handle sort events with equal timestamps:
 #' auto will use the order in the original data,
 #' alphabetical will sort the activity labels by alphabet,
@@ -41,18 +43,23 @@
 
 
 simple_eventlog <- function(eventlog,
-					 case_id = NULL,
-					 activity_id = NULL,
-					 timestamp = NULL,
-					 order = "auto",
-					 validate = TRUE){
+							case_id = NULL,
+							activity_id = NULL,
+							timestamp = NULL,
+							resource_id = NULL,
+							order = "auto",
+							validate = TRUE){
 
 	eventlog <- tbl_df(as.data.frame(eventlog)) %>%
 		mutate(activity_instance_id = 1:nrow(.),
-			   resource_id = "undefined",
 			   lifecycle_id = "undefined")
 
-	resource_id <- "resource_id"
+	if(is.null(resource_id)) {
+		eventlog %>%
+			mutate(resource_id = "undefined") -> eventlog
+		resource_id <- "resource_id"
+	}
+
 	activity_instance_id <- "activity_instance_id"
 	lifecycle_id = "lifecycle_id"
 
@@ -66,7 +73,7 @@ simple_eventlog <- function(eventlog,
 			 resource_id,
 			 order = order,
 			 validate = validate) %>%
-	return()
+		return()
 }
 #' @rdname simple_eventlog
 #' @export isimple_eventlog
@@ -80,8 +87,12 @@ isimple_eventlog <- function(eventlog){
 							   selected = ifelse(is.null(attr(eventlog, "case_id")), NA, attr(eventlog, "case_id"))),
 				selectizeInput("activity_id", "Activity identifier", choices = c("",colnames(eventlog)),
 							   selected = ifelse(is.null(attr(eventlog, "activity_id")), NA, attr(eventlog, "activity_id"))),
-					selectizeInput("timestamp", "Timestamp", choices =  c("",colnames(eventlog)),
-								   selected = ifelse(is.null(attr(eventlog, "timestamp")), NA, attr(eventlog, "timestamp"))))
+				selectizeInput("timestamp", "Timestamp", choices =  c("",colnames(eventlog)),
+							   selected = ifelse(is.null(attr(eventlog, "timestamp")), NA, attr(eventlog, "timestamp"))),
+				selectizeInput("resource_id", "Resource identifier", choices =  c("",colnames(eventlog)),
+							   selected = ifelse(is.null(attr(eventlog, "resource_id")), NA, attr(eventlog, "resource_id")))
+
+			)
 
 			))
 	)
@@ -89,9 +100,9 @@ isimple_eventlog <- function(eventlog){
 	server <- function(input, output, session){
 		observeEvent(input$done, {
 			stopApp(simple_eventlog(eventlog = eventlog,
-							 case_id = input$case_id,
-							 activity_id = input$activity_id,
-							 timestamp = input$timestamp))
+									case_id = input$case_id,
+									activity_id = input$activity_id,
+									timestamp = input$timestamp))
 		})
 
 

@@ -10,6 +10,7 @@ simple_eventlog(
   case_id = NULL,
   activity_id = NULL,
   timestamp = NULL,
+  resource_id = NULL,
   order = "auto",
   validate = TRUE
 )
@@ -25,6 +26,8 @@ isimple_eventlog(eventlog)
 \item{activity_id}{The activity classifier of the event log.}
 
 \item{timestamp}{The timestamp of the event log.}
+
+\item{resource_id}{The resource classifier of the event log (optional).}
 
 \item{order}{Configure how to handle sort events with equal timestamps:
 auto will use the order in the original data,
