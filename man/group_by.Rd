@@ -6,7 +6,7 @@
 \alias{group_by.eventlog}
 \title{Group event log}
 \usage{
-\method{group_by}{eventlog}(.data, ..., add = F)
+\method{group_by}{eventlog}(.data, ..., .add = F)
 }
 \arguments{
 \item{.data}{Eventlog}

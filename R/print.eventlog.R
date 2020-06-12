@@ -37,8 +37,8 @@ print.eventlog <- function(x, ...) {
 #' @export
 print.grouped_eventlog <- function(x, ...) {
 	groups <- groups(x)
-	x <- eventlog(x, validate = FALSE, order = "sorted")
+	x <- ungroup_eventlog(x)
 	cat(glue("# Groups: [{paste(groups, collapse = \", \")}]"))
 	cat("\nGrouped ")
-	NextMethod(x)
+	print(x)
 }

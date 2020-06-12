@@ -7,10 +7,12 @@
 dplyr::arrange
 #' @describeIn arrange Arrange an eventlog
 #' @export
-arrange.eventlog <- function(.data, ..., add = F) {
+arrange.eventlog <- function(.data, ...) {
 
 	mapping <- mapping(.data)
-	x <- NextMethod(.data, ...)
+	.data <- as.data.frame(.data)
+
+	x <- arrange(.data, ...)
 	x <- re_map(x, mapping)
 
 	return(x)
@@ -19,10 +21,11 @@ arrange.eventlog <- function(.data, ..., add = F) {
 #' @describeIn arrange Arrange an eventlog by group, maintaining all groups
 #' @export
 #'
-arrange.grouped_eventlog <- function(.data, ..., add = F) {
+arrange.grouped_eventlog <- function(.data, ...) {
 	mapping <- mapping(.data)
 	groups <- groups(.data)
-	x <- NextMethod(.data, ...)
+	.data <- as.data.frame(.data)
+	x <- arrange(.data, ...)
 	x <- re_map(x, mapping)
 	x <- group_by_at(x, vars(one_of(paste(groups))))
 	return(x)

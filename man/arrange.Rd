@@ -7,9 +7,9 @@
 \alias{arrange.grouped_eventlog}
 \title{Arrange event log}
 \usage{
-\method{arrange}{eventlog}(.data, ..., add = F)
+\method{arrange}{eventlog}(.data, ...)
 
-\method{arrange}{grouped_eventlog}(.data, ..., add = F)
+\method{arrange}{grouped_eventlog}(.data, ...)
 }
 \arguments{
 \item{.data}{Eventlog}

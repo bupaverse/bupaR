@@ -21,10 +21,8 @@ sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env, ...) {
 		stop(paste(c("Size parameter (", size, ") is larger than number of cases (", n_cases ,"). Do you want to use replace = T?"), collapse = ""))
 	}
 
-	case_ids <- tbl %>%
-		rename_("case_classifier" = case_id(tbl)) %>%
-		.$case_classifier %>%
-		unique
+	case_ids <- case_labels(tbl)
+
 
 	selection <- sample(case_ids, size = size, replace = replace)
 

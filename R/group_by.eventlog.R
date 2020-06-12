@@ -8,11 +8,12 @@
 dplyr::group_by
 #' @describeIn group_by Group eventlog
 #' @export
-group_by.eventlog <- function(.data, ..., add = F) {
+group_by.eventlog <- function(.data, ..., .add = F) {
 
 
 	mapping <- mapping(.data)
-	x <- NextMethod(.data, ..., add = add)
+	.data <- as.data.frame(.data)
+	x <- group_by(.data, ..., .add = .add)
 	class(x) <- c("grouped_eventlog","eventlog", class(x))
 
 
