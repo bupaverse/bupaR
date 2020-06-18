@@ -8,7 +8,7 @@
 #' @return Data.frame with converted timestamps
 #' @family Eventlog construction helpers
 #' @export
-convert_timestamps <- function(x, columns,  format = ymd_hms){
+convert_timestamps <- function(x, columns,  format){
 
 
 	stopifnot("data.frame" %in% class(x))

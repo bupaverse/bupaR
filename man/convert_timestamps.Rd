@@ -4,7 +4,7 @@
 \alias{convert_timestamps}
 \title{Convert timestamp format}
 \usage{
-convert_timestamps(x, columns, format = ymd_hms)
+convert_timestamps(x, columns, format)
 }
 \arguments{
 \item{x}{Data.frame containing events or activities.}
