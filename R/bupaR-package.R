@@ -25,6 +25,11 @@
 #' @importFrom utils setTxtProgressBar
 #' @importFrom utils txtProgressBar
 #' @importFrom utils data
-globalVariables(c("."))
+#' @keywords internal
 "_PACKAGE"
 
+## usethis namespace: start
+#' @importFrom lifecycle deprecated
+## usethis namespace: end
+globalVariables(c("."))
+NULL
