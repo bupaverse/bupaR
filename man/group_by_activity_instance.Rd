@@ -4,10 +4,10 @@
 \alias{group_by_activity_instance}
 \title{Group event log on activity instance id}
 \usage{
-group_by_activity_instance(.log)
+group_by_activity_instance(log)
 }
 \arguments{
-\item{.log}{Object of classes eventlog or activitylog}
+\item{log}{Object of classes eventlog or activitylog}
 }
 \description{
 Group an event log by activity instance identifier
