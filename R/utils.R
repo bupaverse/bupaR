@@ -20,6 +20,16 @@ is_grouped_eventlog <- function(eventlog) {
 }
 
 
+apply_grouped <- function(log, fun) {
+	mapping <- mapping(log)
+	log %>%
+		nest() %>%
+		mutate(data = map(data, re_map, mapping)) %>%
+		mutate(data = map(data, fun)) %>%
+		unnest(cols = data)
+}
+
+
 #' @importFrom lubridate ymd_hms
 #' @export
 lubridate::ymd_hms
@@ -58,3 +68,61 @@ lubridate::mdy_h
 lubridate::mdy
 
 
+
+
+.end_activities_eventlog <- function(eventlog) {
+
+	eventlog %>%
+		group_by(!!as.symbol(case_id(eventlog))) %>%
+		arrange(!!as.symbol(timestamp(eventlog))) %>%
+		summarize(last_event = last(!!as.symbol(activity_id(eventlog)))) %>%
+		group_by(!!as.symbol("last_event")) %>%
+		summarize() -> r
+
+	colnames(r)[colnames(r) == "last_event"] <- activity_id(eventlog)
+	return(r)
+
+}
+
+.start_activities_eventlog <- function(eventlog) {
+
+
+		eventlog %>%
+		group_by(!!as.symbol(case_id(eventlog))) %>%
+		arrange(!!as.symbol(timestamp(eventlog))) %>%
+		summarize(first_event = first(!!as.symbol(activity_id(eventlog)))) %>%
+		group_by(!!as.symbol("first_event")) %>%
+		summarize() -> r
+
+	colnames(r)[colnames(r) == "first_event"] <- activity_id(eventlog)
+	return(r)
+
+}
+
+.end_activities_activitylog <- function(activitylog) {
+
+	activitylog %>%
+		group_by(!!as.symbol(case_id(eventlog))) %>%
+		arrange(!!as.symbol(timestamp(eventlog))) %>%
+		summarize(last_event = last(!!as.symbol(activity_id(eventlog)))) %>%
+		group_by(!!as.symbol("last_event")) %>%
+		summarize() -> r
+
+	colnames(r)[colnames(r) == "last_event"] <- activity_id(eventlog)
+	return(r)
+
+}
+
+.start_activities_activitylog <- function(activitylog) {
+
+		eventlog %>%
+		group_by(!!as.symbol(case_id(eventlog))) %>%
+		arrange(!!as.symbol(timestamp(eventlog))) %>%
+		summarize(first_event = first(!!as.symbol(activity_id(eventlog)))) %>%
+		group_by(!!as.symbol("first_event")) %>%
+		summarize() -> r
+
+	colnames(r)[colnames(r) == "first_event"] <- activity_id(eventlog)
+	return(r)
+
+}
