@@ -1,0 +1,10 @@
+patient,activity,timestamp,status,activity_instance,resource
+John Doe,check-in,2017-05-10 08:33:26,complete,1,Samantha
+John Doe,surgery,2017-05-10 08:38:21,schedule,2,Richard
+John Doe,surgery,2017-05-10 08:53:16,start,2,Richard
+John Doe,surgery,2017-05-10 09:25:19,complete,2,Richard
+John Doe,treatment,2017-05-10 10:01:25,start,3,Danny
+John Doe,treatment,2017-05-10 10:35:18,complete,3,Danny
+John Doe,surgery,2017-05-10 10:41:35,start,4,William
+John Doe,surgery,2017-05-10 11:05:56,complete,4,William
+John Doe,check-out,2017-05-11 14:52:36,complete,5,Samantha
