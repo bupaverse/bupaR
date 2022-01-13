@@ -11,6 +11,15 @@ resource_id_ <- function(eventlog) sym(resource_id(eventlog))
 timestamp_ <- function(eventlog) sym(timestamp(eventlog))
 lifecycle_id_ <- function(eventlog) sym(lifecycle_id(eventlog))
 
+
+.cid <- case_id
+.aid <- activity_id
+.aiid <- activity_instance_id
+.rid <- resource_id
+.ts <- timestamp
+.lid <- lifecycle_id
+.lids <- lifecycle_ids
+
 is_eventlog <- function(eventlog) {
 	"eventlog" %in% class(eventlog)
 }
@@ -111,3 +120,12 @@ lubridate::mdy
 		distinct(.data[[aid]])
 }
 
+group_by_ids <- function(.log, ...) {
+
+	ids <- list(...)
+
+	for(i in 1:length(ids)) {
+		ids[[i]] <- ids[[i]](.log)
+	}
+	group_by(.log, across(paste(ids)))
+}
