@@ -25,6 +25,7 @@
 #' @importFrom utils setTxtProgressBar
 #' @importFrom utils txtProgressBar
 #' @importFrom utils data
+#' @importFrom rlang .data
 #' @keywords internal
 "_PACKAGE"
 

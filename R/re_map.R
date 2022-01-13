@@ -25,7 +25,8 @@ re_map <- function(x, mapping) {
 					case_id = mapping$case_identifier,
 					activity_id = mapping$activity_identifier,
 					lifecycle_ids = mapping$lifecycle_identifiers,
-					resource_id = mapping$resource_identifier)
+					resource_id = mapping$resource_identifier,
+					order = ".order")
 
 	} else {
 		stop("Invalid mapping")

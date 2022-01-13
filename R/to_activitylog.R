@@ -1,9 +1,8 @@
 
-#' Title
+#' Convert eventlog object to activitylog object.
 #'
-#' @param eventlog
+#' @param eventlog Object of class eventlog to be converted to activitylog
 #'
-#' @return
 #' @export
 #'
 

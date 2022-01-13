@@ -2,16 +2,13 @@
 % Please edit documentation in R/to_activitylog.R
 \name{to_activitylog}
 \alias{to_activitylog}
-\title{Title}
+\title{Convert eventlog object to activitylog object.}
 \usage{
 to_activitylog(eventlog)
 }
 \arguments{
-\item{eventlog}{}
-}
-\value{
-
+\item{eventlog}{Object of class eventlog to be converted to activitylog}
 }
 \description{
-Title
+Convert eventlog object to activitylog object.
 }

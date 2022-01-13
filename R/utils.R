@@ -69,60 +69,45 @@ lubridate::mdy
 
 
 
+.start_activities_eventlog <- function(eventlog) {
+	aid <- activity_id(eventlog)
+	eventlog %>%
+		group_by(.data[[case_id(eventlog)]]) %>%
+		arrange(.data[[timestamp(eventlog)]], .order) %>%
+		summarize({{aid}} := first(.data[[activity_id(eventlog)]])) %>%
+		distinct(.data[[aid]])
+}
 
 .end_activities_eventlog <- function(eventlog) {
-
+	aid <- activity_id(eventlog)
 	eventlog %>%
-		group_by(!!as.symbol(case_id(eventlog))) %>%
-		arrange(!!as.symbol(timestamp(eventlog))) %>%
-		summarize(last_event = last(!!as.symbol(activity_id(eventlog)))) %>%
-		group_by(!!as.symbol("last_event")) %>%
-		summarize() -> r
-
-	colnames(r)[colnames(r) == "last_event"] <- activity_id(eventlog)
-	return(r)
+		group_by(.data[[case_id(eventlog)]]) %>%
+		arrange(.data[[timestamp(eventlog)]], .order) %>%
+		summarize({{aid}} := last(.data[[activity_id(eventlog)]])) %>%
+		distinct(.data[[aid]])
 
 }
 
-.start_activities_eventlog <- function(eventlog) {
 
 
-		eventlog %>%
-		group_by(!!as.symbol(case_id(eventlog))) %>%
-		arrange(!!as.symbol(timestamp(eventlog))) %>%
-		summarize(first_event = first(!!as.symbol(activity_id(eventlog)))) %>%
-		group_by(!!as.symbol("first_event")) %>%
-		summarize() -> r
+.start_activities_activitylog <- function(activitylog) {
 
-	colnames(r)[colnames(r) == "first_event"] <- activity_id(eventlog)
-	return(r)
+	aid <- activity_id(activitylog)
+	activitylog %>%
+		group_by(.data[[case_id(activitylog)]]) %>%
+		arrange(.data[["start"]], .data[["complete"]], .order) %>%
+		summarize({{aid}} := first(.data[[activity_id(activitylog)]])) %>%
+		distinct(.data[[aid]])
 
 }
 
 .end_activities_activitylog <- function(activitylog) {
 
+	aid <- activity_id(activitylog)
 	activitylog %>%
-		group_by(!!as.symbol(case_id(eventlog))) %>%
-		arrange(!!as.symbol(timestamp(eventlog))) %>%
-		summarize(last_event = last(!!as.symbol(activity_id(eventlog)))) %>%
-		group_by(!!as.symbol("last_event")) %>%
-		summarize() -> r
-
-	colnames(r)[colnames(r) == "last_event"] <- activity_id(eventlog)
-	return(r)
-
+		group_by(.data[[case_id(activitylog)]]) %>%
+		arrange(.data[["start"]], .data[["complete"]], .order) %>%
+		summarize({{aid}} := last(.data[[activity_id(activitylog)]])) %>%
+		distinct(.data[[aid]])
 }
 
-.start_activities_activitylog <- function(activitylog) {
-
-		eventlog %>%
-		group_by(!!as.symbol(case_id(eventlog))) %>%
-		arrange(!!as.symbol(timestamp(eventlog))) %>%
-		summarize(first_event = first(!!as.symbol(activity_id(eventlog)))) %>%
-		group_by(!!as.symbol("first_event")) %>%
-		summarize() -> r
-
-	colnames(r)[colnames(r) == "first_event"] <- activity_id(eventlog)
-	return(r)
-
-}
