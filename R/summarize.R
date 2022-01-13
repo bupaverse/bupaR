@@ -11,7 +11,7 @@ dplyr::summarise
 
 #' @export
 summarise.eventlog <- function(.data, ...) {
-	warning("Calling summarize on eventlog object returns tibble.")
+	#warning("Calling summarize on eventlog object returns tibble.")
 	.data %>%
 		as.data.frame() %>%
 		summarize(...) %>%
@@ -20,7 +20,7 @@ summarise.eventlog <- function(.data, ...) {
 #' @export
 
 summarise.grouped_eventlog <- function(.data, ...) {
-	warning("Calling summarize on eventlog object returns tibble.")
+	#warning("Calling summarize on eventlog object returns tibble.")
 	groups <- groups(.data)
 	mapping <- mapping(.data)
 	.data %>%
@@ -33,7 +33,7 @@ summarise.grouped_eventlog <- function(.data, ...) {
 
 #' @export
 summarise.activitylog <- function(.data, ...) {
-	warning("Calling summarize on activitylog object returns tibble.")
+	#warning("Calling summarize on activitylog object returns tibble.")
 	.data %>%
 		as.data.frame() %>%
 		summarize(...) %>%
@@ -42,7 +42,7 @@ summarise.activitylog <- function(.data, ...) {
 #' @export
 
 summarise.grouped_activitylog <- function(.data, ...) {
-	warning("Calling summarize on activitylog object returns tibble.")
+	#warning("Calling summarize on activitylog object returns tibble.")
 	groups <- groups(.data)
 	mapping <- mapping(.data)
 	.data %>%
