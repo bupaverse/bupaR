@@ -6,17 +6,14 @@
 #' @export
 dplyr::filter
 
-#' @describeIn filter Filter eventlog
 #' @export
 filter.eventlog <- function(.data, ...) {
 	mapping <- mapping(.data)
 	.data %>%
 		as.data.frame() %>%
 		dplyr::filter(...) %>%
-		re_map(mapping) %>%
-		return()
+		re_map(mapping)
 }
-#' @describeIn filter Filter eventlog
 #' @export
 
 filter.grouped_eventlog <- function(.data, ...) {
@@ -25,7 +22,30 @@ filter.grouped_eventlog <- function(.data, ...) {
 	.data %>%
 		nest() %>%
 		mutate(data = map(data, dplyr::filter, ...)) %>%
-		unnest() %>%
+		unnest(data) %>%
+		re_map(mapping) %>%
+		group_by_at(vars(one_of(paste(groups))))
+
+}
+
+#' @export
+filter.activitylog <- function(.data, ...) {
+	mapping <- mapping(.data)
+	.data %>%
+		as.data.frame() %>%
+		dplyr::filter(...) %>%
+		re_map(mapping)
+}
+
+#' @export
+
+filter.grouped_activitylog <- function(.data, ...) {
+	groups <- groups(.data)
+	mapping <- mapping(.data)
+	.data %>%
+		nest() %>%
+		mutate(data = map(data, dplyr::filter, ...)) %>%
+		unnest(data) %>%
 		re_map(mapping) %>%
 		group_by_at(vars(one_of(paste(groups))))
 
