@@ -73,7 +73,7 @@ lubridate::mdy
 	aid <- activity_id(eventlog)
 	eventlog %>%
 		group_by(.data[[case_id(eventlog)]]) %>%
-		arrange(.data[[timestamp(eventlog)]], .order) %>%
+		arrange(.data[[timestamp(eventlog)]], .data[[".order"]]) %>%
 		summarize({{aid}} := first(.data[[activity_id(eventlog)]])) %>%
 		distinct(.data[[aid]])
 }
@@ -82,7 +82,7 @@ lubridate::mdy
 	aid <- activity_id(eventlog)
 	eventlog %>%
 		group_by(.data[[case_id(eventlog)]]) %>%
-		arrange(.data[[timestamp(eventlog)]], .order) %>%
+		arrange(.data[[timestamp(eventlog)]], .data[[".order"]]) %>%
 		summarize({{aid}} := last(.data[[activity_id(eventlog)]])) %>%
 		distinct(.data[[aid]])
 
@@ -95,7 +95,7 @@ lubridate::mdy
 	aid <- activity_id(activitylog)
 	activitylog %>%
 		group_by(.data[[case_id(activitylog)]]) %>%
-		arrange(.data[["start"]], .data[["complete"]], .order) %>%
+		arrange(.data[["start"]], .data[["complete"]],  .data[[".order"]]) %>%
 		summarize({{aid}} := first(.data[[activity_id(activitylog)]])) %>%
 		distinct(.data[[aid]])
 
@@ -106,7 +106,7 @@ lubridate::mdy
 	aid <- activity_id(activitylog)
 	activitylog %>%
 		group_by(.data[[case_id(activitylog)]]) %>%
-		arrange(.data[["start"]], .data[["complete"]], .order) %>%
+		arrange(.data[["start"]], .data[["complete"]], .data[[".order"]]) %>%
 		summarize({{aid}} := last(.data[[activity_id(activitylog)]])) %>%
 		distinct(.data[[aid]])
 }
