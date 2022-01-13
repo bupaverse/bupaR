@@ -7,34 +7,108 @@
 #' @export
 dplyr::select
 
-#' @describeIn select Select eventlog
 #' @export
 select.eventlog <- function(.data, ..., force_df = FALSE) {
-	.order <- NULL
-
 	mapping <- mapping(.data)
 
 	if(force_df == FALSE) {
-
-	.data %>%
-		as.data.frame() %>%
-		dplyr::select(...,
-					  !!case_id_(.data),
-					  !!activity_id_(.data),
-					  !!activity_instance_id_(.data),
-					  !!timestamp_(.data),
-					  !!resource_id_(.data),
-					  !!lifecycle_id_(.data),
-					  .order) %>%
-		re_map(mapping) %>%
-		return()
+		.data %>%
+			as.data.frame() %>%
+			dplyr::select(...,
+						  all_of(c(.cid(mapping),
+						  		 .aid(mapping),
+						  		 .aiid(mapping),
+						  		 .ts(mapping),
+						  		 .rid(mapping),
+						  		 .lid(mapping),
+						  		 ".order"))) %>%
+			re_map(mapping)
 	}
 	else {
 		.data %>%
 			as.data.frame() %>%
 			dplyr::select(...) %>%
-			tbl_df() %>%
-			return()
+			as_tibble()
 	}
+}
+
+#' @export
+select.grouped_eventlog <- function(.data, ..., force_df = FALSE) {
+	groups <- groups(.data)
+	mapping <- mapping(.data)
+
+
+	if(force_df == FALSE) {
+		.data %>%
+			as.data.frame() %>%
+			dplyr::select(...,
+						  all_of(c(.cid(mapping),
+						  		 .aid(mapping),
+						  		 .aiid(mapping),
+						  		 .ts(mapping),
+						  		 .rid(mapping),
+						  		 .lid(mapping),
+						  		 ".order"))) %>%
+			re_map(mapping) -> .data
+	}
+	else {
+		.data %>%
+			as.data.frame() %>%
+			dplyr::select(all_of(paste(groups)), ...) %>%
+			as_tibble() -> .data
+	}
+
+	.data %>%
+		group_by_at(vars(all_of(paste(groups))))
+
+}
+#' @export
+select.activitylog <- function(.data, ..., force_df = FALSE) {
+	mapping <- mapping(.data)
+
+	if(force_df == FALSE) {
+		.data %>%
+			as.data.frame() %>%
+			dplyr::select(...,
+						  all_of(c(.cid(mapping),
+						  		 .aid(mapping),
+						  		 .rid(mapping),
+						  		 .lids(mapping),
+						  		 ".order"))) %>%
+			re_map(mapping)
+	}
+	else {
+		.data %>%
+			as.data.frame() %>%
+			dplyr::select(...) %>%
+			as_tibble()
+	}
+}
+#' @export
+select.grouped_activitylog <- function(.data, ..., force_df = FALSE) {
+	groups <- groups(.data)
+	mapping <- mapping(.data)
+
+
+	if(force_df == FALSE) {
+		.data %>%
+			as.data.frame() %>%
+			dplyr::select(...,
+						  all_of(c(.cid(mapping),
+						  		 .aid(mapping),
+						  		 .rid(mapping),
+						  		 .lids(mapping),
+						  		 ".order"))) %>%
+			re_map(mapping) -> .data
+	}
+	else {
+		.data %>%
+			as.data.frame() %>%
+			dplyr::select(all_of(paste(groups)), ...) %>%
+			as_tibble() -> .data
+	}
+
+	.data %>%
+		group_by_at(vars(all_of(paste(groups))))
 }
 
