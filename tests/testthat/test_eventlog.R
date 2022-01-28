@@ -5,7 +5,36 @@ read_testdata <- function () {
   read.csv("./testdata/patients.csv") %>%
     mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S"))
 }
+test_that("test eventlog without error", {
 
+	patients <- read_testdata()
+
+	expect_error(
+		patientslog <- patients %>%
+			eventlog(case_id = "patient",
+					 activity_id = "activity",
+					 activity_instance_id = "activity_instance",
+					 lifecycle_id = "status",
+					 timestamp = "timestamp",
+					 resource_id = "resource"),
+	NA)
+
+})
+test_that("test eventlog without warning", {
+
+	patients <- read_testdata()
+
+	expect_warning(
+		patientslog <- patients %>%
+			eventlog(case_id = "patient",
+					 activity_id = "activity",
+					 activity_instance_id = "activity_instance",
+					 lifecycle_id = "status",
+					 timestamp = "timestamp",
+					 resource_id = "resource"),
+		NA)
+
+})
 test_that("test eventlog correctly parsing dataset", {
 
   patients <- read_testdata()
@@ -17,7 +46,7 @@ test_that("test eventlog correctly parsing dataset", {
              timestamp = "timestamp",
              resource_id = "resource")
 
-  expect_is(patientslog, "eventlog")
+  expect_s3_class(patientslog, "eventlog")
   expect_equal(nrow(patients), nrow(patientslog))
 })
 
@@ -37,7 +66,7 @@ test_that("test eventlog multiple value arg", {
   expect_equal(patientslog[[case_id(patientslog)]][1], "John_Doe")
 })
 
-test_that("test eventlog timestamp POSIXct arg", {
+test_that("test eventlog timestamp no POSIXct arg", {
 
   patients_noPOSIXct <- read.csv("./testdata/patients.csv")
 
@@ -50,6 +79,22 @@ test_that("test eventlog timestamp POSIXct arg", {
                timestamp = "timestamp",
                resource_id = "resource"),
     "*POSIXct*")
+})
+
+test_that("test eventlog timestamp Date arg", {
+
+	patients_noPOSIXct <- read.csv("./testdata/patients.csv") %>%
+		mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d"))
+
+	expect_error(
+		patientslog <- patients_noPOSIXct %>%
+			eventlog(case_id = "patient",
+					 activity_id = "activity",
+					 activity_instance_id = "activity_instance",
+					 lifecycle_id = "status",
+					 timestamp = "timestamp",
+					 resource_id = "resource"),
+		NA)
 })
 
 test_that("test eventlog order arg 'auto'", {
