@@ -15,12 +15,12 @@ select.eventlog <- function(.data, ..., force_df = FALSE) {
 		.data %>%
 			as.data.frame() %>%
 			dplyr::select(...,
-						  all_of(c(.cid(mapping),
-						  		 .aid(mapping),
-						  		 .aiid(mapping),
-						  		 .ts(mapping),
-						  		 .rid(mapping),
-						  		 .lid(mapping),
+						  all_of(c(case_id(mapping),
+						  		 activity_id(mapping),
+						  		 activity_instance_id(mapping),
+						  		 timestamp(mapping),
+						  		 resource_id(mapping),
+						  		 lifecycle_id(mapping),
 						  		 ".order"))) %>%
 			re_map(mapping)
 	}
@@ -42,12 +42,12 @@ select.grouped_eventlog <- function(.data, ..., force_df = FALSE) {
 		.data %>%
 			as.data.frame() %>%
 			dplyr::select(...,
-						  all_of(c(.cid(mapping),
-						  		 .aid(mapping),
-						  		 .aiid(mapping),
-						  		 .ts(mapping),
-						  		 .rid(mapping),
-						  		 .lid(mapping),
+						  all_of(c(case_id(mapping),
+						  		 activity_id(mapping),
+						  		 activity_instance_id(mapping),
+						  		 timestamp(mapping),
+						  		 resource_id(mapping),
+						  		 lifecycle_id(mapping),
 						  		 ".order"))) %>%
 			re_map(mapping) -> .data
 	}
@@ -70,10 +70,10 @@ select.activitylog <- function(.data, ..., force_df = FALSE) {
 		.data %>%
 			as.data.frame() %>%
 			dplyr::select(...,
-						  all_of(c(.cid(mapping),
-						  		 .aid(mapping),
-						  		 .rid(mapping),
-						  		 .lids(mapping),
+						  all_of(c(case_id(mapping),
+						  		 activity_id(mapping),
+						  		 resource_id(mapping),
+						  		 lifecycle_ids(mapping),
 						  		 ".order"))) %>%
 			re_map(mapping)
 	}
@@ -94,10 +94,10 @@ select.grouped_activitylog <- function(.data, ..., force_df = FALSE) {
 		.data %>%
 			as.data.frame() %>%
 			dplyr::select(...,
-						  all_of(c(.cid(mapping),
-						  		 .aid(mapping),
-						  		 .rid(mapping),
-						  		 .lids(mapping),
+						  all_of(c(case_id(mapping),
+						  		 activity_id(mapping),
+						  		 resource_id(mapping),
+						  		 lifecycle_ids(mapping),
 						  		 ".order"))) %>%
 			re_map(mapping) -> .data
 	}

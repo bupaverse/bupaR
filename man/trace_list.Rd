@@ -3,11 +3,14 @@
 \name{trace_list}
 \alias{trace_list}
 \alias{trace_list.eventlog}
+\alias{trace_list.activitylog}
 \title{Trace list}
 \usage{
 trace_list(eventlog)
 
 \method{trace_list}{eventlog}(eventlog)
+
+\method{trace_list}{activitylog}(eventlog)
 }
 \arguments{
 \item{eventlog}{Eventlog object}
@@ -18,5 +21,7 @@ Construct trace list
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Construct trace list for event log
+
+\item \code{activitylog}: Construct trace list for activity log
 }}
 

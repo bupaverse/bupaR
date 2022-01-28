@@ -34,5 +34,5 @@ case_list.eventlog <- function(eventlog){
 				   ]
 
 	cases %>%
-		as_tibble
+		as_tibble()
 }

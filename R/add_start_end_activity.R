@@ -39,6 +39,24 @@ add_end_activity.eventlog <- function(eventlog, label = "End") {
 
 }
 
+#' @describeIn add_end_activity Add end activity to activity log
+#' @export
+#'
+add_end_activity.activitylog <- function(eventlog, label = "End") {
+	eventlog %>%
+		select(!!case_id_(eventlog), lifecycle_ids(eventlog)) %>%
+		gather(key, value, -1) %>%
+		group_by(!!case_id_(eventlog)) %>%
+		summarize(complete = max(value) + 1, start = complete) %>%
+		mutate(!!activity_id_(eventlog) := factor(label, levels = c(as.character(activity_labels(eventlog)), label))) -> end_states
+
+	eventlog %>%
+		mutate(!!activity_id_(eventlog) := fct_expand(!!activity_id_(eventlog), label)) %>%
+		bind_rows(end_states) %>%
+		re_map(mapping(eventlog))
+}
+
+
 #' @describeIn add_end_activity Add end activity to grouped event log
 #' @export
 add_end_activity.grouped_eventlog <- function(eventlog, label = "End") {
@@ -73,6 +91,23 @@ add_start_activity.eventlog <- function(eventlog, label = "Start") {
 		bind_rows(end_states) %>%
 		re_map(mapping(eventlog))
 
+}
+
+#' @describeIn add_end_activity Add start activity to activity log
+#' @export
+#'
+add_start_activity.activitylog <- function(eventlog, label = "Start") {
+	eventlog %>%
+		select(!!case_id_(eventlog), lifecycle_ids(eventlog)) %>%
+		gather(key, value, -1) %>%
+		group_by(!!case_id_(eventlog)) %>%
+		summarize(complete = min(value)-1, start = complete) %>%
+		mutate(!!activity_id_(eventlog) := factor(label, levels = c(as.character(activity_labels(eventlog)), label))) -> end_states
+
+	eventlog %>%
+		mutate(!!activity_id_(eventlog) := fct_expand(!!activity_id_(eventlog), label)) %>%
+		bind_rows(end_states) %>%
+		re_map(mapping(eventlog))
 }
 
 #' @describeIn add_end_activity Add start activity to grouped event log

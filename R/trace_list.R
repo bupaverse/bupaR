@@ -48,3 +48,26 @@ trace_list.eventlog <- function(eventlog){
 		arrange(-absolute_frequency)
 
 }
+#' @describeIn trace_list Construct trace list for activity log
+#' @export
+#'
+trace_list.activitylog <- function(eventlog) {
+	if(nrow(eventlog) == 0) {
+		return(data.frame(trace = numeric(), absolute_frequency = numeric(), relative_frequency = numeric()))
+	}
+	cases <- data.table::data.table(eventlog)
+	cases <- cases[order(get("start"), get("complete")),
+				   list(trace = paste(get(activity_id(eventlog)), collapse = ",")),
+				   by = c(case_id(eventlog))][,
+				   						   trace_id := as.numeric(factor(get("trace")))
+				   ]
+
+	traces <- cases[, .(absolute_frequency = .N), by = .(trace)]
+	traces <- traces[order(absolute_frequency, decreasing = T)][
+		, relative_frequency:=absolute_frequency/sum(absolute_frequency)]
+	traces %>%
+		as_tibble %>%
+		arrange(-absolute_frequency)
+
+}
+

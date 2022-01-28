@@ -17,7 +17,7 @@ lifecycles(eventlog)
 \code{eventlog}.}
 }
 \description{
-Returns a \code{tbl_df}  containing a list of all life cycle types in the event log, with their absolute and relative frequency (# events)
+Returns a \code{tibble}  containing a list of all life cycle types in the event log, with their absolute and relative frequency (# events)
 }
 \section{Methods (by class)}{
 \itemize{

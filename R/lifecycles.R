@@ -1,6 +1,6 @@
 #' @title Life cycles
 #'
-#' @description Returns a \code{tbl_df}  containing a list of all life cycle types in the event log, with their absolute and relative frequency (# events)
+#' @description Returns a \code{tibble}  containing a list of all life cycle types in the event log, with their absolute and relative frequency (# events)
 #'
 #' @param eventlog The event log to be used. An object of class
 #' \code{eventlog}.

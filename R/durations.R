@@ -27,7 +27,7 @@ durations.eventlog <- function(eventlog,
 
 	colnames(durations)[colnames(durations)=="duration"] <- paste("duration_in_", units, sep ="")
 
-	durations <- tbl_df(durations)
+	durations <- as_tibble(durations)
 
 	return(durations)
 

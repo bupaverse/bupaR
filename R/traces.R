@@ -73,6 +73,13 @@ traces.eventlog <- function(eventlog, ...){
 # 	return(traces)
 }
 
+#' @describeIn traces Construct list of traces for activity log
+#' @export
+traces.activitylog <- function(eventlog, ...) {
+	trace_list(eventlog)
+}
+
+
 #' @describeIn traces Construct list of traces for grouped eventlog
 #' @export
 #'
