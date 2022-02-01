@@ -7,10 +7,10 @@ test_that("test activity recode on eventlog", {
     act_recode("registration" = "check-in",
                "discharge" = "check-out")
 
-  expect_true(any(act[activity_id(act)] == "registration"))
-  expect_true(any(act[activity_id(act)] == "discharge"))
-  expect_false(any(act[activity_id(act)] == "check-in"))
-  expect_false(any(act[activity_id(act)] == "check-out"))
+  expect_true(any(act[[activity_id(act)]] == "registration"))
+  expect_true(any(act[[activity_id(act)]] == "discharge"))
+  expect_false(any(act[[activity_id(act)]] == "check-in"))
+  expect_false(any(act[[activity_id(act)]] == "check-out"))
 })
 
 test_that("test activity recode on grouped_eventlog", {
@@ -21,10 +21,10 @@ test_that("test activity recode on grouped_eventlog", {
     act_recode("registration" = "check-in",
                "discharge" = "check-out")
 
-  expect_true(any(act[activity_id(act)] == "registration"))
-  expect_true(any(act[activity_id(act)] == "discharge"))
-  expect_false(any(act[activity_id(act)] == "check-in"))
-  expect_false(any(act[activity_id(act)] == "check-out"))
+  expect_true(any(act[[activity_id(act)]] == "registration"))
+  expect_true(any(act[[activity_id(act)]] == "discharge"))
+  expect_false(any(act[[activity_id(act)]] == "check-in"))
+  expect_false(any(act[[activity_id(act)]] == "check-out"))
 })
 
 test_that("test activity recode fails when supplying unknown level", {
