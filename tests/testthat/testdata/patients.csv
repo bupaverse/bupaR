@@ -8,3 +8,10 @@ John Doe,treatment,2017-05-10 10:35:18,complete,3,Danny
 John Doe,surgery,2017-05-10 10:41:35,start,4,William
 John Doe,surgery,2017-05-10 11:05:56,complete,4,William
 John Doe,check-out,2017-05-11 14:52:36,complete,5,Samantha
+Jane Doe,check-in,2017-05-11 09:53:46,complete,6,Samantha
+Jane Doe,surgery,2017-05-11 10:16:24,start,7,Richard
+Jane Doe,surgery,2017-05-11 10:34:21,complete,7,Richard
+Jane Doe,treatment,2017-05-11 10:37:31,schedule,8,Danny
+Jane Doe,treatment,2017-05-11 11:02:23,start,8,Danny
+Jane Doe,treatment,2017-05-11 11:36:19,complete,8,Danny
+Jane Doe,check-out,2017-05-12 10:46:21,complete,9,Samantha
