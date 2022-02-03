@@ -1,7 +1,7 @@
 library(bupaR)
 
 patients <- read.csv("tests/testthat/testdata/patients.csv") %>%
-  mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S")) %>%
+  mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")) %>%
   eventlog(case_id = "patient",
            activity_id = "activity",
            activity_instance_id = "activity_instance",

@@ -3,7 +3,7 @@ context("Eventlog parsing")
 
 read_testdata <- function () {
   read.csv("./testdata/patients.csv") %>%
-    mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S"))
+    mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S", tz = "UTC"))
 }
 test_that("test eventlog without error", {
 
@@ -53,7 +53,7 @@ test_that("test eventlog correctly parsing dataset", {
 test_that("test eventlog multiple value arg", {
 
   patients_multicase <- read.csv("./testdata/patients_multicase.csv") %>%
-    mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S"))
+    mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S", tz = "UTC"))
   patientslog <- patients_multicase %>%
     eventlog(case_id = c("patient_firstname", "patient_lastname"),
              activity_id = "activity",
@@ -84,7 +84,7 @@ test_that("test eventlog timestamp no POSIXct arg", {
 test_that("test eventlog timestamp Date arg", {
 
 	patients_noPOSIXct <- read.csv("./testdata/patients.csv") %>%
-		mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d"))
+		mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d", tz = "UTC"))
 
 	expect_error(
 		patientslog <- patients_noPOSIXct %>%
@@ -114,7 +114,7 @@ test_that("test eventlog order arg 'auto'", {
 test_that("test eventlog order arg 'alphabetical'", {
 
   patients_ordering <- read.csv("./testdata/patients_ordering.csv") %>%
-    mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S"))
+    mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S", tz = "UTC"))
 
   patientslog <- patients_ordering %>%
     eventlog(case_id = "patient",
@@ -131,7 +131,7 @@ test_that("test eventlog order arg 'alphabetical'", {
 test_that("test eventlog order arg sort column", {
 
   patients_ordering <- read.csv("./testdata/patients_ordering.csv") %>%
-    mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S"))
+    mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S", tz = "UTC"))
 
   patientslog <- patients_ordering %>%
     eventlog(case_id = "patient",

@@ -4,3 +4,4 @@
 ^docs$
 ^codecov\.yml$
 ^\.github$
+^\tests\testthat\testdata$
