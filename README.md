@@ -1,6 +1,8 @@
 <!-- badges: start -->
-[![Codecov test coverage](https://codecov.io/gh/bupaverse/bupaR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/bupaverse/bupaR?branch=master)
+[![CRAN status](https://www.r-pkg.org/badges/version/bupaR)](https://CRAN.R-project.org/package=bupaR)
 [![R-CMD-check](https://github.com/bupaverse/bupaR/workflows/R-CMD-check/badge.svg)](https://github.com/bupaverse/bupaR/actions)
+[![codecov](https://codecov.io/gh/bupaverse/bupaR/branch/master/graph/badge.svg?token=40OgWBneWv)](https://codecov.io/gh/bupaverse/bupaR)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 # bupaR
