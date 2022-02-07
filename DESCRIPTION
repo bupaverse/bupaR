@@ -29,4 +29,5 @@ Imports:
 	lubridate
 URL: https://www.bupar.net, https://github.com/bupaverse/bupaR
 Suggests: 
-	testthat
+    covr,
+    testthat

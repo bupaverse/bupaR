@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^_pkgdown\.yml$
 ^docs$
+^codecov\.yml$
+^\.github$
+^\tests\testthat\testdata$
