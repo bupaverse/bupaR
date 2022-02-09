@@ -1,5 +1,5 @@
 #' @title Fill event log
-#' @param eventlog Eventlog
+#' @param data Eventlog
 #' @param ... options for fill
 #' @name fill
 #' @importFrom tidyr fill
@@ -7,26 +7,27 @@
 tidyr::fill
 #' @describeIn fill Fill eventlog
 #' @export
-fill.eventlog <- function(eventlog, ..., .direction = c("down", "up", "downup", "updown")) {
+fill.eventlog <- function(data, ...) {
 
-  mapping <- mapping(eventlog)
+  mapping <- mapping(data)
 
-  eventlog %>%
-    as.data.frame() %>%
-    tidyr::fill(..., .direction = .direction) %>%
+  data %>%
+    as.data.table() %>%
+    tidyr::fill(...) %>%
     re_map(mapping)
 }
 
 #' @describeIn fill Fill grouped eventlog
 #' @export
 
-fill.grouped_eventlog <- function(eventlog, ..., .direction = c("down", "up", "downup", "updown")) {
+fill.grouped_eventlog <- function(data, ...) {
 
-  mapping <- mapping(eventlog)
+  mapping <- mapping(data)
 
-  eventlog %>%
-    as.data.frame() %>%
-    tidyr::fill(..., .direction = .direction) %>%
+  data %>%
+    as.data.table() %>%
+    dplyr::group_by_at(mapping$groups) %>%
+    tidyr::fill(...) %>%
     re_map(mapping) %>%
     dplyr::group_by_at(mapping$groups)
 }
