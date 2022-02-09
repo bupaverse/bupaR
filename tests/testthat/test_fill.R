@@ -5,7 +5,7 @@ test_that("test fill on eventlog with default .direction", {
   load("./testdata/patients_fill_na_df.rda")
 
   log <- patients_fill_na %>%
-    fill(resource_id(.))
+    fill(!!resource_id_(.))
 
   truth <- patients_fill_na_df %>%
     fill(resource)
@@ -22,7 +22,7 @@ test_that("test fill on eventlog with .direction = 'downup'", {
   load("./testdata/patients_fill_na_df.rda")
 
   log <- patients_fill_na %>%
-    fill(resource_id(.), .direction = "downup")
+    fill(!!resource_id_(.), .direction = "downup")
 
   truth <- patients_fill_na_df %>%
     fill(resource, .direction = "downup")
@@ -39,13 +39,10 @@ test_that("test fill on grouped_eventlog with default .direction", {
   load("./testdata/patients_fill_na_grouped_df.rda")
 
   log <- patients_fill_na_grouped %>%
-    fill(resource_id(.))
+    fill(!!resource_id_(.))
 
   truth <- patients_fill_na_grouped_df %>%
     fill(resource)
-
-  print(log[[resource_id(log)]])
-  print(truth[["resource"]])
 
   expect_s3_class(log, "grouped_eventlog")
 
@@ -61,13 +58,10 @@ test_that("test fill on grouped_eventlog with .direction = 'downup'", {
   load("./testdata/patients_fill_na_grouped_df.rda")
 
   log <- patients_fill_na_grouped %>%
-    fill(resource_id(.), .direction = "downup")
+    fill(!!resource_id_(.), .direction = "downup")
 
   truth <- patients_fill_na_grouped_df %>%
     fill(resource, .direction = "downup")
-
-  print(log[[resource_id(log)]])
-  print(truth[["resource"]])
 
   expect_s3_class(log, "grouped_eventlog")
 

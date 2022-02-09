@@ -25,8 +25,7 @@ fill.grouped_eventlog <- function(data, ...) {
   mapping <- mapping(data)
 
   data %>%
-    as.data.table() %>%
-    dplyr::group_by_at(mapping$groups) %>%
+    as.grouped.data.frame(mapping$groups) %>%
     tidyr::fill(...) %>%
     re_map(mapping) %>%
     dplyr::group_by_at(mapping$groups)
