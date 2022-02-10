@@ -26,9 +26,6 @@ test_that("test arrange on grouped_eventlog", {
   truth <- patients_grouped_df %>%
     arrange(activity)
 
-  print(log)
-  print(truth)
-
   expect_s3_class(log, "grouped_eventlog")
 
   expect_equal(log[[activity_id(log)]], truth[["activity"]])
