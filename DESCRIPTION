@@ -26,6 +26,7 @@ Imports:
 	rlang, 
 	eventdataR (>= 0.2.0),
 	stringr,
+	stringi,
 	lubridate
 URL: https://www.bupar.net, https://github.com/bupaverse/bupaR
 Suggests: 

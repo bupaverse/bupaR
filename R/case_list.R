@@ -4,6 +4,7 @@
 #'
 #' @param eventlog Eventlog object
 #'
+#' @importFrom stringi stri_join
 #' @export
 #'
 case_list <- function(eventlog) {
@@ -16,6 +17,8 @@ case_list <- function(eventlog) {
 
 case_list.eventlog <- function(eventlog) {
 
+	trace_id <- NULL
+
 	eDT <- data.table::data.table(eventlog)
 
 	# this is roughly 3x faster than grouping and relies on unique taking the first distinct value
@@ -25,7 +28,7 @@ case_list.eventlog <- function(eventlog) {
 	
 	cases <- cases[order(get(timestamp(eventlog)), get(".order")),
 				         list(trace = stringi::stri_join(get(activity_id(eventlog)), collapse = ",")),
-				         by = case_id(eventlog)][,
+				         by = c(case_id(eventlog))][,
 								 trace_id := as.numeric(factor(get("trace")))]
 
 	cases %>%
