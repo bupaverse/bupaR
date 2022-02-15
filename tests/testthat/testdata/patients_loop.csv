@@ -1,0 +1,21 @@
+patient,activity,timestamp,status,activity_instance,resource
+John Doe,check-in,2017-05-10 08:33:26,complete,1,Samantha
+John Doe,surgery,2017-05-10 08:38:21,schedule,2,Richard
+John Doe,surgery,2017-05-10 08:53:16,start,2,Richard
+John Doe,surgery,2017-05-10 09:25:19,complete,2,Richard
+John Doe,treatment,2017-05-10 10:01:25,start,3,Danny
+John Doe,treatment,2017-05-10 10:35:18,complete,3,Danny
+John Doe,surgery,2017-05-10 10:41:35,start,4,William
+John Doe,surgery,2017-05-10 11:05:56,complete,4,William
+John Doe,surgery,2017-05-10 11:23:59,start,5,Richard
+John Doe,surgery,2017-05-10 11:42:13,complete,5,Richard
+John Doe,check-out,2017-05-11 14:52:36,complete,6,Samantha
+Jane Doe,check-in,2017-05-11 09:53:46,complete,7,Samantha
+Jane Doe,surgery,2017-05-11 10:16:24,start,8,Richard
+Jane Doe,surgery,2017-05-11 10:34:21,complete,8,Richard
+Jane Doe,treatment,2017-05-11 10:37:31,schedule,9,Danny
+Jane Doe,treatment,2017-05-11 11:02:23,start,9,Danny
+Jane Doe,treatment,2017-05-11 11:36:19,complete,9,Danny
+Jane Doe,treatment,2017-05-11 13:24:28,start,10,Sarah
+Jane Doe,treatment,2017-05-11 13:38:54,complete,10,Sarah
+Jane Doe,check-out,2017-05-12 10:46:21,complete,11,Samantha

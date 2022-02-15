@@ -21,10 +21,13 @@ mapping.eventlog <- function(eventlog) {
 	mapping$lifecycle_identifier <- lifecycle_id(eventlog)
 	mapping$resource_identifier <- resource_id(eventlog)
 
+	# Optional groups info for grouped_eventlog
+	mapping$groups <- dplyr::group_vars(eventlog)
+
 	class(mapping) <- c("eventlog_mapping",class(mapping))
 
 	return(mapping)
-	}
+}
 
 #' @describeIn mapping Retrieve identifier mapping from activitylog
 #' @export

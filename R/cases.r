@@ -20,13 +20,12 @@ cases.eventlog <- function(eventlog){
 	traces_per_case <- case_list(eventlog)
 	durations <- durations(eventlog)
 
-
 	summary <- eventlog %>%
 		group_by(!!as.symbol(case_id(eventlog))) %>%
 		summarize(trace_length = n_distinct(!!as.symbol(activity_instance_id(eventlog))),
-				  number_of_activities = n_distinct(!!as.symbol(activity_id(eventlog))),
-				  start_timestamp = min(!!as.symbol(timestamp(eventlog))),
-				  complete_timestamp = max(!!as.symbol(timestamp(eventlog))))
+				      number_of_activities = n_distinct(!!as.symbol(activity_id(eventlog))),
+				      start_timestamp = min(!!as.symbol(timestamp(eventlog))),
+				      complete_timestamp = max(!!as.symbol(timestamp(eventlog))))
 
 	summary <- inner_join(summary, traces_per_case, by = case_id(eventlog))
 	summary <- inner_join(summary, durations, by = case_id(eventlog))
