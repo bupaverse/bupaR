@@ -15,7 +15,7 @@
 
 #' @export traces
 
-traces <- function(eventlog,...) {
+traces <- function(eventlog, ...) {
 	UseMethod("traces")
 }
 

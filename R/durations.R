@@ -7,7 +7,7 @@
 #' \code{eventlog}.
 #' @param units The time unit in which the throughput times should be reported.
 #' @export durations
-durations <- function(eventlog, units) {
+durations <- function(eventlog, units = "days") {
 	UseMethod("durations")
 }
 #' @describeIn durations Compute durations from eventlog
