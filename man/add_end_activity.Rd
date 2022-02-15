@@ -4,8 +4,10 @@
 \alias{add_end_activity}
 \alias{add_start_activity}
 \alias{add_end_activity.eventlog}
+\alias{add_end_activity.activitylog}
 \alias{add_end_activity.grouped_eventlog}
 \alias{add_start_activity.eventlog}
+\alias{add_start_activity.activitylog}
 \alias{add_start_activity.grouped_eventlog}
 \title{Add artificial start/end activities to}
 \usage{
@@ -15,9 +17,13 @@ add_start_activity(eventlog, label)
 
 \method{add_end_activity}{eventlog}(eventlog, label = "End")
 
+\method{add_end_activity}{activitylog}(eventlog, label = "End")
+
 \method{add_end_activity}{grouped_eventlog}(eventlog, label = "End")
 
 \method{add_start_activity}{eventlog}(eventlog, label = "Start")
+
+\method{add_start_activity}{activitylog}(eventlog, label = "Start")
 
 \method{add_start_activity}{grouped_eventlog}(eventlog, label = "Start")
 }
@@ -33,9 +39,13 @@ Add artificial start/end activities to
 \itemize{
 \item \code{eventlog}: Add end activity to event log
 
+\item \code{activitylog}: Add end activity to activity log
+
 \item \code{grouped_eventlog}: Add end activity to grouped event log
 
 \item \code{eventlog}: Add start activity to event log
+
+\item \code{activitylog}: Add start activity to activity log
 
 \item \code{grouped_eventlog}: Add start activity to grouped event log
 }}

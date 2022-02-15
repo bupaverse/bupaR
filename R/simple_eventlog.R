@@ -1,11 +1,14 @@
 #' @title Simple Eventlog
 #'
-#' @description A function to instantiate an object of class \code{eventlog} by specifying a
-#' \code{data.frame} or \code{tbl_df} and the minimally required case identifier, activity identifier and timestamp
+#' @description
+#' `r lifecycle::badge("superseded")`
+#'
+#' A function to instantiate an object of class \code{eventlog} by specifying a
+#' \code{data.frame} or \code{tibble} and the minimally required case identifier, activity identifier and timestamp
 #'
 #'
 #' @param eventlog The data object to be used as event log. This can be a
-#' \code{data.frame} or \code{tbl_df}.
+#' \code{data.frame} or \code{tibble}.
 #'
 #' @param case_id The case classifier of the event log.
 #'
@@ -22,9 +25,7 @@
 #' providing a column name will use this column for ordering (can be numeric of character).
 #' The latter will never overrule timestamp orderings.
 #'
-#' @param validate When `TRUE` some basic checks are run on the contents of the event log such as that activity instances are
-#'  not connected to more than one case or activity. Using `FALSE` improves the performance by skipping those checks.
-#'
+#' @param return_type Whether to return eventlog (default) or activitylog object.
 #'
 #' @seealso \code{\link{eventlog}},\code{\link{case_id}}, \code{\link{activity_id}},
 #' \code{\link{activity_instance_id}},\code{\link{lifecycle_id}},
@@ -48,11 +49,9 @@ simple_eventlog <- function(eventlog,
 							timestamp = NULL,
 							resource_id = NULL,
 							order = "auto",
-							validate = TRUE){
+							return_type = c("eventlog","activitylog")) {
 
-	eventlog <- tbl_df(as.data.frame(eventlog)) %>%
-		mutate(activity_instance_id = 1:nrow(.),
-			   lifecycle_id = "undefined")
+	return_type <- match.arg(return_type)
 
 	if(is.null(resource_id)) {
 		eventlog %>%
@@ -60,20 +59,31 @@ simple_eventlog <- function(eventlog,
 		resource_id <- "resource_id"
 	}
 
-	activity_instance_id <- "activity_instance_id"
-	lifecycle_id = "lifecycle_id"
+	if(return_type == "eventlog") {
+		eventlog <- eventlog %>%
+			mutate(activity_instance_id = 1:nrow(.),
+				   lifecycle_id = "undefined")
+
+		eventlog(eventlog,
+				 case_id,
+				 activity_id,
+				 activity_instance_id = "activity_instance_id",
+				 lifecycle_id = "lifecycle_id",
+				 timestamp,
+				 resource_id,
+				 order = order,
+				 validate = FALSE)
+
+	} else if(return_type == "activitylog") {
+		activitylog(activitylog = eventlog,
+					case_id = case_id,
+					activity_id = activity_id,
+					resource_id = resource_id,
+					lifecycle_ids = timestamp)
+	}
 
 
-	eventlog(eventlog,
-			 case_id,
-			 activity_id,
-			 activity_instance_id,
-			 lifecycle_id,
-			 timestamp,
-			 resource_id,
-			 order = order,
-			 validate = validate) %>%
-		return()
+
 }
 #' @rdname simple_eventlog
 #' @export isimple_eventlog

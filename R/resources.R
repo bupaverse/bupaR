@@ -2,7 +2,7 @@
 
 #' @title Resources
 #'
-#' @description Returns a \code{tbl_df}  containing a list of all resources in the event log, with there absolute and relative frequency
+#' @description Returns a \code{tibble}  containing a list of all resources in the event log, with there absolute and relative frequency
 #'
 #' @param eventlog The event log to be used. An object of class
 #' \code{eventlog}.

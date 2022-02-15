@@ -4,6 +4,8 @@
 \alias{filter_attributes}
 \alias{filter_attributes.eventlog}
 \alias{filter_attributes.grouped_eventlog}
+\alias{filter_attributes.activitylog}
+\alias{filter_attributes.grouped_activitylog}
 \title{Generic filter function for eventlog}
 \usage{
 filter_attributes(eventlog, ...)
@@ -11,6 +13,10 @@ filter_attributes(eventlog, ...)
 \method{filter_attributes}{eventlog}(eventlog, ...)
 
 \method{filter_attributes}{grouped_eventlog}(eventlog, ...)
+
+\method{filter_attributes}{activitylog}(eventlog, ...)
+
+\method{filter_attributes}{grouped_activitylog}(eventlog, ...)
 }
 \arguments{
 \item{eventlog}{Eventlog object}
@@ -19,11 +25,20 @@ filter_attributes(eventlog, ...)
 }
 \description{
 Generic filter function for eventlog
+
+`r lifecycle::badge("deprecated")`
+
+This function is deprecated as of bupaR version 0.5.0. Please use [filter] instead.
 }
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Filter eventlog using attributes
 
 \item \code{grouped_eventlog}: Filter grouped eventlog using attributes
+
+\item \code{activitylog}: Filter eventlog using attributes
+
+\item \code{grouped_activitylog}: Filter grouped eventlog using attributes
 }}
 
+\keyword{internal}

@@ -3,13 +3,13 @@
 \docType{import}
 \name{arrange}
 \alias{arrange}
-\alias{arrange.eventlog}
 \alias{arrange.grouped_eventlog}
+\alias{arrange.activitylog}
 \title{Arrange event log}
 \usage{
-\method{arrange}{eventlog}(.data, ...)
-
 \method{arrange}{grouped_eventlog}(.data, ...)
+
+\method{arrange}{activitylog}(.data, ...)
 }
 \arguments{
 \item{.data}{Eventlog}
@@ -18,9 +18,9 @@
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Arrange an eventlog
-
 \item \code{grouped_eventlog}: Arrange an eventlog by group, maintaining all groups
+
+\item \code{activitylog}: Arrange an activitylog
 }}
 
 \keyword{internal}

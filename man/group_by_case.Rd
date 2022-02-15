@@ -4,10 +4,10 @@
 \alias{group_by_case}
 \title{Group event log on case id}
 \usage{
-group_by_case(.log)
+group_by_case(log)
 }
 \arguments{
-\item{.log}{Object of classes eventlog or activitylog}
+\item{log}{Object of classes eventlog or activitylog}
 }
 \description{
 Group an event log by case identifier

@@ -4,10 +4,10 @@
 \alias{group_by_resource}
 \title{Group event log on resource id}
 \usage{
-group_by_resource(.log)
+group_by_resource(log)
 }
 \arguments{
-\item{.log}{Object of classes eventlog or activitylog}
+\item{log}{Object of classes eventlog or activitylog}
 }
 \description{
 Group an event log by resource identifier

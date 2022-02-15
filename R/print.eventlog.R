@@ -6,6 +6,9 @@
 
 
 print.eventlog <- function(x, ...) {
+
+        if(nrow(x) > 0) {
+
        nev <- n_events(x)
 
         cat("Log of", nev, ngettext(nev, "event", "events"), "consisting of:\n")
@@ -31,7 +34,11 @@ print.eventlog <- function(x, ...) {
         cat("Variables were mapped as follows:\n")
         print(mapping(x))
         cat("\n")
-	NextMethod(x)
+
+        } else {
+                cat("EMPTY EVENT LOG\n")
+        }
+        NextMethod(x)
 }
 
 #' @export

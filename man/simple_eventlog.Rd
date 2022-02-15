@@ -12,14 +12,14 @@ simple_eventlog(
   timestamp = NULL,
   resource_id = NULL,
   order = "auto",
-  validate = TRUE
+  return_type = c("eventlog", "activitylog")
 )
 
 isimple_eventlog(eventlog)
 }
 \arguments{
 \item{eventlog}{The data object to be used as event log. This can be a
-\code{data.frame} or \code{tbl_df}.}
+\code{data.frame} or \code{tibble}.}
 
 \item{case_id}{The case classifier of the event log.}
 
@@ -36,12 +36,13 @@ sorted will assume that the data frame is already correctly sorted and has a col
 providing a column name will use this column for ordering (can be numeric of character).
 The latter will never overrule timestamp orderings.}
 
-\item{validate}{When `TRUE` some basic checks are run on the contents of the event log such as that activity instances are
-not connected to more than one case or activity. Using `FALSE` improves the performance by skipping those checks.}
+\item{return_type}{Whether to return eventlog (default) or activitylog object.}
 }
 \description{
+`r lifecycle::badge("superseded")`
+
 A function to instantiate an object of class \code{eventlog} by specifying a
-\code{data.frame} or \code{tbl_df} and the minimally required case identifier, activity identifier and timestamp
+\code{data.frame} or \code{tibble} and the minimally required case identifier, activity identifier and timestamp
 }
 \examples{
 \dontrun{

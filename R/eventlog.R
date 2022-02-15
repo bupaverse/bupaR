@@ -1,12 +1,12 @@
 #' @title Eventlog
 #'
 #' @description A function to instantiate an object of class \code{eventlog} by specifying a
-#' \code{data.frame} or \code{tbl_df} and appropriate case, activity and
+#' \code{data.frame} or \code{tibble} and appropriate case, activity and
 #' timestamp classifiers.
 #'
 #'
 #' @param eventlog The data object to be used as event log. This can be a
-#' \code{data.frame} or \code{tbl_df}.
+#' \code{data.frame} or \code{tibble}.
 #'
 #' @param case_id The case classifier of the event log. A character vector containing variable names of length 1 or more.
 #' @param activity_id The activity classifier of the event log. A character vector containing variable names of length 1 or more.
@@ -248,7 +248,7 @@ validate_eventlog <- function(eventlog) {
 		stop(glue("The following activity instances are connected to more than one activity: {paste(violation_activities %>% pull(1), collapse = \",\")}"))
 	}
 	if(nrow(violation_resources) > 0) {
-		warning(glue("The following activity instances are connected to more than one resource: {paste(violation_resources %>% pull(1), collapse = \",\")}"))
+		warning(glue("The following activity instances are connected to more than one resource: {paste(violation_resources %>% pull(1), collapse = \",\")}\n"))
 	}
 
 	TRUE

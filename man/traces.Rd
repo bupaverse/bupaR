@@ -3,12 +3,15 @@
 \name{traces}
 \alias{traces}
 \alias{traces.eventlog}
+\alias{traces.activitylog}
 \alias{traces.grouped_eventlog}
 \title{Traces}
 \usage{
 traces(eventlog, ...)
 
 \method{traces}{eventlog}(eventlog, ...)
+
+\method{traces}{activitylog}(eventlog, ...)
 
 \method{traces}{grouped_eventlog}(eventlog, ...)
 }
@@ -26,6 +29,8 @@ Activity sequences are based on the start timestamp of activities.
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Construct traces list for eventlog
+
+\item \code{activitylog}: Construct list of traces for activity log
 
 \item \code{grouped_eventlog}: Construct list of traces for grouped eventlog
 }}
