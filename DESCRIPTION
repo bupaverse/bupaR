@@ -27,8 +27,10 @@ Imports:
 	eventdataR (>= 0.2.0),
 	stringr,
 	stringi,
-	lubridate
+	lubridate,
+	lifecycle
 URL: https://www.bupar.net, https://github.com/bupaverse/bupaR
 Suggests: 
     covr,
     testthat
+

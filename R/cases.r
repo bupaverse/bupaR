@@ -41,7 +41,7 @@ cases.eventlog <- function(eventlog){
 	summary$last_activity <- as.factor(summary$last_activity)
 
 
-	summary <- tbl_df(summary)
+	summary <- as_tibble(summary)
 	return(summary)
 
 

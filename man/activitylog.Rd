@@ -4,11 +4,18 @@
 \alias{activitylog}
 \title{Create activity log}
 \usage{
-activitylog(activitylog, case_id, activity_id, resource_id, lifecycle_ids)
+activitylog(
+  activitylog,
+  case_id,
+  activity_id,
+  resource_id,
+  lifecycle_ids,
+  order
+)
 }
 \arguments{
 \item{activitylog}{The data object to be used as activity log. This can be a
-\code{data.frame} or \code{tbl_df}.}
+\code{data.frame} or \code{tibble}.}
 
 \item{case_id}{The case classifier of the activity log. A character vector containing variable names of length 1 or more.}
 
@@ -18,7 +25,14 @@ activitylog(activitylog, case_id, activity_id, resource_id, lifecycle_ids)
 
 \item{lifecycle_ids}{The columns with timestamps refering to different lifecycle events. A character vector of 1 or more.
 These should have one of the folliwing names: "schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip".
-These colomns should be of the Date or POSIXct class.}
+These columns should be of the Date or POSIXct class.}
+
+\item{order}{Configure how to handle sort events with equal timestamps:
+auto will use the order in the original data,
+alphabetical will sort the activity labels by alphabet,
+sorted will assume that the data frame is already correctly sorted and has a column '.order',
+providing a column name will use this column for ordering (can be numeric of character).
+The latter will never overrule timestamp orderings.}
 }
 \description{
 Create activity log

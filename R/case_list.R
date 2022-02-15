@@ -25,7 +25,7 @@ case_list.eventlog <- function(eventlog) {
 	# which corresponds to the event with the minimum timestamp and minimum .order
   data.table::setorderv(eDT, cols = c(case_id(eventlog), timestamp(eventlog), ".order"))
 	cases <- unique(eDT, by = c(case_id(eventlog), activity_instance_id(eventlog), activity_id(eventlog)))
-	
+
 	cases <- cases[order(get(timestamp(eventlog)), get(".order")),
 				         list(trace = stringi::stri_join(get(activity_id(eventlog)), collapse = ",")),
 				         by = c(case_id(eventlog))][,
@@ -34,3 +34,4 @@ case_list.eventlog <- function(eventlog) {
 	cases %>%
 		as_tibble()
 }
+

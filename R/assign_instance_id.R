@@ -27,7 +27,7 @@ assign_instance_id <- function(eventlog, case_id, activity_id, timestamp, lifecy
 		select(-status) %>%
 		mutate(instance = str_c(!!sym(case_id), !!sym(activity_id), current_instance, sep = "-")) %>%
 		ungroup() %>%
-		tbl_df()
+		as_tibble()
 }
 
 

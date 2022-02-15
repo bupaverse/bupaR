@@ -1,6 +1,6 @@
 #' @title Group event log
 #' @name group_by
-#' @param .data Eventlog
+#' @param .data Object of class eventlog or activitylog
 #' @param ... Variables to group by
 #' @param add Add grouping variables to existing ones
 #' @importFrom dplyr group_by

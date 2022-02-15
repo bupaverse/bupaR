@@ -7,7 +7,7 @@
 #' \code{eventlog}.
 #' @param units The time unit in which the throughput times should be reported.
 #' @export durations
-durations <- function(eventlog, units) {
+durations <- function(eventlog, units = "days") {
 	UseMethod("durations")
 }
 #' @describeIn durations Compute durations from eventlog
@@ -27,7 +27,7 @@ durations.eventlog <- function(eventlog,
 
 	colnames(durations)[colnames(durations)=="duration"] <- paste("duration_in_", units, sep ="")
 
-	durations <- tbl_df(durations)
+	durations <- as_tibble(durations)
 
 	return(durations)
 

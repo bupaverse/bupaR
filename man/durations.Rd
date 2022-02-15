@@ -5,7 +5,7 @@
 \alias{durations.eventlog}
 \title{Durations}
 \usage{
-durations(eventlog, units)
+durations(eventlog, units = "days")
 
 \method{durations}{eventlog}(eventlog, units = "days")
 }

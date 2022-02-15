@@ -5,7 +5,7 @@
 \alias{group_by}
 \title{Group event log}
 \arguments{
-\item{.data}{Eventlog}
+\item{.data}{Object of class eventlog or activitylog}
 
 \item{...}{Variables to group by}
 
