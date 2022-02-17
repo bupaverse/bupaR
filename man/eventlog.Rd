@@ -21,7 +21,7 @@ ieventlog(eventlog)
 }
 \arguments{
 \item{eventlog}{The data object to be used as event log. This can be a
-\code{data.frame} or \code{tbl_df}.}
+\code{data.frame} or \code{tibble}.}
 
 \item{case_id}{The case classifier of the event log. A character vector containing variable names of length 1 or more.}
 
@@ -47,7 +47,7 @@ not connected to more than one case or activity. Using `FALSE` improves the perf
 }
 \description{
 A function to instantiate an object of class \code{eventlog} by specifying a
-\code{data.frame} or \code{tbl_df} and appropriate case, activity and
+\code{data.frame} or \code{tibble} and appropriate case, activity and
 timestamp classifiers.
 }
 \examples{

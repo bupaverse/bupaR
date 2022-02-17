@@ -62,7 +62,7 @@ slice_events.grouped_eventlog <- function(.data, ...) {
 		nest() %>%
 		mutate(data = map(data, as.data.frame)) %>%
 		mutate(data = map(data, dplyr::slice, ...)) %>%
-		unnest() %>%
+		unnest(data) %>%
 		re_map(mapping) %>%
 		group_by_at(vars(one_of(paste(groups))))
 }

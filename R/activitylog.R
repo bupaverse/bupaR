@@ -1,17 +1,18 @@
 #' Create activity log
 #'
 #' @param activitylog The data object to be used as activity log. This can be a
-#' \code{data.frame} or \code{tbl_df}.
+#' \code{data.frame} or \code{tibble}.
 #' @param case_id The case classifier of the activity log. A character vector containing variable names of length 1 or more.
 #' @param activity_id The activity classifier of the activity log. A character vector containing variable names of length 1 or more.
 #' @param resource_id The resource identifier of the activity log. A character vector containing variable names of length 1 or more.
 #' @param lifecycle_ids The columns with timestamps refering to different lifecycle events. A character vector of 1 or more.
 #' These should have one of the folliwing names: "schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip".
-#' These colomns should be of the Date or POSIXct class.
+#' These columns should be of the Date or POSIXct class.
+#' @inheritParams eventlog
 #' @importFrom purrr pmap
 #' @export
 #'
-activitylog <- function(activitylog, case_id, activity_id, resource_id, lifecycle_ids) {
+activitylog <- function(activitylog, case_id, activity_id, resource_id, lifecycle_ids, order) {
 	UseMethod("activitylog")
 }
 
@@ -22,7 +23,8 @@ activitylog.data.frame <- function(activitylog,
 								   case_id = NULL,
 								   activity_id = NULL,
 								   resource_id = NULL,
-								   lifecycle_ids = c("start","complete")) {
+								   lifecycle_ids = c("start","complete"),
+								   order = "auto") {
 
 
 	activitylog <- as_tibble(activitylog)
@@ -58,6 +60,29 @@ activitylog.data.frame <- function(activitylog,
 		}
 	}
 	attr(activitylog, "lifecycle_ids") <- lifecycle_ids
+
+	if(length(order) == 1 && order %in% c("auto","alphabetical",colnames(activitylog))) {
+
+		activitylog$.order_auto <- seq_len(nrow(activitylog))
+
+		if(order == "auto") {
+
+			activitylog$.order <- activitylog$.order_auto
+
+		} else if(order == "alphabetical") {
+
+			activitylog$.order <- order(order(activitylog[[activity_id(activitylog)]], activitylog$.order_auto))
+
+		} else {
+			activitylog$.order <- order(order(activitylog[[order]], activitylog$.order_auto))
+		}
+
+		activitylog$.order_auto <- NULL
+
+	} else if (order != "sorted" || !(".order" %in% colnames(activitylog))) {
+		stop("Order should be a character with value 'auto', 'alphabetical', 'sorted', or a valid column-name")
+	}
+
 
 	activitylog
 

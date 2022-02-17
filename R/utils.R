@@ -11,6 +11,7 @@ resource_id_ <- function(eventlog) sym(resource_id(eventlog))
 timestamp_ <- function(eventlog) sym(timestamp(eventlog))
 lifecycle_id_ <- function(eventlog) sym(lifecycle_id(eventlog))
 
+
 is_eventlog <- function(eventlog) {
 	"eventlog" %in% class(eventlog)
 }
@@ -28,6 +29,16 @@ as.grouped.data.frame <- function(data, groups) {
 		as.data.frame() %>%
 		dplyr::group_by_at(groups)
 }
+
+apply_grouped <- function(log, fun) {
+	mapping <- mapping(log)
+	log %>%
+		nest() %>%
+		mutate(data = map(data, re_map, mapping)) %>%
+		mutate(data = map(data, fun)) %>%
+		unnest(cols = data)
+}
+
 
 #' @importFrom lubridate ymd_hms
 #' @export
@@ -67,3 +78,85 @@ lubridate::mdy_h
 lubridate::mdy
 
 
+
+.start_activities_eventlog <- function(eventlog) {
+	aid <- activity_id(eventlog)
+	eventlog %>%
+		group_by(.data[[case_id(eventlog)]]) %>%
+		arrange(.data[[timestamp(eventlog)]], .data[[".order"]]) %>%
+		summarize({{aid}} := first(.data[[activity_id(eventlog)]])) %>%
+		distinct(.data[[aid]])
+}
+
+.end_activities_eventlog <- function(eventlog) {
+	aid <- activity_id(eventlog)
+	eventlog %>%
+		group_by(.data[[case_id(eventlog)]]) %>%
+		arrange(.data[[timestamp(eventlog)]], .data[[".order"]]) %>%
+		summarize({{aid}} := last(.data[[activity_id(eventlog)]])) %>%
+		distinct(.data[[aid]])
+
+}
+
+
+
+.start_activities_activitylog <- function(activitylog) {
+
+	aid <- activity_id(activitylog)
+	activitylog %>%
+		group_by(.data[[case_id(activitylog)]]) %>%
+		arrange(.data[["start"]], .data[["complete"]],  .data[[".order"]]) %>%
+		summarize({{aid}} := first(.data[[activity_id(activitylog)]])) %>%
+		distinct(.data[[aid]])
+
+}
+
+.end_activities_activitylog <- function(activitylog) {
+
+	aid <- activity_id(activitylog)
+	activitylog %>%
+		group_by(.data[[case_id(activitylog)]]) %>%
+		arrange(.data[["start"]], .data[["complete"]], .data[[".order"]]) %>%
+		summarize({{aid}} := last(.data[[activity_id(activitylog)]])) %>%
+		distinct(.data[[aid]])
+}
+
+group_by_ids <- function(.log, ...) {
+
+	ids <- list(...)
+
+	for(i in 1:length(ids)) {
+		ids[[i]] <- ids[[i]](.log)
+	}
+	group_by(.log, across(paste(ids)))
+}
+
+
+select_ids <- function(.log, ...) {
+
+	ids <- list(...)
+
+	for(i in 1:length(ids)) {
+		ids[[i]] <- ids[[i]](.log)
+	}
+	select(.log, all_of(unlist(ids)), force_df = TRUE)
+}
+
+#' @export
+create_base_log <- function(log, ...) {
+	UseMethod("create_base_log")
+}
+#' @export
+create_base_log.eventlog <- function(log, ...) {
+	log %>%
+		group_by_ids(case_id, activity_id, activity_instance_id) %>%
+		summarize(!!resource_id_(eventlog) := first(.data[[resource_id(log)]]),
+				  "min_ts" = min(.data[[timestamp(log)]]),
+				  "max_ts" = max(.data[[timestamp(log)]]),
+				  ".order" = min(.data$.order))
+}
+#' @export
+create_base_log.activitylog <- function(log, ...) {
+	log %>%
+		select_ids(case_id, activity_id, resource_id, lifecycle_ids)
+}

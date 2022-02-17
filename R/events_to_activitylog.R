@@ -58,11 +58,11 @@ events_to_activitylog.eventlog <- function(eventlog, case_id = NULL, activity_id
 	### Check if the columns start and complete exist. If not, initiate them to NA
 	if(!("start" %in% colnames(activitylog))){
 		warning("No start events were found. Creating and initialising 'start' to NA.")
-		activitylog$start <- as.Date(NA)
+		activitylog$start <- lubridate::NA_POSIXct_
 	}
 	if(!("complete" %in% colnames(activitylog))){
 		warning("No complete events were found. Creating and initialising 'complete' to NA.")
-		activitylog$complete <- as.Date(NA)
+		activitylog$complete <- lubridate::NA_POSIXct_
 	}
 
 	activitylog(as.data.frame(activitylog),
