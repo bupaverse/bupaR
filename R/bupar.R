@@ -17,6 +17,7 @@
 #' @importFrom forcats fct_collapse
 #' @importFrom purrr map
 #' @importFrom purrr pmap
+#' @importFrom tibble as_tibble
 #' @importFrom tidyr nest
 #' @importFrom tidyr unnest
 #' @importFrom stats median

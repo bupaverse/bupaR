@@ -30,15 +30,21 @@ cases.eventlog <- function(eventlog){
 	summary <- inner_join(summary, traces_per_case, by = case_id(eventlog))
 	summary <- inner_join(summary, durations, by = case_id(eventlog))
 
-	summary$first_activity <- NA_character_
-	summary$last_activity  <- NA_character_
+  summary <- summary %>%
+		mutate(activities = stringi::stri_split_fixed(trace, ","),
+					 first_activity = as.factor(vapply(activities, "[", 1L, FUN.VALUE = character(1))),
+					 last_activity = as.factor(vapply(activities, tail, n = 1L, FUN.VALUE = character(1)))) %>%
+		select(-activities)
 
-	for(i in 1:nrow(summary)){
-		summary$first_activity[i] <- strsplit(summary$trace[i], split = ",")[[1]][1]
-		summary$last_activity[i] <- strsplit(summary$trace[i], split = ",")[[1]][length(strsplit(summary$trace[i], split =",")[[1]])]
-	}
-	summary$first_activity <- as.factor(summary$first_activity)
-	summary$last_activity <- as.factor(summary$last_activity)
+	#summary$first_activity <- NA_character_
+	#summary$last_activity  <- NA_character_
+
+	#for(i in 1:nrow(summary)){
+	#	summary$first_activity[i] <- strsplit(summary$trace[i], split = ",")[[1]][1]
+	#	summary$last_activity[i] <- strsplit(summary$trace[i], split = ",")[[1]][length(strsplit(summary$trace[i], split =",")[[1]])]
+	#}
+	#summary$first_activity <- as.factor(summary$first_activity)
+	#summary$last_activity <- as.factor(summary$last_activity)
 
 
 	summary <- tbl_df(summary)
@@ -74,3 +80,8 @@ case_labels.activitylog <- function(eventlog) {
 }
 
 
+get_last_activity <- function (trace) {
+
+	acts <- stringi::stri_split_fixed(trace, ",")[[1]]
+	return(acts[length(acts)])
+}
