@@ -28,7 +28,7 @@ activitylog.data.frame <- function(activitylog,
 
 
 	activitylog <- as_tibble(activitylog)
-	class(activitylog) <- c("activitylog",class(activitylog))
+	class(activitylog) <- c("activitylog", "log",class(activitylog))
 
 
 	allowed_lifecycles <- c("schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip")

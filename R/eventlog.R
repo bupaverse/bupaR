@@ -62,7 +62,7 @@ eventlog.data.frame  <- function(eventlog,
 
 	stopifnot(is.data.frame(eventlog))
 	eventlog <- as_tibble(eventlog)
-	class(eventlog) <- c("eventlog",class(eventlog))
+	class(eventlog) <- c("eventlog", "log",class(eventlog))
 
 
 	args_values <- as.list(environment())[c("case_id","activity_id","activity_instance_id","lifecycle_id","resource_id")]
