@@ -5,9 +5,9 @@
 \alias{case_list.eventlog}
 \title{Case list}
 \usage{
-case_list(eventlog)
+case_list(log, eventlog, .keep_trace_list)
 
-\method{case_list}{eventlog}(eventlog)
+\method{case_list}{eventlog}(log, eventlog = deprecated(), .keep_trace_list = FALSE)
 }
 \arguments{
 \item{eventlog}{Eventlog object}

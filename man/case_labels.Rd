@@ -13,7 +13,9 @@ case_labels(eventlog)
 \method{case_labels}{activitylog}(eventlog)
 }
 \arguments{
-\item{eventlog}{Eventlog}
+\item{eventlog}{Deprecated; please use \code{log} instead.}
+
+\item{log}{Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 }
 \description{
 Retrieve a vector containing all unique case labels

@@ -5,20 +5,26 @@
 \alias{cases.eventlog}
 \title{Cases}
 \usage{
-cases(eventlog)
+cases(log, eventlog, ...)
 
-\method{cases}{eventlog}(eventlog)
+\method{cases}{eventlog}(log, eventlog = deprecated(), ...)
 }
 \arguments{
-\item{eventlog}{An eventlog object.
-\code{eventlog}.}
+\item{log}{Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
+
+\item{...}{Other arguments passed on to methods. See \code{\link{durations()}} for more options.}
 }
 \description{
-Provides a fine-grained summary of an event log with characteristics for each case:  the number of events,
-the number of activity types, the timespan, the trace, the duration and the first and last event type.
+Provides a fine-grained summary of an event log with characteristics for each case: the number of events,
+the number of activity types, the timespan, the trace, the duration, and the first and last event type.
 }
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Constructy list of cases in an eventlog
 }}
 
+\seealso{
+\code{\link{case_list()}},\code{\link{durations()}}
+}
