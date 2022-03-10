@@ -1,6 +1,6 @@
-#' Case list
+#' @title Case list
 #'
-#' Construct list of cases
+#' @description Construct list of cases
 #'
 #' @param log Object of class \code{\link{eventlog}}, \code{\link{activitylog}}, or \code{\link{log}}.
 #' @param eventlog Deprecated; please use \code{log} instead.
@@ -8,17 +8,15 @@
 #' If \code{FALSE}, only the concatenated string representation of the trace is kept.
 #'
 #' @importFrom stringi stri_join
-#' @export
 #'
+#' @export
 case_list <- function(log, eventlog, .keep_trace_list) {
 	UseMethod("case_list")
 }
 
 #' @describeIn case_list Return case list
 #' @export
-
-
-case_list.eventlog <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
+case_list.log <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
 
 	if(lifecycle::is_present(eventlog)) {
 		lifecycle::deprecate_warn("0.5.0", "cases(eventlog)", "cases(log)")
@@ -29,6 +27,30 @@ case_list.eventlog <- function(log, eventlog = deprecated(), .keep_trace_list = 
 
 	cases %>%
 		as.data.frame()
+}
+
+#' @describeIn case_list Return case list
+#' @export
+case_list.eventlog <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
+
+	if(lifecycle::is_present(eventlog)) {
+		lifecycle::deprecate_warn("0.5.0", "cases(eventlog)", "cases(log)")
+		log <- eventlog
+	}
+
+	case_list.log(log, .keep_trace_list = .keep_trace_list)
+}
+
+#' @describeIn case_list Return case list
+#' @export
+case_list.activitylog <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
+
+	if(lifecycle::is_present(eventlog)) {
+		lifecycle::deprecate_warn("0.5.0", "cases(eventlog)", "cases(log)")
+		log <- eventlog
+	}
+
+	case_list.log(activitylog_to_eventlog(log), .keep_trace_list = .keep_trace_list)
 }
 
 

@@ -5,9 +5,9 @@
 #'
 #' @param log Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
 #' @param eventlog Deprecated; please use \code{log} instead.
-#' @param ... Other arguments passed on to methods. See \code{\link{durations()}} for more options.
+#' @param ... Other arguments passed on to methods. See \code{\link{durations}} for more options.
 #'
-#' @seealso \code{\link{case_list()}},\code{\link{durations()}}
+#' @seealso \code{\link{case_list}},\code{\link{durations}}
 #'
 #' @export
 cases <- function(log, eventlog, ...) {

@@ -2,21 +2,36 @@
 % Please edit documentation in R/case_list.R
 \name{case_list}
 \alias{case_list}
+\alias{case_list.log}
 \alias{case_list.eventlog}
+\alias{case_list.activitylog}
 \title{Case list}
 \usage{
 case_list(log, eventlog, .keep_trace_list)
 
+\method{case_list}{log}(log, eventlog = deprecated(), .keep_trace_list = FALSE)
+
 \method{case_list}{eventlog}(log, eventlog = deprecated(), .keep_trace_list = FALSE)
+
+\method{case_list}{activitylog}(log, eventlog = deprecated(), .keep_trace_list = FALSE)
 }
 \arguments{
-\item{eventlog}{Eventlog object}
+\item{log}{Object of class \code{\link{eventlog}}, \code{\link{activitylog}}, or \code{\link{log}}.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
+
+\item{.keep_trace_list}{Logical (default is \code{FALSE}): If \code{TRUE}, keeps the trace as a \code{list}.
+If \code{FALSE}, only the concatenated string representation of the trace is kept.}
 }
 \description{
 Construct list of cases
 }
 \section{Methods (by class)}{
 \itemize{
+\item \code{log}: Return case list
+
 \item \code{eventlog}: Return case list
+
+\item \code{activitylog}: Return case list
 }}
 

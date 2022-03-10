@@ -20,7 +20,8 @@ is_grouped_eventlog <- function(eventlog) {
 	"grouped_eventlog" %in% class(eventlog)
 }
 
-#' @name as.grouped.data.frame
+#' as.grouped.data.frame
+#'
 #' @param data Data
 #' @param groups Names of grouping variables as character vector (e.g. by using \code{dplyr::group_vars}
 as.grouped.data.frame <- function(data, groups) {

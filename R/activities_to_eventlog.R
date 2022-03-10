@@ -24,6 +24,8 @@ activities_to_eventlog <- function(activity_log,
 		ungroup() %>%
 		mutate(activity_instance_id = 1:n()) %>%
 		tidyr::gather(lifecycle_id, timestamp, one_of(timestamps)) %>%
+		filter(!is.na(timestamp)) %>%
+		arrange(timestamp) %>%
 		eventlog(case_id = case_id,
 				 activity_id = activity_id,
 				 activity_instance_id = "activity_instance_id",
@@ -32,4 +34,10 @@ activities_to_eventlog <- function(activity_log,
 				 resource_id = resource_id)
 
 
+}
+
+
+activitylog_to_eventlog <- function(log) {
+
+	activities_to_eventlog(log, case_id(log), activity_id(log), resource_id(log), lifecycle_ids(log))
 }

@@ -14,7 +14,7 @@ cases(log, eventlog, ...)
 
 \item{eventlog}{Deprecated; please use \code{log} instead.}
 
-\item{...}{Other arguments passed on to methods. See \code{\link{durations()}} for more options.}
+\item{...}{Other arguments passed on to methods. See \code{\link{durations}} for more options.}
 }
 \description{
 Provides a fine-grained summary of an event log with characteristics for each case: the number of events,
@@ -26,5 +26,5 @@ the number of activity types, the timespan, the trace, the duration, and the fir
 }}
 
 \seealso{
-\code{\link{case_list()}},\code{\link{durations()}}
+\code{\link{case_list}},\code{\link{durations}}
 }
