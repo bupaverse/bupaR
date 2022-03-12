@@ -10,7 +10,7 @@
 #' @importFrom stringi stri_join
 #'
 #' @export
-case_list <- function(log, eventlog, .keep_trace_list) {
+case_list <- function(log, eventlog = deprecated(), .keep_trace_list) {
 	UseMethod("case_list")
 }
 
@@ -18,10 +18,7 @@ case_list <- function(log, eventlog, .keep_trace_list) {
 #' @export
 case_list.log <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
 
-	if(lifecycle::is_present(eventlog)) {
-		lifecycle::deprecate_warn("0.5.0", "cases(eventlog)", "cases(log)")
-		log <- eventlog
-	}
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	cases <- case_list_dt(log, .keep_trace_list)
 
@@ -33,10 +30,7 @@ case_list.log <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE
 #' @export
 case_list.eventlog <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
 
-	if(lifecycle::is_present(eventlog)) {
-		lifecycle::deprecate_warn("0.5.0", "cases(eventlog)", "cases(log)")
-		log <- eventlog
-	}
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	case_list.log(log, .keep_trace_list = .keep_trace_list)
 }
@@ -45,10 +39,7 @@ case_list.eventlog <- function(log, eventlog = deprecated(), .keep_trace_list = 
 #' @export
 case_list.activitylog <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
 
-	if(lifecycle::is_present(eventlog)) {
-		lifecycle::deprecate_warn("0.5.0", "cases(eventlog)", "cases(log)")
-		log <- eventlog
-	}
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	case_list.log(activitylog_to_eventlog(log), .keep_trace_list = .keep_trace_list)
 }

@@ -13,7 +13,7 @@ group_by.eventlog <- function(.data, ..., .add = F) {
 	mapping <- mapping(.data)
 	.data <- as.data.frame(.data)
 	x <- group_by(.data, ..., .add = .add)
-	class(x) <- c("grouped_eventlog","eventlog", class(x))
+	class(x) <- c("grouped_eventlog", "eventlog", "log", class(x))
 
 	return(x)
 
@@ -25,7 +25,7 @@ group_by.activitylog <- function(.data, ..., .add = F) {
 	mapping <- mapping(.data)
 	.data <- as.data.frame(.data)
 	x <- group_by(.data, ..., .add = .add)
-	class(x) <- c("grouped_activitylog","activitylog", class(x))
+	class(x) <- c("grouped_activitylog","activitylog", "log", class(x))
 
 	return(x)
 

@@ -2,19 +2,25 @@
 % Please edit documentation in R/cases.r
 \name{cases}
 \alias{cases}
+\alias{cases.log}
 \alias{cases.eventlog}
+\alias{cases.activitylog}
 \title{Cases}
 \usage{
-cases(log, eventlog, ...)
+cases(log, eventlog = deprecated(), ...)
+
+\method{cases}{log}(log, eventlog = deprecated(), ...)
 
 \method{cases}{eventlog}(log, eventlog = deprecated(), ...)
+
+\method{cases}{activitylog}(log, eventlog = deprecated(), ...)
 }
 \arguments{
-\item{log}{Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{eventlog}{Deprecated; please use \code{log} instead.}
 
-\item{...}{Other arguments passed on to methods. See \code{\link{durations}} for more options.}
+\item{...}{Other (optional) arguments passed on to methods. See \code{\link{durations}} for more options.}
 }
 \description{
 Provides a fine-grained summary of an event log with characteristics for each case: the number of events,
@@ -22,7 +28,11 @@ the number of activity types, the timespan, the trace, the duration, and the fir
 }
 \section{Methods (by class)}{
 \itemize{
+\item \code{log}: Constructy list of cases in a log
+
 \item \code{eventlog}: Constructy list of cases in an eventlog
+
+\item \code{activitylog}: Constructy list of cases in an activitylog
 }}
 
 \seealso{

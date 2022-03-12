@@ -7,7 +7,7 @@
 \alias{case_list.activitylog}
 \title{Case list}
 \usage{
-case_list(log, eventlog, .keep_trace_list)
+case_list(log, eventlog = deprecated(), .keep_trace_list)
 
 \method{case_list}{log}(log, eventlog = deprecated(), .keep_trace_list = FALSE)
 
