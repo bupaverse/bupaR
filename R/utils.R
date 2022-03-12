@@ -146,24 +146,17 @@ select_ids <- function(.log, ...) {
 
 # Warning: The `eventlog` argument of `func()` is deprecated as of bupaR 0.5.0.
 # Please use the `log` argument instead.
+# WARNING: Works only on experted functions!
 lifecycle_warning_eventlog <- function (log, eventlog = deprecated()) {
 
 	cl <- sys.call(-1L)
-	func <- get(as.character(cl[[1L]]), mode = "function", sys.frame(-2L))
+	func <- get(as.character(cl[[1L]]), mode = "function", envir = sys.frame(-2L))
 	func_name <- match.call(definition = func, call = cl)[[1L]]
 
 	if(lifecycle::is_present(eventlog)) {
 		lifecycle::deprecate_warn("0.5.0", paste0(func_name, "(eventlog)"), paste0(func_name, "(log)"))
 		return(eventlog)
 	}
-
-	return(log)
-}
-
-# This function is used to test lifecycle_warning_eventlog only!
-lifecycle_warning_eventlog_test_func <- function (log, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log = log, eventlog = eventlog)
 
 	return(log)
 }

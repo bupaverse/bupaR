@@ -5,4 +5,3 @@
 ^codecov\.yml$
 ^\.github$
 ^\.idea$
-^tests
