@@ -6,29 +6,25 @@ on:
   pull_request:
     branches: [main, master, tests, dev]
 
-name: test-coverage
+name: lint
 
 jobs:
-  test-coverage:
+  lint:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r@v1
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v2
+      - uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          extra-packages: any::covr
-          needs: coverage
+          extra-packages: any::lintr
+          needs: check
 
-      - name: Test coverage
-        run: covr::codecov(quiet = FALSE)
+      - name: Lint
+        run: lintr::lint_package()
         shell: Rscript {0}
-
-      #- name: Upload coverage to Codecov
-      #  uses: codecov/codecov-action@v2
