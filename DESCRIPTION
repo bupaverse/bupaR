@@ -33,5 +33,6 @@ Imports:
 URL: https://www.bupar.net, https://github.com/bupaverse/bupaR
 Suggests: 
     covr,
+    lintr,
     testthat
 
