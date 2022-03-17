@@ -16,7 +16,7 @@ cases(log, eventlog = deprecated(), ...)
 \method{cases}{activitylog}(log, eventlog = deprecated(), ...)
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
 
 \item{eventlog}{Deprecated; please use \code{log} instead.}
 
@@ -28,11 +28,11 @@ the number of activity types, the timespan, the trace, the duration, and the fir
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Constructy list of cases in a log
+\item \code{log}: Construct list of cases in a \code{\link{log}}.
 
-\item \code{eventlog}: Constructy list of cases in an eventlog
+\item \code{eventlog}: Construct list of cases in an \code{\link{eventlog}}.
 
-\item \code{activitylog}: Constructy list of cases in an activitylog
+\item \code{activitylog}: Construct list of cases in a \code{\link{activitylog}}.
 }}
 
 \seealso{

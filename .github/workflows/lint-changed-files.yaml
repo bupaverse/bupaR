@@ -26,9 +26,9 @@ jobs:
             any::lintr
           needs: check
 
-      - name: Add lintr options
-        run: cat('\noptions(lintr.linter_file = ".lintr_new")\n', file = "~/.Rprofile", append = TRUE)
-        shell: Rscript {0}
+      #- name: Add lintr options
+      #  run: cat('\noptions(lintr.linter_file = ".lintr_new")\n', file = "~/.Rprofile", append = TRUE)
+      #  shell: Rscript {0}
 
       - name: Install package
         run: R CMD INSTALL .

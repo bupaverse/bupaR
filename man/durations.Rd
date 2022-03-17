@@ -2,25 +2,23 @@
 % Please edit documentation in R/durations.R
 \name{durations}
 \alias{durations}
-\alias{durations.eventlog}
 \title{Durations}
 \usage{
-durations(eventlog, units = "days")
-
-\method{durations}{eventlog}(eventlog, units = "days")
+durations(
+  log,
+  eventlog = deprecated(),
+  units = c("auto", "secs", "mins", "hours", "days", "weeks")
+)
 }
 \arguments{
-\item{eventlog}{The event log to be used. An object of class
-\code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
 
-\item{units}{The time unit in which the throughput times should be reported.}
+\item{eventlog}{Deprecated; please use \code{log} instead.}
+
+\item{units}{\code{\link{character}}: The time unit in which the throughput times should be reported. Should be one of the following values:
+"auto" (default), "secs", "mins", "hours", "days", "weeks". See also the \code{units} argument of \code{\link{difftime}}.}
 }
 \description{
 Computes the throughput times of each case.
 Throughput time is defined as the interval between the start of the first event and the completion of the last event.
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{eventlog}: Compute durations from eventlog
-}}
-

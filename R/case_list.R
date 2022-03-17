@@ -2,19 +2,19 @@
 #'
 #' @description Construct list of cases
 #'
-#' @param log Object of class \code{\link{eventlog}}, \code{\link{activitylog}}, or \code{\link{log}}.
+#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
 #' @param eventlog Deprecated; please use \code{log} instead.
-#' @param .keep_trace_list Logical (default is \code{FALSE}): If \code{TRUE}, keeps the trace as a \code{list}.
+#' @param .keep_trace_list \code{\link{logical}} (default \code{FALSE}): If \code{TRUE}, keeps the trace as a \code{list}.
 #' If \code{FALSE}, only the concatenated string representation of the trace is kept.
 #'
 #' @importFrom stringi stri_join
 #'
 #' @export
-case_list <- function(log, eventlog = deprecated(), .keep_trace_list) {
+case_list <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
 	UseMethod("case_list")
 }
 
-#' @describeIn case_list Return case list
+#' @describeIn case_list Return case list for a \code{\link{log}}.
 #' @export
 case_list.log <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
 
@@ -26,7 +26,7 @@ case_list.log <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE
 		as.data.frame()
 }
 
-#' @describeIn case_list Return case list
+#' @describeIn case_list Return case list for an \code{\link{eventlog}}.
 #' @export
 case_list.eventlog <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
 
@@ -35,7 +35,7 @@ case_list.eventlog <- function(log, eventlog = deprecated(), .keep_trace_list = 
 	case_list.log(log, .keep_trace_list = .keep_trace_list)
 }
 
-#' @describeIn case_list Return case list
+#' @describeIn case_list Return case list for an \code{\link{activitylog}}.
 #' @export
 case_list.activitylog <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
 
