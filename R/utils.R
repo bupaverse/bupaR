@@ -20,7 +20,8 @@ is_grouped_eventlog <- function(eventlog) {
 	"grouped_eventlog" %in% class(eventlog)
 }
 
-#' @name as.grouped.data.frame
+#' as.grouped.data.frame
+#'
 #' @param data Data
 #' @param groups Names of grouping variables as character vector (e.g. by using \code{dplyr::group_vars}
 as.grouped.data.frame <- function(data, groups) {
@@ -140,4 +141,22 @@ select_ids <- function(.log, ...) {
 		ids[[i]] <- ids[[i]](.log)
 	}
 	select(.log, all_of(unlist(ids)), force_df = TRUE)
+}
+
+
+# Warning: The `eventlog` argument of `func()` is deprecated as of bupaR 0.5.0.
+# Please use the `log` argument instead.
+# WARNING: Works only on experted functions!
+lifecycle_warning_eventlog <- function (log, eventlog = deprecated()) {
+
+	cl <- sys.call(-1L)
+	func <- get(as.character(cl[[1L]]), mode = "function", envir = sys.frame(-2L))
+	func_name <- match.call(definition = func, call = cl)[[1L]]
+
+	if(lifecycle::is_present(eventlog)) {
+		lifecycle::deprecate_warn("0.5.0", paste0(func_name, "(eventlog)"), paste0(func_name, "(log)"))
+		return(eventlog)
+	}
+
+	return(log)
 }

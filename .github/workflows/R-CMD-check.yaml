@@ -20,9 +20,9 @@ jobs:
         config:
           - {os: macOS-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-1'}
+          - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,  r: 'release'}
+          - {os: ubuntu-latest,  r: 'oldrel-1'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -41,10 +41,12 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 2
-          extra-packages: rcmdcheck
+          extra-packages: any::rcmdcheck
+          needs: check
 
       - uses: r-lib/actions/check-r-package@v2
+        with:
+          upload-snapshots: true
 
       - name: Show testthat output
         if: always()

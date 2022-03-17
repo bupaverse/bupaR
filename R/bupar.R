@@ -8,6 +8,9 @@
 #' @importFrom data.table as.data.table
 #' @importFrom data.table data.table
 #' @importFrom data.table :=
+#' @importFrom data.table .I
+#' @importFrom data.table .N
+#' @importFrom data.table .SD
 #' @import dplyr
 #' @import shiny
 #' @import miniUI
@@ -17,6 +20,7 @@
 #' @importFrom forcats fct_collapse
 #' @importFrom purrr map
 #' @importFrom purrr pmap
+#' @importFrom tibble as_tibble
 #' @importFrom tidyr nest
 #' @importFrom tidyr unnest
 #' @importFrom stats median
