@@ -5,7 +5,7 @@
 #'
 #' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
 #' @param eventlog Deprecated; please use \code{log} instead.
-#' @param units \code{\link{character}}: The time unit in which the throughput times should be reported. Should be one of the following values:
+#' @param units \code{\link{character}} (default "auto"): The time unit in which the throughput times should be reported. Should be one of the following values:
 #' "auto" (default), "secs", "mins", "hours", "days", "weeks". See also the \code{units} argument of \code{\link{difftime}}.
 #' @export durations
 durations <- function(log, eventlog = deprecated(), units = c("auto", "secs", "mins", "hours", "days", "weeks")) {

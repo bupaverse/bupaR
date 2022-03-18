@@ -1,4 +1,6 @@
 
+#### eventlog ####
+
 test_that("test fill on eventlog with default .direction", {
 
   load("./testdata/patients_fill_na.rda")
@@ -68,4 +70,24 @@ test_that("test fill on grouped_eventlog with .direction = 'downup'", {
   expect_false(any(is.na(log[[resource_id(log)]])))
   expect_equal(log[[resource_id(log)]], truth[["resource"]])
   expect_equal(group_vars(log), group_vars(patients_fill_na_grouped))
+})
+
+
+#### activitylog ####
+
+test_that("test fill on activitylog with default .direction", {
+
+  load("./testdata/patients_act_fill_na.rda")
+  load("./testdata/patients_act_fill_na_df.rda")
+
+  log <- patients_act_fill_na %>%
+    fill(!!resource_id_(.))
+
+  truth <- patients_act_fill_na_df %>%
+    fill(resource)
+
+  expect_s3_class(log, "activitylog")
+
+  expect_false(any(is.na(log[[resource_id(log)]])))
+  expect_equal(log[[resource_id(log)]], truth[["resource"]])
 })

@@ -15,7 +15,7 @@ durations(
 
 \item{eventlog}{Deprecated; please use \code{log} instead.}
 
-\item{units}{\code{\link{character}}: The time unit in which the throughput times should be reported. Should be one of the following values:
+\item{units}{\code{\link{character}} (default "auto"): The time unit in which the throughput times should be reported. Should be one of the following values:
 "auto" (default), "secs", "mins", "hours", "days", "weeks". See also the \code{units} argument of \code{\link{difftime}}.}
 }
 \description{

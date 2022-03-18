@@ -30,6 +30,16 @@ test_that("test durations on eventlog with units = 'hours'", {
   expect_equal(as.numeric(durations[["duration"]]), c(109150 / 3600, 89555 / 3600, 0))
 })
 
+test_that("test durations on eventlog with units outside allowed domain", {
+
+  load("./testdata/patients.rda")
+
+  expect_error(
+    durations <- patients %>%
+      durations(units = "milliseconds"),
+    "`units` must be one of.*not \"milliseconds\"")
+})
+
 test_that("test durations on grouped_eventlog", {
 
   load("./testdata/patients_grouped.rda")
