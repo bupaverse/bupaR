@@ -146,7 +146,7 @@ select_ids <- function(.log, ...) {
 
 # Warning: The `eventlog` argument of `func()` is deprecated as of bupaR 0.5.0.
 # Please use the `log` argument instead.
-# WARNING: Works only on experted functions!
+# WARNING: Works only on exported functions!
 lifecycle_warning_eventlog <- function (log, eventlog = deprecated()) {
 
 	cl <- sys.call(-1L)

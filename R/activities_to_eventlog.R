@@ -38,6 +38,5 @@ activities_to_eventlog <- function(activity_log,
 
 
 activitylog_to_eventlog <- function(log) {
-
 	activities_to_eventlog(log, case_id(log), activity_id(log), resource_id(log), lifecycle_ids(log))
 }
