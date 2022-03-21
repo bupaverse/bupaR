@@ -3,11 +3,32 @@
 \name{act_collapse}
 \alias{act_collapse}
 \alias{act_collapse.eventlog}
+\alias{act_collapse.activitylog}
+\alias{act_collapse.grouped_log}
 \title{Collapse activity labels of a sub process into a single activity}
 \usage{
 act_collapse(eventlog, ..., method)
 
-\method{act_collapse}{eventlog}(eventlog, ..., method = c("entry_points", "consecutive"))
+\method{act_collapse}{eventlog}(
+  log,
+  ...,
+  method = c("entry_points", "consecutive"),
+  eventlog = deprecated()
+)
+
+\method{act_collapse}{activitylog}(
+  log,
+  ...,
+  method = c("entry_points", "consecutive"),
+  eventlog = deprecated()
+)
+
+\method{act_collapse}{grouped_log}(
+  log,
+  ...,
+  method = c("entry_points", "consecutive"),
+  eventlog = deprecated()
+)
 }
 \arguments{
 \item{eventlog}{An \code{eventlog} object}
@@ -25,6 +46,10 @@ There are different strategies to collapse activity labels (argument ´method´)
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Collapse activity labels of a subprocess into a single activity
+
+\item \code{activitylog}: Collapse activity labels of a subprocess into a single activity
+
+\item \code{grouped_log}: Collapse activity labels of a subprocess into a single activity
 }}
 
 \seealso{

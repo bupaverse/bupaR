@@ -50,6 +50,15 @@ apply_grouped_fun <- function(log, fun, ...) {
 		unnest(cols = data)
 }
 
+apply_ignore_grouped_fun <- function(log, fun, ...) {
+	mapping <- mapping(log)
+	log %>%
+		ungroup_eventlog() %>%
+		fun(...) %>%
+		group_by(across(mapping$groups))
+}
+
+
 #' @importFrom lubridate ymd_hms
 #' @export
 lubridate::ymd_hms

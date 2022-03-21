@@ -8,7 +8,7 @@
 #' @param ... A series of named character vectors. The activity labels in each vector will be collapsed into one activity with the name of the vector.
 #' @param method Defines how activities are collapsed: "entry_points" heuristically learns which of the specified activities occur at the start and end of the subprocess and collapses accordingly. "consecutive" collapses consecutive sequences of the activities.
 #' @family Activity processing functions
-#' @export act_collapse
+#' @export
 #'
 act_collapse <- function(eventlog, ..., method) {
 	UseMethod("act_collapse")
@@ -16,20 +16,40 @@ act_collapse <- function(eventlog, ..., method) {
 
 #' @describeIn act_collapse Collapse activity labels of a subprocess into a single activity
 #' @export
-act_collapse.eventlog <- function(eventlog, ..., method = c("entry_points","consecutive")) {
+act_collapse.eventlog <- function(log, ..., method = c("entry_points","consecutive"), eventlog = deprecated() ) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
 	method <- match.arg(method)
 	sub_processes <- list(...)
+
 	if(method == "entry_points") {
 		for(i in seq_along(sub_processes)) {
-			eventlog <- aggregate_subprocess_entry_points(eventlog, sub_name = names(sub_processes)[i], sub_processes[[i]])
+			log <- aggregate_subprocess_entry_points(log, sub_name = names(sub_processes)[i], sub_processes[[i]])
 		}
 	} else if(method == "consecutive") {
 		for(i in seq_along(sub_processes)) {
-			eventlog <- aggregate_subprocess_consecutive(eventlog, sub_name = names(sub_processes)[i], sub_processes[[i]])
+			log <- aggregate_subprocess_consecutive(log, sub_name = names(sub_processes)[i], sub_processes[[i]])
 		}
 
 	}
-	return(eventlog)
+	return(log)
+}
+
+#' @describeIn act_collapse Collapse activity labels of a subprocess into a single activity
+#' @export
+act_collapse.activitylog <- function(log, ..., method = c("entry_points","consecutive"), eventlog = deprecated()) {
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	to_activitylog(act_collapse.eventlog(to_eventlog(log),..., method))
+
+}
+
+#' @describeIn act_collapse Collapse activity labels of a subprocess into a single activity
+#' @export
+
+act_collapse.grouped_log <- function(log, ..., method = c("entry_points","consecutive"), eventlog = deprecated()) {
+
+	apply_ignore_grouped_fun(log, act_collapse, ..., method)
 }
 
 
@@ -51,9 +71,9 @@ aggregate_subprocess_entry_points <- function(eventlog, sub_name, sub_acts) {
 
 	sub_log %>%
 		group_by_ids(case_id, activity_id, activity_instance_id, resource_id) %>%
-		summarize("min_ts" = min(.data[[timestamp(mapping)]]),
-				  "max_ts" = max(.data[[timestamp(mapping)]]),
-				  ".order" = min(.data$.order)) %>%
+		summarize("min_ts" = min(.data[[timestamp(mapping)]], na.rm = T),
+				  "max_ts" = max(.data[[timestamp(mapping)]], na.rm = T),
+				  ".order" = min(.data$.order, na.rm = T)) %>%
 		group_by(.data[[case_id(mapping)]]) %>%
 		arrange(.data$min_ts,
 				.data$.order) %>%
@@ -65,11 +85,11 @@ aggregate_subprocess_entry_points <- function(eventlog, sub_name, sub_acts) {
 		ungroup() %>%
 		mutate("sub_process_instance" = paste(sub_name, lag(cumsum((.data$end_sub_process) + .data$end_case), default = 0), sep = "_")) %>%
 		group_by(.data$sub_process_instance) %>%
-		slice(c(1,n())) %>%
+		slice(c(1,n()))  %>%
 		mutate(!!resource_id_(mapping) := paste(sort(unique(.data[[resource_id(mapping)]])), collapse = ",")) %>%
-		mutate(!!lifecycle_id_(mapping) := c("start","complete"),
-			   is_collapsed = T) %>%
 		ungroup() %>%
+		mutate(!!lifecycle_id_(mapping) := rep(c("start","complete"), length.out = n()),
+			   is_collapsed = T) %>%
 		mutate(!!activity_instance_id_(mapping) := as.character(.data$sub_process_instance),
 			   !!timestamp_(mapping) := if_else(.data[[lifecycle_id(mapping)]] == "start", .data$min_ts, .data$max_ts),
 			   !!activity_id_(mapping) := sub_name)  %>%

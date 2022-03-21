@@ -8,24 +8,14 @@ activity_id <- function(x) {
 	UseMethod("activity_id")
 }
 
-#' @describeIn activity_id Retrieve activity identifier from eventlog
+#' @describeIn activity_id Retrieve activity identifier from log
 #' @export
-activity_id.eventlog <- function(x){
+activity_id.log <- function(x){
 	return(attr(x, "activity_id"))
 }
-#' @describeIn activity_id Retrieve activity identifier from eventlog mapping
+#' @describeIn activity_id Retrieve activity identifier from  mapping
 #' @export
-activity_id.eventlog_mapping <- function(x) {
+activity_id.log_mapping <- function(x) {
 	return(x$activity_identifier)
 }
 
-#' @describeIn activity_id Retrieve activity identifier from activitylog
-#' @export
-activity_id.activitylog <- function(x){
-	return(attr(x, "activity_id"))
-}
-#' @describeIn activity_id Retrieve activity identifier from activitylog mapping
-#' @export
-activity_id.activitylog_mapping <- function(x) {
-	return(x$activity_identifier)
-}

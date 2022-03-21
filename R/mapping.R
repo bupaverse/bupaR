@@ -24,7 +24,7 @@ mapping.eventlog <- function(eventlog) {
 	# Optional groups info for grouped_eventlog
 	mapping$groups <- dplyr::group_vars(eventlog)
 
-	class(mapping) <- c("eventlog_mapping",class(mapping))
+	class(mapping) <- c("eventlog_mapping", "log_mapping", class(mapping))
 
 	return(mapping)
 }
@@ -42,7 +42,7 @@ mapping.activitylog <- function(eventlog) {
 	# Optional groups info for grouped_activitylog
 	mapping$groups <- dplyr::group_vars(eventlog)
 
-	class(mapping) <- c("activitylog_mapping",class(mapping))
+	class(mapping) <- c("activitylog_mapping", "log_mapping", class(mapping))
 
 	return(mapping)
 }
