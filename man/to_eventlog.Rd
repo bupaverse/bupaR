@@ -3,11 +3,14 @@
 \name{to_eventlog}
 \alias{to_eventlog}
 \alias{to_eventlog.activitylog}
+\alias{to_eventlog.grouped_activitylog}
 \title{Convert activitylog to eventlog}
 \usage{
 to_eventlog(activitylog)
 
 \method{to_eventlog}{activitylog}(activitylog)
+
+\method{to_eventlog}{grouped_activitylog}(activitylog)
 }
 \arguments{
 \item{activitylog}{Object of class activitylog to be converted to eventlog.}
@@ -18,5 +21,7 @@ Convert activitylog to eventlog
 \section{Methods (by class)}{
 \itemize{
 \item \code{activitylog}: Convert activitylog to eventlog
+
+\item \code{grouped_activitylog}: Convert grouped activitylog to grouped eventlog
 }}
 

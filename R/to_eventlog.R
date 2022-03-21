@@ -12,6 +12,7 @@ to_eventlog <- function(activitylog) {
 #' @export
 to_eventlog.activitylog <- function(activitylog) {
 	activitylog %>%
+		as.data.frame() %>%
 		mutate(activity_instance_id_by_bupar = 1:n()) %>%
 		gather(lifecycle_id, timestamp, lifecycle_ids(activitylog)) %>%
 		filter(!is.na(timestamp)) %>%
@@ -22,3 +23,15 @@ to_eventlog.activitylog <- function(activitylog) {
 				 lifecycle_id = "lifecycle_id",
 				 resource_id = resource_id(activitylog))
 }
+
+#' @describeIn to_eventlog Convert grouped activitylog to grouped eventlog
+#' @export
+#'
+to_eventlog.grouped_activitylog <- function(activitylog) {
+	mapping <- mapping(activitylog)
+	activitylog %>%
+		to_eventlog.activitylog() %>%
+		group_by(across(mapping$groups))
+}
+
+

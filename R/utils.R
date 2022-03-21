@@ -31,15 +31,24 @@ as.grouped.data.frame <- function(data, groups) {
 		dplyr::group_by_at(groups)
 }
 
-apply_grouped <- function(log, fun) {
+apply_grouped_fun <- function(log, fun, ...) {
 	mapping <- mapping(log)
 	log %>%
-		nest() %>%
+		# remove grouping
+		ungroup() %>%
+		# group_by + nest (has option to keep group-vars in nested data)
+		nest_by(across(mapping$groups), .keep = TRUE) %>%
+		# nest_by returns rowwise data.frame, which we don't need
+		ungroup() %>%
+		# make sure data is event log
 		mutate(data = map(data, re_map, mapping)) %>%
-		mutate(data = map(data, fun)) %>%
+		# compute output of function, taking over any arguments
+		mutate(data = map(data, fun, ...)) %>%
+		# remove any columns in the output data that is also present in the group-keys
+		mutate(data = map(data, ~select(.x,-any_of(mapping$groups)))) %>%
+		# unnest
 		unnest(cols = data)
 }
-
 
 #' @importFrom lubridate ymd_hms
 #' @export

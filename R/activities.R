@@ -43,23 +43,12 @@ activities.activitylog <- function(log, eventlog = deprecated()) {
 		arrange(.data$absolute_frequency) %>%
 		mutate("relative_frequency" = .data$absolute_frequency/sum(.data$absolute_frequency))
 }
-
 #' @export
-activities.grouped_eventlog <- function(log, eventlog = deprecated()) {
+activities.grouped_log <- function(log, eventlog = deprecated()) {
 
-	if(lifecycle::is_present(eventlog)) {
-		lifecycle::deprecate_warn("0.5.0", "activities(eventlog)", "activities(log)")
-		log <- eventlog
-	}
-	apply_grouped(log, activities)
-}
-#' @export
-activities.grouped_activitylog <- function(log, eventlog = deprecated()) {
-	if(lifecycle::is_present(eventlog)) {
-		lifecycle::deprecate_warn("0.5.0", "activities(eventlog)", "activities(log)")
-		log <- eventlog
-	}
-	apply_grouped(log, activities)
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	apply_grouped_fun(log, activities)
 }
 
 
