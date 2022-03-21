@@ -2,14 +2,11 @@
 % Please edit documentation in R/case_list.R
 \name{case_list}
 \alias{case_list}
-\alias{case_list.log}
 \alias{case_list.eventlog}
 \alias{case_list.activitylog}
 \title{Case list}
 \usage{
 case_list(log, eventlog = deprecated(), .keep_trace_list)
-
-\method{case_list}{log}(log, eventlog = deprecated(), .keep_trace_list = FALSE)
 
 \method{case_list}{eventlog}(log, eventlog = deprecated(), .keep_trace_list = FALSE)
 
@@ -28,8 +25,6 @@ Construct list of cases
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Return case list
-
 \item \code{eventlog}: Return case list
 
 \item \code{activitylog}: Return case list
