@@ -31,13 +31,31 @@ as.grouped.data.frame <- function(data, groups) {
 		dplyr::group_by_at(groups)
 }
 
-apply_grouped <- function(log, fun) {
+apply_grouped_fun <- function(log, fun, ...) {
 	mapping <- mapping(log)
 	log %>%
-		nest() %>%
+		# remove grouping
+		ungroup() %>%
+		# group_by + nest (has option to keep group-vars in nested data)
+		nest_by(across(mapping$groups), .keep = TRUE) %>%
+		# nest_by returns rowwise data.frame, which we don't need
+		ungroup() %>%
+		# make sure data is event log
 		mutate(data = map(data, re_map, mapping)) %>%
-		mutate(data = map(data, fun)) %>%
+		# compute output of function, taking over any arguments
+		mutate(data = map(data, fun, ...)) %>%
+		# remove any columns in the output data that is also present in the group-keys
+		mutate(data = map(data, ~select(.x,-any_of(mapping$groups)))) %>%
+		# unnest
 		unnest(cols = data)
+}
+
+apply_ignore_grouped_fun <- function(log, fun, ...) {
+	mapping <- mapping(log)
+	log %>%
+		ungroup_eventlog() %>%
+		fun(...) %>%
+		group_by(across(mapping$groups))
 }
 
 
@@ -146,7 +164,7 @@ select_ids <- function(.log, ...) {
 
 # Warning: The `eventlog` argument of `func()` is deprecated as of bupaR 0.5.0.
 # Please use the `log` argument instead.
-# WARNING: Works only on experted functions!
+# WARNING: Works only on exported functions!
 lifecycle_warning_eventlog <- function (log, eventlog = deprecated()) {
 
 	cl <- sys.call(-1L)

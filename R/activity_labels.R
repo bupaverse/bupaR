@@ -6,16 +6,9 @@ activity_labels <- function(eventlog) {
 	UseMethod("activity_labels")
 }
 
-#' @describeIn activity_labels Retrieve activity labels from eventlog
+#' @describeIn activity_labels Retrieve activity labels
 #' @export
-activity_labels.eventlog <- function(eventlog) {
-	eventlog %>%
-		ungroup() %>%
-		pull(!!activity_id_(eventlog)) %>%
-		unique()
-}
-#' @export
-activity_labels.activitylog <- function(eventlog) {
+activity_labels.log <- function(eventlog) {
 	eventlog %>%
 		ungroup() %>%
 		pull(!!activity_id_(eventlog)) %>%

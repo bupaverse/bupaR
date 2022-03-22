@@ -2,21 +2,15 @@
 % Please edit documentation in R/activity_id.R
 \name{activity_id}
 \alias{activity_id}
-\alias{activity_id.eventlog}
-\alias{activity_id.eventlog_mapping}
-\alias{activity_id.activitylog}
-\alias{activity_id.activitylog_mapping}
+\alias{activity_id.log}
+\alias{activity_id.log_mapping}
 \title{Activity classifier}
 \usage{
 activity_id(x)
 
-\method{activity_id}{eventlog}(x)
+\method{activity_id}{log}(x)
 
-\method{activity_id}{eventlog_mapping}(x)
-
-\method{activity_id}{activitylog}(x)
-
-\method{activity_id}{activitylog_mapping}(x)
+\method{activity_id}{log_mapping}(x)
 }
 \arguments{
 \item{x}{An \code{eventlog} of \code{eventlog_mapping}}
@@ -26,13 +20,9 @@ Get the activity classifier of an object of class \code{eventlog}.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Retrieve activity identifier from eventlog
+\item \code{log}: Retrieve activity identifier from log
 
-\item \code{eventlog_mapping}: Retrieve activity identifier from eventlog mapping
-
-\item \code{activitylog}: Retrieve activity identifier from activitylog
-
-\item \code{activitylog_mapping}: Retrieve activity identifier from activitylog mapping
+\item \code{log_mapping}: Retrieve activity identifier from  mapping
 }}
 
 \seealso{

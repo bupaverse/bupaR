@@ -2,12 +2,15 @@
 % Please edit documentation in R/act_unite.R
 \name{act_unite}
 \alias{act_unite}
-\alias{act_unite.eventlog}
+\alias{act_unite.log}
+\alias{act_unite.grouped_log}
 \title{Unite activity labels}
 \usage{
 act_unite(eventlog, ...)
 
-\method{act_unite}{eventlog}(eventlog, ...)
+\method{act_unite}{log}(eventlog, ...)
+
+\method{act_unite}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
 \item{eventlog}{An object of class \code{eventlog}.}
@@ -19,7 +22,9 @@ Recode two or different more activity labels two a uniform activity label
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Unite activity labels in event log
+\item \code{log}: Unite activity labels in event log
+
+\item \code{grouped_log}: Unite activity labels of event log
 }}
 
 \seealso{

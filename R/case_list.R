@@ -2,46 +2,34 @@
 #'
 #' @description Construct list of cases
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
+#' @param log Object of class \code{\link{eventlog}}, \code{\link{activitylog}}, or \code{\link{log}}.
 #' @param eventlog Deprecated; please use \code{log} instead.
-#' @param .keep_trace_list \code{\link{logical}} (default \code{FALSE}): If \code{TRUE}, keeps the trace as a \code{list}.
+#' @param .keep_trace_list Logical (default is \code{FALSE}): If \code{TRUE}, keeps the trace as a \code{list}.
 #' If \code{FALSE}, only the concatenated string representation of the trace is kept.
 #'
 #' @importFrom stringi stri_join
 #'
 #' @export
-case_list <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
+case_list <- function(log, eventlog = deprecated(), .keep_trace_list) {
 	UseMethod("case_list")
 }
 
-#' @describeIn case_list Return case list for a \code{\link{log}}.
-#' @export
-case_list.log <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
-
-	cases <- case_list_dt(log, .keep_trace_list)
-
-	cases %>%
-		as.data.frame()
-}
-
-#' @describeIn case_list Return case list for an \code{\link{eventlog}}.
+#' @describeIn case_list Return case list
 #' @export
 case_list.eventlog <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
+	cases <- case_list_dt(log, .keep_trace_list)
 
-	case_list.log(log, .keep_trace_list = .keep_trace_list)
+	cases %>%
+		as_tibble()
 }
-
-#' @describeIn case_list Return case list for an \code{\link{activitylog}}.
+#' @describeIn case_list Return case list
 #' @export
 case_list.activitylog <- function(log, eventlog = deprecated(), .keep_trace_list = FALSE) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
-
-	case_list.log(activitylog_to_eventlog(log), .keep_trace_list = .keep_trace_list)
+	case_list.eventlog(to_eventlog(log), .keep_trace_list = .keep_trace_list)
 }
 
 

@@ -9,57 +9,36 @@
 #'
 #' @export activities
 #'
-activities <- function(log, eventlog) {
+activities <- function(log, eventlog, ...) {
 	UseMethod("activities")
 }
 
 #' @export
 
-activities.eventlog <- function(log, eventlog = deprecated()) {
+activities.eventlog <- function(log, eventlog = deprecated(), ...) {
 
-	if(lifecycle::is_present(eventlog)) {
-		lifecycle::deprecate_warn("0.5.0", "activities(eventlog)", "activities(log)")
-		log <- eventlog
-	}
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
 	log %>%
 		group_by(.data[[activity_id(log)]]) %>%
 		summarize(absolute_frequency = n_distinct(.data[[activity_instance_id(log)]])) %>%
 		arrange(-.data$absolute_frequency) %>%
 		mutate("relative_frequency" = (.data$absolute_frequency)/sum(.data$absolute_frequency))
 }
-
-
+#' @describeIn activities Compute activity frequencies
 #' @export
 
-activities.activitylog <- function(log, eventlog = deprecated()) {
+activities.activitylog <- function(log, eventlog = deprecated(), ...) {
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
-	if(lifecycle::is_present(eventlog)) {
-		lifecycle::deprecate_warn("0.5.0", "activities(eventlog)", "activities(log)")
-		log <- eventlog
-	}
-	log %>%
-		group_by(.data[[activity_id(log)]]) %>%
-		summarize("absolute_frequency" = n()) %>%
-		arrange(.data$absolute_frequency) %>%
-		mutate("relative_frequency" = .data$absolute_frequency/sum(.data$absolute_frequency))
+	activities.eventlog(to_eventlog(log))
 }
-
+#' @describeIn activities Compute activity frequencies
 #' @export
-activities.grouped_eventlog <- function(log, eventlog = deprecated()) {
+activities.grouped_log <- function(log, eventlog = deprecated(), ...) {
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
-	if(lifecycle::is_present(eventlog)) {
-		lifecycle::deprecate_warn("0.5.0", "activities(eventlog)", "activities(log)")
-		log <- eventlog
-	}
-	apply_grouped(log, activities)
-}
-#' @export
-activities.grouped_activitylog <- function(log, eventlog = deprecated()) {
-	if(lifecycle::is_present(eventlog)) {
-		lifecycle::deprecate_warn("0.5.0", "activities(eventlog)", "activities(log)")
-		log <- eventlog
-	}
-	apply_grouped(log, activities)
+	apply_grouped_fun(log, activities)
 }
 
 

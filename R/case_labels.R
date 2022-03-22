@@ -17,7 +17,7 @@ case_labels.log <- function(log, eventlog = deprecated()) {
   log <- lifecycle_warning_eventlog(log, eventlog)
 
   log %>%
-    pull(!!case_id_(log)) %>%
+    pull(.data[[case_id(log)]]) %>%
     unique()
 }
 

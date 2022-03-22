@@ -10,12 +10,19 @@ act_unite <- function(eventlog, ...) {
 }
 #' @describeIn act_unite Unite activity labels in event log
 #' @export
-act_unite.eventlog <- function(eventlog, ...) {
+act_unite.log <- function(eventlog, ...) {
 	eventlog %>%
-		mutate(!!activity_id(eventlog) := forcats::fct_collapse((!!as.symbol(activity_id(eventlog))), ...)) %>%
-		return()
+		mutate(!!activity_id(eventlog) := forcats::fct_collapse((!!as.symbol(activity_id(eventlog))), ...))
 }
 
+#' @describeIn act_unite Unite activity labels of event log
+#' @export
 
+act_unite.grouped_log <- function(log, ..., eventlog = deprecated()) {
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	apply_ignore_grouped_fun(log, act_unite, ...)
+
+}
 
 

@@ -2,9 +2,15 @@
 % Please edit documentation in R/activities.R
 \name{activities}
 \alias{activities}
+\alias{activities.activitylog}
+\alias{activities.grouped_log}
 \title{Activities}
 \usage{
-activities(log, eventlog)
+activities(log, eventlog, ...)
+
+\method{activities}{activitylog}(log, eventlog = deprecated(), ...)
+
+\method{activities}{grouped_log}(log, eventlog = deprecated(), ...)
 }
 \arguments{
 \item{log}{Object of class eventlog or activitylog.}
@@ -14,6 +20,13 @@ activities(log, eventlog)
 \description{
 Returns a \code{tibble}  containing a list of all activity types in the event log, with their absolute and relative frequency
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{activitylog}: Compute activity frequencies
+
+\item \code{grouped_log}: Compute activity frequencies
+}}
+
 \seealso{
 \code{\link{activity_id}},\code{\link{activity_instance_id}}, \code{\link{eventlog}}
 }

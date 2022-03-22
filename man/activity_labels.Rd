@@ -2,12 +2,12 @@
 % Please edit documentation in R/activity_labels.R
 \name{activity_labels}
 \alias{activity_labels}
-\alias{activity_labels.eventlog}
+\alias{activity_labels.log}
 \title{Get vector of activity labels}
 \usage{
 activity_labels(eventlog)
 
-\method{activity_labels}{eventlog}(eventlog)
+\method{activity_labels}{log}(eventlog)
 }
 \arguments{
 \item{eventlog}{Eventlog}
@@ -17,6 +17,6 @@ Retrieve a vector containing all unique activity labels
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Retrieve activity labels from eventlog
+\item \code{log}: Retrieve activity labels
 }}
 
