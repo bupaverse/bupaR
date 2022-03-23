@@ -9,13 +9,13 @@ test_that("test fill on eventlog with default .direction", {
   log <- patients_fill_na %>%
     fill(!!resource_id_(.))
 
-  truth <- patients_fill_na_df %>%
+  df <- patients_fill_na_df %>%
     fill(resource)
 
   expect_s3_class(log, "eventlog")
 
   expect_false(any(is.na(log[[resource_id(log)]])))
-  expect_equal(log[[resource_id(log)]], truth[["resource"]])
+  expect_equal(log[[resource_id(log)]], df[["resource"]])
 })
 
 test_that("test fill on eventlog with .direction = 'downup'", {
@@ -26,13 +26,13 @@ test_that("test fill on eventlog with .direction = 'downup'", {
   log <- patients_fill_na %>%
     fill(!!resource_id_(.), .direction = "downup")
 
-  truth <- patients_fill_na_df %>%
+  df <- patients_fill_na_df %>%
     fill(resource, .direction = "downup")
 
   expect_s3_class(log, "eventlog")
 
   expect_false(any(is.na(log[[resource_id(log)]])))
-  expect_equal(log[[resource_id(log)]], truth[["resource"]])
+  expect_equal(log[[resource_id(log)]], df[["resource"]])
 })
 
 test_that("test fill on grouped_eventlog with default .direction", {
@@ -43,14 +43,14 @@ test_that("test fill on grouped_eventlog with default .direction", {
   log <- patients_fill_na_grouped %>%
     fill(!!resource_id_(.))
 
-  truth <- patients_fill_na_grouped_df %>%
+  df <- patients_fill_na_grouped_df %>%
     fill(resource)
 
   expect_s3_class(log, "grouped_eventlog")
 
   # Expect 10th element (first Samanta of Jane Doe) to be NA.
   expect_true(is.na(log[[resource_id(log)]][10]))
-  expect_equal(log[[resource_id(log)]], truth[["resource"]])
+  expect_equal(log[[resource_id(log)]], df[["resource"]])
   expect_equal(group_vars(log), group_vars(patients_fill_na_grouped))
 })
 
@@ -62,13 +62,13 @@ test_that("test fill on grouped_eventlog with .direction = 'downup'", {
   log <- patients_fill_na_grouped %>%
     fill(!!resource_id_(.), .direction = "downup")
 
-  truth <- patients_fill_na_grouped_df %>%
+  df <- patients_fill_na_grouped_df %>%
     fill(resource, .direction = "downup")
 
   expect_s3_class(log, "grouped_eventlog")
 
   expect_false(any(is.na(log[[resource_id(log)]])))
-  expect_equal(log[[resource_id(log)]], truth[["resource"]])
+  expect_equal(log[[resource_id(log)]], df[["resource"]])
   expect_equal(group_vars(log), group_vars(patients_fill_na_grouped))
 })
 
@@ -83,11 +83,11 @@ test_that("test fill on activitylog with default .direction", {
   log <- patients_act_fill_na %>%
     fill(!!resource_id_(.))
 
-  truth <- patients_act_fill_na_df %>%
+  df <- patients_act_fill_na_df %>%
     fill(resource)
 
   expect_s3_class(log, "activitylog")
 
   expect_false(any(is.na(log[[resource_id(log)]])))
-  expect_equal(log[[resource_id(log)]], truth[["resource"]])
+  expect_equal(log[[resource_id(log)]], df[["resource"]])
 })
