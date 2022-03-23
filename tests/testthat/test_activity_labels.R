@@ -1,4 +1,6 @@
 
+#### eventlog ####
+
 test_that("test activity_labels on eventlog", {
 
   load("./testdata/patients.rda")
@@ -18,3 +20,5 @@ test_that("test activity_labels on grouped_eventlog", {
 
   expect_equal(act, unique(patients_grouped[[activity_id(patients_grouped)]]))
 })
+
+#### activitylog ####

@@ -18,7 +18,7 @@ first_n.eventlog <- function(log, eventlog = deprecated(), n) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	log %>%
-		first_n_raw( timestamp(log), activity_instance_id(log), n) %>%
+		first_n_raw(timestamp(log), activity_instance_id(log), n) %>%
 		re_map(mapping(log))
 }
 
@@ -30,8 +30,6 @@ first_n.grouped_eventlog <- function(log, eventlog = deprecated(), n) {
 
 	.order <- NULL
 
-	groups <- groups(log)
-	mapping <- mapping(log)
 	log %>%
 		arrange(!!timestamp_(log), .order) %>%
 		slice_activities(1:n)
@@ -48,7 +46,20 @@ first_n.activitylog <- function(log, eventlog = deprecated(), n) {
 		#dplyr::arrange(min_timestamp, .order) %>%
 		dplyr::slice_min(order_by = min_timestamp + .order, n = n) %>%
 		select(-min_timestamp) %>%
-		re_map(mapping(.))
+		re_map(mapping(log))
+}
+
+#' @describeIn first_n Select first n activity instances of a \code{\link{grouped_activitylog}}.
+#' @export
+first_n.grouped_activitylog <- function(log, eventlog = deprecated(), n) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	mapping <- mapping(log)
+
+	log %>%
+		first_n.activitylog(n = n) %>%
+		dplyr::group_by_at(mapping$groups)
 }
 
 

@@ -14,13 +14,35 @@ test_that("test first_n on eventlog", {
 
   expect_s3_class(first, "eventlog")
   # 2nd activity contains 3 events, so 4 events in total
-  expect_equal(dim(first), c(4, ncol(patients)))
+  expect_equal(dim(first), c(instances, ncol(patients)))
   expect_equal(colnames(first), colnames(patients))
 
   # `first` should contain first 2 activity instances
   expect_equal(first[[activity_instance_id(first)]], c("1", "2", "2", "2"))
   # Ensure that first 2 activity instances are completely present in `first`
   expect_equal(instances, 4)
+})
+
+test_that("test first_n on grouped_eventlog", {
+
+  load("./testdata/patients_grouped.rda")
+
+  first <- patients_grouped %>%
+    first_n(n = 2)
+
+  instances <- patients_grouped %>%
+    filter(!!activity_instance_id_(.) %in% c("1", "2", "7", "8", "12")) %>%
+    nrow()
+
+  expect_s3_class(first, "grouped_eventlog")
+  # Events: 4 (John Doe) + 3 (Jane Doe) + 1 (George Doe)
+  expect_equal(dim(first), c(instances, ncol(patients_grouped)))
+  expect_equal(colnames(first), colnames(patients_grouped))
+
+  # `first` should contain first 2 activity instances, per group (patient)
+  expect_equal(first[[activity_instance_id(first)]], c("1", "2", "2", "2", "7", "8", "8", "12"))
+  # Ensure that first 2 activity instances per group (patient) are completely present in `first`
+  expect_equal(instances, 8)
 })
 
 
@@ -39,4 +61,21 @@ test_that("test first_n on activitylog", {
 
   # `first` should equal to the first 3 rows of `patients_act`
   expect_equal(first, head(patients_act, n = 3))
+})
+
+test_that("test first_n on grouped_activitylog", {
+
+  load("./testdata/patients_act_grouped.rda")
+
+  first <- patients_act_grouped %>%
+    first_n(n = 3)
+
+  print(first)
+
+  expect_s3_class(first, "grouped_activitylog")
+  # Activities: 3 (John Doe) + 3 (Jane Doe) + 1 (George Doe)
+  expect_equal(dim(first), c(7, ncol(patients_act_grouped)))
+  expect_equal(colnames(first), colnames(patients_act_grouped))
+
+  # TODO: Add tests to ensure the right activities were selected
 })

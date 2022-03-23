@@ -167,11 +167,11 @@ select_ids <- function(.log, ...) {
 # WARNING: Works only on exported functions!
 lifecycle_warning_eventlog <- function (log, eventlog = deprecated()) {
 
-	cl <- sys.call(-1L)
-	func <- get(as.character(cl[[1L]]), mode = "function", envir = sys.frame(-2L))
-	func_name <- match.call(definition = func, call = cl)[[1L]]
-
 	if(lifecycle::is_present(eventlog)) {
+		cl <- sys.call(-1L)
+		func <- get(as.character(cl[[1L]]), mode = "function", envir = sys.frame(-2L))
+		func_name <- match.call(definition = func, call = cl)[[1L]]
+
 		lifecycle::deprecate_warn("0.5.0", paste0(func_name, "(eventlog)"), paste0(func_name, "(log)"))
 		return(eventlog)
 	}

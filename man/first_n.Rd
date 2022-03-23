@@ -5,6 +5,7 @@
 \alias{first_n.eventlog}
 \alias{first_n.grouped_eventlog}
 \alias{first_n.activitylog}
+\alias{first_n.grouped_activitylog}
 \title{first_n}
 \usage{
 first_n(log, eventlog = deprecated(), n)
@@ -14,6 +15,8 @@ first_n(log, eventlog = deprecated(), n)
 \method{first_n}{grouped_eventlog}(log, eventlog = deprecated(), n)
 
 \method{first_n}{activitylog}(log, eventlog = deprecated(), n)
+
+\method{first_n}{grouped_activitylog}(log, eventlog = deprecated(), n)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
@@ -32,5 +35,7 @@ Select first n activity instances.
 \item \code{grouped_eventlog}: Select first n activity instances of a \code{\link{grouped_eventlog}}.
 
 \item \code{activitylog}: Select first n activity instances of an \code{\link{activitylog}}.
+
+\item \code{grouped_activitylog}: Select first n activity instances of a \code{\link{grouped_activitylog}}.
 }}
 
