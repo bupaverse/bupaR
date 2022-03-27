@@ -42,6 +42,11 @@ add_end_activity.eventlog <- function(eventlog, label = "End") {
 #' @export
 #'
 add_end_activity.activitylog <- function(eventlog, label = "End") {
+	key <- NULL
+	value <- NULL
+	complete <- NULL
+
+
 	eventlog %>%
 		select(!!case_id_(eventlog), lifecycle_ids(eventlog)) %>%
 		gather(key, value, -1) %>%
@@ -96,6 +101,9 @@ add_start_activity.eventlog <- function(eventlog, label = "Start") {
 #' @export
 #'
 add_start_activity.activitylog <- function(eventlog, label = "Start") {
+	key <- NULL
+	value <- NULL
+	complete <- NULL
 	eventlog %>%
 		select(!!case_id_(eventlog), lifecycle_ids(eventlog)) %>%
 		gather(key, value, -1) %>%

@@ -35,6 +35,8 @@ case_list.activitylog <- function(log, eventlog = deprecated(), .keep_trace_list
 
 case_list_dt <- function (log, .keep_trace_list = FALSE) {
 
+	trace_id <- NULL
+
 	dt <- data.table::data.table(log)
 	by_case <- case_id(log)
 

@@ -47,6 +47,11 @@ durations.activitylog <- function(log, eventlog = deprecated(), units = c("auto"
 
 durations_dt <- function(log, units = "auto") {
 
+	duration <- NULL
+	end <- NULL
+	start <- NULL
+
+
 	dt <- data.table::data.table(log)
 	by_case <- case_id(log)
 

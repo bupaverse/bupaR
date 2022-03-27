@@ -52,6 +52,10 @@ trace_list.eventlog <- function(eventlog){
 #' @export
 #'
 trace_list.activitylog <- function(eventlog) {
+	trace_id <- NULL
+	absolute_frequency <- NULL
+	relative_frequency <- NULL
+
 	if(nrow(eventlog) == 0) {
 		return(data.frame(trace = numeric(), absolute_frequency = numeric(), relative_frequency = numeric()))
 	}

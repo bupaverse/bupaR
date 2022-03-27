@@ -15,6 +15,8 @@ first_n <- function(log, eventlog = deprecated(), n) {
 #' @export
 first_n.eventlog <- function(log, eventlog = deprecated(), n) {
 
+
+
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	log %>%
@@ -40,6 +42,8 @@ first_n.grouped_eventlog <- function(log, eventlog = deprecated(), n) {
 #' @describeIn first_n Select first n activity instances of an \code{\link{activitylog}}.
 #' @export
 first_n.activitylog <- function(log, eventlog = deprecated(), n) {
+	min_timestamp <- NULL
+	.order = NULL
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
 

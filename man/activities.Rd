@@ -16,6 +16,8 @@ activities(log, eventlog, ...)
 \item{log}{Object of class eventlog or activitylog.}
 
 \item{eventlog}{Deprecated; please use log instead.}
+
+\item{...}{Unused.}
 }
 \description{
 Returns a \code{tibble}  containing a list of all activity types in the event log, with their absolute and relative frequency
