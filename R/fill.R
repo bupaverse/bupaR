@@ -5,9 +5,9 @@
 #' @importFrom tidyr fill
 #' @export
 tidyr::fill
-#' @describeIn fill Fill eventlog
+
 #' @export
-fill.eventlog <- function(data, ...) {
+fill.log <- function(data, ...) {
 
   mapping <- mapping(data)
 
@@ -17,9 +17,7 @@ fill.eventlog <- function(data, ...) {
     re_map(mapping)
 }
 
-#' @describeIn fill Fill grouped eventlog
 #' @export
-
 fill.grouped_eventlog <- function(data, ...) {
 
   mapping <- mapping(data)

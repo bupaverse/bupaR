@@ -7,12 +7,12 @@ test_that("test arrange on eventlog", {
   log <- patients %>%
     arrange(!!activity_id_(.))
 
-  truth <- patients_df %>%
+  df <- patients_df %>%
     arrange(activity)
 
   expect_s3_class(log, "eventlog")
 
-  expect_equal(log[[activity_id(log)]], truth[["activity"]])
+  expect_equal(log[[activity_id(log)]], df[["activity"]])
 })
 
 test_that("test arrange on grouped_eventlog", {
@@ -23,10 +23,10 @@ test_that("test arrange on grouped_eventlog", {
   log <- patients_grouped %>%
     arrange(!!activity_id_(.))
 
-  truth <- patients_grouped_df %>%
+  df <- patients_grouped_df %>%
     arrange(activity)
 
   expect_s3_class(log, "grouped_eventlog")
 
-  expect_equal(log[[activity_id(log)]], truth[["activity"]])
+  expect_equal(log[[activity_id(log)]], df[["activity"]])
 })

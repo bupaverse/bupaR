@@ -18,7 +18,7 @@ test_that("test case_labels on eventlog with deprecated eventlog argument", {
   load("./testdata/patients.rda")
 
   expect_warning(labels <- case_labels(eventlog = patients),
-                 "(eventlog)|(case_labels)|(deprecated)|(bupaR 0.5.0.)|(log)")
+                 "*eventlog.*case_labels.*deprecated.*bupaR 0.5.0.*log.")
 
   expect_equal(labels, unique(patients[[case_id(patients)]]))
 })

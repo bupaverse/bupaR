@@ -3,26 +3,12 @@
 \docType{import}
 \name{fill}
 \alias{fill}
-\alias{fill.eventlog}
-\alias{fill.grouped_eventlog}
 \title{Fill event log}
-\usage{
-\method{fill}{eventlog}(data, ...)
-
-\method{fill}{grouped_eventlog}(data, ...)
-}
 \arguments{
 \item{data}{Eventlog}
 
 \item{...}{options for fill}
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{eventlog}: Fill eventlog
-
-\item \code{grouped_eventlog}: Fill grouped eventlog
-}}
-
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

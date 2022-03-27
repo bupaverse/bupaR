@@ -3,7 +3,7 @@
 #' @description Provides a fine-grained summary of an event log with characteristics for each case: the number of events,
 #' the number of activity types, the timespan, the trace, the duration, and the first and last event type.
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
+#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
 #' @param eventlog Deprecated; please use \code{log} instead.
 #' @param ... Other (optional) arguments passed on to methods. See \code{\link{durations}} for more options.
 #'
@@ -14,14 +14,14 @@ cases <- function(log, eventlog = deprecated(), ...) {
 	UseMethod("cases")
 }
 
-#' @describeIn cases Constructy list of cases in a log
+#' @describeIn cases Construct list of cases in a \code{\link{log}}.
 #' @export
 cases.log <- function(log, eventlog = deprecated(), ...) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	traces_per_case <- case_list_dt(log, .keep_trace_list = TRUE)
-	durations <- data.table::data.table(durations(log, ...))
+	durations <- durations_dt(log, ...)
 	#durations <- data.table::data.table(durations(log))
 
 	dt <- data.table::data.table(log) # Unfortunately, we can't use setDT (which is much faster) as this transforms the log into a data.table by reference.
@@ -53,7 +53,7 @@ cases.log <- function(log, eventlog = deprecated(), ...) {
 		as.data.frame()
 }
 
-#' @describeIn cases Constructy list of cases in an eventlog
+#' @describeIn cases Construct list of cases in an \code{\link{eventlog}}.
 #' @export
 cases.eventlog <- function(log, eventlog = deprecated(), ...) {
 
@@ -62,7 +62,7 @@ cases.eventlog <- function(log, eventlog = deprecated(), ...) {
 	cases.log(log)
 }
 
-#' @describeIn cases Constructy list of cases in an activitylog
+#' @describeIn cases Construct list of cases in a \code{\link{activitylog}}.
 #' @export
 cases.activitylog <- function(log, eventlog = deprecated(), ...) {
 

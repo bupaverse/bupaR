@@ -14,7 +14,7 @@ patients <- patients_df %>%
 save(patients_df, file = "tests/testthat/testdata/patients_df.rda", compress = "gzip")
 save(patients, file = "tests/testthat/testdata/patients.rda", compress = "gzip")
 
-patients_grouped_df <- patients_df%>%
+patients_grouped_df <- patients_df %>%
   group_by(patient)
 
 patients_grouped <- patients %>%
