@@ -42,10 +42,10 @@ first_n.activitylog <- function(log, eventlog = deprecated(), n) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	log %>%
-		mutate(min_timestamp = rlang::invoke(pmin, across(lifecycle_ids(.)), na.rm = TRUE)) %>%		# rlang::invoke is deprecated, should be replaced by rlang::exec
-		#dplyr::arrange(min_timestamp, .order) %>%
-		dplyr::slice_min(order_by = min_timestamp + .order, n = n) %>%
-		select(-min_timestamp) %>%
+		mutate("min_timestamp" := rlang::invoke(pmin, dplyr::across(lifecycle_ids(.)), na.rm = TRUE)) %>%		# rlang::invoke is deprecated, should be replaced by rlang::exec
+		dplyr::slice_min(order_by = .data[["min_timestamp"]] + .data[[".order"]], n = n) %>%
+		dplyr::arrange(.data[["min_timestamp"]], .data[[".order"]]) %>%
+		select(-.data[["min_timestamp"]]) %>%
 		re_map(mapping(log))
 }
 

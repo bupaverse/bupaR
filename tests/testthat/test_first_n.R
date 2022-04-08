@@ -70,12 +70,16 @@ test_that("test first_n on grouped_activitylog", {
   first <- patients_act_grouped %>%
     first_n(n = 3)
 
-  print(first)
+  # complete is always present and last event per activity instance, so this works too
+  ordered <- patients_act_grouped %>%
+    slice_min(order_by = .data[["complete"]], n = 3) %>%
+    arrange(.data[["complete"]])
 
   expect_s3_class(first, "grouped_activitylog")
   # Activities: 3 (John Doe) + 3 (Jane Doe) + 1 (George Doe)
   expect_equal(dim(first), c(7, ncol(patients_act_grouped)))
   expect_equal(colnames(first), colnames(patients_act_grouped))
 
-  # TODO: Add tests to ensure the right activities were selected
+  # `first` should equal to the first 3 rows per group of `patients_act_grouped`, except for the 7th column (.order)
+  expect_equal(tibble::as.tibble(first[, -7]), tibble::as.tibble(ordered[, -7]))
 })
