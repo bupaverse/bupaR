@@ -20,3 +20,18 @@ ungroup_eventlog.eventlog <- function(eventlog) {
 		eventlog
 	}
 }
+
+#' @describeIn ungroup_eventlog Remove groups from \code{\link{log}}.
+#' @export
+ungroup_eventlog.grouped_log <- function(log) {
+
+	if (is.grouped_log(log)) {
+		ungrouped <- log %>%
+			as.data.frame() %>%
+			re_map(mapping(log))
+
+		return(ungrouped)
+	}
+
+	return(log)
+}

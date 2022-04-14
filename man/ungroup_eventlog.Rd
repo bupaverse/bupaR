@@ -3,11 +3,14 @@
 \name{ungroup_eventlog}
 \alias{ungroup_eventlog}
 \alias{ungroup_eventlog.eventlog}
+\alias{ungroup_eventlog.grouped_log}
 \title{Ungroup event log}
 \usage{
 ungroup_eventlog(eventlog)
 
 \method{ungroup_eventlog}{eventlog}(eventlog)
+
+\method{ungroup_eventlog}{grouped_log}(log)
 }
 \arguments{
 \item{eventlog}{Eventlog}
@@ -18,5 +21,7 @@ Remove groups from event log
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Remove groups from event log
+
+\item \code{grouped_log}: Remove groups from \code{\link{log}}.
 }}
 

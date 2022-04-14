@@ -32,6 +32,7 @@
 #' @importFrom utils txtProgressBar
 #' @importFrom utils data
 #' @importFrom lifecycle deprecated
+#' @importFrom rlang .data
 ## usethis namespace: end
 globalVariables(c("."))
 "_PACKAGE"
