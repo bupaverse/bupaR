@@ -9,7 +9,7 @@ as.grouped.data.frame <- function(data, groups) {
 		dplyr::group_by_at(groups)
 }
 
-apply_grouped_fun <- function(log, fun, ..., .ignore_groups = FALSE) {
+apply_grouped_fun <- function(log, fun, ..., .ignore_groups = FALSE, .keep_groups = FALSE) {
 	mapping <- mapping(log)
 
 	if(!.ignore_groups) {
@@ -27,11 +27,20 @@ apply_grouped_fun <- function(log, fun, ..., .ignore_groups = FALSE) {
 			# remove any columns in the output data that is also present in the group-keys
 			mutate(data = map(data, ~select(.x,-any_of(mapping$groups)))) %>%
 			# unnest
-			unnest(cols = data)
+			unnest(cols = data) -> log
 	} else {
 		log %>%
 			ungroup_eventlog() %>%
-			fun(...) %>%
-			group_by(across(mapping$groups))
+			fun(...) -> log
+
 	}
+
+	if(.keep_groups) {
+		log %>%
+			group_by(across(mapping$groups))
+	} else {
+		log
+	}
+
+
 }

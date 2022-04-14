@@ -7,7 +7,7 @@
 \alias{act_collapse.grouped_log}
 \title{Collapse activity labels of a sub process into a single activity}
 \usage{
-act_collapse(log, ..., method)
+act_collapse(log, ..., method, eventlog = deprecated())
 
 \method{act_collapse}{eventlog}(
   log,

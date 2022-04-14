@@ -11,7 +11,7 @@
 #' @family Activity processing functions
 #' @export
 #'
-act_collapse <- function(log, ..., method) {
+act_collapse <- function(log, ..., method, eventlog = deprecated()) {
 	UseMethod("act_collapse")
 }
 
