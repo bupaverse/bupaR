@@ -10,32 +10,21 @@ slice_activities <- function(.data, ...) {
 #' @export
 
 slice_activities.eventlog <- function(.data, ...) {
-  mapping <- mapping(.data)
-  .data %>%
-    slice_activities_raw(activity_instance_id(.data), ...) %>%
-    re_map(mapping)
+	.data %>%
+		filter(.data[[activity_instance_id(.data)]] %in% unique(.data[[activity_instance_id(.data)]])[...] )
+}
+
+#' @describeIn slice Take a slice of activity instances from activity log
+#' @export
+
+slice_activities.activitylog <- function(.data, ...) {
+	.data[...,]
 }
 
 #' @describeIn slice Take a slice of activity instances from grouped event log
 #' @export
-slice_activities.grouped_eventlog <- function(.data, ...) {
-  groups <- groups(.data)
-  mapping <- mapping(.data)
-  aid <- activity_instance_id(.data)
-  .data %>%
-    nest() %>%
-    mutate(data = map(data, slice_activities_raw, aid, ...)) %>%
-    unnest() %>%
-    re_map(mapping) %>%
-    group_by_at(vars(one_of(paste(groups))))
+slice_activities.grouped_log <- function(.data, ...) {
+	.data %>%
+		apply_grouped_fun(slice_activities, ..., .keep_groups = TRUE, .returns_log = TRUE)
 }
 
-
-slice_activities_raw <- function(.data, .activity_instance_id, ...) {
-  .data %>%
-    pull(!!sym(.activity_instance_id)) %>%
-    unique() %>%
-    .[...] -> selection
-  .data %>%
-    filter(!!sym(.activity_instance_id) %in% selection)
-}

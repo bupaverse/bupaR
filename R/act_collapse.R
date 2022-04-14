@@ -50,7 +50,7 @@ act_collapse.activitylog <- function(log, ..., method = c("entry_points","consec
 
 act_collapse.grouped_log <- function(log, ..., method = c("entry_points","consecutive"), eventlog = deprecated()) {
 
-	apply_grouped_fun(log, act_collapse, ..., method, .ignore_groups = TRUE)
+	apply_grouped_fun(log, act_collapse, ..., method, .ignore_groups = TRUE, .keep_groups = TRUE)
 }
 
 

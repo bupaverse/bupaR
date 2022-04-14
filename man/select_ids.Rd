@@ -22,3 +22,11 @@ Select identifiers from log
 \item \code{log}: Select identifiers from log
 }}
 
+\examples{
+
+library(eventdataR)
+
+patients \%>\% select_ids(activity_id, case_id)
+
+
+}

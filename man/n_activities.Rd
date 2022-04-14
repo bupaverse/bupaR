@@ -2,28 +2,29 @@
 % Please edit documentation in R/n_activities.R
 \name{n_activities}
 \alias{n_activities}
-\alias{n_activities.eventlog}
-\alias{n_activities.grouped_eventlog}
+\alias{n_activities.log}
+\alias{n_activities.grouped_log}
 \title{n_activities}
 \usage{
-n_activities(eventlog)
+n_activities(log, eventlog = deprecated())
 
-\method{n_activities}{eventlog}(eventlog)
+\method{n_activities}{log}(log, eventlog = deprecated())
 
-\method{n_activities}{grouped_eventlog}(eventlog)
+\method{n_activities}{grouped_log}(log, eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{The event log to be used. An object of class
-\code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Returns the number of activities in an event log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Count the number of activities in an event log
+\item \code{log}: Count the number of activities in a log
 
-\item \code{grouped_eventlog}: Count the number of activities for a grouped event log
+\item \code{grouped_log}: Count the number of activities for a grouped  log
 }}
 
 \seealso{

@@ -3,21 +3,24 @@
 \docType{import}
 \name{slice}
 \alias{slice}
-\alias{slice.eventlog}
-\alias{slice.grouped_eventlog}
+\alias{slice.log}
+\alias{slice.grouped_log}
 \alias{slice_activities.eventlog}
-\alias{slice_activities.grouped_eventlog}
+\alias{slice_activities.activitylog}
+\alias{slice_activities.grouped_log}
 \alias{slice_events.eventlog}
 \alias{slice_events.grouped_eventlog}
 \title{Slice function for event log}
 \usage{
-\method{slice}{eventlog}(.data, ...)
+\method{slice}{log}(.data, ...)
 
-\method{slice}{grouped_eventlog}(.data, ...)
+\method{slice}{grouped_log}(.data, ...)
 
 \method{slice_activities}{eventlog}(.data, ...)
 
-\method{slice_activities}{grouped_eventlog}(.data, ...)
+\method{slice_activities}{activitylog}(.data, ...)
+
+\method{slice_activities}{grouped_log}(.data, ...)
 
 \method{slice_events}{eventlog}(.data, ...)
 
@@ -30,13 +33,15 @@
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Slice n cases of an eventlog
+\item \code{log}: Slice n cases of a log
 
-\item \code{grouped_eventlog}: Slice grouped eventlog: take slice of cases from each group.
+\item \code{grouped_log}: Slice grouped log: take slice of cases from each group.
 
 \item \code{eventlog}: Take a slice of activity instances from event log
 
-\item \code{grouped_eventlog}: Take a slice of activity instances from grouped event log
+\item \code{activitylog}: Take a slice of activity instances from activity log
+
+\item \code{grouped_log}: Take a slice of activity instances from grouped event log
 
 \item \code{eventlog}: Take a slice of events from event log
 

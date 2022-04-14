@@ -3,27 +3,24 @@
 \name{last_n}
 \alias{last_n}
 \alias{last_n.eventlog}
-\alias{last_n.grouped_eventlog}
 \alias{last_n.activitylog}
-\alias{last_n.grouped_activitylog}
+\alias{last_n.grouped_log}
 \title{last_n}
 \usage{
-last_n(log, eventlog = deprecated(), n)
+last_n(log, n, eventlog = deprecated())
 
-\method{last_n}{eventlog}(log, eventlog = deprecated(), n)
+\method{last_n}{eventlog}(log, n, eventlog = deprecated())
 
-\method{last_n}{grouped_eventlog}(log, eventlog = deprecated(), n)
+\method{last_n}{activitylog}(log, n, eventlog = deprecated())
 
-\method{last_n}{activitylog}(log, eventlog = deprecated(), n)
-
-\method{last_n}{grouped_activitylog}(log, eventlog = deprecated(), n)
+\method{last_n}{grouped_log}(log, n, eventlog = deprecated())
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
-
 \item{n}{\code{\link{integer}}: The number of activity instances to select.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Select last n activity instances
@@ -32,10 +29,8 @@ Select last n activity instances
 \itemize{
 \item \code{eventlog}: Select last n activity instances of an \code{\link{eventlog}}.
 
-\item \code{grouped_eventlog}: Select last n activity instances of a \code{\link{grouped_eventlog}}.
-
 \item \code{activitylog}: Select last n activity instances of an \code{\link{activitylog}}.
 
-\item \code{grouped_activitylog}: Select last n activity instances of a \code{\link{grouped_activitylog}}.
+\item \code{grouped_log}: Select last n activity instances of a \code{\link{grouped_log}}.
 }}
 

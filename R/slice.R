@@ -6,31 +6,20 @@
 #' @export
 dplyr::slice
 
-#' @describeIn slice Slice n cases of an eventlog
+#' @describeIn slice Slice n cases of a log
 #' @export
 
-slice.eventlog <- function(.data, ...) {
+slice.log <- function(.data, ...) {
 
 	.data %>%
-		pull(!!as.symbol(case_id(.data))) %>%
-		unique() %>%
-		.[...] -> selection
-	.data %>%
-		filter((!!as.symbol(case_id(.data))) %in% selection)
+		filter(.data[[case_id(.data)]] %in% unique(.data[[case_id(.data)]])[...] )
 }
 
-#' @describeIn slice Slice grouped eventlog: take slice of cases from each group.
+
+#' @describeIn slice Slice grouped log: take slice of cases from each group.
 #' @export
 
-slice.grouped_eventlog <- function(.data, ...) {
-
-	mapping <- mapping(.data)
-
+slice.grouped_log <- function(.data, ...) {
 	.data %>%
-		nest() %>%
-		mutate(data = map(data, re_map, mapping)) %>%
-		mutate(data = map(data, slice, ...)) %>%
-		unnest() %>%
-		re_map(mapping) %>%
-		return()
+		apply_grouped_fun(slice, ..., .keep_groups = TRUE, .returns_log = TRUE)
 }

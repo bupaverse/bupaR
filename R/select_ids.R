@@ -3,10 +3,15 @@
 #'
 #' @param .log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
 #' @param ... One or more of the following: activity_id, case_id, activity_instance_id, resource_id, lifecycle_id
+#' @examples
+#'
+#' library(eventdataR)
+#'
+#' patients %>% select_ids(activity_id, case_id)
+#'
 #'
 #' @export
 #'
-#' @examples
 select_ids <- function(.log, ...) {
 	UseMethod("select_ids")
 }

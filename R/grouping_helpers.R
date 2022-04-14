@@ -9,38 +9,54 @@ as.grouped.data.frame <- function(data, groups) {
 		dplyr::group_by_at(groups)
 }
 
-apply_grouped_fun <- function(log, fun, ..., .ignore_groups = FALSE, .keep_groups = FALSE) {
+apply_grouped_fun <- function(log, fun, ..., .ignore_groups = FALSE, .keep_groups = FALSE, .returns_log = FALSE) {
+
 	mapping <- mapping(log)
 
 	if(!.ignore_groups) {
-		log %>%
-			# remove grouping
-			ungroup() %>%
-			# group_by + nest (has option to keep group-vars in nested data)
-			nest_by(across(mapping$groups), .keep = TRUE) %>%
-			# nest_by returns rowwise data.frame, which we don't need
-			ungroup() %>%
-			# make sure data is event log
-			mutate(data = map(data, re_map, mapping)) %>%
-			# compute output of function, taking over any arguments
-			mutate(data = map(data, fun, ...)) %>%
-			# remove any columns in the output data that is also present in the group-keys
-			mutate(data = map(data, ~select(.x,-any_of(mapping$groups)))) %>%
-			# unnest
-			unnest(cols = data) -> log
+
+		if(!.returns_log) { #fun does not return eventlog
+			log %>%
+				# remove grouping
+				ungroup() %>%
+				# group_by + nest (has option to keep group-vars in nested data)
+				nest_by(across(mapping$groups), .keep = TRUE) %>%
+				# nest_by returns rowwise data.frame, which we don't need
+				ungroup() %>%
+				# make sure data is event log
+				mutate(data = map(data, re_map, mapping)) %>%
+				# compute output of function, taking over any arguments
+				mutate(data = map(data, fun, ...)) %>%
+				# remove any columns in the output data that is also present in the group-keys
+				mutate(data = map(data, ~select(.x,-any_of(mapping$groups)))) %>%
+				# unnest
+				unnest(cols = data) -> log
+		} else { #fun returns eventlog
+			log %>%
+				# remove grouping
+				ungroup() %>%
+				# group_by + nest (has option to keep group-vars in nested data)
+				nest_by(across(mapping$groups), .keep = TRUE) %>%
+				# nest_by returns rowwise data.frame, which we don't need
+				ungroup() %>%
+				# make sure data is event log
+				mutate(data = map(data, re_map, mapping)) %>%
+				# compute output of function, taking over any arguments
+				mutate(data = map(data, fun, ...)) %>%
+				# remove any columns in the output data that is also present in the group-keys
+				mutate(data = map(data, ~select(.x,-any_of(mapping$groups), force_df = TRUE))) %>%
+				# unnest
+				unnest(cols = data) %>%
+				re_map(mapping) -> log
+		}
 	} else {
 		log %>%
 			ungroup_eventlog() %>%
 			fun(...) -> log
-
 	}
-
 	if(.keep_groups) {
 		log %>%
-			group_by(across(mapping$groups))
-	} else {
-		log
+			group_by(across(mapping$groups)) -> log
 	}
-
-
+	log
 }
