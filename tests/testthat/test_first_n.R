@@ -81,5 +81,5 @@ test_that("test first_n on grouped_activitylog", {
   expect_equal(colnames(first), colnames(patients_act_grouped))
 
   # `first` should equal to the first 3 rows per group of `patients_act_grouped`, except for the 7th column (.order)
-  expect_equal(tibble::as.tibble(first[, -7]), tibble::as.tibble(ordered[, -7]))
+  expect_equal(tibble::as_tibble(first[, -7]), tibble::as_tibble(ordered[, -7]))
 })
