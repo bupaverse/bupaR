@@ -41,11 +41,16 @@ durations.activitylog <- function(log, eventlog = deprecated(), units = c("auto"
 	log <- lifecycle_warning_eventlog(log, eventlog)
 	units <- rlang::arg_match(units)
 
-	durations.log(activitylog_to_eventlog(log), units = units)
+	durations.log(to_eventlog(log), units = units)
 }
 
 
 durations_dt <- function(log, units = "auto") {
+
+	duration <- NULL
+	end <- NULL
+	start <- NULL
+
 
 	dt <- data.table::data.table(log)
 	by_case <- case_id(log)

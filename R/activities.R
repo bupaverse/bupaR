@@ -4,6 +4,7 @@
 #'
 #' @param log Object of class eventlog or activitylog.
 #' @param eventlog Deprecated; please use log instead.
+#' @param ... Unused.
 #'
 #' @seealso \code{\link{activity_id}},\code{\link{activity_instance_id}}, \code{\link{eventlog}}
 #'

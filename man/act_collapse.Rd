@@ -7,7 +7,7 @@
 \alias{act_collapse.grouped_log}
 \title{Collapse activity labels of a sub process into a single activity}
 \usage{
-act_collapse(eventlog, ..., method)
+act_collapse(log, ..., method, eventlog = deprecated())
 
 \method{act_collapse}{eventlog}(
   log,
@@ -31,11 +31,13 @@ act_collapse(eventlog, ..., method)
 )
 }
 \arguments{
-\item{eventlog}{An \code{eventlog} object}
+\item{log}{An \code{eventlog} object}
 
 \item{...}{A series of named character vectors. The activity labels in each vector will be collapsed into one activity with the name of the vector.}
 
 \item{method}{Defines how activities are collapsed: "entry_points" heuristically learns which of the specified activities occur at the start and end of the subprocess and collapses accordingly. "consecutive" collapses consecutive sequences of the activities.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Collapse activity labels of a sub process into a single activity

@@ -1,18 +1,20 @@
 #' @title Unite activity labels
 #' @description Recode two or different more activity labels two a uniform activity label
-#' @param eventlog An object of class \code{eventlog}.
+#' @param log An object of class \code{eventlog}.
+#' @param eventlog Deprecated; please use \code{log} instead.
 #' @param ... A series of named character vectors. The activity labels in each vector will be replaced with the name.
 #' @seealso \code{\link{eventlog}}, \code{\link{activity_id}}, \code{\link{act_recode}}
 #' @family Activity processing functions
 #' @export act_unite
-act_unite <- function(eventlog, ...) {
+act_unite <- function(log, ...) {
 	UseMethod("act_unite")
 }
 #' @describeIn act_unite Unite activity labels in event log
 #' @export
-act_unite.log <- function(eventlog, ...) {
-	eventlog %>%
-		mutate(!!activity_id(eventlog) := forcats::fct_collapse((!!as.symbol(activity_id(eventlog))), ...))
+act_unite.log <- function(log, ..., eventlog = deprecated()) {
+	log <- lifecycle_warning_eventlog(log, eventlog)
+	log %>%
+		mutate(!!activity_id(log) := forcats::fct_collapse((!!as.symbol(activity_id(log))), ...))
 }
 
 #' @describeIn act_unite Unite activity labels of event log
@@ -21,7 +23,7 @@ act_unite.log <- function(eventlog, ...) {
 act_unite.grouped_log <- function(log, ..., eventlog = deprecated()) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
-	apply_ignore_grouped_fun(log, act_unite, ...)
+	apply_grouped_fun(log, act_unite, ..., .ignore_groups = TRUE)
 
 }
 

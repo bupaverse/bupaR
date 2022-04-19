@@ -31,6 +31,22 @@ group_by.activitylog <- function(.data, ..., .add = F) {
 
 }
 
+#' @export
+
+group_by.grouped_log <- function(.data, ..., .add = F) {
+	mapping <- mapping(.data)
+	groups <- groups(.data)
+	.data <- as.data.frame(.data)
+	if(.add) {
+		x <- group_by(.data, across(one_of(paste(groups)))) %>% group_by(..., .add = T)
+	} else {
+		x <- group_by(.data, ...)
+	}
+	class(x) <- c("grouped_activitylog","grouped_log","activitylog", "log", class(x))
+
+	return(x)
+}
+
 
 
 

@@ -6,14 +6,14 @@
 \alias{ungroup_eventlog.grouped_log}
 \title{Ungroup event log}
 \usage{
-ungroup_eventlog(eventlog)
+ungroup_eventlog(log)
 
-\method{ungroup_eventlog}{eventlog}(eventlog)
+\method{ungroup_eventlog}{eventlog}(log)
 
 \method{ungroup_eventlog}{grouped_log}(log)
 }
 \arguments{
-\item{eventlog}{Eventlog}
+\item{log}{Eventlog}
 }
 \description{
 Remove groups from event log

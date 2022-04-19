@@ -20,84 +20,6 @@ is_grouped_eventlog <- function(eventlog) {
 	"grouped_eventlog" %in% class(eventlog)
 }
 
-#' as.grouped.data.frame
-#'
-#' @param data Data
-#' @param groups Names of grouping variables as character vector (e.g. by using \code{dplyr::group_vars}
-as.grouped.data.frame <- function(data, groups) {
-
-	data %>%
-		as.data.frame() %>%
-		dplyr::group_by_at(groups)
-}
-
-apply_grouped_fun <- function(log, fun, ...) {
-	mapping <- mapping(log)
-	log %>%
-		# remove grouping
-		ungroup() %>%
-		# group_by + nest (has option to keep group-vars in nested data)
-		nest_by(across(mapping$groups), .keep = TRUE) %>%
-		# nest_by returns rowwise data.frame, which we don't need
-		ungroup() %>%
-		# make sure data is event log
-		mutate(data = map(data, re_map, mapping)) %>%
-		# compute output of function, taking over any arguments
-		mutate(data = map(data, fun, ...)) %>%
-		# remove any columns in the output data that is also present in the group-keys
-		mutate(data = map(data, ~select(.x,-any_of(mapping$groups)))) %>%
-		# unnest
-		unnest(cols = data)
-}
-
-apply_ignore_grouped_fun <- function(log, fun, ...) {
-	mapping <- mapping(log)
-	log %>%
-		ungroup_eventlog() %>%
-		fun(...) %>%
-		group_by(across(mapping$groups))
-}
-
-
-#' @importFrom lubridate ymd_hms
-#' @export
-lubridate::ymd_hms
-#' @importFrom lubridate ymd_hm
-#' @export
-lubridate::ymd_hm
-#' @importFrom lubridate ymd_h
-#' @export
-lubridate::ymd_h
-#' @importFrom lubridate ymd
-#' @export
-lubridate::ymd
-#' @importFrom lubridate dmy_hms
-#' @export
-lubridate::dmy_hms
-#' @importFrom lubridate dmy_hm
-#' @export
-lubridate::dmy_hm
-#' @importFrom lubridate dmy_h
-#' @export
-lubridate::dmy_h
-#' @importFrom lubridate dmy
-#' @export
-lubridate::dmy
-#' @importFrom lubridate mdy_hms
-#' @export
-lubridate::mdy_hms
-#' @importFrom lubridate mdy_hm
-#' @export
-lubridate::mdy_hm
-#' @importFrom lubridate mdy_h
-#' @export
-lubridate::mdy_h
-#' @importFrom lubridate mdy
-#' @export
-lubridate::mdy
-
-
-
 .start_activities_eventlog <- function(eventlog) {
 	aid <- activity_id(eventlog)
 	eventlog %>%
@@ -116,8 +38,6 @@ lubridate::mdy
 		distinct(.data[[aid]])
 
 }
-
-
 
 .start_activities_activitylog <- function(activitylog) {
 
@@ -140,26 +60,6 @@ lubridate::mdy
 		distinct(.data[[aid]])
 }
 
-group_by_ids <- function(.log, ...) {
-
-	ids <- list(...)
-
-	for(i in 1:length(ids)) {
-		ids[[i]] <- ids[[i]](.log)
-	}
-	group_by(.log, across(paste(ids)))
-}
-
-
-select_ids <- function(.log, ...) {
-
-	ids <- list(...)
-
-	for(i in 1:length(ids)) {
-		ids[[i]] <- ids[[i]](.log)
-	}
-	select(.log, all_of(unlist(ids)), force_df = TRUE)
-}
 
 
 # Warning: The `eventlog` argument of `func()` is deprecated as of bupaR 0.5.0.
