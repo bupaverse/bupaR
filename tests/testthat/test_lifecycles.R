@@ -61,14 +61,12 @@ test_that("test lifecycles on grouped_activitylog", {
   lifecycles <- patients_act_grouped %>%
     lifecycles()
 
-  print(lifecycles)
-
   expect_s3_class(lifecycles, c("grouped_df", "tbl_df"))
   # 7 life cycles: 1 (George Doe) + 3 (Jane Doe) + 3 (John Doe)
   expect_equal(dim(lifecycles), c(7, 4))
   expect_equal(colnames(lifecycles), c("patient", "lifecycle_id", "absolute_frequency", "relative_frequency"))
 
   # Sum absolute frequencies should be same as number of events
-  expect_equal(sum(lifecycles[["absolute_frequency"]]), n_events(patients_act_grouped))
-  expect_equal(sum(lifecycles[["relative_frequency"]]), 1)
+  expect_equal(sum(lifecycles[["absolute_frequency"]]), sum(n_events(patients_act_grouped)[["n_events"]]))
+  expect_equal(sum(lifecycles[["relative_frequency"]]), sum(n_cases(patients_act_grouped)[["n_cases"]]))
 })
