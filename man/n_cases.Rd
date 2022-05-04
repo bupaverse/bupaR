@@ -2,33 +2,29 @@
 % Please edit documentation in R/n_cases.R
 \name{n_cases}
 \alias{n_cases}
-\alias{n_cases.eventlog}
-\alias{n_cases.grouped_eventlog}
-\alias{n_cases.activitylog}
+\alias{n_cases.log}
+\alias{n_cases.grouped_log}
 \title{n_cases}
 \usage{
-n_cases(eventlog)
+n_cases(log, eventlog = deprecated())
 
-\method{n_cases}{eventlog}(eventlog)
+\method{n_cases}{log}(log, eventlog = deprecated())
 
-\method{n_cases}{grouped_eventlog}(eventlog)
-
-\method{n_cases}{activitylog}(eventlog)
+\method{n_cases}{grouped_log}(log, eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{The event log to be used. An object of class
-\code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
-Returns the number of cases in an event log
+Returns the number of cases in an event log.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Count number of cases for eventlog
+\item \code{log}: Count number of cases in a \code{\link{log}}.
 
-\item \code{grouped_eventlog}: Count number of cases for grouped eventlog
-
-\item \code{activitylog}: Count number of cases for activitylog
+\item \code{grouped_log}: Count number of cases in a \code{\link{grouped_log}}.
 }}
 
 \seealso{

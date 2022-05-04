@@ -37,7 +37,7 @@ test_that("test durations on eventlog with units outside allowed domain", {
   expect_error(
     durations <- patients %>%
       durations(units = "milliseconds"),
-    "`units` must be one of \"auto\", \"secs\", \"mins\", \"hours\", \"days\", or \"weeks\"")
+    ".*`units` must be one of \"auto\", \"secs\", \"mins\", \"hours\", \"days\", or.*\"weeks\", not \"milliseconds\".*")
 })
 
 test_that("test durations on grouped_eventlog", {
