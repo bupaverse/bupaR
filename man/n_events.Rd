@@ -5,6 +5,7 @@
 \alias{n_events.eventlog}
 \alias{n_events.grouped_eventlog}
 \alias{n_events.activitylog}
+\alias{n_events.grouped_activitylog}
 \title{n_events}
 \usage{
 n_events(log, eventlog = deprecated())
@@ -14,6 +15,8 @@ n_events(log, eventlog = deprecated())
 \method{n_events}{grouped_eventlog}(log, eventlog = deprecated())
 
 \method{n_events}{activitylog}(log, eventlog = deprecated())
+
+\method{n_events}{grouped_activitylog}(log, eventlog = deprecated())
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
@@ -21,15 +24,17 @@ n_events(log, eventlog = deprecated())
 \item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
-Returns the number of events in an event log
+Returns the number of events in an event log.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Count number of resources in eventlog
+\item \code{eventlog}: Count number of events in an \code{\link{eventlog}}.
 
-\item \code{grouped_eventlog}: Count number of resource in eventlog
+\item \code{grouped_eventlog}: Count number of events in a \code{\link{grouped_eventlog}}.
 
-\item \code{activitylog}: Count number of resources in eventlog
+\item \code{activitylog}: Count number of events in an \code{\link{activitylog}}.
+
+\item \code{grouped_activitylog}: Count number of events in an \code{\link{grouped_activitylog}}.
 }}
 
 \seealso{

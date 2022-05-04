@@ -12,6 +12,11 @@ timestamp_ <- function(eventlog) sym(timestamp(eventlog))
 lifecycle_id_ <- function(eventlog) sym(lifecycle_id(eventlog))
 
 
+set_id <- function(log, id, value) {
+	attr(log, id) <- value
+	log
+}
+
 is_eventlog <- function(eventlog) {
 	"eventlog" %in% class(eventlog)
 }

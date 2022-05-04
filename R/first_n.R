@@ -18,7 +18,7 @@ first_n.eventlog <- function(log, n, eventlog = deprecated()) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	log %>%
-		arrange(.data[[timestamp(log)]], .order) %>%
+		arrange(.data[[timestamp(log)]], .data[[".order"]]) %>%
 		slice_activities(1:n)
 }
 
@@ -32,9 +32,9 @@ first_n.activitylog <- function(log, n, eventlog = deprecated()) {
 		rowwise() %>%
 		mutate("min_timestamp" = min(c_across(lifecycle_ids(log)), na.rm = TRUE)) %>%
 		re_map(mapping(log)) %>%
-		arrange(min_timestamp, .order) %>%
+		arrange("min_timestamp", ".order") %>%
 		slice_activities(1:n) %>%
-		select(-min_timestamp)
+		select(-"min_timestamp")
 }
 
 #' @describeIn first_n Select first n activity instances of a \code{\link{grouped_log}}.

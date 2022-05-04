@@ -1,59 +1,56 @@
 #' @title Life cycles
 #'
-#' @description Returns a \code{tibble}  containing a list of all life cycle types in the event log, with their absolute and relative frequency (# events)
+#' @description Returns a \code{\link{tibble}} containing a list of all life cycle types in the log,
+#' with their absolute and relative frequency (# events).
 #'
-#' @param eventlog The event log to be used. An object of class
-#' \code{eventlog}.
+#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
+#' @param eventlog Deprecated; please use \code{log} instead.
 #'
-#' @seealso \code{\link{lifecycle_id}}, \code{\link{eventlog}}
+#' @seealso \code{\link{lifecycle_id}}
 #'
 #' @export
-#'
-lifecycles <- function(eventlog) {
+lifecycles <- function(log, eventlog = deprecated()) {
 	UseMethod("lifecycles")
 }
 
-#' @describeIn lifecycles Generate lifecycle list for eventlog
+#' @describeIn lifecycles Generate lifecycle list for an \code{\link{eventlog}}.
 #' @export
+lifecycles.eventlog <- function(log, eventlog = deprecated()) {
 
-lifecycles.eventlog <- function(eventlog) {
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
-	eventlog %>%
-		group_by(!!lifecycle_id_(eventlog)) %>%
+	log %>%
+		group_by(!!lifecycle_id_(log)) %>%
 		summarize("absolute_frequency" = n()) %>%
 		arrange(-!!as.symbol("absolute_frequency")) %>%
 		mutate("relative_frequency" := (!!as.symbol("absolute_frequency"))/sum( (!!as.symbol("absolute_frequency"))))
 }
 
-#' @describeIn lifecycles Generate lifecycle list for grouped eventlog
+#' @describeIn lifecycles Generate lifecycle list for a \code{\link{grouped_eventlog}}.
 #' @export
+lifecycles.grouped_eventlog <- function(log, eventlog = deprecated()) {
 
-lifecycles.grouped_eventlog <- function(eventlog) {
-	mapping <- mapping(eventlog)
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
-	eventlog %>%
-		nest() %>%
-		mutate(data = map(data, re_map, mapping)) %>%
-		mutate(data = map(data, activities)) %>%
-		unnest()
+	mapping <- mapping(log)
+
+	apply_grouped_fun(log, lifecycles.eventlog)
 }
 
-#' @title Get vector of lifecycle labels
-#' @description Retrieve a vector containing all unique lifecycle labels
-#' @param eventlog Eventlog
+#' @describeIn lifecycles Generate lifecycle list for an \code{\link{activitylog}}.
 #' @export
-lifecycle_labels <- function(eventlog) {
-	UseMethod("lifecycle_labels")
+lifecycles.activitylog <- function(log, eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	lifecycles.eventlog(to_eventlog(log))
 }
 
-#' @describeIn lifecycle_labels Retrieve lifecycle labels from eventlog
+#' @describeIn lifecycles Generate lifecycle list for an \code{\link{grouped_activitylog}}.
 #' @export
-lifecycle_labels.eventlog <- function(eventlog) {
-	eventlog %>%
-		ungroup() %>%
-		pull(!!lifecycle_id_(eventlog)) %>%
-		unique()
+lifecycles.activitylog <- function(log, eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	apply_grouped_fun(to_eventlog(log), lifecycles.eventlog)
 }
-
-
-

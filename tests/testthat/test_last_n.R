@@ -86,5 +86,5 @@ test_that("test last_n on grouped_activitylog", {
   expect_equal(colnames(last), colnames(patients_act_grouped))
 
   # `last` should equal to the last 3 rows per group of `patients_act_grouped`, except for the 7th column (.order)
-  expect_equal(tibble::as.tibble(last[, -7]), tibble::as.tibble(ordered[, -7]))
+  expect_equal(tibble::as_tibble(last[, -7]), tibble::as_tibble(ordered[, -7]))
 })
