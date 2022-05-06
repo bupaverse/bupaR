@@ -6,10 +6,7 @@
 #' @return Grouped log
 #' @export
 #'
-#' @examples
-#' library(eventdataR)
-#' patients_gr <- group_by_ids(patients, activity_id)
-#'
+
 
 group_by_ids <- function(.log, ...) {
 	UseMethod("group_by_ids")

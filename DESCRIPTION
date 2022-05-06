@@ -31,8 +31,7 @@ Imports:
 	stringr,
 	stringi,
 	lubridate,
-	lifecycle,
-	pillar
+	lifecycle
 URL: https://www.bupar.net, https://github.com/bupaverse/bupaR
 Suggests: 
     covr,
