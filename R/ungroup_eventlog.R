@@ -35,3 +35,4 @@ ungroup_eventlog.grouped_log <- function(log) {
 
 	return(log)
 }
+

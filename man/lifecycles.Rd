@@ -5,6 +5,7 @@
 \alias{lifecycles.eventlog}
 \alias{lifecycles.grouped_eventlog}
 \alias{lifecycles.activitylog}
+\alias{lifecycles.grouped_activitylog}
 \title{Life cycles}
 \usage{
 lifecycles(log, eventlog = deprecated())
@@ -15,7 +16,7 @@ lifecycles(log, eventlog = deprecated())
 
 \method{lifecycles}{activitylog}(log, eventlog = deprecated())
 
-\method{lifecycles}{activitylog}(log, eventlog = deprecated())
+\method{lifecycles}{grouped_activitylog}(log, eventlog = deprecated())
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
@@ -34,7 +35,7 @@ with their absolute and relative frequency (# events).
 
 \item \code{activitylog}: Generate lifecycle list for an \code{\link{activitylog}}.
 
-\item \code{activitylog}: Generate lifecycle list for an \code{\link{grouped_activitylog}}.
+\item \code{grouped_activitylog}: Generate lifecycle list for an \code{\link{grouped_activitylog}}.
 }}
 
 \seealso{
