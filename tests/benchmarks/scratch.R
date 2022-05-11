@@ -136,3 +136,23 @@ results <- bench::press(
 # 22 which       1000  0.5    42.2us   48.5us    19374.     137KB     52.5  9973    27   514.77ms <int [1]> <Rprofmem [4 x 3]>  <bench_tm [10,000]> <tibble [10,000 x 3]>
 # 23 na.omit    10000  0.5   115.8us  126.8us     7360.     274KB     40.0  9946    54      1.35s <int [1]> <Rprofmem [10 x 3]> <bench_tm [10,000]> <tibble [10,000 x 3]>
 # 24 which      10000  0.5    41.3us   48.1us    19192.     137KB     52.0  9973    27   519.64ms <int [1]> <Rprofmem [4 x 3]>  <bench_tm [10,000]> <tibble [10,000 x 3]>
+
+
+
+x <- data.table(X = sample.int(1000, 10000, replace = TRUE),
+                Y = stri_rand_strings(10000, 3, "[A-Za-z0-9]"),
+                Z = stri_rand_strings(10000, 1, "[A-Z]"))
+
+# slice_sample is much faster!
+bench::mark(
+  sample_n = dplyr::sample_n(x, size = 100),
+  slice_sample = dplyr::slice_sample(x, n = 100),
+  iterations = 1000,
+  check = FALSE
+)
+
+# A tibble: 2 x 13
+#expression        min   median `itr/sec` mem_alloc `gc/sec` n_itr  n_gc total_time result memory     time       gc
+#<bch:expr>   <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl> <int> <dbl>   <bch:tm> <list> <list>     <list>     <list>
+#1 sample_n       5.17ms   5.71ms      164.     167KB     2.67   984    16      5.98s <NULL> <Rprofmem> <bench_tm> <tibble>
+#2 slice_sample  887.4us 998.75us      894.     113KB     3.59   996     4      1.11s <NULL> <Rprofmem> <bench_tm> <tibble>

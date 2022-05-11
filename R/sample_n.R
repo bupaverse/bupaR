@@ -1,17 +1,23 @@
 #' @title Sample function for eventlog
-#' @param tbl Eventlog
-#' @param size Number of cases to sample
-#' @param replace Sample with replacement or not
-#' @param weight N/A
-#' @param .env N/A
-#' @name sample_n
+#'
+#' @description
+#'
+#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
+#' @param tbl Deprecated; please use \code{log} instead.
+#' @param size \code{\link{integer}}: Number of cases to sample
+#' @param replace \code{\link{logical}} (default \code{FALSE}): Sample with replacement \code{TRUE} or without \code{FALSE}.
+#' @param weight Sampling weights. This must evaluate to a vector of non-negative numbers the same length as the input.
+#' Weights are automatically standardised to sum to 1.
+#' @param .env Deprecated; please don't use.
+#'
 #' @importFrom dplyr sample_n
 #' @export
-dplyr::sample_n
+sample_n <- function(log, tbl = deprecated(), size, replace = FALSE, weight = NULL, .env = deprecated()) {
+	UseMethod("sample_n")
+}
 
 #' @describeIn sample_n Sample n cases of eventlog
 #' @export
-
 sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env, ...) {
 
 
@@ -34,7 +40,6 @@ sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env, ...) {
 #' @describeIn sample_n Stratified sampling of a grouped eventlog: sample n cases within each group
 #' @method sample_n grouped_eventlog
 #' @export
-
 sample_n.grouped_eventlog <- function(tbl, size, replace = FALSE, weight, .env, ...) {
 
 	groups <- groups(tbl)
@@ -58,4 +63,18 @@ sample_n.grouped_eventlog <- function(tbl, size, replace = FALSE, weight, .env, 
 		group_by_at(vars(one_of(paste(groups)))) %>%
 		return()
 
+}
+
+#' @describeIn sample_n Sample n cases from an \code{\link{activitylog}}.
+#' @export
+sample_n.activitylog <- function(log, tbl = deprecated(), size, replace = FALSE, weight = NULL, .env = deprecated()) {
+
+	case_ids <- log %>%
+		distinct(.data[[case_id(.)]])
+
+	sample <- case_ids %>%
+		slice_sample(n = size, weight_by = weight, replace = replace)
+
+	log %>%
+		filter(.data[[case_id(.)]] %in% sample)
 }
