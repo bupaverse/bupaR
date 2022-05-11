@@ -42,6 +42,46 @@ summary.eventlog <- function(object, ...){
 
 }
 
+#' @method summary activitylog
+#' @export
+
+summary.activitylog <- function(object, ...){
+
+	eventlog <- object
+
+	ca <- case_list(eventlog)
+
+	number_of_events <- n_events(eventlog)
+	number_of_cases <- nrow(ca)
+	number_of_traces <- length(unique(ca$trace_id))
+	number_of_activities <- nrow(activities(eventlog))
+
+	timestamps <- gather(eventlog[lifecycle_ids(eventlog)]) %>% pull(.data[["value"]])
+
+	first_event <- format(min(timestamps))
+	last_event <- format(max(timestamps))
+
+	events_per_case <- number_of_events/number_of_cases
+
+	cat("Number of events:  ")
+	cat(number_of_events)
+	cat("\nNumber of cases:  ")
+	cat(number_of_cases)
+	cat("\nNumber of traces:  ")
+	cat(number_of_traces)
+	cat("\nNumber of distinct activities:  ")
+	cat(number_of_activities)
+	cat("\nAverage trace length:  ")
+	cat(events_per_case)
+	cat("\n\nStart eventlog:  ")
+	cat(first_event)
+	cat("\nEnd eventlog:  ")
+	cat(last_event)
+	cat("\n\n")
+	NextMethod(object)
+
+}
+
 #' @describeIn summary Summary of grouped event log
 #' @export
 

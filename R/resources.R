@@ -4,8 +4,9 @@
 #'
 #' @description Returns a \code{tibble}  containing a list of all resources in the event log, with there absolute and relative frequency
 #'
-#' @param eventlog The event log to be used. An object of class
-#' \code{eventlog}.
+#' @param log Object of class eventlog or activitylog.
+#' @param eventlog Deprecated; please use log instead.
+#' @param ... Unused.
 #'
 #'
 #' @seealso \code{\link{resource_id}}, \code{\link{eventlog}}
@@ -13,55 +14,45 @@
 #'
 #' @export resources
 
-resources <- function(eventlog) {
+resources <- function(log, eventlog = deprecated(), ...) {
 	UseMethod("resources")
 }
 
 #' @describeIn resources Generate resource list for eventlog
 #' @export
 
-resources.eventlog <- function(eventlog) {
+resources.eventlog <- function(log, eventlog = deprecated(), ...) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	absolute_frequency <- NULL
 	relative_frequency <- NULL
 
-	output <- eventlog %>%
-		group_by(!!as.symbol(resource_id(eventlog))) %>%
-		summarize("absolute_frequency" = n_distinct(!!as.symbol(activity_instance_id(eventlog)))) %>%
+	output <- log %>%
+		group_by(!!as.symbol(resource_id(log))) %>%
+		summarize("absolute_frequency" = n_distinct(!!as.symbol(activity_instance_id(log)))) %>%
 		arrange(-absolute_frequency) %>%
 		mutate(relative_frequency = absolute_frequency/sum(absolute_frequency)) %>%
 		arrange(-relative_frequency)
 
 	return(output)
 }
-#' @describeIn resources Generate resource list for grouped eventlog
+#' @describeIn resources Generate resource list for activitylog
 #' @export
-resources.grouped_eventlog <- function(eventlog) {
-	mapping <- mapping(eventlog)
 
-	eventlog %>%
-		nest() %>%
-		mutate(data = map(data, re_map, mapping)) %>%
-		mutate(data = map(data, resources)) %>%
-		unnest() %>%
-		return()
+resources.activitylog <- function(log, eventlog = deprecated(), ...) {
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	resources.eventlog(to_eventlog(log))
+}
+#' @describeIn resources Compute activity frequencies
+#' @export
+#'
+resources.grouped_log <- function(log, eventlog = deprecated(), ...) {
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	apply_grouped_fun(log, resources)
 }
 
-#' @title Get vector of resource labels
-#' @description Retrieve a vector containing all unique resource labels
-#' @param eventlog Eventlog
-#' @export
-resource_labels <- function(eventlog) {
-	UseMethod("resource_labels")
-}
-
-#' @describeIn resource_labels Retrieve resource labels from eventlog
-#' @export
-resource_labels.eventlog <- function(eventlog) {
-	eventlog %>%
-		ungroup() %>%
-		pull(!!resource_id(eventlog)) %>%
-		unique()
-}
 
 
