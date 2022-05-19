@@ -78,3 +78,20 @@ lifecycle_warning_eventlog <- function (log, eventlog = deprecated()) {
 
 	return(log)
 }
+
+# Warning: The `tbl` argument of `func()` is deprecated as of bupaR 0.5.0.
+# Please use the `log` argument instead.
+# WARNING: Works only on exported functions!
+lifecycle_warning_tbl <- function (log, tbl = deprecated(), ...) {
+
+	if(lifecycle::is_present(tbl)) {
+		cl <- sys.call(-1L)
+		func <- get(as.character(cl[[1L]]), mode = "function", envir = sys.frame(-2L))
+		func_name <- match.call(definition = func, call = cl, expand.dots = FALSE)[[1L]]
+
+		lifecycle::deprecate_warn("0.5.0", paste0(func_name, "(tbl)"), paste0(func_name, "(log)"))
+		return(tbl)
+	}
+
+	return(log)
+}
