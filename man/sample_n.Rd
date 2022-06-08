@@ -5,15 +5,39 @@
 \alias{sample_n.eventlog}
 \alias{sample_n.grouped_eventlog}
 \alias{sample_n.activitylog}
+\alias{sample_n.grouped_activitylog}
 \title{Sample function for eventlog}
 \usage{
 sample_n(tbl, size, replace = FALSE, weight = NULL, .env, ...)
 
-\method{sample_n}{eventlog}(tbl, size, replace = FALSE, weight, .env, ...)
+\method{sample_n}{eventlog}(
+  log,
+  tbl = deprecated(),
+  size,
+  replace = FALSE,
+  weight = NULL,
+  .env = deprecated()
+)
 
-\method{sample_n}{grouped_eventlog}(tbl, size, replace = FALSE, weight, .env, ...)
+\method{sample_n}{grouped_eventlog}(
+  log,
+  tbl = deprecated(),
+  size,
+  replace = FALSE,
+  weight = NULL,
+  .env = deprecated()
+)
 
 \method{sample_n}{activitylog}(
+  log,
+  tbl = deprecated(),
+  size,
+  replace = FALSE,
+  weight = NULL,
+  .env = deprecated()
+)
+
+\method{sample_n}{grouped_activitylog}(
   log,
   tbl = deprecated(),
   size,
@@ -37,7 +61,7 @@ Weights are automatically standardised to sum to 1.}
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
 }
 \description{
-
+Takes a sample of the specified \code{size} from the cases of \code{log}, either with or without replacement.
 }
 \section{Methods (by class)}{
 \itemize{
@@ -46,5 +70,7 @@ Weights are automatically standardised to sum to 1.}
 \item \code{grouped_eventlog}: Stratified sampling of a grouped eventlog: sample n cases within each group
 
 \item \code{activitylog}: Sample n cases from an \code{\link{activitylog}}.
+
+\item \code{grouped_activitylog}: Sample n cases from a \code{\link{grouped_activitylog}}.
 }}
 

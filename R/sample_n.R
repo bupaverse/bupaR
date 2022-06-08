@@ -1,6 +1,6 @@
 #' @title Sample function for eventlog
 #'
-#' @description
+#' @description Takes a sample of the specified \code{size} from the cases of \code{log}, either with or without replacement.
 #'
 #' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
 #' @param tbl Deprecated; please use \code{log} instead.
@@ -18,34 +18,36 @@ sample_n <- function(tbl, size, replace = FALSE, weight = NULL, .env, ...) {
 
 #' @describeIn sample_n Sample n cases of eventlog
 #' @export
-sample_n.eventlog <- function(tbl,size, replace = FALSE, weight, .env, ...) {
+sample_n.eventlog <- function(log, tbl = deprecated(), size, replace = FALSE, weight = NULL, .env = deprecated()) {
 
+	log <- lifecycle_warning_tbl(log, tbl)
 
-	n_cases <- n_cases(tbl)
+	n_cases <- n_cases(log)
 
 	if(!replace & size > n_cases) {
 		stop(paste(c("Size parameter (", size, ") is larger than number of cases (", n_cases ,"). Do you want to use replace = T?"), collapse = ""))
 	}
 
-	case_ids <- case_labels(tbl)
+	case_ids <- case_labels(log)
 
 
 	selection <- sample(case_ids, size = size, replace = replace)
 
-	tbl %>%
-		filter((!!as.symbol(case_id(tbl))) %in% selection)
+	log %>%
+		filter((!!as.symbol(case_id(log))) %in% selection)
 }
 
 
 #' @describeIn sample_n Stratified sampling of a grouped eventlog: sample n cases within each group
 #' @method sample_n grouped_eventlog
 #' @export
-sample_n.grouped_eventlog <- function(tbl, size, replace = FALSE, weight, .env, ...) {
+sample_n.grouped_eventlog <- function(log, tbl = deprecated(), size, replace = FALSE, weight = NULL, .env = deprecated()) {
 
-	groups <- groups(tbl)
-	mapping <- mapping(tbl)
+	log <- lifecycle_warning_tbl(log, tbl)
 
-	tbl %>%
+	mapping <- mapping(log)
+
+	log %>%
 		nest() %>%
 		# make sure that all grouping variables are in the nested data frames
 		do({
@@ -56,25 +58,50 @@ sample_n.grouped_eventlog <- function(tbl, size, replace = FALSE, weight, .env, 
 		mutate(data = map(data, re_map, mapping)) %>%
 		mutate(data = map(data, sample_n, size = size, replace = replace)) %>%
 		# remove grouping variables to avoid duplicates
-		mutate(data = map(data, ~ select_at(as.data.frame(.x), .vars = vars(-one_of(paste(groups)))))) %>%
-		unnest() %>%
+		mutate(data = map(data, ~ select_at(as.data.frame(.x), .vars = vars(-one_of(paste(mapping$groups)))))) %>%
+		unnest(cols = data) %>%
 		re_map(mapping) %>%
 		# result should retain grouping
-		group_by_at(vars(one_of(paste(groups)))) %>%
+		group_by_at(vars(one_of(paste(mapping$groups)))) %>%
 		return()
 
+	#log %>%
+	#	apply_grouped_fun(fun = sample_n.eventlog, size, replace, .keep_groups = TRUE, .returns_log = TRUE)
 }
 
 #' @describeIn sample_n Sample n cases from an \code{\link{activitylog}}.
 #' @export
 sample_n.activitylog <- function(log, tbl = deprecated(), size, replace = FALSE, weight = NULL, .env = deprecated()) {
 
+	log <- lifecycle_warning_tbl(log, tbl)
+
+	n_cases <- n_cases(log)
+
+	if(!replace & size > n_cases) {
+		stop(paste(c("Size parameter (", size, ") is larger than number of cases (", n_cases ,"). Do you want to use replace = T?"), collapse = ""))
+	}
+
 	case_ids <- log %>%
 		distinct(.data[[case_id(.)]])
 
 	sample <- case_ids %>%
+		as.data.frame() %>%
 		slice_sample(n = size, weight_by = weight, replace = replace)
 
 	log %>%
 		filter(.data[[case_id(.)]] %in% sample)
+}
+
+
+#' @describeIn sample_n Sample n cases from a \code{\link{grouped_activitylog}}.
+#' @export
+sample_n.grouped_activitylog <- function(log, tbl = deprecated(), size, replace = FALSE, weight = NULL, .env = deprecated()) {
+
+	log <- lifecycle_warning_tbl(log, tbl)
+
+	mapping <- mapping(log)
+
+	apply_grouped_fun(to_eventlog(log), fun = sample_n.eventlog, size = size, replace = replace, .keep_groups = TRUE, .returns_log = TRUE) %>%
+		to_activitylog() %>%
+		group_by_at(vars(one_of(paste(mapping$groups))))
 }
