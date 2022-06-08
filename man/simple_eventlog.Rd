@@ -39,10 +39,13 @@ The latter will never overrule timestamp orderings.}
 \item{return_type}{Whether to return eventlog (default) or activitylog object.}
 }
 \description{
-`r lifecycle::badge("superseded")`
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
 
 A function to instantiate an object of class \code{eventlog} by specifying a
-\code{data.frame} or \code{tibble} and the minimally required case identifier, activity identifier and timestamp
+\code{data.frame} or \code{tibble} and the minimally required case identifier, activity identifier and timestamp.
+
+This function is superseded by the introduction of the activitylog format.
+Eventlogs in this 'simple' format can be seen as log of activities, and be created with \code{activitylog()}. If required, the resulting activity log can be transformed back to the eventlog format using \code{to_eventlog}.
 }
 \examples{
 \dontrun{
@@ -57,5 +60,5 @@ timestamp = "timestamp")
 \seealso{
 \code{\link{eventlog}},\code{\link{case_id}}, \code{\link{activity_id}},
 \code{\link{activity_instance_id}},\code{\link{lifecycle_id}},
- \code{\link{timestamp}}
+\code{\link{timestamp}}
 }

@@ -34,5 +34,5 @@ events_to_activitylog(
 \item{...}{Additional argments, i.e. for fixing resource inconsistencies}
 }
 \description{
-Events to activities
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Create an activity log starting from an event log or regular data.frame. This function is deprecated and replaced by the function \code{activitylog} (for dataframe) and \code{to_activitylog} for eventlogs.
 }
