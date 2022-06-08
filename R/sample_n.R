@@ -12,7 +12,7 @@
 #'
 #' @importFrom dplyr sample_n
 #' @export
-sample_n <- function(log, tbl = deprecated(), size, replace = FALSE, weight = NULL, .env = deprecated()) {
+sample_n <- function(tbl, size, replace = FALSE, weight = NULL, .env, ...) {
 	UseMethod("sample_n")
 }
 
