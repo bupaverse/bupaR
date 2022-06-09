@@ -156,3 +156,23 @@ bench::mark(
 #<bch:expr>   <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl> <int> <dbl>   <bch:tm> <list> <list>     <list>     <list>
 #1 sample_n       5.17ms   5.71ms      164.     167KB     2.67   984    16      5.98s <NULL> <Rprofmem> <bench_tm> <tibble>
 #2 slice_sample  887.4us 998.75us      894.     113KB     3.59   996     4      1.11s <NULL> <Rprofmem> <bench_tm> <tibble>
+
+
+load("tests/testthat/testdata/patients.rda")
+i <- 1
+stop <- FALSE
+
+while (!stop) {
+  set.seed(i)
+
+  case_ids <- patients %>%
+    group_by(.data[[activity_id(.)]]) %>%
+    distinct(.data[[case_id(.)]]) %>%
+    dplyr::slice_sample(n = 1)
+
+  if (!("John Doe" %in% case_ids[["patient"]])) {
+    stop <- TRUE
+  }
+
+  i <- i + 1
+}
