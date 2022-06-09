@@ -42,7 +42,7 @@ group_by.grouped_log <- function(.data, ..., .add = F) {
 	} else {
 		x <- group_by(.data, ...)
 	}
-	class(x) <- c("grouped_activitylog","grouped_log","activitylog", "log", class(x))
+	class(x) <- class(.data)
 
 	return(x)
 }
