@@ -16,6 +16,8 @@ n_traces(log, eventlog = deprecated(), ...)
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
 
 \item{eventlog}{Deprecated; please use \code{log} instead.}
+
+\item{...}{Other arguments. Currently not used.}
 }
 \description{
 Returns the number of traces in an event log

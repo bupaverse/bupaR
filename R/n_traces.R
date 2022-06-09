@@ -2,6 +2,7 @@
 #' @description Returns the number of traces in an event log
 #' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
 #' @param eventlog Deprecated; please use \code{log} instead.
+#' @param ... Other arguments. Currently not used.
 #'
 #' @family Eventlog count functions
 #' @export n_traces

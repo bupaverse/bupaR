@@ -10,7 +10,7 @@ activity_id <- function(x) {
 
 #' @describeIn activity_id Retrieve activity identifier from log
 #' @export
-activity_id.log <- function(x){
+activity_id.default <- function(x){
 	return(attr(x, "activity_id"))
 }
 #' @describeIn activity_id Retrieve activity identifier from  mapping

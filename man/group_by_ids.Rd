@@ -25,8 +25,3 @@ Group log on identifiers
 \item \code{log}: Group log on identifiers
 }}
 
-\examples{
-library(eventdataR)
-patients_gr <- group_by_ids(patients, activity_id)
-
-}

@@ -2,13 +2,13 @@
 % Please edit documentation in R/activity_id.R
 \name{activity_id}
 \alias{activity_id}
-\alias{activity_id.log}
+\alias{activity_id.default}
 \alias{activity_id.log_mapping}
 \title{Activity classifier}
 \usage{
 activity_id(x)
 
-\method{activity_id}{log}(x)
+\method{activity_id}{default}(x)
 
 \method{activity_id}{log_mapping}(x)
 }
@@ -20,7 +20,7 @@ Get the activity classifier of an object of class \code{eventlog}.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Retrieve activity identifier from log
+\item \code{default}: Retrieve activity identifier from log
 
 \item \code{log_mapping}: Retrieve activity identifier from  mapping
 }}

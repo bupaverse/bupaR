@@ -26,9 +26,9 @@ filter_attributes(eventlog, ...)
 \description{
 Generic filter function for eventlog
 
-`r lifecycle::badge("deprecated")`
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
-This function is deprecated as of bupaR version 0.5.0. Please use [filter] instead.
+This function is deprecated as of bupaR version 0.5.0. Please use \link{filter} instead.
 }
 \section{Methods (by class)}{
 \itemize{

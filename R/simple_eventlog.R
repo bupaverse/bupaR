@@ -4,7 +4,10 @@
 #' `r lifecycle::badge("superseded")`
 #'
 #' A function to instantiate an object of class \code{eventlog} by specifying a
-#' \code{data.frame} or \code{tibble} and the minimally required case identifier, activity identifier and timestamp
+#' \code{data.frame} or \code{tibble} and the minimally required case identifier, activity identifier and timestamp.
+#'
+#' This function is superseded by the introduction of the activitylog format.
+#' Eventlogs in this 'simple' format can be seen as log of activities, and be created with `activitylog()`. If required, the resulting activity log can be transformed back to the eventlog format using `to_eventlog`.
 #'
 #'
 #' @param eventlog The data object to be used as event log. This can be a
@@ -50,6 +53,9 @@ simple_eventlog <- function(eventlog,
 							resource_id = NULL,
 							order = "auto",
 							return_type = c("eventlog","activitylog")) {
+
+	deprecate_warn("5.0.0", "simple_eventlog()", "activitylog()")
+
 
 	return_type <- match.arg(return_type)
 

@@ -37,3 +37,4 @@ Suggests:
     covr,
     lintr,
     testthat
+Roxygen: list(markdown = TRUE)

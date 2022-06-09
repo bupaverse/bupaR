@@ -3,8 +3,8 @@
 #' @param x Eventlog object
 #' @param ... Additional Arguments
 #' @importFrom pillar style_subtle
+#' @importFrom purrr map_chr
 #' @export
-
 
 print.log <- function(x, ...) {
 
@@ -29,7 +29,7 @@ print.log <- function(x, ...) {
         cat(nrs, ngettext(nrs, "resource", "resources"), "\n")
 
         if("activitylog" %in% class(x)) {
-        	timestamps <- gather(x[lifecycle_ids(x)]) %>% pull(value)
+        	timestamps <- gather(x[lifecycle_ids(x)]) %>% pull(.data[["value"]])
         } else {
         	timestamps <- x[[timestamp(x)]]
 

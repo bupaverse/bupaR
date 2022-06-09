@@ -1,6 +1,8 @@
 
 
 #' Events to activities
+#' @description
+#' `r lifecycle::badge("deprecated")` Create an activity log starting from an event log or regular data.frame. This function is deprecated and replaced by the function `activitylog` (for dataframe) and `to_activitylog` for eventlogs.
 #'
 #' @param eventlog The event log to be converted. An object of class
 #' \code{eventlog} or \code{data.frame}
@@ -12,6 +14,7 @@
 #' @param resource_id If eventlog is data.frame, the resource identifier of the event log. A character vector containing variable names of length 1 or more.
 #' @param ... Additional argments, i.e. for fixing resource inconsistencies
 #' @importFrom stringr str_subset
+#'
 #' @export
 #'
 
@@ -21,6 +24,9 @@ events_to_activitylog <- function(eventlog, case_id, activity_id, activity_insta
 
 #' @export
 events_to_activitylog.data.frame <- function(eventlog, case_id, activity_id, activity_instance_id, lifecycle_id, timestamp, resource_id, ...) {
+
+	deprecate_warn("5.0.0", "events_to_activitylog()", "to_activitylog()")
+
 	suppressWarnings({
 	eventlog(eventlog,
 			 case_id = case_id,
@@ -41,6 +47,8 @@ events_to_activitylog.data.frame <- function(eventlog, case_id, activity_id, act
 #' @export
 
 events_to_activitylog.eventlog <- function(eventlog, case_id = NULL, activity_id = NULL, activity_instance_id = NULL, lifecycle_id = NULL, timestamp = NULL, resource_id = NULL, ...) {
+
+	deprecate_warn("5.0.0", "events_to_activitylog()", "to_activitylog()")
 
 	.order <- NULL
 

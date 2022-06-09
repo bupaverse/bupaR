@@ -18,9 +18,9 @@ last_n.eventlog <- function(log, n, eventlog = deprecated()) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	log %>%
-		arrange(desc(.data[[timestamp(log)]]), -.order) %>%
+		arrange(desc(.data[[timestamp(log)]]), -.data[[".order"]]) %>%
 		slice_activities(1:n) %>%
-		arrange(.data[[timestamp(log)]], .order)
+		arrange(.data[[timestamp(log)]], .data[[".order"]])
 }
 
 #' @describeIn last_n Select last n activity instances of an \code{\link{activitylog}}.
@@ -34,10 +34,10 @@ last_n.activitylog <- function(log, n, eventlog = deprecated()) {
 		mutate("min_timestamp" = min(c_across(lifecycle_ids(log)), na.rm = TRUE)) %>%
 		ungroup() %>%
 		re_map(mapping(log)) %>%
-		arrange(desc(min_timestamp), -.order) %>%
+		arrange(desc(.data[["min_timestamp"]]), -.data[[".order"]]) %>%
 		slice_activities(1:n) %>%
-		arrange(min_timestamp, .order) %>%
-		select(-min_timestamp)
+		arrange(.data[["min_timestamp"]], .data[[".order"]]) %>%
+		select(-"min_timestamp")
 }
 
 #' @describeIn last_n Select last n activity instances of a \code{\link{grouped_log}}.

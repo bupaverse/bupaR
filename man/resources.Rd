@@ -3,18 +3,24 @@
 \name{resources}
 \alias{resources}
 \alias{resources.eventlog}
-\alias{resources.grouped_eventlog}
+\alias{resources.activitylog}
+\alias{resources.grouped_log}
 \title{Resources}
 \usage{
-resources(eventlog)
+resources(log, eventlog = deprecated(), ...)
 
-\method{resources}{eventlog}(eventlog)
+\method{resources}{eventlog}(log, eventlog = deprecated(), ...)
 
-\method{resources}{grouped_eventlog}(eventlog)
+\method{resources}{activitylog}(log, eventlog = deprecated(), ...)
+
+\method{resources}{grouped_log}(log, eventlog = deprecated(), ...)
 }
 \arguments{
-\item{eventlog}{The event log to be used. An object of class
-\code{eventlog}.}
+\item{log}{Object of class eventlog or activitylog.}
+
+\item{eventlog}{Deprecated; please use log instead.}
+
+\item{...}{Unused.}
 }
 \description{
 Returns a \code{tibble}  containing a list of all resources in the event log, with there absolute and relative frequency
@@ -23,7 +29,9 @@ Returns a \code{tibble}  containing a list of all resources in the event log, wi
 \itemize{
 \item \code{eventlog}: Generate resource list for eventlog
 
-\item \code{grouped_eventlog}: Generate resource list for grouped eventlog
+\item \code{activitylog}: Generate resource list for activitylog
+
+\item \code{grouped_log}: Compute activity frequencies
 }}
 
 \seealso{

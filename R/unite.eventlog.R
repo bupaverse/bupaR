@@ -22,6 +22,19 @@ unite.eventlog <- function(data, col, ..., sep = "_", remove = T) {
 		re_map(mapping)
 }
 
+#' @describeIn unite Unite columns in activitylog
+#' @export
+
+unite.activtylog <- function(data, col, ..., sep = "_", remove = T) {
+
+	mapping <- mapping(data)
+	data %>%
+		as.data.frame() %>%
+		unite(col = !!col, ..., sep = sep, remove = remove) %>%
+		re_map(mapping)
+}
+
+
 #' @describeIn unite Unite columns in grouped eventlog
 #' @export
 

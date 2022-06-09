@@ -48,7 +48,7 @@ lifecycles.activitylog <- function(log, eventlog = deprecated()) {
 
 #' @describeIn lifecycles Generate lifecycle list for an \code{\link{grouped_activitylog}}.
 #' @export
-lifecycles.activitylog <- function(log, eventlog = deprecated()) {
+lifecycles.grouped_activitylog <- function(log, eventlog = deprecated()) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
