@@ -4,7 +4,7 @@
 #' with their absolute and relative frequency (# events).
 #'
 #' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @param eventlog `r lifecycle::badge("deprecated")`; please use \code{log} instead.
 #'
 #' @seealso \code{\link{lifecycle_id}}
 #'

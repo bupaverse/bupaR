@@ -20,7 +20,7 @@ lifecycles(log, eventlog = deprecated())
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{`r lifecycle::badge("deprecated")`; please use \code{log} instead.}
 }
 \description{
 Returns a \code{\link{tibble}} containing a list of all life cycle types in the log,
