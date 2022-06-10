@@ -14,19 +14,7 @@ filter.eventlog <- function(.data, ...) {
 		dplyr::filter(...) %>%
 		re_map(mapping)
 }
-#' @export
 
-filter.grouped_eventlog <- function(.data, ...) {
-	groups <- groups(.data)
-	mapping <- mapping(.data)
-	.data %>%
-		nest() %>%
-		mutate(data = map(data, dplyr::filter, ...)) %>%
-		unnest(data) %>%
-		re_map(mapping) %>%
-		group_by_at(vars(one_of(paste(groups))))
-
-}
 
 #' @export
 filter.activitylog <- function(.data, ...) {
@@ -39,14 +27,36 @@ filter.activitylog <- function(.data, ...) {
 
 #' @export
 
-filter.grouped_activitylog <- function(.data, ...) {
-	groups <- groups(.data)
-	mapping <- mapping(.data)
-	.data %>%
-		nest() %>%
-		mutate(data = map(data, dplyr::filter, ...)) %>%
-		unnest(data) %>%
-		re_map(mapping) %>%
-		group_by_at(vars(one_of(paste(groups))))
-
+filter.grouped_log <- function(.data, ...) {
+	apply_grouped_fun(.data, filter, ..., .ignore_groups = FALSE, .keep_groups = TRUE, .returns_log = TRUE)
 }
+
+
+
+# @export
+#'
+#' filter.grouped_eventlog <- function(.data, ...) {
+#' 	groups <- groups(.data)
+#' 	mapping <- mapping(.data)
+#' 	.data %>%
+#' 		nest() %>%
+#' 		mutate(data = map(data, dplyr::filter, ...)) %>%
+#' 		unnest(data) %>%
+#' 		re_map(mapping) %>%
+#' 		group_by_at(vars(one_of(paste(groups))))
+#'
+#' }
+#'
+# #' @export
+#'
+#' filter.grouped_activitylog <- function(.data, ...) {
+#' 	groups <- groups(.data)
+#' 	mapping <- mapping(.data)
+#' 	.data %>%
+#' 		nest() %>%
+#' 		mutate(data = map(data, dplyr::filter, ...)) %>%
+#' 		unnest(data) %>%
+#' 		re_map(mapping) %>%
+#' 		group_by_at(vars(one_of(paste(groups))))
+#'
+#' }

@@ -3,6 +3,8 @@
 load <- c("edeaR", "eventdataR","processmapR","xesreadR", "processmonitR", "petrinetR")
 
 .onAttach <- function(...) {
+
+
 	needed <- load[!is_attached(load)]
 
 	if (length(needed) == 0)
@@ -34,3 +36,6 @@ load <- c("edeaR", "eventdataR","processmapR","xesreadR", "processmonitR", "petr
 is_attached <- function(x) {
 	paste0("package:", x) %in% search()
 }
+
+
+

@@ -1,8 +1,8 @@
 #' @title Sample function for logs
+#' @name slice_sample
+# @description Takes a sample of the specified \code{size} from the cases of \code{.data}, either with or without replacement.
 #'
-#' @description Takes a sample of the specified \code{size} from the cases of \code{.data}, either with or without replacement.
-#'
-#' @inheritParams dplyr::slice_sample
+# @inheritParams dplyr::slice_sample
 #'
 #' @importFrom dplyr slice_sample
 #' @export
@@ -49,7 +49,6 @@ take_sample <- function(log, ..., n, prop, weight_by = NULL, replace = FALSE) {
     distinct(.data[[case_id(.)]])
 
   sample <- dplyr::slice_sample(case_ids, ..., n = n, prop = prop, weight_by = weight_by, replace = replace) %>%
-    distinct(.data[[case_id(log)]]) %>%
     pull(.data[[case_id(log)]])
 
   log %>%

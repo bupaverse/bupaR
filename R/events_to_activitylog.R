@@ -14,6 +14,7 @@
 #' @param resource_id If eventlog is data.frame, the resource identifier of the event log. A character vector containing variable names of length 1 or more.
 #' @param ... Additional argments, i.e. for fixing resource inconsistencies
 #' @importFrom stringr str_subset
+#' @importFrom lifecycle deprecate_warn
 #'
 #' @export
 #'

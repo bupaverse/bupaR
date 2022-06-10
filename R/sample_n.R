@@ -1,13 +1,5 @@
 #' @title Sample function for eventlog
-#'
-#' @description
-#' `r lifecycle::badge("superseded")`
-#'
-#' Following the supersedure of dplyr's \code{\link{dplyr::sample_n}}, \code{sample_n} has been superseded in favour of \code{\link{slice_sample}}.
-#'
-#' Takes a sample of the specified \code{size} from the cases of \code{log}, either with or without replacement.
-#'
-#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
+#' @name sample_n
 #' @param tbl Deprecated; please use \code{log} instead.
 #' @param size \code{\link{integer}}: Number of cases to sample
 #' @param replace \code{\link{logical}} (default \code{FALSE}): Sample with replacement \code{TRUE} or without \code{FALSE}.
@@ -17,11 +9,9 @@
 #' @param ... ignored
 #'
 #' @seealso \code{\link{slice_sample}}
-#'
 #' @importFrom dplyr sample_n
 #' @export
 dplyr::sample_n
-
 #' @describeIn sample_n Sample n cases of eventlog
 #' @export
 sample_n.eventlog <- function(tbl, size, replace = FALSE, weight = NULL, .env = NULL, ...) {
