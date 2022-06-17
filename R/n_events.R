@@ -36,7 +36,7 @@ n_events.grouped_eventlog <- function(log, eventlog = deprecated()) {
 n_events.activitylog <- function(log, eventlog = deprecated()) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
-	sum(!is.na(select_ids(log, lifecycle_ids)))
+	sum(!is.na(select_ids(log, timestamps)))
 }
 
 #' @describeIn n_events Count number of events in an \code{\link{grouped_activitylog}}.
@@ -46,5 +46,5 @@ n_events.grouped_activitylog <- function(log, eventlog = deprecated()) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	log %>%
-		summarize(n_events = sum(across(lifecycle_ids(.), ~length(which(!is.na(.x))))))
+		summarize(n_events = sum(across(timestamps(.), ~length(which(!is.na(.x))))))
 }

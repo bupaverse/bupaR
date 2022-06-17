@@ -85,7 +85,7 @@ simple_eventlog <- function(eventlog,
 					case_id = case_id,
 					activity_id = activity_id,
 					resource_id = resource_id,
-					lifecycle_ids = timestamp)
+					timestamps = timestamp)
 	}
 
 

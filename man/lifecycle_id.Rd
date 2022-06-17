@@ -40,7 +40,6 @@ Other Eventlog classifiers:
 \code{\link{activity_id}()},
 \code{\link{activity_instance_id}()},
 \code{\link{case_id}()},
-\code{\link{lifecycle_ids}()},
 \code{\link{mapping}()},
 \code{\link{resource_id}()},
 \code{\link{timestamp}()}

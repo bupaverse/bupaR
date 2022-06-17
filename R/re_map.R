@@ -23,7 +23,7 @@ re_map <- function(x, mapping) {
 		log <- activitylog(x,
 					case_id = mapping$case_identifier,
 					activity_id = mapping$activity_identifier,
-					lifecycle_ids = mapping$lifecycle_identifiers,
+					timestamps = mapping$timestamps,
 					resource_id = mapping$resource_identifier,
 					order = ".order")
 

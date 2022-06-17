@@ -14,7 +14,7 @@ to_eventlog.activitylog <- function(activitylog) {
 	activitylog %>%
 		as.data.frame() %>%
 		mutate(activity_instance_id_by_bupar = 1:n()) %>%
-		gather(lifecycle_id, timestamp, lifecycle_ids(activitylog)) %>%
+		gather(lifecycle_id, timestamp, timestamps(activitylog)) %>%
 		filter(!is.na(timestamp)) %>%
 		eventlog(case_id = case_id(activitylog),
 				 activity_id = activity_id(activitylog),

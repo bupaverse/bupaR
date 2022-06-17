@@ -5,14 +5,14 @@
 #' @param case_id The case classifier of the activity log. A character vector containing variable names of length 1 or more.
 #' @param activity_id The activity classifier of the activity log. A character vector containing variable names of length 1 or more.
 #' @param resource_id The resource identifier of the activity log. A character vector containing variable names of length 1 or more.
-#' @param lifecycle_ids The columns with timestamps refering to different lifecycle events. A character vector of 1 or more.
-#' These should have one of the folliwing names: "schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip".
+#' @param timestamps The columns with timestamps refering to different lifecycle events. A character vector of 1 or more.
+#' These should have one of the following names: "schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip".
 #' These columns should be of the Date or POSIXct class.
 #' @inheritParams eventlog
 #' @importFrom purrr pmap
 #' @export
 #'
-activitylog <- function(activitylog, case_id, activity_id, resource_id, lifecycle_ids, order) {
+activitylog <- function(activitylog, case_id, activity_id, resource_id, timestamps, order) {
 	UseMethod("activitylog")
 }
 
@@ -23,7 +23,7 @@ activitylog.data.frame <- function(activitylog,
 								   case_id = NULL,
 								   activity_id = NULL,
 								   resource_id = NULL,
-								   lifecycle_ids = c("start","complete"),
+								   timestamps = c("start","complete"),
 								   order = "auto") {
 
 
@@ -33,8 +33,8 @@ activitylog.data.frame <- function(activitylog,
 
 	allowed_lifecycles <- c("schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip")
 
-	if(any(!(lifecycle_ids %in% allowed_lifecycles))) {
-		stop(glue::glue("Lifecycles {str_subset(lifecycle_ids, allowed_lifecycles, negate = F)} are not allowed. Allowed lifecycles: {str_c(allowed_lifecycles, collapse = \", \")}"))
+	if(any(!(timestamps %in% allowed_lifecycles))) {
+		stop(glue::glue("Lifecycles {str_subset(timestamps, allowed_lifecycles, negate = F)} are not allowed. Allowed lifecycles: {str_c(allowed_lifecycles, collapse = \", \")}"))
 	}
 
 	args_values <- as.list(environment())[c("case_id","activity_id","resource_id")]
@@ -46,20 +46,20 @@ activitylog.data.frame <- function(activitylog,
 
 	activitylog <- purrr::reduce(.x = attribute_list, .f = check_wrapper_activitylog, .init = activitylog)
 
-	if(is.null(lifecycle_ids)) {
-		stop("No lifecycles provided nor found")
+	if(is.null(timestamps)) {
+		stop("No timestamps provided")
 	}
-	else if(any(!(lifecycle_ids %in% names(activitylog))))
-		stop(glue::glue("Lifecycles {str_c(str_subset(lifecycle_ids, names(activitylog), negate = T), collapse = ',')} not found"))
+	else if(any(!(timestamps %in% names(activitylog))))
+		stop(glue::glue("Timestamps {str_c(str_subset(lifecycle_ids, names(activitylog), negate = T), collapse = ',')} not found"))
 	else {
-		for(i in seq_along(lifecycle_ids)) {
-			if(!any(c("POSIXct","Date") %in% (activitylog %>% pull(!!as.symbol(lifecycle_ids[[i]])) %>% class())))
-				stop(glue::glue("Column {lifecycle_ids[[i]]} should be a POSIXct or Date variable."))
+		for(i in seq_along(timestamps)) {
+			if(!any(c("POSIXct","Date") %in% (activitylog %>% pull(!!as.symbol(timestamps[[i]])) %>% class())))
+				stop(glue::glue("Column {timestamps[[i]]} should be a POSIXct or Date variable."))
 
 
 		}
 	}
-	attr(activitylog, "lifecycle_ids") <- lifecycle_ids
+	attr(activitylog, "timestamps") <- timestamps
 
 	if(length(order) == 1 && order %in% c("auto","alphabetical",colnames(activitylog))) {
 

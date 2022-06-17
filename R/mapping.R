@@ -36,7 +36,7 @@ mapping.activitylog <- function(eventlog) {
 
 	mapping$case_identifier <- case_id(eventlog)
 	mapping$activity_identifier <- activity_id(eventlog)
-	mapping$lifecycle_identifiers <- lifecycle_ids(eventlog)
+	mapping$timestamps <- timestamps(eventlog)
 	mapping$resource_identifier <- resource_id(eventlog)
 
 	# Optional groups info for grouped_activitylog

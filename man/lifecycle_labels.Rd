@@ -28,5 +28,5 @@ Retrieve a vector containing all unique lifecycle labels.
 }}
 
 \seealso{
-\code{\link{lifecycle_id}},\code{\link{lifecycle_ids}}
+\code{\link{lifecycle_id}}
 }

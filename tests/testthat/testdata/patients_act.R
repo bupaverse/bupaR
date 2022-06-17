@@ -9,7 +9,7 @@ patients_act_df <- read.csv("tests/testthat/testdata/patients_act.csv", stringsA
 patients_act <- patients_act_df %>%
   activitylog(case_id = "patient",
               activity_id = "activity",
-              lifecycle_ids = c("schedule", "start", "complete"),
+  			  timestamps = c("schedule", "start", "complete"),
               resource_id = "resource")
 
 save(patients_act_df, file = "tests/testthat/testdata/patients_act_df.rda", compress = "gzip")

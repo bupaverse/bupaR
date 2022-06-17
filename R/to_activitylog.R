@@ -42,7 +42,7 @@ to_activitylog.eventlog <- function(eventlog) {
 				case_id = case_id(mapping),
 				activity_id = activity_id(mapping),
 				resource_id = resource_id(mapping),
-				lifecycle_ids = as.vector(c("start","complete", str_subset(lifecycle_labels(eventlog), c("(start)|(complete)"), negate = T))),
+				timestamps = as.vector(c("start","complete", str_subset(lifecycle_labels(eventlog), c("(start)|(complete)"), negate = T))),
 				order = ".order"
 	)
 

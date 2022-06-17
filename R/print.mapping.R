@@ -26,6 +26,6 @@ print.activitylog_mapping <- function(x, ...) {
 	cat(paste0("Case identifier:\t\t", mapping$case_identifier),"\n")
 	cat(paste0("Activity identifier:\t\t", mapping$activity_identifier),"\n")
 	cat(paste0("Resource identifier:\t\t", mapping$resource_identifier),"\n")
-	cat(paste0("Lifecycle identifiers:\t\t", paste(mapping$lifecycle_identifier, collapse = ", ")),"\n")
+	cat(paste0("Timestamps:\t\t", paste(mapping$timestamps, collapse = ", ")),"\n")
 
 }

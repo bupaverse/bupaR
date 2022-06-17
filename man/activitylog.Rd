@@ -4,14 +4,7 @@
 \alias{activitylog}
 \title{Create activity log}
 \usage{
-activitylog(
-  activitylog,
-  case_id,
-  activity_id,
-  resource_id,
-  lifecycle_ids,
-  order
-)
+activitylog(activitylog, case_id, activity_id, resource_id, timestamps, order)
 }
 \arguments{
 \item{activitylog}{The data object to be used as activity log. This can be a
@@ -23,8 +16,8 @@ activitylog(
 
 \item{resource_id}{The resource identifier of the activity log. A character vector containing variable names of length 1 or more.}
 
-\item{lifecycle_ids}{The columns with timestamps refering to different lifecycle events. A character vector of 1 or more.
-These should have one of the folliwing names: "schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip".
+\item{timestamps}{The columns with timestamps refering to different lifecycle events. A character vector of 1 or more.
+These should have one of the following names: "schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip".
 These columns should be of the Date or POSIXct class.}
 
 \item{order}{Configure how to handle sort events with equal timestamps:

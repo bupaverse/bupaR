@@ -31,7 +31,7 @@ last_n.activitylog <- function(log, n, eventlog = deprecated()) {
 
 	log %>%
 		rowwise() %>%
-		mutate("min_timestamp" = min(c_across(lifecycle_ids(log)), na.rm = TRUE)) %>%
+		mutate("min_timestamp" = min(c_across(timestamps(log)), na.rm = TRUE)) %>%
 		ungroup() %>%
 		re_map(mapping(log)) %>%
 		arrange(desc(.data[["min_timestamp"]]), -.data[[".order"]]) %>%

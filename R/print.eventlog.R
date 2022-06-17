@@ -29,7 +29,7 @@ print.log <- function(x, ...) {
         cat(nrs, ngettext(nrs, "resource", "resources"), "\n")
 
         if("activitylog" %in% class(x)) {
-        	timestamps <- gather(x[lifecycle_ids(x)]) %>% pull(.data[["value"]])
+        	timestamps <- gather(x[timestamps(x)]) %>% pull(.data[["value"]])
         } else {
         	timestamps <- x[[timestamp(x)]]
 

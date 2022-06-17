@@ -56,7 +56,7 @@ summary.activitylog <- function(object, ...){
 	number_of_traces <- length(unique(ca$trace_id))
 	number_of_activities <- nrow(activities(eventlog))
 
-	timestamps <- gather(eventlog[lifecycle_ids(eventlog)]) %>% pull(.data[["value"]])
+	timestamps <- gather(eventlog[timestamps(eventlog)]) %>% pull(.data[["value"]])
 
 	first_event <- format(min(timestamps))
 	last_event <- format(max(timestamps))

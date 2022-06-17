@@ -73,7 +73,7 @@ select.activitylog <- function(.data, ..., force_df = FALSE) {
 						  all_of(c(case_id(mapping),
 						  		 activity_id(mapping),
 						  		 resource_id(mapping),
-						  		 lifecycle_ids(mapping),
+						  		 timestamps(mapping),
 						  		 ".order"))) %>%
 			re_map(mapping)
 	}
@@ -97,7 +97,7 @@ select.grouped_activitylog <- function(.data, ..., force_df = FALSE) {
 						  all_of(c(case_id(mapping),
 						  		 activity_id(mapping),
 						  		 resource_id(mapping),
-						  		 lifecycle_ids(mapping),
+						  		 timestamps(mapping),
 						  		 ".order"))) %>%
 			re_map(mapping) -> .data
 	}
