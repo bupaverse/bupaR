@@ -1,27 +1,17 @@
-
-
 #' @title Resources
-#'
 #' @description Returns a \code{tibble}  containing a list of all resources in the event log, with there absolute and relative frequency
-#'
-#' @param log Object of class eventlog or activitylog.
-#' @param eventlog Deprecated; please use log instead.
-#' @param ... Unused.
-#'
-#'
+#' @inheritParams act_collapse
 #' @seealso \code{\link{resource_id}}, \code{\link{eventlog}}
-#'
-#'
 #' @export resources
 
-resources <- function(log, eventlog = deprecated(), ...) {
+resources <- function(log, eventlog = deprecated()) {
 	UseMethod("resources")
 }
 
 #' @describeIn resources Generate resource list for eventlog
 #' @export
 
-resources.eventlog <- function(log, eventlog = deprecated(), ...) {
+resources.eventlog <- function(log, eventlog = deprecated()) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
@@ -40,7 +30,7 @@ resources.eventlog <- function(log, eventlog = deprecated(), ...) {
 #' @describeIn resources Generate resource list for activitylog
 #' @export
 
-resources.activitylog <- function(log, eventlog = deprecated(), ...) {
+resources.activitylog <- function(log, eventlog = deprecated()) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	resources.eventlog(to_eventlog(log))
@@ -48,7 +38,7 @@ resources.activitylog <- function(log, eventlog = deprecated(), ...) {
 #' @describeIn resources Compute activity frequencies
 #' @export
 #'
-resources.grouped_log <- function(log, eventlog = deprecated(), ...) {
+resources.grouped_log <- function(log, eventlog = deprecated()) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	apply_grouped_fun(log, resources)

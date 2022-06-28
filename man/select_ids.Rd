@@ -5,12 +5,12 @@
 \alias{select_ids.log}
 \title{Select identifiers from log}
 \usage{
-select_ids(.log, ...)
+select_ids(log, ...)
 
-\method{select_ids}{log}(.log, ...)
+\method{select_ids}{log}(log, ...)
 }
 \arguments{
-\item{.log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
 
 \item{...}{One or more of the following: activity_id, case_id, activity_instance_id, resource_id, lifecycle_id}
 }

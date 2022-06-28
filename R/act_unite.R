@@ -1,12 +1,11 @@
 #' @title Unite activity labels
 #' @description Recode two or different more activity labels two a uniform activity label
-#' @param log An object of class \code{eventlog}.
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @inheritParams act_collapse
 #' @param ... A series of named character vectors. The activity labels in each vector will be replaced with the name.
 #' @seealso \code{\link{eventlog}}, \code{\link{activity_id}}, \code{\link{act_recode}}
 #' @family Activity processing functions
 #' @export act_unite
-act_unite <- function(log, ...) {
+act_unite <- function(log, ..., eventlog = deprecated()) {
 	UseMethod("act_unite")
 }
 #' @describeIn act_unite Unite activity labels in event log

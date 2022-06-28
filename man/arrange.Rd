@@ -5,14 +5,14 @@
 \alias{arrange}
 \alias{arrange.grouped_eventlog}
 \alias{arrange.activitylog}
-\title{Arrange event log}
+\title{Arrange log}
 \usage{
 \method{arrange}{grouped_eventlog}(.data, ...)
 
 \method{arrange}{activitylog}(.data, ...)
 }
 \arguments{
-\item{.data}{Eventlog}
+\item{.data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{Variables to arrange on}
 }

@@ -1,8 +1,8 @@
 #' @title Timestamp classifiers
 #' @description Get the  timestamps classifier of an object of class \code{activitylog}
-#' @param x An \code{activitylog} or \code{activitylog_mapping}
+#' @param x Object of class \code{\link{activitylog}}, or \code{\link{mapping}}.
 #' @seealso \code{\link{activitylog}}, \code{\link{mapping}}
-#' @family Activitylog classifiers
+#' @family Classifiers
 #' @export
 timestamps <- function(x) {
 	UseMethod("timestamps")

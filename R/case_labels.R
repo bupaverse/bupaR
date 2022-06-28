@@ -2,8 +2,7 @@
 #'
 #' @description Retrieve a vector containing all unique case labels
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @inheritParams act_collapse
 #'
 #' @export
 case_labels <- function(log, eventlog = deprecated()) {

@@ -9,7 +9,8 @@ activities_to_eventlog(
   case_id,
   activity_id,
   resource_id,
-  timestamps
+  timestamps,
+  order = "auto"
 )
 }
 \arguments{
@@ -22,7 +23,17 @@ activities_to_eventlog(
 \item{resource_id}{Column name of the resource identifier}
 
 \item{timestamps}{A vector of column names containing different timestamp. To column names will be transformed to lifecycle identifiers}
+
+\item{order}{Configure how to handle sort events with equal timestamps:
+auto will use the order in the original data,
+alphabetical will sort the activity labels by alphabet,
+sorted will assume that the data frame is already correctly sorted and has a column '.order',
+providing a column name will use this column for ordering (can be numeric of character).
+The latter will never overrule timestamp orderings.}
 }
 \description{
-Create event log from list of activity instances
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+
+This function is superseded. For new code we recommend using activitylog() to create an activitylog, and if needed to_eventlog() to transform it into an eventlog.
 }
+\keyword{internal}

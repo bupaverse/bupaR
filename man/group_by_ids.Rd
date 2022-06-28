@@ -5,12 +5,12 @@
 \alias{group_by_ids.log}
 \title{Group log on identifiers}
 \usage{
-group_by_ids(.log, ...)
+group_by_ids(log, ...)
 
-\method{group_by_ids}{log}(.log, ...)
+\method{group_by_ids}{log}(log, ...)
 }
 \arguments{
-\item{.log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{One or more of the following: activity_id, case_id, activity_instance_id, resource_id, lifecycle_id}
 }

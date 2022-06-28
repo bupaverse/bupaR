@@ -7,7 +7,7 @@
 \method{print}{log}(x, ...)
 }
 \arguments{
-\item{x}{Eventlog object}
+\item{x}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{Additional Arguments}
 }

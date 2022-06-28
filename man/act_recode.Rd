@@ -13,7 +13,7 @@ act_recode(log, ..., eventlog = deprecated())
 \method{act_recode}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{log}{An object of class \code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{A sequence of named character vectors of length one where the names gives the new label and the value gives the old label. Labels not mentioned will be left unchanged.}
 

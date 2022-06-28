@@ -2,9 +2,8 @@
 #'
 #' @description Returns the number of activity instances in an event log
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
-#' @param eventlog Deprecated; please use \code{log} instead.
-#' @family Eventlog count functions
+#' @inheritParams act_collapse
+#' @family Counters
 #' @export
 
 n_activity_instances <- function(log, eventlog = deprecated()) {

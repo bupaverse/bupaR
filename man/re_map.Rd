@@ -7,9 +7,9 @@
 re_map(x, mapping)
 }
 \arguments{
-\item{x}{The eventlog/activitylog data to be used.}
+\item{x}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{mapping}{An existing eventlog mapping created by the mapping function}
+\item{mapping}{An existing mapping created by the mapping function}
 }
 \description{
 Construct an eventlog using an existing mapping.

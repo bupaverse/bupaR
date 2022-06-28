@@ -1,6 +1,4 @@
 #' @title Mutate event log
-#' @param .data Eventlog
-#' @param ... New variables
 #' @name mutate
 #' @importFrom dplyr mutate
 #' @export

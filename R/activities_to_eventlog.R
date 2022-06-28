@@ -1,42 +1,37 @@
 #' Create event log from list of activity instances
 #'
+#' @description
+#' `r lifecycle::badge("superseded")`
+#'
+#' This function is superseded. For new code we recommend using activitylog() to create an activitylog, and if needed to_eventlog() to transform it into an eventlog.
+#'
 #' @param activity_log A data.frame where each row is an activity instances
 #' @param case_id Column name of the case identifier
 #' @param activity_id Column name of the activity identifier
 #' @param resource_id Column name of the resource identifier
 #' @param timestamps A vector of column names containing different timestamp. To column names will be transformed to lifecycle identifiers
-#'
+#' @inheritParams eventlog
+#' @keywords internal
 #' @export
 activities_to_eventlog <- function(activity_log,
 								   case_id,
 								   activity_id,
 								   resource_id,
-								   timestamps) {
+								   timestamps,
+								   order = "auto") {
 
-	stopifnot(is.data.frame(activity_log))
-	stopifnot(is.character(case_id))
-	stopifnot(is.character(activity_id))
-	stopifnot(is.character(resource_id))
-	stopifnot(is.character(timestamps))
-	stopifnot(length(timestamps) > 1)
+	lifecycle::signal_stage(stage = "superseded", "activities_to_eventlog()")
 
-	activity_log %>%
-		ungroup() %>%
-		mutate(activity_instance_id = 1:n()) %>%
-		tidyr::gather(lifecycle_id, timestamp, one_of(timestamps)) %>%
-		filter(!is.na(timestamp)) %>%
-		arrange(timestamp) %>%
-		eventlog(case_id = case_id,
-				 activity_id = activity_id,
-				 activity_instance_id = "activity_instance_id",
-				 lifecycle_id = "lifecycle_id",
-				 timestamp = "timestamp",
-				 resource_id = resource_id)
+	activitylog(activity_log,
+				case_id = case_id,
+				activity_id = activity_id,
+				resource_id = resource_id,
+				timestamps = timestamps,
+				order = order) %>%
+		to_eventlog()
+
 
 
 }
 
 
-activitylog_to_eventlog <- function(log) {
-	activities_to_eventlog(log, case_id(log), activity_id(log), resource_id(log), timestamps(log))
-}

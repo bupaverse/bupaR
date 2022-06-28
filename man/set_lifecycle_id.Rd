@@ -10,7 +10,7 @@ set_lifecycle_id(log, lifecycle_id, eventlog = deprecated())
 \method{set_lifecycle_id}{default}(log, lifecycle_id, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{lifecycle_id}{New lifecycle id. Can be multiple in case of activitylog}
 
@@ -24,3 +24,19 @@ Set lifecycle id of log
 \item \code{default}: Set lifecycle id
 }}
 
+\seealso{
+Other Classifiers: 
+\code{\link{activity_id}()},
+\code{\link{activity_instance_id}()},
+\code{\link{case_id}()},
+\code{\link{lifecycle_id}()},
+\code{\link{resource_id}()},
+\code{\link{set_activity_id}()},
+\code{\link{set_activity_instance_id}()},
+\code{\link{set_case_id}()},
+\code{\link{set_resource_id}()},
+\code{\link{set_timestamp}()},
+\code{\link{timestamps}()},
+\code{\link{timestamp}()}
+}
+\concept{Classifiers}

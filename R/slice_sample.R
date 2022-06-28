@@ -1,9 +1,5 @@
 #' @title Sample function for logs
 #' @name slice_sample
-# @description Takes a sample of the specified \code{size} from the cases of \code{.data}, either with or without replacement.
-#'
-# @inheritParams dplyr::slice_sample
-#'
 #' @importFrom dplyr slice_sample
 #' @export
 dplyr::slice_sample

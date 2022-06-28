@@ -3,8 +3,7 @@
 #' @description Returns a \code{\link{tibble}} containing a list of all life cycle types in the log,
 #' with their absolute and relative frequency (# events).
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
-#' @param eventlog `r lifecycle::badge("deprecated")`; please use \code{log} instead.
+#' @inheritParams act_collapse
 #'
 #' @seealso \code{\link{lifecycle_id}}
 #'

@@ -1,6 +1,6 @@
 #' @title Group event log on case id
 #' @description Group an event log by case identifier
-#' @param log Object of classes eventlog or activitylog
+#' @inheritParams act_collapse
 
 
 #' @export group_by_case

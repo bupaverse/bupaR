@@ -2,8 +2,8 @@
 #'
 #' @description Construct an eventlog using an existing mapping.
 #'
-#' @param x The eventlog/activitylog data to be used.
-#' @param mapping An existing eventlog mapping created by the mapping function
+#' @param x \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
+#' @param mapping An existing mapping created by the mapping function
 #'
 #' @export re_map
 #'

@@ -19,7 +19,7 @@ timestamps(x)
 \method{timestamps}{activitylog_mapping}(x)
 }
 \arguments{
-\item{x}{An \code{activitylog} or \code{activitylog_mapping}}
+\item{x}{Object of class \code{\link{activitylog}}, or \code{\link{mapping}}.}
 }
 \description{
 Get the  timestamps classifier of an object of class \code{activitylog}
@@ -37,5 +37,19 @@ Get the  timestamps classifier of an object of class \code{activitylog}
 
 \seealso{
 \code{\link{activitylog}}, \code{\link{mapping}}
+
+Other Classifiers: 
+\code{\link{activity_id}()},
+\code{\link{activity_instance_id}()},
+\code{\link{case_id}()},
+\code{\link{lifecycle_id}()},
+\code{\link{resource_id}()},
+\code{\link{set_activity_id}()},
+\code{\link{set_activity_instance_id}()},
+\code{\link{set_case_id}()},
+\code{\link{set_lifecycle_id}()},
+\code{\link{set_resource_id}()},
+\code{\link{set_timestamp}()},
+\code{\link{timestamp}()}
 }
-\concept{Activitylog classifiers}
+\concept{Classifiers}

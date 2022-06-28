@@ -6,18 +6,18 @@
 \alias{traces.grouped_log}
 \title{Traces}
 \usage{
-traces(log, eventlog = deprecated(), ...)
+traces(log, ..., eventlog = deprecated())
 
-\method{traces}{log}(log, eventlog = deprecated(), ...)
+\method{traces}{log}(log, ..., eventlog = deprecated())
 
-\method{traces}{grouped_log}(log, eventlog = deprecated(), ...)
+\method{traces}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
-
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{Deprecated arguments}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 \code{traces} computes the different activity sequences of an event log

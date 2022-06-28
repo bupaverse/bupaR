@@ -1,8 +1,8 @@
 #' @title Group event log
 #' @name group_by
-#' @param .data Object of class eventlog or activitylog
+#' @param .data \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
 #' @param ... Variables to group by
-#' @param add Add grouping variables to existing ones
+#' @param .add Add grouping variables to existing ones
 #' @importFrom dplyr group_by
 #' @export
 dplyr::group_by

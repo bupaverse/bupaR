@@ -1,7 +1,7 @@
 
 #' Convert eventlog object to activitylog object.
 #'
-#' @param eventlog Object of class eventlog to be converted to activitylog
+#' @param eventlog Object of class \code{\link{eventlog}}
 #'
 #' @export
 #'

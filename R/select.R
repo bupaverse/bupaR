@@ -1,7 +1,5 @@
 #' @title Select event log
 #' @name select
-#' @param .data Eventlog
-#' @param ... Bare column names
 #' @param force_df If TRUE, result will no longer be a event log when not all id columns are selected.
 #' @importFrom dplyr select
 #' @export

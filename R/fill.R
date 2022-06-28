@@ -1,5 +1,5 @@
 #' @title Fill event log
-#' @param data Eventlog
+#' @param data \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
 #' @param ... options for fill
 #' @name fill
 #' @importFrom tidyr fill

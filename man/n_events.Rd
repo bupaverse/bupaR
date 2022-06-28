@@ -19,7 +19,7 @@ n_events(log, eventlog = deprecated())
 \method{n_events}{grouped_activitylog}(log, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{eventlog}{Deprecated; please use \code{log} instead.}
 }
@@ -38,11 +38,11 @@ Returns the number of events in an event log.
 }}
 
 \seealso{
-Other Eventlog count functions: 
+Other Counters: 
 \code{\link{n_activities}()},
 \code{\link{n_activity_instances}()},
 \code{\link{n_cases}()},
 \code{\link{n_resources}()},
 \code{\link{n_traces}()}
 }
-\concept{Eventlog count functions}
+\concept{Counters}

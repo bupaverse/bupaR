@@ -2,20 +2,19 @@
 #'
 #' Construct trace list
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @inheritParams act_collapse
 #' @param ... Other arguments. Currently not used.
 #' @export
 #'
 
-trace_list <- function(log, eventlog = deprecated(), ...){
+trace_list <- function(log, ..., eventlog = deprecated()){
 	UseMethod("trace_list")
 }
 
 #' @describeIn trace_list Construct trace list for event log
 #' @export
 
-trace_list.eventlog <- function(log, eventlog = deprecated(), ...){
+trace_list.eventlog <- function(log, ..., eventlog = deprecated()){
 	eventlog <- lifecycle_warning_eventlog(log, eventlog)
 
 	min_order <- NULL
@@ -54,7 +53,7 @@ trace_list.eventlog <- function(log, eventlog = deprecated(), ...){
 #' @describeIn trace_list Construct trace list for activity log
 #' @export
 #'
-trace_list.activitylog <- function(log, eventlog = deprecated(), ...) {
+trace_list.activitylog <- function(log, ..., eventlog = deprecated()) {
 
 
 	eventlog <- lifecycle_warning_eventlog(log, eventlog)
@@ -85,7 +84,7 @@ trace_list.activitylog <- function(log, eventlog = deprecated(), ...) {
 #' @describeIn trace_list Construct list of traces for grouped log
 #' @export
 #'
-trace_list.grouped_log <- function(log, eventlog = deprecated(), ...){
+trace_list.grouped_log <- function(log, ..., eventlog = deprecated()){
 	eventlog <- lifecycle_warning_eventlog(log, eventlog)
 
 	eventlog %>%

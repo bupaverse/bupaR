@@ -36,12 +36,18 @@ Get the activity instance classifier of an object of class \code{eventlog}.
 }}
 
 \seealso{
-Other Eventlog classifiers: 
+Other Classifiers: 
 \code{\link{activity_id}()},
 \code{\link{case_id}()},
 \code{\link{lifecycle_id}()},
-\code{\link{mapping}()},
 \code{\link{resource_id}()},
+\code{\link{set_activity_id}()},
+\code{\link{set_activity_instance_id}()},
+\code{\link{set_case_id}()},
+\code{\link{set_lifecycle_id}()},
+\code{\link{set_resource_id}()},
+\code{\link{set_timestamp}()},
+\code{\link{timestamps}()},
 \code{\link{timestamp}()}
 }
-\concept{Eventlog classifiers}
+\concept{Classifiers}

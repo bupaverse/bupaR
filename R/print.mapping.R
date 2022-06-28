@@ -1,6 +1,6 @@
-#' @title Generic print function for eventlog_mapping
-#' @description Generic print function for eventlog_mapping
-#' @param x Eventlog mapping object
+#' @title Generic print function for mapping.
+#' @description Generic print function for mapping.
+#' @param x Mapping of \code{\link{eventlog}} or \code{\link{activitylog}}
 #' @param ... Additional Arguments
 #' @method print eventlog_mapping
 #' @export

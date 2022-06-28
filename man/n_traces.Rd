@@ -6,18 +6,16 @@
 \alias{n_traces.grouped_log}
 \title{n_traces}
 \usage{
-n_traces(log, eventlog = deprecated(), ...)
+n_traces(log, eventlog = deprecated())
 
-\method{n_traces}{log}(log, eventlog = deprecated(), ...)
+\method{n_traces}{log}(log, eventlog = deprecated())
 
-\method{n_traces}{grouped_log}(log, eventlog = deprecated(), ...)
+\method{n_traces}{grouped_log}(log, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{eventlog}{Deprecated; please use \code{log} instead.}
-
-\item{...}{Other arguments. Currently not used.}
 }
 \description{
 Returns the number of traces in an event log
@@ -30,11 +28,11 @@ Returns the number of traces in an event log
 }}
 
 \seealso{
-Other Eventlog count functions: 
+Other Counters: 
 \code{\link{n_activities}()},
 \code{\link{n_activity_instances}()},
 \code{\link{n_cases}()},
 \code{\link{n_events}()},
 \code{\link{n_resources}()}
 }
-\concept{Eventlog count functions}
+\concept{Counters}

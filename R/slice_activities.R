@@ -1,6 +1,6 @@
 #' @title Slice Activities
 #' @description Take a slice of activity instances from event log
-#' @param .data Eventlog
+#' @param .data \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
 #' @param ... Slice index
 #' @export slice_activities
 slice_activities <- function(.data, ...) {

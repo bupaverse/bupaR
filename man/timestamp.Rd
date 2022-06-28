@@ -19,7 +19,7 @@ timestamp(x)
 \method{timestamp}{activitylog_mapping}(x)
 }
 \arguments{
-\item{x}{An \code{eventlog} of \code{eventlog_mapping}}
+\item{x}{Object of class \code{\link{eventlog}}, or \code{\link{mapping}}.}
 }
 \description{
 Get the  timestamp classifier of an object of class \code{eventlog}
@@ -38,12 +38,18 @@ Get the  timestamp classifier of an object of class \code{eventlog}
 \seealso{
 \code{\link{eventlog}}, \code{\link{mapping}}
 
-Other Eventlog classifiers: 
+Other Classifiers: 
 \code{\link{activity_id}()},
 \code{\link{activity_instance_id}()},
 \code{\link{case_id}()},
 \code{\link{lifecycle_id}()},
-\code{\link{mapping}()},
-\code{\link{resource_id}()}
+\code{\link{resource_id}()},
+\code{\link{set_activity_id}()},
+\code{\link{set_activity_instance_id}()},
+\code{\link{set_case_id}()},
+\code{\link{set_lifecycle_id}()},
+\code{\link{set_resource_id}()},
+\code{\link{set_timestamp}()},
+\code{\link{timestamps}()}
 }
-\concept{Eventlog classifiers}
+\concept{Classifiers}

@@ -1,8 +1,8 @@
 #' @title Timestamp classifier
 #' @description Get the  timestamp classifier of an object of class \code{eventlog}
-#' @param x An \code{eventlog} of \code{eventlog_mapping}
+#' @param x Object of class \code{\link{eventlog}}, or \code{\link{mapping}}.
 #' @seealso \code{\link{eventlog}}, \code{\link{mapping}}
-#' @family Eventlog classifiers
+#' @family Classifiers
 #' @export
 timestamp <- function(x) {
 	UseMethod("timestamp")

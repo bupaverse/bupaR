@@ -28,7 +28,7 @@ add_start_activity(log, label, eventlog = deprecated())
 \method{add_start_activity}{grouped_log}(log, label = "Start", eventlog = deprecated())
 }
 \arguments{
-\item{log}{Log}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{label}{Start/end activity label}
 

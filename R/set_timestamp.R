@@ -1,10 +1,10 @@
 
 #' Set timestamp of eventlog
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{eventlog}}.
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @inheritParams act_collapse
 #' @param timestamp New timestamp
-#'
+#' @family Classifiers
+
 #'
 #' @export
 #'

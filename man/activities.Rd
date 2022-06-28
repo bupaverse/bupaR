@@ -6,18 +6,18 @@
 \alias{activities.grouped_log}
 \title{Activities}
 \usage{
-activities(log, eventlog, ...)
+activities(log, ..., eventlog)
 
-\method{activities}{activitylog}(log, eventlog = deprecated(), ...)
+\method{activities}{activitylog}(log, ..., eventlog = deprecated())
 
-\method{activities}{grouped_log}(log, eventlog = deprecated(), ...)
+\method{activities}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{log}{Object of class eventlog or activitylog.}
-
-\item{eventlog}{Deprecated; please use log instead.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{Unused.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Returns a \code{tibble}  containing a list of all activity types in the event log, with their absolute and relative frequency

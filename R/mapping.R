@@ -2,16 +2,19 @@
 #'
 #' @description Prints the mapping of an event log object.
 #'
-#' @param eventlog The event log to be used. An object of class
-#' \code{eventlog}.
+#' @inheritParams act_collapse
+
 #' @family Eventlog classifiers
 #' @export
-mapping <- function(eventlog) {
+mapping <- function(log, eventlog = deprecated()) {
 	UseMethod("mapping")
 }
 #' @describeIn mapping Retrieve identifier mapping from eventlog
 #' @export
-mapping.eventlog <- function(eventlog) {
+mapping.eventlog <- function(log, eventlog = deprecated()) {
+
+	eventlog <- lifecycle_warning_eventlog(log, eventlog)
+
 	mapping <- list()
 
 	mapping$case_identifier <- case_id(eventlog)
@@ -31,7 +34,10 @@ mapping.eventlog <- function(eventlog) {
 
 #' @describeIn mapping Retrieve identifier mapping from activitylog
 #' @export
-mapping.activitylog <- function(eventlog) {
+mapping.activitylog <- function(log, eventlog = deprecated()) {
+
+	eventlog <- lifecycle_warning_eventlog(log, eventlog)
+
 	mapping <- list()
 
 	mapping$case_identifier <- case_id(eventlog)

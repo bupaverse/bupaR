@@ -5,10 +5,6 @@
 \alias{select}
 \title{Select event log}
 \arguments{
-\item{.data}{Eventlog}
-
-\item{...}{Bare column names}
-
 \item{force_df}{If TRUE, result will no longer be a event log when not all id columns are selected.}
 }
 \keyword{internal}

@@ -4,8 +4,6 @@
 \alias{lifecycle_id}
 \alias{lifecycle_id.eventlog}
 \alias{lifecycle_id.eventlog_mapping}
-\alias{lifecycle_id.activitylog}
-\alias{lifecycle_id.activitylog_mapping}
 \title{Life cycle classifier}
 \usage{
 lifecycle_id(x)
@@ -13,13 +11,9 @@ lifecycle_id(x)
 \method{lifecycle_id}{eventlog}(x)
 
 \method{lifecycle_id}{eventlog_mapping}(x)
-
-\method{lifecycle_id}{activitylog}(x)
-
-\method{lifecycle_id}{activitylog_mapping}(x)
 }
 \arguments{
-\item{x}{An \code{eventlog} of \code{eventlog_mapping}}
+\item{x}{\code{\link{eventlog}}: Object of class \code{\link{eventlog}}, or \code{\link{mapping}}.}
 }
 \description{
 Get the life_cycle_id of an object of class \code{eventlog}
@@ -29,19 +23,21 @@ Get the life_cycle_id of an object of class \code{eventlog}
 \item \code{eventlog}: Retrieve lifecycle identifier from eventlog
 
 \item \code{eventlog_mapping}: Retrieve lifecycle identifier from eventlog mapping
-
-\item \code{activitylog}: Retrieve lifecycle identifier from activitylog
-
-\item \code{activitylog_mapping}: Retrieve lifecycle identifier from activitylog mapping
 }}
 
 \seealso{
-Other Eventlog classifiers: 
+Other Classifiers: 
 \code{\link{activity_id}()},
 \code{\link{activity_instance_id}()},
 \code{\link{case_id}()},
-\code{\link{mapping}()},
 \code{\link{resource_id}()},
+\code{\link{set_activity_id}()},
+\code{\link{set_activity_instance_id}()},
+\code{\link{set_case_id}()},
+\code{\link{set_lifecycle_id}()},
+\code{\link{set_resource_id}()},
+\code{\link{set_timestamp}()},
+\code{\link{timestamps}()},
 \code{\link{timestamp}()}
 }
-\concept{Eventlog classifiers}
+\concept{Classifiers}

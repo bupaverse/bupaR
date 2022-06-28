@@ -7,7 +7,7 @@
 to_activitylog(eventlog)
 }
 \arguments{
-\item{eventlog}{Object of class eventlog to be converted to activitylog}
+\item{eventlog}{Object of class \code{\link{eventlog}}}
 }
 \description{
 Convert eventlog object to activitylog object.

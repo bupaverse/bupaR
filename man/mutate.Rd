@@ -4,11 +4,6 @@
 \name{mutate}
 \alias{mutate}
 \title{Mutate event log}
-\arguments{
-\item{.data}{Eventlog}
-
-\item{...}{New variables}
-}
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

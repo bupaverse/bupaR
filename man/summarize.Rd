@@ -6,7 +6,7 @@
 \alias{summarise}
 \title{Summarize event log}
 \arguments{
-\item{.data}{Eventlog}
+\item{.data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}}
 
 \item{...}{Name-value pairs of summary functions}
 }

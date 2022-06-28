@@ -6,15 +6,16 @@
 \alias{mapping.activitylog}
 \title{Mapping}
 \usage{
-mapping(eventlog)
+mapping(log, eventlog = deprecated())
 
-\method{mapping}{eventlog}(eventlog)
+\method{mapping}{eventlog}(log, eventlog = deprecated())
 
-\method{mapping}{activitylog}(eventlog)
+\method{mapping}{activitylog}(log, eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{The event log to be used. An object of class
-\code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Prints the mapping of an event log object.
@@ -26,13 +27,4 @@ Prints the mapping of an event log object.
 \item \code{activitylog}: Retrieve identifier mapping from activitylog
 }}
 
-\seealso{
-Other Eventlog classifiers: 
-\code{\link{activity_id}()},
-\code{\link{activity_instance_id}()},
-\code{\link{case_id}()},
-\code{\link{lifecycle_id}()},
-\code{\link{resource_id}()},
-\code{\link{timestamp}()}
-}
 \concept{Eventlog classifiers}

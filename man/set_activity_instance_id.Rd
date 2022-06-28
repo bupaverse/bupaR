@@ -10,7 +10,7 @@ set_activity_instance_id(log, activity_instance_id, eventlog = deprecated())
 \method{set_activity_instance_id}{eventlog}(log, activity_instance_id, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{activity_instance_id}{New activity_instance id}
 
@@ -24,3 +24,19 @@ Set activity instance id of log
 \item \code{eventlog}: Set activity_instance_id of eventlog
 }}
 
+\seealso{
+Other Classifiers: 
+\code{\link{activity_id}()},
+\code{\link{activity_instance_id}()},
+\code{\link{case_id}()},
+\code{\link{lifecycle_id}()},
+\code{\link{resource_id}()},
+\code{\link{set_activity_id}()},
+\code{\link{set_case_id}()},
+\code{\link{set_lifecycle_id}()},
+\code{\link{set_resource_id}()},
+\code{\link{set_timestamp}()},
+\code{\link{timestamps}()},
+\code{\link{timestamp}()}
+}
+\concept{Classifiers}

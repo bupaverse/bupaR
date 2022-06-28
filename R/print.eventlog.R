@@ -1,6 +1,6 @@
 #' @title Generic print function for eventlog
 #' @description Generic print function for eventlog
-#' @param x Eventlog object
+#' @param x \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
 #' @param ... Additional Arguments
 #' @importFrom pillar style_subtle
 #' @importFrom purrr map_chr

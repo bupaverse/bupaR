@@ -31,7 +31,7 @@ act_collapse(log, ..., method, eventlog = deprecated())
 )
 }
 \arguments{
-\item{log}{An \code{eventlog} object}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{A series of named character vectors. The activity labels in each vector will be collapsed into one activity with the name of the vector.}
 

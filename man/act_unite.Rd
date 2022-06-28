@@ -6,14 +6,14 @@
 \alias{act_unite.grouped_log}
 \title{Unite activity labels}
 \usage{
-act_unite(log, ...)
+act_unite(log, ..., eventlog = deprecated())
 
 \method{act_unite}{log}(log, ..., eventlog = deprecated())
 
 \method{act_unite}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{log}{An object of class \code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{A series of named character vectors. The activity labels in each vector will be replaced with the name.}
 

@@ -7,20 +7,20 @@
 \alias{cases.activitylog}
 \title{Cases}
 \usage{
-cases(log, eventlog = deprecated(), ...)
+cases(log, ..., eventlog = deprecated())
 
-\method{cases}{log}(log, eventlog = deprecated(), ...)
+\method{cases}{log}(log, ..., eventlog = deprecated())
 
-\method{cases}{eventlog}(log, eventlog = deprecated(), ...)
+\method{cases}{eventlog}(log, ..., eventlog = deprecated())
 
-\method{cases}{activitylog}(log, eventlog = deprecated(), ...)
+\method{cases}{activitylog}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
-
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{Other (optional) arguments passed on to methods. See \code{\link{durations}} for more options.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Provides a fine-grained summary of an event log with characteristics for each case: the number of events,

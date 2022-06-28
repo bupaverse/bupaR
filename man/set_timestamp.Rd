@@ -10,7 +10,7 @@ set_timestamp(log, timestamp, eventlog = deprecated())
 \method{set_timestamp}{eventlog}(log, timestamp, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{timestamp}{New timestamp}
 
@@ -24,3 +24,19 @@ Set timestamp of eventlog
 \item \code{eventlog}: Set timestamp of eventlog
 }}
 
+\seealso{
+Other Classifiers: 
+\code{\link{activity_id}()},
+\code{\link{activity_instance_id}()},
+\code{\link{case_id}()},
+\code{\link{lifecycle_id}()},
+\code{\link{resource_id}()},
+\code{\link{set_activity_id}()},
+\code{\link{set_activity_instance_id}()},
+\code{\link{set_case_id}()},
+\code{\link{set_lifecycle_id}()},
+\code{\link{set_resource_id}()},
+\code{\link{timestamps}()},
+\code{\link{timestamp}()}
+}
+\concept{Classifiers}

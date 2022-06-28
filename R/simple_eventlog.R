@@ -12,15 +12,10 @@
 #'
 #' @param eventlog The data object to be used as event log. This can be a
 #' \code{data.frame} or \code{tibble}.
-#'
 #' @param case_id The case classifier of the event log.
-#'
 #' @param activity_id The activity classifier of the event log.
-#'
 #' @param timestamp The timestamp of the event log.
-#'
 #' @param resource_id The resource classifier of the event log (optional).
-#'
 #' @param order Configure how to handle sort events with equal timestamps:
 #' auto will use the order in the original data,
 #' alphabetical will sort the activity labels by alphabet,

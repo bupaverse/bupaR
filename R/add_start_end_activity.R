@@ -1,10 +1,10 @@
 #' Add artificial start/end activities to case
 #'
-#' @param log Log
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @inheritParams act_collapse
 #' @param label Start/end activity label
 #'
 #' @name add_end_activity
+#' @inheritParams act_collapse
 #'
 #' @importFrom forcats fct_expand
 #' @export add_end_activity

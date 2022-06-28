@@ -5,12 +5,14 @@
 \alias{activity_labels.log}
 \title{Get vector of activity labels}
 \usage{
-activity_labels(eventlog)
+activity_labels(log, eventlog = deprecated())
 
-\method{activity_labels}{log}(eventlog)
+\method{activity_labels}{log}(log, eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{Eventlog}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Retrieve a vector containing all unique activity labels

@@ -13,7 +13,7 @@ lifecycle_labels(log, eventlog = deprecated())
 \method{lifecycle_labels}{activitylog}(log, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{eventlog}{Deprecated; please use \code{log} instead.}
 }

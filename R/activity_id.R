@@ -1,8 +1,8 @@
 #' @title Activity classifier
 #' @description Get the activity classifier of an object of class \code{eventlog}.
-#' @param x An \code{eventlog} of \code{eventlog_mapping}
-#' @seealso \code{\link{eventlog}}, \code{\link{mapping}}
-#' @family Eventlog classifiers
+#' @inheritParams case_id
+#' @seealso \code{\link{eventlog}}, \code{\link{activitylog}}, \code{\link{mapping}}
+#' @family Classifiers
 #' @export activity_id
 activity_id <- function(x) {
 	UseMethod("activity_id")

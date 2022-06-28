@@ -2,8 +2,7 @@
 #'
 #' @description Select first n activity instances.
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @inheritParams act_collapse
 #' @param n \code{\link{integer}}: The number of activity instances to select.
 #'
 #' @export

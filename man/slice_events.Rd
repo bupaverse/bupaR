@@ -7,7 +7,7 @@
 slice_events(.data, ...)
 }
 \arguments{
-\item{.data}{Eventlog}
+\item{.data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}}
 
 \item{...}{Slice index}
 }

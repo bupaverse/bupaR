@@ -16,7 +16,7 @@ last_n(log, n, eventlog = deprecated())
 \method{last_n}{grouped_log}(log, n, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{n}{\code{\link{integer}}: The number of activity instances to select.}
 

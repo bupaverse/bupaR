@@ -26,11 +26,6 @@
 
 \method{slice_events}{grouped_eventlog}(.data, ...)
 }
-\arguments{
-\item{.data}{Eventlog}
-
-\item{...}{Additional Arguments}
-}
 \section{Methods (by class)}{
 \itemize{
 \item \code{log}: Slice n cases of a log

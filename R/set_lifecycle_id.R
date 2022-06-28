@@ -1,10 +1,10 @@
 
 #' Set lifecycle id of log
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @inheritParams act_collapse
 #' @param lifecycle_id New lifecycle id. Can be multiple in case of activitylog
-#'
+#' @family Classifiers
+
 #'
 #' @export
 #'

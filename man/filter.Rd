@@ -5,9 +5,9 @@
 \alias{filter}
 \title{Filter event log}
 \arguments{
-\item{.data}{Eventlog}
+\item{.data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{...}{Conditions to filter}
+\item{...}{Conditions to filter on}
 }
 \keyword{internal}
 \description{

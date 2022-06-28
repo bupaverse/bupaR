@@ -5,7 +5,7 @@
 \alias{fill}
 \title{Fill event log}
 \arguments{
-\item{data}{Eventlog}
+\item{data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{options for fill}
 }

@@ -120,11 +120,6 @@ eventlog.data.frame  <- function(eventlog,
 
 
 	mapping <- mapping(eventlog)
-	eventlog[[case_id(mapping)]] <- as.character(eventlog[[case_id(mapping)]])
-	eventlog[[activity_id(mapping)]] <- as.factor(eventlog[[activity_id(mapping)]])
-	eventlog[[activity_instance_id(mapping)]] <- as.character(eventlog[[activity_instance_id(mapping)]])
-	eventlog[[resource_id(mapping)]] <- as.factor(eventlog[[resource_id(mapping)]])
-	eventlog[[lifecycle_id(mapping)]] <- as.factor(eventlog[[lifecycle_id(mapping)]])
 
 	return(eventlog)
 }

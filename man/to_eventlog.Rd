@@ -13,7 +13,7 @@ to_eventlog(activitylog)
 \method{to_eventlog}{grouped_activitylog}(activitylog)
 }
 \arguments{
-\item{activitylog}{Object of class activitylog to be converted to eventlog.}
+\item{activitylog}{Object of class \code{\link{activitylog}}}
 }
 \description{
 Convert activitylog to eventlog

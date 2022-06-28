@@ -1,10 +1,10 @@
 
 #' Set case id of log
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @inheritParams act_collapse
 #' @param case_id New case id
-#'
+#' @family Classifiers
+
 #'
 #' @export
 #'

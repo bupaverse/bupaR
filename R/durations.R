@@ -2,18 +2,16 @@
 #'
 #' @description Computes the throughput times of each case.
 #' Throughput time is defined as the interval between the start of the first event and the completion of the last event.
-#'
-#' @param log \code{\link{log}}: Object of class \code{\link{log}}, \code{\link{eventlog}}, or \code{\link{activitylog}}.
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @inheritParams act_collapse
 #' @param units \code{\link{character}} (default "auto"): The time unit in which the throughput times should be reported. Should be one of the following values:
 #' "auto" (default), "secs", "mins", "hours", "days", "weeks". See also the \code{units} argument of \code{\link{difftime}}.
 #' @export durations
-durations <- function(log, eventlog = deprecated(), units = c("auto", "secs", "mins", "hours", "days", "weeks")) {
+durations <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks"), eventlog = deprecated()) {
 	UseMethod("durations")
 }
 
 #' @export
-durations.log <- function(log, eventlog = deprecated(), units = c("auto", "secs", "mins", "hours", "days", "weeks")) {
+durations.log <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks"), eventlog = deprecated()) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
 	units <- rlang::arg_match(units)
@@ -27,7 +25,7 @@ durations.log <- function(log, eventlog = deprecated(), units = c("auto", "secs"
 }
 
 #' @export
-durations.eventlog <- function(log, eventlog = deprecated(), units = c("auto", "secs", "mins", "hours", "days", "weeks")) {
+durations.eventlog <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks"), eventlog = deprecated()) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
 	units <- rlang::arg_match(units)
@@ -36,7 +34,7 @@ durations.eventlog <- function(log, eventlog = deprecated(), units = c("auto", "
 }
 
 #' @export
-durations.activitylog <- function(log, eventlog = deprecated(), units = c("auto", "secs", "mins", "hours", "days", "weeks")) {
+durations.activitylog <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks"), eventlog = deprecated()) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
 	units <- rlang::arg_match(units)

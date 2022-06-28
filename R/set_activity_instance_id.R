@@ -1,10 +1,10 @@
 
 #' Set activity instance id of log
 #'
-#' @param log \code{\link{log}}: Object of class \code{\link{eventlog}}.
-#' @param eventlog Deprecated; please use \code{log} instead.
+#' @inheritParams act_collapse
 #' @param activity_instance_id New activity_instance id
-#'
+#' @family Classifiers
+
 #'
 #' @export
 #'

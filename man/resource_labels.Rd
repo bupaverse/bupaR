@@ -5,16 +5,14 @@
 \alias{resource_labels.default}
 \title{Get vector of resource labels}
 \usage{
-resource_labels(log, eventlog, ...)
+resource_labels(log, eventlog = deprecated())
 
-\method{resource_labels}{default}(log, eventlog, ...)
+\method{resource_labels}{default}(log, eventlog = deprecated())
 }
 \arguments{
-\item{log}{Object of class eventlog or activitylog.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{eventlog}{Deprecated; please use log instead.}
-
-\item{...}{Unused.}
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Retrieve a vector containing all unique resource labels

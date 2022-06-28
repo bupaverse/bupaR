@@ -1,6 +1,4 @@
 #' @title Slice function for event log
-#' @param .data Eventlog
-#' @param ... Additional Arguments
 #' @name slice
 #' @importFrom dplyr slice
 #' @export

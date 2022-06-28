@@ -7,20 +7,18 @@
 \alias{resources.grouped_log}
 \title{Resources}
 \usage{
-resources(log, eventlog = deprecated(), ...)
+resources(log, eventlog = deprecated())
 
-\method{resources}{eventlog}(log, eventlog = deprecated(), ...)
+\method{resources}{eventlog}(log, eventlog = deprecated())
 
-\method{resources}{activitylog}(log, eventlog = deprecated(), ...)
+\method{resources}{activitylog}(log, eventlog = deprecated())
 
-\method{resources}{grouped_log}(log, eventlog = deprecated(), ...)
+\method{resources}{grouped_log}(log, eventlog = deprecated())
 }
 \arguments{
-\item{log}{Object of class eventlog or activitylog.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{eventlog}{Deprecated; please use log instead.}
-
-\item{...}{Unused.}
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Returns a \code{tibble}  containing a list of all resources in the event log, with there absolute and relative frequency

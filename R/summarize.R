@@ -1,7 +1,7 @@
 
 #' @title Summarize event log
 #' @name summarize
-#' @param .data Eventlog
+#' @param .data \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}
 #' @param ... Name-value pairs of summary functions
 #' @importFrom dplyr summarize
 #' @return

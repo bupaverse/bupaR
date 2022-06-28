@@ -2,21 +2,20 @@
 #'
 #' @description Returns a \code{tibble}  containing a list of all activity types in the event log, with their absolute and relative frequency
 #'
-#' @param log Object of class eventlog or activitylog.
-#' @param eventlog Deprecated; please use log instead.
+#' @inheritParams act_collapse
 #' @param ... Unused.
 #'
 #' @seealso \code{\link{activity_id}},\code{\link{activity_instance_id}}, \code{\link{eventlog}}
 #'
 #' @export activities
 #'
-activities <- function(log, eventlog, ...) {
+activities <- function(log, ..., eventlog) {
 	UseMethod("activities")
 }
 
 #' @export
 
-activities.eventlog <- function(log, eventlog = deprecated(), ...) {
+activities.eventlog <- function(log, ... , eventlog = deprecated()) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
@@ -29,14 +28,14 @@ activities.eventlog <- function(log, eventlog = deprecated(), ...) {
 #' @describeIn activities Compute activity frequencies
 #' @export
 
-activities.activitylog <- function(log, eventlog = deprecated(), ...) {
+activities.activitylog <- function(log, ... , eventlog = deprecated()) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	activities.eventlog(to_eventlog(log))
 }
 #' @describeIn activities Compute activity frequencies
 #' @export
-activities.grouped_log <- function(log, eventlog = deprecated(), ...) {
+activities.grouped_log <- function(log, ..., eventlog = deprecated()) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	apply_grouped_fun(log, activities)
