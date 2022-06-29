@@ -22,7 +22,9 @@ standardize_lifecycle.eventlog <- function(eventlog) {
 
 	NEW_LC <- NULL
 
-	if(all(lifecycle_labels(eventlog) %in% c("start","complete")))
+	allowed_lifecycles <- c("schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip")
+
+	if(all(lifecycle_labels(eventlog) %in% allowed_lifecycles))
 		eventlog
 	else {
 		eventlog %>%
