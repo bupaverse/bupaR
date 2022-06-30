@@ -11,7 +11,7 @@
 \item{...}{Name-value pairs of summary functions}
 }
 \value{
-The summarize function returns a tible, no event log.
+The summarize function returns a tibble, no event log. All groups will be removed.
 }
 \keyword{internal}
 \description{

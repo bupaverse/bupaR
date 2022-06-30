@@ -27,10 +27,30 @@ apply_grouped_fun <- function(log, fun, ..., .ignore_groups = FALSE, .keep_group
 				mutate(data = map(data, re_map, mapping)) %>%
 				# compute output of function, taking over any arguments
 				mutate(data = map(data, fun, ...)) %>%
+				# for log metrics in edeaR, extract raw attributes from the data.
+				# We propagate these attributes to the final log
+				mutate(raw = map(data, attr, "raw")) -> log
+
+
+			# extract and unnest raw colum
+			log %>%
+				select(any_of(mapping$groups), raw) %>%
+				unnest(cols = raw) -> raw
+
+			# remove raw column and unnest log
+			log %>%
+				select(-raw) %>%
 				# remove any columns in the output data that is also present in the group-keys
 				mutate(data = map(data, ~select(.x,-any_of(mapping$groups)))) %>%
 				# unnest
 				unnest(cols = data) -> log
+
+			# add raw data as attribute (if not empty)
+			if(nrow(raw) > 0) {
+				attr(log, "raw") <- raw
+			}
+
+
 		} else { #fun returns eventlog
 			log %>%
 				# remove grouping
