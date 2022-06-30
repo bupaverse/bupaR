@@ -46,5 +46,15 @@ to_activitylog.eventlog <- function(eventlog) {
 				order = ".order"
 	)
 
-
 }
+
+#' @export
+#'
+to_activitylog.grouped_eventlog <- function(eventlog) {
+	groups <- groups(eventlog)
+	eventlog %>%
+		ungroup_eventlog() %>%
+		to_activitylog() %>%
+		group_by_at(vars(all_of(paste(groups))))
+}
+
