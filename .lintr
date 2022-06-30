@@ -1,4 +1,4 @@
-linters: with_defaults(
+linters: linters_with_defaults(
   line_length_linter(200),
   commented_code_linter = NULL,
   no_tab_linter = NULL)
