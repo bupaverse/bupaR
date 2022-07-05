@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 ^_pkgdown\.yml$
 ^docs$
+^codecov\.yml$
+^\.github$
+^\.idea$
+^\.lintr$

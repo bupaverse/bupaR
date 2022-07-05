@@ -7,18 +7,18 @@
 assign_instance_id(eventlog, case_id, activity_id, timestamp, lifecycle_id)
 }
 \arguments{
-\item{eventlog}{data.frame}
+\item{eventlog}{data.frame with events}
 
 \item{case_id}{Case identifier}
 
 \item{activity_id}{Activity identifier}
 
-\item{timestamp}{Timestap}
+\item{timestamp}{Timestamp}
 
 \item{lifecycle_id}{Lifecycle identifier}
 }
 \description{
-Apply heuristics to create an activity instance identifier, so that eventlog can be made.
+Apply heuristics to create an activity instance identifier, so that an eventlog can be made.
 }
 \seealso{
 Other Eventlog construction helpers: 

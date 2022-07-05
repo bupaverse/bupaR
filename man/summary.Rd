@@ -10,9 +10,9 @@
 \method{summary}{grouped_eventlog}(object, ...)
 }
 \arguments{
-\item{object}{Eventlog object}
+\item{object}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}}
 
-\item{...}{Additional Arguments}
+\item{...}{Ignored.}
 }
 \description{
 Generic summary function for eventlog class

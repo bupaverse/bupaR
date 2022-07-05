@@ -4,39 +4,51 @@
 \alias{add_end_activity}
 \alias{add_start_activity}
 \alias{add_end_activity.eventlog}
-\alias{add_end_activity.grouped_eventlog}
+\alias{add_end_activity.activitylog}
+\alias{add_end_activity.grouped_log}
 \alias{add_start_activity.eventlog}
-\alias{add_start_activity.grouped_eventlog}
-\title{Add artificial start/end activities to}
+\alias{add_start_activity.activitylog}
+\alias{add_start_activity.grouped_log}
+\title{Add artificial start/end activities to case}
 \usage{
-add_end_activity(eventlog, label)
+add_end_activity(log, label, eventlog = deprecated())
 
-add_start_activity(eventlog, label)
+add_start_activity(log, label, eventlog = deprecated())
 
-\method{add_end_activity}{eventlog}(eventlog, label = "End")
+\method{add_end_activity}{eventlog}(log, label = "End", eventlog = deprecated())
 
-\method{add_end_activity}{grouped_eventlog}(eventlog, label = "End")
+\method{add_end_activity}{activitylog}(log, label = "End", eventlog = deprecated())
 
-\method{add_start_activity}{eventlog}(eventlog, label = "Start")
+\method{add_end_activity}{grouped_log}(log, label = "End", eventlog = deprecated())
 
-\method{add_start_activity}{grouped_eventlog}(eventlog, label = "Start")
+\method{add_start_activity}{eventlog}(log, label = "Start", eventlog = deprecated())
+
+\method{add_start_activity}{activitylog}(log, label = "Start", eventlog = deprecated())
+
+\method{add_start_activity}{grouped_log}(log, label = "Start", eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{Event log}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{label}{Start/end activity label}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
-Add artificial start/end activities to
+Add artificial start/end activities to case
 }
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Add end activity to event log
 
-\item \code{grouped_eventlog}: Add end activity to grouped event log
+\item \code{activitylog}: Add end activity to activity log
+
+\item \code{grouped_log}: Add end activity to grouped event log
 
 \item \code{eventlog}: Add start activity to event log
 
-\item \code{grouped_eventlog}: Add start activity to grouped event log
+\item \code{activitylog}: Add start activity to activity log
+
+\item \code{grouped_log}: Add start activity to grouped event log
 }}
 

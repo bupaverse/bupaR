@@ -3,26 +3,12 @@
 \docType{import}
 \name{filter}
 \alias{filter}
-\alias{filter.eventlog}
-\alias{filter.grouped_eventlog}
 \title{Filter event log}
-\usage{
-\method{filter}{eventlog}(.data, ...)
-
-\method{filter}{grouped_eventlog}(.data, ...)
-}
 \arguments{
-\item{.data}{Eventlog}
+\item{.data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{...}{Conditions to filter}
+\item{...}{Conditions to filter on}
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{eventlog}: Filter eventlog
-
-\item \code{grouped_eventlog}: Filter eventlog
-}}
-
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

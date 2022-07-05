@@ -1,50 +1,51 @@
-
-#' Select last n activity instances
+#' @title last_n
 #'
-#' @param eventlog Eventlog object
-#' @param n Integer value
+#' @description Select last n activity instances
+#'
+#' @inheritParams act_collapse
+#' @param n \code{\link{integer}}: The number of activity instances to select.
 #'
 #' @export
-last_n <- function(eventlog, n) {
+last_n <- function(log,  n, eventlog = deprecated()) {
 	UseMethod("last_n")
 }
 
-#' @describeIn last_n Select first n activity instances in event log
+#' @describeIn last_n Select last n activity instances of an \code{\link{eventlog}}.
 #' @export
-last_n.eventlog <- function(eventlog, n) {
-	eventlog %>%
-		last_n_raw( timestamp(eventlog), activity_instance_id(eventlog), n) %>%
-		re_map(mapping(eventlog))
+last_n.eventlog <- function(log, n, eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	log %>%
+		arrange(desc(.data[[timestamp(log)]]), -.data[[".order"]]) %>%
+		slice_activities(1:n) %>%
+		arrange(.data[[timestamp(log)]], .data[[".order"]])
 }
 
-last_n_raw <- function(.data, .timestamp, .activity_instance_id,  n) {
-
-	.order <- NULL
-	.data %>%
-		pull(!!sym(.activity_instance_id)) %>%
-		unique %>%
-		length -> n_instances
-
-	.data %>%
-		arrange(!!sym(.timestamp), .order) %>%
-		slice_activities_raw(.activity_instance_id, (n_instances + 1 - n):n_instances)
-}
-
-#' @describeIn last_n Select first n activity instances  in grouped event log
+#' @describeIn last_n Select last n activity instances of an \code{\link{activitylog}}.
 #' @export
-#'
-last_n.grouped_eventlog <- function(eventlog, n) {
-	groups <- groups(eventlog)
-	mapping <- mapping(eventlog)
+last_n.activitylog <- function(log, n, eventlog = deprecated()) {
 
-	aid <- activity_instance_id(eventlog)
-	ts <- timestamp(eventlog)
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
-	eventlog %>%
-		nest() %>%
-		mutate(data = map(data, last_n_raw, ts, aid, n)) %>%
-		unnest() %>%
-		re_map(mapping) %>%
-		group_by_at(vars(one_of(paste(groups))))
-
+	log %>%
+		rowwise() %>%
+		mutate("min_timestamp" = min(c_across(timestamps(log)), na.rm = TRUE)) %>%
+		ungroup() %>%
+		re_map(mapping(log)) %>%
+		arrange(desc(.data[["min_timestamp"]]), -.data[[".order"]]) %>%
+		slice_activities(1:n) %>%
+		arrange(.data[["min_timestamp"]], .data[[".order"]]) %>%
+		select(-"min_timestamp")
 }
+
+#' @describeIn last_n Select last n activity instances of a \code{\link{grouped_log}}.
+#' @export
+last_n.grouped_log <- function(log, n, eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	log %>%
+		apply_grouped_fun(last_n, n, .keep_groups = TRUE, .returns_log = TRUE)
+}
+

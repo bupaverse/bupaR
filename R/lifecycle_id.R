@@ -1,7 +1,7 @@
 #' @title Life cycle classifier
 #' @description Get the life_cycle_id of an object of class \code{eventlog}
-#' @param x An \code{eventlog} of \code{eventlog_mapping}
-#' @family Eventlog classifiers
+#' @param x \code{\link{eventlog}}: Object of class \code{\link{eventlog}}, or \code{\link{mapping}}.
+#' @family Classifiers
 #' @export lifecycle_id
 lifecycle_id <- function(x) {
 	UseMethod("lifecycle_id")
@@ -18,18 +18,6 @@ lifecycle_id.eventlog_mapping <- function(x) {
 	return(x$lifecycle_identifier)
 }
 
-#' @describeIn lifecycle_id Retrieve lifecycle identifier from activitylog
-#' @export
-lifecycle_id.activitylog <- function(x) {
-	warning(glue::glue("Object is activity log. Lifecycles are stored in {length(attr(x, \"lifecycle_ids\"))} columns."))
-	return(attr(x, "lifecycle_ids"))
-}
 
-#' @describeIn lifecycle_id Retrieve lifecycle identifier from activitylog mapping
-#' @export
-lifecycle_id.activitylog_mapping <- function(x) {
-	warning(glue::glue("Object is activity log. Lifecycles are stored in {length(x$lifecycle_identifiers)} columns."))
-	return(x$lifecycle_identifiers)
-}
 
 

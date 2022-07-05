@@ -11,6 +11,12 @@ resource_id_ <- function(eventlog) sym(resource_id(eventlog))
 timestamp_ <- function(eventlog) sym(timestamp(eventlog))
 lifecycle_id_ <- function(eventlog) sym(lifecycle_id(eventlog))
 
+
+set_id <- function(log, id, value) {
+	attr(log, id) <- value
+	log
+}
+
 is_eventlog <- function(eventlog) {
 	"eventlog" %in% class(eventlog)
 }
@@ -19,42 +25,78 @@ is_grouped_eventlog <- function(eventlog) {
 	"grouped_eventlog" %in% class(eventlog)
 }
 
+.start_activities_eventlog <- function(eventlog) {
+	aid <- activity_id(eventlog)
+	eventlog %>%
+		group_by(.data[[case_id(eventlog)]]) %>%
+		arrange(.data[[timestamp(eventlog)]], .data[[".order"]]) %>%
+		summarize({{aid}} := first(.data[[activity_id(eventlog)]])) %>%
+		distinct(.data[[aid]])
+}
 
-#' @importFrom lubridate ymd_hms
-#' @export
-lubridate::ymd_hms
-#' @importFrom lubridate ymd_hm
-#' @export
-lubridate::ymd_hm
-#' @importFrom lubridate ymd_h
-#' @export
-lubridate::ymd_h
-#' @importFrom lubridate ymd
-#' @export
-lubridate::ymd
-#' @importFrom lubridate dmy_hms
-#' @export
-lubridate::dmy_hms
-#' @importFrom lubridate dmy_hm
-#' @export
-lubridate::dmy_hm
-#' @importFrom lubridate dmy_h
-#' @export
-lubridate::dmy_h
-#' @importFrom lubridate dmy
-#' @export
-lubridate::dmy
-#' @importFrom lubridate mdy_hms
-#' @export
-lubridate::mdy_hms
-#' @importFrom lubridate mdy_hm
-#' @export
-lubridate::mdy_hm
-#' @importFrom lubridate mdy_h
-#' @export
-lubridate::mdy_h
-#' @importFrom lubridate mdy
-#' @export
-lubridate::mdy
+.end_activities_eventlog <- function(eventlog) {
+	aid <- activity_id(eventlog)
+	eventlog %>%
+		group_by(.data[[case_id(eventlog)]]) %>%
+		arrange(.data[[timestamp(eventlog)]], .data[[".order"]]) %>%
+		summarize({{aid}} := last(.data[[activity_id(eventlog)]])) %>%
+		distinct(.data[[aid]])
+
+}
+
+.start_activities_activitylog <- function(activitylog) {
+
+	aid <- activity_id(activitylog)
+	activitylog %>%
+		group_by(.data[[case_id(activitylog)]]) %>%
+		arrange(.data[["start"]], .data[["complete"]],  .data[[".order"]]) %>%
+		summarize({{aid}} := first(.data[[activity_id(activitylog)]])) %>%
+		distinct(.data[[aid]])
+
+}
+
+.end_activities_activitylog <- function(activitylog) {
+
+	aid <- activity_id(activitylog)
+	activitylog %>%
+		group_by(.data[[case_id(activitylog)]]) %>%
+		arrange(.data[["start"]], .data[["complete"]], .data[[".order"]]) %>%
+		summarize({{aid}} := last(.data[[activity_id(activitylog)]])) %>%
+		distinct(.data[[aid]])
+}
 
 
+
+# Warning: The `eventlog` argument of `func()` is deprecated as of bupaR 0.5.0.
+# Please use the `log` argument instead.
+# WARNING: Works only on exported functions!
+lifecycle_warning_eventlog <- function (log, eventlog = deprecated()) {
+
+	if(lifecycle::is_present(eventlog)) {
+		cl <- sys.call(-1L)
+		func <- get(as.character(cl[[1L]]), mode = "function", envir = sys.frame(-2L))
+		func_name <- match.call(definition = func, call = cl)[[1L]]
+
+		lifecycle::deprecate_warn("0.5.0", paste0(func_name, "(eventlog)"), paste0(func_name, "(log)"))
+		return(eventlog)
+	}
+
+	return(log)
+}
+
+# Warning: The `tbl` argument of `func()` is deprecated as of bupaR 0.5.0.
+# Please use the `log` argument instead.
+# WARNING: Works only on exported functions!
+lifecycle_warning_tbl <- function (log, tbl = deprecated(), ...) {
+
+	if(lifecycle::is_present(tbl)) {
+		cl <- sys.call(-1L)
+		func <- get(as.character(cl[[1L]]), mode = "function", envir = sys.frame(-2L))
+		func_name <- match.call(definition = func, call = cl, expand.dots = FALSE)[[1L]]
+
+		lifecycle::deprecate_warn("0.5.0", paste0(func_name, "(tbl)"), paste0(func_name, "(log)"))
+		return(tbl)
+	}
+
+	return(log)
+}

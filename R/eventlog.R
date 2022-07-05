@@ -1,12 +1,12 @@
 #' @title Eventlog
 #'
 #' @description A function to instantiate an object of class \code{eventlog} by specifying a
-#' \code{data.frame} or \code{tbl_df} and appropriate case, activity and
+#' \code{data.frame} or \code{tibble} and appropriate case, activity and
 #' timestamp classifiers.
 #'
 #'
 #' @param eventlog The data object to be used as event log. This can be a
-#' \code{data.frame} or \code{tbl_df}.
+#' \code{data.frame} or \code{tibble}.
 #'
 #' @param case_id The case classifier of the event log. A character vector containing variable names of length 1 or more.
 #' @param activity_id The activity classifier of the event log. A character vector containing variable names of length 1 or more.
@@ -62,7 +62,7 @@ eventlog.data.frame  <- function(eventlog,
 
 	stopifnot(is.data.frame(eventlog))
 	eventlog <- as_tibble(eventlog)
-	class(eventlog) <- c("eventlog",class(eventlog))
+	class(eventlog) <- c("eventlog", "log", class(eventlog))
 
 
 	args_values <- as.list(environment())[c("case_id","activity_id","activity_instance_id","lifecycle_id","resource_id")]
@@ -120,11 +120,6 @@ eventlog.data.frame  <- function(eventlog,
 
 
 	mapping <- mapping(eventlog)
-	eventlog[[case_id(mapping)]] <- as.character(eventlog[[case_id(mapping)]])
-	eventlog[[activity_id(mapping)]] <- as.factor(eventlog[[activity_id(mapping)]])
-	eventlog[[activity_instance_id(mapping)]] <- as.character(eventlog[[activity_instance_id(mapping)]])
-	eventlog[[resource_id(mapping)]] <- as.factor(eventlog[[resource_id(mapping)]])
-	eventlog[[lifecycle_id(mapping)]] <- as.factor(eventlog[[lifecycle_id(mapping)]])
 
 	return(eventlog)
 }
@@ -248,7 +243,7 @@ validate_eventlog <- function(eventlog) {
 		stop(glue("The following activity instances are connected to more than one activity: {paste(violation_activities %>% pull(1), collapse = \",\")}"))
 	}
 	if(nrow(violation_resources) > 0) {
-		warning(glue("The following activity instances are connected to more than one resource: {paste(violation_resources %>% pull(1), collapse = \",\")}"))
+		warning(glue("The following activity instances are connected to more than one resource: {paste(violation_resources %>% pull(1), collapse = \",\")}\n"))
 	}
 
 	TRUE

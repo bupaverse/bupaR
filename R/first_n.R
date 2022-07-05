@@ -1,39 +1,50 @@
-
-#' Select first n activity instances
+#' @title first_n
 #'
-#' @param eventlog Eventlog object
-#' @param n Integer value
+#' @description Select first n activity instances.
+#'
+#' @inheritParams act_collapse
+#' @param n \code{\link{integer}}: The number of activity instances to select.
 #'
 #' @export
-first_n <- function(eventlog, n) {
+first_n <- function(log, n, eventlog = deprecated()) {
 	UseMethod("first_n")
 }
 
-#' @describeIn first_n Select first n activity instances in event log
+#' @describeIn first_n Select first n activity instances of an \code{\link{eventlog}}.
 #' @export
-first_n.eventlog <- function(eventlog, n) {
-	eventlog %>%
-		first_n_raw( timestamp(eventlog), activity_instance_id(eventlog), n) %>%
-		re_map(mapping(eventlog))
-}
+first_n.eventlog <- function(log, n, eventlog = deprecated()) {
 
-first_n_raw <- function(.data, .timestamp, .activity_instance_id,  n) {
-	.order <- NULL
-	.data %>%
-		arrange(!!sym(.timestamp), .order) %>%
-		slice_activities_raw(.activity_instance_id, 1:n)
-}
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
-#' @describeIn first_n Select first n activity instances  in grouped event log
-#' @export
-#'
-first_n.grouped_eventlog <- function(eventlog, n) {
-	.order <- NULL
-
-	groups <- groups(eventlog)
-	mapping <- mapping(eventlog)
-	eventlog %>%
-		arrange(!!timestamp_(eventlog), .order) %>%
+	log %>%
+		arrange(.data[[timestamp(log)]], .data[[".order"]]) %>%
 		slice_activities(1:n)
-
 }
+
+#' @describeIn first_n Select first n activity instances of an \code{\link{activitylog}}.
+#' @export
+first_n.activitylog <- function(log, n, eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	log %>%
+		rowwise() %>%
+		mutate("min_timestamp" = min(c_across(timestamps(log)), na.rm = TRUE)) %>%
+		re_map(mapping(log)) %>%
+		arrange("min_timestamp", ".order") %>%
+		slice_activities(1:n) %>%
+		select(-"min_timestamp")
+}
+
+#' @describeIn first_n Select first n activity instances of a \code{\link{grouped_log}}.
+#' @export
+first_n.grouped_log <- function(log, n, eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	log %>%
+		apply_grouped_fun(first_n, n, .keep_groups = TRUE, .returns_log = TRUE)
+}
+
+
+

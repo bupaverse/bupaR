@@ -4,27 +4,45 @@
 \alias{n_activity_instances}
 \alias{n_activity_instances.eventlog}
 \alias{n_activity_instances.grouped_eventlog}
+\alias{n_activity_instances.activitylog}
+\alias{n_activity_instances.grouped_activitylog}
 \title{n_activity_instances}
 \usage{
-n_activity_instances(eventlog)
+n_activity_instances(log, eventlog = deprecated())
 
-\method{n_activity_instances}{eventlog}(eventlog)
+\method{n_activity_instances}{eventlog}(log, eventlog = deprecated())
 
-\method{n_activity_instances}{grouped_eventlog}(eventlog)
+\method{n_activity_instances}{grouped_eventlog}(log, eventlog = deprecated())
+
+\method{n_activity_instances}{activitylog}(log, eventlog = deprecated())
+
+\method{n_activity_instances}{grouped_activitylog}(log, eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{The event log to be used. An object of class
-\code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Returns the number of activity instances in an event log
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{eventlog}: eventlog
+
+\item \code{grouped_eventlog}: grouped_eventlog
+
+\item \code{activitylog}: eventlog
+
+\item \code{grouped_activitylog}: grouped_activitylog
+}}
+
 \seealso{
-Other Eventlog count functions: 
+Other Counters: 
 \code{\link{n_activities}()},
 \code{\link{n_cases}()},
 \code{\link{n_events}()},
 \code{\link{n_resources}()},
 \code{\link{n_traces}()}
 }
-\concept{Eventlog count functions}
+\concept{Counters}

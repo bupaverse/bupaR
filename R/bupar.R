@@ -3,9 +3,14 @@
 #' @name bupaR
 #' @description Functionalities for process analysis in R. This packages implements an S3-class for event log objects, and related handler functions. Imports related packages for subsetting event data, computation of descriptive statistics, handling of Petri Net objects and visualization of process maps.
 #'
+## usethis namespace: start
 #' @importFrom magrittr %>%
+#' @importFrom data.table as.data.table
 #' @importFrom data.table data.table
 #' @importFrom data.table :=
+#' @importFrom data.table .I
+#' @importFrom data.table .N
+#' @importFrom data.table .SD
 #' @import dplyr
 #' @import shiny
 #' @import miniUI
@@ -15,6 +20,7 @@
 #' @importFrom forcats fct_collapse
 #' @importFrom purrr map
 #' @importFrom purrr pmap
+#' @importFrom tibble as_tibble
 #' @importFrom tidyr nest
 #' @importFrom tidyr unnest
 #' @importFrom stats median
@@ -25,6 +31,9 @@
 #' @importFrom utils setTxtProgressBar
 #' @importFrom utils txtProgressBar
 #' @importFrom utils data
+#' @importFrom lifecycle deprecated
+#' @importFrom rlang .data
+## usethis namespace: end
 globalVariables(c("."))
 "_PACKAGE"
 

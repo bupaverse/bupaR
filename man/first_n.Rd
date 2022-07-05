@@ -3,27 +3,34 @@
 \name{first_n}
 \alias{first_n}
 \alias{first_n.eventlog}
-\alias{first_n.grouped_eventlog}
-\title{Select first n activity instances}
+\alias{first_n.activitylog}
+\alias{first_n.grouped_log}
+\title{first_n}
 \usage{
-first_n(eventlog, n)
+first_n(log, n, eventlog = deprecated())
 
-\method{first_n}{eventlog}(eventlog, n)
+\method{first_n}{eventlog}(log, n, eventlog = deprecated())
 
-\method{first_n}{grouped_eventlog}(eventlog, n)
+\method{first_n}{activitylog}(log, n, eventlog = deprecated())
+
+\method{first_n}{grouped_log}(log, n, eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{Eventlog object}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{n}{Integer value}
+\item{n}{\code{\link{integer}}: The number of activity instances to select.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
-Select first n activity instances
+Select first n activity instances.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Select first n activity instances in event log
+\item \code{eventlog}: Select first n activity instances of an \code{\link{eventlog}}.
 
-\item \code{grouped_eventlog}: Select first n activity instances  in grouped event log
+\item \code{activitylog}: Select first n activity instances of an \code{\link{activitylog}}.
+
+\item \code{grouped_log}: Select first n activity instances of a \code{\link{grouped_log}}.
 }}
 

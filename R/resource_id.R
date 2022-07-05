@@ -1,8 +1,8 @@
 #' @title Resource classifier
 #' @description Get the resource classifier of an object of class \code{eventlog}.
-#' @param x An \code{eventlog} of \code{eventlog_mapping}
+#' @inheritParams case_id
 #' @seealso \code{\link{eventlog}}, \code{\link{mapping}}
-#' @family Eventlog classifiers
+#' @family Classifiers
 #' @export
 
 resource_id <- function(x) {

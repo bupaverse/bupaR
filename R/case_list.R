@@ -1,38 +1,59 @@
-
-
-#' Case list
+#' @title Case list
 #'
-#' Construct list of cases
+#' @description Construct list of cases
 #'
-#' @param eventlog Eventlog object
+#' @inheritParams act_collapse
+#' @param .keep_trace_list Logical (default is \code{FALSE}): If \code{TRUE}, keeps the trace as a \code{list}.
+#' If \code{FALSE}, only the concatenated string representation of the trace is kept.
+#'
+#' @importFrom stringi stri_join
 #'
 #' @export
-#'
-case_list <- function(eventlog) {
+case_list <- function(log, .keep_trace_list, eventlog = deprecated()) {
 	UseMethod("case_list")
 }
 
 #' @describeIn case_list Return case list
 #' @export
+case_list.eventlog <- function(log, .keep_trace_list = FALSE, eventlog = deprecated()) {
 
-
-case_list.eventlog <- function(eventlog){
-	min_order <- NULL
-	trace_id <- NULL
-
-	eDT <- data.table::data.table(eventlog)
-
-	# this is roughly 3x faster than grouping and relies on unique taking the first distinct value
-	# which corresponds to the event with the minimum timestamp and minimum .order
-  	data.table::setorderv(eDT, cols = c(case_id(eventlog), timestamp(eventlog), ".order"))
-	cases <- unique(eDT, by = c(case_id(eventlog), activity_instance_id(eventlog), activity_id(eventlog)))
-
-	cases <- cases[order(get(timestamp(eventlog)), get(".order")),
-				   list(trace = paste(get(activity_id(eventlog)), collapse = ",")),
-				   by = c(case_id(eventlog))][,
-				   	trace_id := as.numeric(factor(get("trace")))
-				   ]
+	log <- lifecycle_warning_eventlog(log, eventlog)
+	cases <- case_list_dt(log, .keep_trace_list)
 
 	cases %>%
-		as_tibble
+		as_tibble()
+}
+#' @describeIn case_list Return case list
+#' @export
+case_list.activitylog <- function(log, .keep_trace_list = FALSE, eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+	case_list.eventlog(to_eventlog(log), .keep_trace_list = .keep_trace_list)
+}
+
+
+
+case_list_dt <- function (log, .keep_trace_list = FALSE) {
+
+	trace_id <- NULL
+
+	dt <- data.table::data.table(log)
+	by_case <- case_id(log)
+
+	# This is roughly 3x faster than grouping and relies on unique taking the first distinct value,
+	# which corresponds to the event with the minimum timestamp and minimum .order
+	data.table::setorderv(dt, cols = c(case_id(log), timestamp(log), ".order"))
+	cases <- unique(dt, by = c(case_id(log), activity_instance_id(log), activity_id(log)))
+
+	cases <- cases[order(get(timestamp(log)), get(".order")), .SD, by = by_case][,
+		 						 .(trace_list = .(as.character(get(activity_id(log)))),
+								   trace = stringi::stri_join(get(activity_id(log)), collapse = ",")), by = by_case][,
+								 trace_id := as.numeric(factor(trace))]
+
+	if (!.keep_trace_list) {
+		# Remove the trace_list
+		cases[, trace_list := NULL]
+	}
+
+	return(cases)
 }

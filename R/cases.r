@@ -1,77 +1,71 @@
 #' @title Cases
 #'
-#' @description Provides a fine-grained summary of an event log with characteristics for each case:  the number of events,
-#' the number of activity types, the timespan, the trace, the duration and the first and last event type.
+#' @description Provides a fine-grained summary of an event log with characteristics for each case: the number of events,
+#' the number of activity types, the timespan, the trace, the duration, and the first and last event type.
 #'
+#' @inheritParams act_collapse
+#' @param ... Other (optional) arguments passed on to methods. See \code{\link{durations}} for more options.
 #'
-#' @param eventlog An eventlog object.
-#' \code{eventlog}.
-#'
+#' @seealso \code{\link{case_list}},\code{\link{durations}}
 #'
 #' @export
-cases <- function(eventlog) {
+cases <- function(log, ..., eventlog = deprecated()) {
 	UseMethod("cases")
 }
 
-#' @describeIn cases Constructy list of cases in an eventlog
+#' @describeIn cases Construct list of cases in a \code{\link{log}}.
 #' @export
-cases.eventlog <- function(eventlog){
+cases.log <- function(log, ..., eventlog = deprecated()) {
 
-	traces_per_case <- case_list(eventlog)
-	durations <- durations(eventlog)
+	log <- lifecycle_warning_eventlog(log, eventlog)
 
+	traces_per_case <- case_list_dt(log, .keep_trace_list = TRUE)
+	durations <- durations_dt(log, ...)
+	#durations <- data.table::data.table(durations(log))
 
-	summary <- eventlog %>%
-		group_by(!!as.symbol(case_id(eventlog))) %>%
-		summarize(trace_length = n_distinct(!!as.symbol(activity_instance_id(eventlog))),
-				  number_of_activities = n_distinct(!!as.symbol(activity_id(eventlog))),
-				  start_timestamp = min(!!as.symbol(timestamp(eventlog))),
-				  complete_timestamp = max(!!as.symbol(timestamp(eventlog))))
+	dt <- data.table::data.table(log) # Unfortunately, we can't use setDT (which is much faster) as this transforms the log into a data.table by reference.
 
-	summary <- inner_join(summary, traces_per_case, by = case_id(eventlog))
-	summary <- inner_join(summary, durations, by = case_id(eventlog))
+	by_case <- case_id(log)
 
-	summary$first_activity <- NA_character_
-	summary$last_activity  <- NA_character_
+	# Summarise data by case.
+	summary <- dt[, .(trace_length = data.table::uniqueN(get(activity_instance_id(log))),
+									  number_of_activities = data.table::uniqueN(get(activity_id(log))),
+	                  start_timestamp = min(get(timestamp(log))),
+                    complete_timestamp = max(get(timestamp(log)))),
+									by = by_case]
 
-	for(i in 1:nrow(summary)){
-		summary$first_activity[i] <- strsplit(summary$trace[i], split = ",")[[1]][1]
-		summary$last_activity[i] <- strsplit(summary$trace[i], split = ",")[[1]][length(strsplit(summary$trace[i], split =",")[[1]])]
-	}
-	summary$first_activity <- as.factor(summary$first_activity)
-	summary$last_activity <- as.factor(summary$last_activity)
+	# Setting keys improves joining performance.
+	data.table::setkeyv(summary, by_case)
+	data.table::setkeyv(traces_per_case, by_case)
+	data.table::setkeyv(durations, by_case)
 
+	# Inner join with summarised data, traces_per_case and durations.
+	summary <- summary[traces_per_case, on = by_case, nomatch = NA][
+										 durations, on = by_case, nomatch = NA]
 
-	summary <- tbl_df(summary)
-	return(summary)
+	# Get first and last activity from trace_list, and remove trace_list
+	summary[, ":="(first_activity = as.factor(vapply(trace_list, "[", 1L, FUN.VALUE = character(1))),
+	               last_activity = as.factor(vapply(trace_list, function (x) x[length(x)], FUN.VALUE = character(1))))][,
+						trace_list := NULL]
 
-
+	summary %>%
+		as.data.frame()
 }
 
-#' @title Get vector of case labels
-#' @description Retrieve a vector containing all unique case labels
-#' @param eventlog Eventlog
+#' @describeIn cases Construct list of cases in an \code{\link{eventlog}}.
 #' @export
-case_labels <- function(eventlog) {
-	UseMethod("case_labels")
+cases.eventlog <- function(log, ..., eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	cases.log(log)
 }
 
-#' @describeIn case_labels Retrieve case labels from eventlog
+#' @describeIn cases Construct list of cases in a \code{\link{activitylog}}.
 #' @export
-case_labels.eventlog <- function(eventlog) {
-	eventlog %>%
-		ungroup() %>%
-		pull(!!case_id_(eventlog)) %>%
-		unique()
+cases.activitylog <- function(log, ..., eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	cases.log(to_eventlog(log))
 }
-
-#' @describeIn case_labels Retrieve case labels from activitylog
-#' @export
-case_labels.activitylog <- function(eventlog) {
-	eventlog %>%
-		ungroup() %>%
-		pull(!!case_id_(eventlog)) %>%
-		unique()
-}
-
-

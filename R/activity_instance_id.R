@@ -1,7 +1,7 @@
 #' @title Activity instance classifier
 #' @description Get the activity instance classifier of an object of class \code{eventlog}.
 #' @param x An \code{eventlog} of \code{eventlog_mapping}
-#' @family Eventlog classifiers
+#' @family Classifiers
 #' @importFrom stringr str_c
 #' @export
 activity_instance_id <- function(x){

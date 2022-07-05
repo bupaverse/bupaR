@@ -1,33 +1,28 @@
 #' @title n_cases
 #'
-#' @description  Returns the number of cases in an event log
-#'
-#' @param eventlog The event log to be used. An object of class
-#' \code{eventlog}.
-#' @family Eventlog count functions
+#' @description Returns the number of cases in an event log.
+#' @inheritParams act_collapse
+#' @family Counters
 #' @export
-
-n_cases <- function(eventlog) {
+n_cases <- function(log, eventlog = deprecated()) {
 	UseMethod("n_cases")
 }
 
-
-#' @describeIn n_cases Count number of cases for eventlog
+#' @describeIn n_cases Count number of cases in a \code{\link{log}}.
 #' @export
-n_cases.eventlog <- function(eventlog) {
-	return(length(unique(eventlog[[case_id(eventlog)]])))
+n_cases.log <- function(log, eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	n_distinct(log[[case_id(log)]])
 }
 
-#' @describeIn n_cases Count number of cases for grouped eventlog
+#' @describeIn n_cases Count number of cases in a \code{\link{grouped_log}}.
 #' @export
-n_cases.grouped_eventlog <- function(eventlog) {
-	eventlog %>%
-		summarize(n_cases = n_distinct(!!as.symbol(case_id(eventlog)))) %>%
-		return()
-}
+n_cases.grouped_log <- function(log, eventlog = deprecated()) {
 
-#' @describeIn n_cases Count number of cases for activitylog
-#' @export
-n_cases.activitylog <- function(eventlog) {
-	return(length(unique(eventlog[[case_id(eventlog)]])))
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	log %>%
+		summarize(n_cases = n_distinct(.data[[case_id(.)]]))
 }

@@ -2,31 +2,49 @@
 #'
 #' @description Returns the number of activity instances in an event log
 #'
-#' @param eventlog The event log to be used. An object of class
-#' \code{eventlog}.
-#' @family Eventlog count functions
+#' @inheritParams act_collapse
+#' @family Counters
 #' @export
 
-n_activity_instances <- function(eventlog) {
+n_activity_instances <- function(log, eventlog = deprecated()) {
 	UseMethod("n_activity_instances")
 }
 
 
-#' @rdname n_activity_instances
-#' @method n_activity_instances eventlog
+#' @describeIn  n_activity_instances eventlog
 #' @export
 
-n_activity_instances.eventlog <- function(eventlog) {
-	colnames(eventlog)[colnames(eventlog) == activity_instance_id(eventlog)] <- "activity_instance_classifier"
-	return(length(unique(eventlog$activity_instance_classifier)))
+n_activity_instances.eventlog <- function(log, eventlog = deprecated()) {
+
+	eventlog <- lifecycle_warning_eventlog(log, eventlog)
+
+	length(unique(eventlog[[activity_instance_id(eventlog)]]))
 }
 
-#' @rdname n_activity_instances
-#' @method n_activity_instances grouped_eventlog
+#' @describeIn n_activity_instances grouped_eventlog
 #' @export
-n_activity_instances.grouped_eventlog <- function(eventlog) {
+n_activity_instances.grouped_eventlog <- function(log, eventlog = deprecated()) {
+	eventlog <- lifecycle_warning_eventlog(log, eventlog)
+
 	eventlog %>%
-		summarize(n_activity_instances = n_distinct(!!as.symbol(activity_instance_id(eventlog)))) %>%
+		summarize(n_activity_instances = n_distinct(.data[[activity_instance_id(eventlog)]])) %>%
 		return()
 }
 
+#' @describeIn  n_activity_instances eventlog
+#' @export
+
+n_activity_instances.activitylog <- function(log, eventlog = deprecated()) {
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	nrow(log)
+}
+
+#' @describeIn n_activity_instances grouped_activitylog
+#' @export
+n_activity_instances.grouped_activitylog <- function(log, eventlog = deprecated()) {
+	eventlog <- lifecycle_warning_eventlog(log, eventlog)
+
+	eventlog %>%
+		summarize(n_activity_instances = n())
+}

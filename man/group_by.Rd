@@ -5,11 +5,11 @@
 \alias{group_by}
 \title{Group event log}
 \arguments{
-\item{.data}{Eventlog}
+\item{.data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{Variables to group by}
 
-\item{add}{Add grouping variables to existing ones}
+\item{.add}{Add grouping variables to existing ones}
 }
 \keyword{internal}
 \description{

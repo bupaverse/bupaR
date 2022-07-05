@@ -1,11 +1,11 @@
 #' Assign activity instance identifier to events
 #'
-#' Apply heuristics to create an activity instance identifier, so that eventlog can be made.
+#' Apply heuristics to create an activity instance identifier, so that an eventlog can be made.
 #'
-#' @param eventlog data.frame
+#' @param eventlog data.frame with events
 #' @param case_id Case identifier
 #' @param activity_id Activity identifier
-#' @param timestamp Timestap
+#' @param timestamp Timestamp
 #' @param lifecycle_id Lifecycle identifier
 #'
 #' @family Eventlog construction helpers
@@ -27,7 +27,7 @@ assign_instance_id <- function(eventlog, case_id, activity_id, timestamp, lifecy
 		select(-status) %>%
 		mutate(instance = str_c(!!sym(case_id), !!sym(activity_id), current_instance, sep = "-")) %>%
 		ungroup() %>%
-		tbl_df()
+		as_tibble()
 }
 
 

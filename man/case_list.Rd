@@ -3,14 +3,22 @@
 \name{case_list}
 \alias{case_list}
 \alias{case_list.eventlog}
+\alias{case_list.activitylog}
 \title{Case list}
 \usage{
-case_list(eventlog)
+case_list(log, .keep_trace_list, eventlog = deprecated())
 
-\method{case_list}{eventlog}(eventlog)
+\method{case_list}{eventlog}(log, .keep_trace_list = FALSE, eventlog = deprecated())
+
+\method{case_list}{activitylog}(log, .keep_trace_list = FALSE, eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{Eventlog object}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+
+\item{.keep_trace_list}{Logical (default is \code{FALSE}): If \code{TRUE}, keeps the trace as a \code{list}.
+If \code{FALSE}, only the concatenated string representation of the trace is kept.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Construct list of cases
@@ -18,5 +26,7 @@ Construct list of cases
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Return case list
+
+\item \code{activitylog}: Return case list
 }}
 

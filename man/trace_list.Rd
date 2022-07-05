@@ -3,14 +3,24 @@
 \name{trace_list}
 \alias{trace_list}
 \alias{trace_list.eventlog}
+\alias{trace_list.activitylog}
+\alias{trace_list.grouped_log}
 \title{Trace list}
 \usage{
-trace_list(eventlog)
+trace_list(log, ..., eventlog = deprecated())
 
-\method{trace_list}{eventlog}(eventlog)
+\method{trace_list}{eventlog}(log, ..., eventlog = deprecated())
+
+\method{trace_list}{activitylog}(log, ..., eventlog = deprecated())
+
+\method{trace_list}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{Eventlog object}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+
+\item{...}{Other arguments. Currently not used.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Construct trace list
@@ -18,5 +28,9 @@ Construct trace list
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Construct trace list for event log
+
+\item \code{activitylog}: Construct trace list for activity log
+
+\item \code{grouped_log}: Construct list of traces for grouped log
 }}
 

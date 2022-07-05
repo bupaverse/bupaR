@@ -1,32 +1,62 @@
 #' @title Filter event log
 #' @name filter
-#' @param .data Eventlog
-#' @param ... Conditions to filter
+#' @param .data \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
+#' @param ... Conditions to filter on
 #' @importFrom dplyr filter
 #' @export
 dplyr::filter
 
-#' @describeIn filter Filter eventlog
 #' @export
 filter.eventlog <- function(.data, ...) {
 	mapping <- mapping(.data)
 	.data %>%
 		as.data.frame() %>%
 		dplyr::filter(...) %>%
-		re_map(mapping) %>%
-		return()
+		re_map(mapping)
 }
-#' @describeIn filter Filter eventlog
-#' @export
 
-filter.grouped_eventlog <- function(.data, ...) {
-	groups <- groups(.data)
+
+#' @export
+filter.activitylog <- function(.data, ...) {
 	mapping <- mapping(.data)
 	.data %>%
-		nest() %>%
-		mutate(data = map(data, dplyr::filter, ...)) %>%
-		unnest() %>%
-		re_map(mapping) %>%
-		group_by_at(vars(one_of(paste(groups))))
-
+		as.data.frame() %>%
+		dplyr::filter(...) %>%
+		re_map(mapping)
 }
+
+#' @export
+
+filter.grouped_log <- function(.data, ...) {
+	apply_grouped_fun(.data, filter, ..., .ignore_groups = FALSE, .keep_groups = TRUE, .returns_log = TRUE)
+}
+
+
+
+# @export
+#'
+#' filter.grouped_eventlog <- function(.data, ...) {
+#' 	groups <- groups(.data)
+#' 	mapping <- mapping(.data)
+#' 	.data %>%
+#' 		nest() %>%
+#' 		mutate(data = map(data, dplyr::filter, ...)) %>%
+#' 		unnest(data) %>%
+#' 		re_map(mapping) %>%
+#' 		group_by_at(vars(one_of(paste(groups))))
+#'
+#' }
+#'
+# #' @export
+#'
+#' filter.grouped_activitylog <- function(.data, ...) {
+#' 	groups <- groups(.data)
+#' 	mapping <- mapping(.data)
+#' 	.data %>%
+#' 		nest() %>%
+#' 		mutate(data = map(data, dplyr::filter, ...)) %>%
+#' 		unnest(data) %>%
+#' 		re_map(mapping) %>%
+#' 		group_by_at(vars(one_of(paste(groups))))
+#'
+#' }

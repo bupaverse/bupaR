@@ -1,9 +1,9 @@
 #' @title Case classifier
 #' @description Get the case classifier of an object of class \code{eventlog}
-#' @param x An \code{eventlog} of \code{eventlog_mapping}
+#' @param x \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}, or \code{\link{mapping}}.
 #'
-#' @seealso \code{\link{eventlog}}, \code{\link{mapping}}
-#' @family Eventlog classifiers
+#' @seealso \code{\link{eventlog}}, \code{\link{activitylog}}, \code{\link{mapping}}
+#' @family Classifiers
 #' @export case_id
 case_id <- function(x){
 	UseMethod("case_id")

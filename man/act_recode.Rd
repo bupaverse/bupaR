@@ -2,24 +2,31 @@
 % Please edit documentation in R/act_recode.R
 \name{act_recode}
 \alias{act_recode}
-\alias{act_recode.eventlog}
+\alias{act_recode.log}
+\alias{act_recode.grouped_log}
 \title{Recode activity labels}
 \usage{
-act_recode(eventlog, ...)
+act_recode(log, ..., eventlog = deprecated())
 
-\method{act_recode}{eventlog}(eventlog, ...)
+\method{act_recode}{log}(log, ..., eventlog = deprecated())
+
+\method{act_recode}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{An object of class \code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{A sequence of named character vectors of length one where the names gives the new label and the value gives the old label. Labels not mentioned will be left unchanged.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Recode one or more activity labels through specifying their old and new label
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Recode activity labels of event log
+\item \code{log}: Recode activity labels of event log
+
+\item \code{grouped_log}: Recode activity labels of event log
 }}
 
 \seealso{

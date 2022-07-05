@@ -3,23 +3,10 @@
 \docType{import}
 \name{select}
 \alias{select}
-\alias{select.eventlog}
 \title{Select event log}
-\usage{
-\method{select}{eventlog}(.data, ..., force_df = FALSE)
-}
 \arguments{
-\item{.data}{Eventlog}
-
-\item{...}{Bare column names}
-
 \item{force_df}{If TRUE, result will no longer be a event log when not all id columns are selected.}
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{eventlog}: Select eventlog
-}}
-
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

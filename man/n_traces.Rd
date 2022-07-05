@@ -2,36 +2,37 @@
 % Please edit documentation in R/n_traces.R
 \name{n_traces}
 \alias{n_traces}
-\alias{n_traces.eventlog}
-\alias{n_traces.grouped_eventlog}
+\alias{n_traces.log}
+\alias{n_traces.grouped_log}
 \title{n_traces}
 \usage{
-n_traces(eventlog)
+n_traces(log, eventlog = deprecated())
 
-\method{n_traces}{eventlog}(eventlog)
+\method{n_traces}{log}(log, eventlog = deprecated())
 
-\method{n_traces}{grouped_eventlog}(eventlog)
+\method{n_traces}{grouped_log}(log, eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{The event log to be used. An object of class
-\code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Returns the number of traces in an event log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Count number of traces for eventlog
+\item \code{log}: Count number of traces for eventlog
 
-\item \code{grouped_eventlog}: Count number of traces for grouped eventlog
+\item \code{grouped_log}: Count number of traces for grouped eventlog
 }}
 
 \seealso{
-Other Eventlog count functions: 
+Other Counters: 
 \code{\link{n_activities}()},
 \code{\link{n_activity_instances}()},
 \code{\link{n_cases}()},
 \code{\link{n_events}()},
 \code{\link{n_resources}()}
 }
-\concept{Eventlog count functions}
+\concept{Counters}

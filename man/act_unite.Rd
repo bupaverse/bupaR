@@ -2,24 +2,31 @@
 % Please edit documentation in R/act_unite.R
 \name{act_unite}
 \alias{act_unite}
-\alias{act_unite.eventlog}
+\alias{act_unite.log}
+\alias{act_unite.grouped_log}
 \title{Unite activity labels}
 \usage{
-act_unite(eventlog, ...)
+act_unite(log, ..., eventlog = deprecated())
 
-\method{act_unite}{eventlog}(eventlog, ...)
+\method{act_unite}{log}(log, ..., eventlog = deprecated())
+
+\method{act_unite}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{An object of class \code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{A series of named character vectors. The activity labels in each vector will be replaced with the name.}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 Recode two or different more activity labels two a uniform activity label
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Unite activity labels in event log
+\item \code{log}: Unite activity labels in event log
+
+\item \code{grouped_log}: Unite activity labels of event log
 }}
 
 \seealso{

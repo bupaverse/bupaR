@@ -4,10 +4,13 @@
 \name{unite}
 \alias{unite}
 \alias{unite.eventlog}
+\alias{unite.activtylog}
 \alias{unite.grouped_eventlog}
 \title{Unite multiple columns into one.}
 \usage{
 \method{unite}{eventlog}(data, col, ..., sep = "_", remove = T)
+
+\method{unite}{activtylog}(data, col, ..., sep = "_", remove = T)
 
 \method{unite}{grouped_eventlog}(data, col, ..., sep = "_", remove = T)
 }
@@ -25,6 +28,8 @@
 \section{Methods (by class)}{
 \itemize{
 \item \code{eventlog}: Unite columns in eventlog
+
+\item \code{activtylog}: Unite columns in activitylog
 
 \item \code{grouped_eventlog}: Unite columns in grouped eventlog
 }}

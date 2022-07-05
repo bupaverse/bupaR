@@ -2,21 +2,22 @@
 % Please edit documentation in R/traces.R
 \name{traces}
 \alias{traces}
-\alias{traces.eventlog}
-\alias{traces.grouped_eventlog}
+\alias{traces.log}
+\alias{traces.grouped_log}
 \title{Traces}
 \usage{
-traces(eventlog, ...)
+traces(log, ..., eventlog = deprecated())
 
-\method{traces}{eventlog}(eventlog, ...)
+\method{traces}{log}(log, ..., eventlog = deprecated())
 
-\method{traces}{grouped_eventlog}(eventlog, ...)
+\method{traces}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{eventlog}{The event log to be used. An object of class
-\code{eventlog}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
 \item{...}{Deprecated arguments}
+
+\item{eventlog}{Deprecated; please use \code{log} instead.}
 }
 \description{
 \code{traces} computes the different activity sequences of an event log
@@ -25,9 +26,9 @@ Activity sequences are based on the start timestamp of activities.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Construct traces list for eventlog
+\item \code{log}: Construct traces list for eventlog
 
-\item \code{grouped_eventlog}: Construct list of traces for grouped eventlog
+\item \code{grouped_log}: Construct list of traces for grouped log
 }}
 
 \seealso{
