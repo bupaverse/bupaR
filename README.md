@@ -4,7 +4,7 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/bupaR)](https://CRAN.R-project.org/package=bupaR)
 [![R-CMD-check](https://github.com/bupaverse/bupaR/workflows/R-CMD-check/badge.svg)](https://github.com/bupaverse/bupaR/actions)
 [![codecov](https://codecov.io/gh/bupaverse/bupaR/branch/dev/graph/badge.svg?token=40OgWBneWv)](https://codecov.io/gh/bupaverse/bupaR)
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 ## Overview
