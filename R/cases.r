@@ -49,7 +49,8 @@ cases.log <- function(log, ..., eventlog = deprecated()) {
 						trace_list := NULL]
 
 	summary %>%
-		as.data.frame()
+		as.data.frame() %>%
+		as_tibble()
 }
 
 #' @describeIn cases Construct list of cases in an \code{\link{eventlog}}.
