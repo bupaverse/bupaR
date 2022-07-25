@@ -10,22 +10,100 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/404.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/activities.html</loc>
+    <loc>/reference/print.eventlog_mapping.html</loc>
   </url>
   <url>
-    <loc>/reference/activities_to_eventlog.html</loc>
+    <loc>/reference/cases.html</loc>
   </url>
   <url>
-    <loc>/reference/activity_id.html</loc>
+    <loc>/reference/group_by_case.html</loc>
   </url>
   <url>
-    <loc>/reference/activity_instance_id.html</loc>
+    <loc>/reference/group_by_activity.html</loc>
+  </url>
+  <url>
+    <loc>/reference/group_by_resource.html</loc>
+  </url>
+  <url>
+    <loc>/reference/summary.html</loc>
+  </url>
+  <url>
+    <loc>/reference/durations.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mutate.html</loc>
+  </url>
+  <url>
+    <loc>/reference/slice.html</loc>
+  </url>
+  <url>
+    <loc>/reference/filter_attributes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/case_list.html</loc>
+  </url>
+  <url>
+    <loc>/reference/group_by_resource_activity.html</loc>
+  </url>
+  <url>
+    <loc>/reference/group_by_activity_instance.html</loc>
   </url>
   <url>
     <loc>/reference/activity_labels.html</loc>
+  </url>
+  <url>
+    <loc>/reference/resource_labels.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ungroup_eventlog.html</loc>
+  </url>
+  <url>
+    <loc>/reference/fill.html</loc>
+  </url>
+  <url>
+    <loc>/reference/slice_events.html</loc>
+  </url>
+  <url>
+    <loc>/reference/slice_activities.html</loc>
+  </url>
+  <url>
+    <loc>/reference/first_n.html</loc>
+  </url>
+  <url>
+    <loc>/reference/last_n.html</loc>
+  </url>
+  <url>
+    <loc>/reference/select.html</loc>
+  </url>
+  <url>
+    <loc>/reference/unite.html</loc>
+  </url>
+  <url>
+    <loc>/reference/filter.html</loc>
+  </url>
+  <url>
+    <loc>/reference/summarize.html</loc>
+  </url>
+  <url>
+    <loc>/reference/lifecycle_labels.html</loc>
+  </url>
+  <url>
+    <loc>/reference/case_labels.html</loc>
+  </url>
+  <url>
+    <loc>/reference/standardize_lifecycle.html</loc>
+  </url>
+  <url>
+    <loc>/reference/detect_resource_inconsistencies.html</loc>
+  </url>
+  <url>
+    <loc>/reference/re_map.html</loc>
   </url>
   <url>
     <loc>/reference/act_collapse.html</loc>
@@ -37,73 +115,34 @@
     <loc>/reference/act_unite.html</loc>
   </url>
   <url>
-    <loc>/reference/add_end_activity.html</loc>
+    <loc>/reference/activities_to_eventlog.html</loc>
   </url>
   <url>
-    <loc>/reference/arrange.html</loc>
+    <loc>/reference/activity_id.html</loc>
+  </url>
+  <url>
+    <loc>/reference/activity_instance_id.html</loc>
+  </url>
+  <url>
+    <loc>/reference/assign_instance_id.html</loc>
   </url>
   <url>
     <loc>/reference/bupaR.html</loc>
   </url>
   <url>
-    <loc>/reference/cases.html</loc>
-  </url>
-  <url>
     <loc>/reference/case_id.html</loc>
   </url>
   <url>
-    <loc>/reference/case_labels.html</loc>
+    <loc>/reference/events_to_activitylog.html</loc>
   </url>
   <url>
-    <loc>/reference/case_list.html</loc>
-  </url>
-  <url>
-    <loc>/reference/durations.html</loc>
-  </url>
-  <url>
-    <loc>/reference/eventlog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fill.html</loc>
-  </url>
-  <url>
-    <loc>/reference/filter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/filter_attributes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/first_n.html</loc>
-  </url>
-  <url>
-    <loc>/reference/group_by.html</loc>
-  </url>
-  <url>
-    <loc>/reference/group_by_activity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/group_by_activity_instance.html</loc>
-  </url>
-  <url>
-    <loc>/reference/group_by_case.html</loc>
-  </url>
-  <url>
-    <loc>/reference/group_by_resource.html</loc>
-  </url>
-  <url>
-    <loc>/reference/group_by_resource_activity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/last_n.html</loc>
+    <loc>/reference/fix_resource_inconsistencies.html</loc>
   </url>
   <url>
     <loc>/reference/lifecycle_id.html</loc>
   </url>
   <url>
     <loc>/reference/mapping.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mutate.html</loc>
   </url>
   <url>
     <loc>/reference/n_activities.html</loc>
@@ -124,85 +163,58 @@
     <loc>/reference/n_traces.html</loc>
   </url>
   <url>
-    <loc>/reference/print.eventlog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.eventlog_mapping.html</loc>
-  </url>
-  <url>
-    <loc>/reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>/reference/resources.html</loc>
-  </url>
-  <url>
     <loc>/reference/resource_id.html</loc>
-  </url>
-  <url>
-    <loc>/reference/resource_labels.html</loc>
-  </url>
-  <url>
-    <loc>/reference/re_map.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sample_n.html</loc>
   </url>
   <url>
     <loc>/reference/set_case_id.html</loc>
   </url>
   <url>
-    <loc>/reference/simple_eventlog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/slice.html</loc>
-  </url>
-  <url>
-    <loc>/reference/slice_activities.html</loc>
-  </url>
-  <url>
-    <loc>/reference/slice_events.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary.html</loc>
-  </url>
-  <url>
     <loc>/reference/timestamp.html</loc>
   </url>
   <url>
-    <loc>/reference/traces.html</loc>
-  </url>
-  <url>
-    <loc>/reference/trace_list.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ungroup_eventlog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/select.html</loc>
-  </url>
-  <url>
-    <loc>/reference/unite.html</loc>
-  </url>
-  <url>
-    <loc>/reference/activitylog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.grouped.data.frame.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assign_instance_id.html</loc>
+    <loc>/reference/group_by.html</loc>
   </url>
   <url>
     <loc>/reference/convert_timestamps.html</loc>
   </url>
   <url>
-    <loc>/reference/detect_resource_inconsistencies.html</loc>
+    <loc>/reference/reexports.html</loc>
   </url>
   <url>
-    <loc>/reference/events_to_activitylog.html</loc>
+    <loc>/reference/activities.html</loc>
   </url>
   <url>
-    <loc>/reference/fix_resource_inconsistencies.html</loc>
+    <loc>/reference/eventlog.html</loc>
+  </url>
+  <url>
+    <loc>/reference/lifecycles.html</loc>
+  </url>
+  <url>
+    <loc>/reference/resources.html</loc>
+  </url>
+  <url>
+    <loc>/reference/simple_eventlog.html</loc>
+  </url>
+  <url>
+    <loc>/reference/add_end_activity.html</loc>
+  </url>
+  <url>
+    <loc>/reference/trace_list.html</loc>
+  </url>
+  <url>
+    <loc>/reference/activitylog.html</loc>
+  </url>
+  <url>
+    <loc>/reference/traces.html</loc>
+  </url>
+  <url>
+    <loc>/reference/arrange.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sample_n.html</loc>
+  </url>
+  <url>
+    <loc>/reference/as.grouped.data.frame.html</loc>
   </url>
   <url>
     <loc>/reference/group_by_ids.html</loc>
@@ -215,12 +227,6 @@
   </url>
   <url>
     <loc>/reference/grouped_log.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lifecycle_labels.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lifecycles.html</loc>
   </url>
   <url>
     <loc>/reference/log.html</loc>
@@ -250,12 +256,6 @@
     <loc>/reference/slice_sample.html</loc>
   </url>
   <url>
-    <loc>/reference/standardize_lifecycle.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summarize.html</loc>
-  </url>
-  <url>
     <loc>/reference/timestamps.html</loc>
   </url>
   <url>
@@ -266,8 +266,5 @@
   </url>
   <url>
     <loc>/reference/ungroup.html</loc>
-  </url>
-  <url>
-    <loc>/404.html</loc>
   </url>
 </urlset>
