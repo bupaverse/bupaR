@@ -184,43 +184,25 @@
     <loc>/reference/unite.html</loc>
   </url>
   <url>
-    <loc>/reference/summarize.html</loc>
+    <loc>/reference/activitylog.html</loc>
   </url>
   <url>
-    <loc>/reference/lifecycle_labels.html</loc>
-  </url>
-  <url>
-    <loc>/reference/standardize_lifecycle.html</loc>
-  </url>
-  <url>
-    <loc>/reference/detect_resource_inconsistencies.html</loc>
+    <loc>/reference/as.grouped.data.frame.html</loc>
   </url>
   <url>
     <loc>/reference/assign_instance_id.html</loc>
+  </url>
+  <url>
+    <loc>/reference/convert_timestamps.html</loc>
+  </url>
+  <url>
+    <loc>/reference/detect_resource_inconsistencies.html</loc>
   </url>
   <url>
     <loc>/reference/events_to_activitylog.html</loc>
   </url>
   <url>
     <loc>/reference/fix_resource_inconsistencies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/convert_timestamps.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lifecycles.html</loc>
-  </url>
-  <url>
-    <loc>/reference/activitylog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/to_activitylog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/to_eventlog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.grouped.data.frame.html</loc>
   </url>
   <url>
     <loc>/reference/group_by_ids.html</loc>
@@ -233,6 +215,12 @@
   </url>
   <url>
     <loc>/reference/grouped_log.html</loc>
+  </url>
+  <url>
+    <loc>/reference/lifecycle_labels.html</loc>
+  </url>
+  <url>
+    <loc>/reference/lifecycles.html</loc>
   </url>
   <url>
     <loc>/reference/log.html</loc>
@@ -259,13 +247,25 @@
     <loc>/reference/set_timestamp.html</loc>
   </url>
   <url>
-    <loc>/reference/ungroup.html</loc>
-  </url>
-  <url>
     <loc>/reference/slice_sample.html</loc>
   </url>
   <url>
+    <loc>/reference/standardize_lifecycle.html</loc>
+  </url>
+  <url>
+    <loc>/reference/summarize.html</loc>
+  </url>
+  <url>
     <loc>/reference/timestamps.html</loc>
+  </url>
+  <url>
+    <loc>/reference/to_activitylog.html</loc>
+  </url>
+  <url>
+    <loc>/reference/to_eventlog.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ungroup.html</loc>
   </url>
   <url>
     <loc>/404.html</loc>

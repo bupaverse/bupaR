@@ -50,7 +50,7 @@ activitylog.data.frame <- function(activitylog,
 		stop("No timestamps provided")
 	}
 	else if(any(!(timestamps %in% names(activitylog))))
-		stop(glue::glue("Timestamps {str_c(str_subset(lifecycle_ids, names(activitylog), negate = T), collapse = ',')} not found"))
+		stop(glue::glue("Timestamps {str_c(str_subset(timestamps, names(activitylog), negate = T), collapse = ',')} not found"))
 	else {
 		for(i in seq_along(timestamps)) {
 			if(!any(c("POSIXct","Date") %in% (activitylog %>% pull(!!as.symbol(timestamps[[i]])) %>% class())))
