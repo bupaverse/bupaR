@@ -32,7 +32,9 @@ Imports:
 	stringi,
 	lubridate,
 	lifecycle
-URL: https://www.bupar.net, https://github.com/bupaverse/bupaR
+URL: https://www.bupar.net,
+    https://github.com/bupaverse/bupaR,
+    https://bupaverse.github.io/bupaR/
 Suggests: 
     covr,
     lintr,
