@@ -1,7 +1,7 @@
 # bupaR <img src="man/figures/logo.png" align="right" height="50" />
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/bupaR/)](https://CRAN.R-project.org/package=bupaR/)
+[![CRAN status](https://www.r-pkg.org/badges/version/bupaR)](https://CRAN.R-project.org/package=bupaR/)
 [![R-CMD-check](https://github.com/bupaverse/bupaR/workflows/R-CMD-check/badge.svg/)](https://github.com/bupaverse/bupaR/actions/)
 [![codecov](https://codecov.io/gh/bupaverse/bupaR/branch/dev/graph/badge.svg?token=40OgWBneWv/)](https://app.codecov.io/gh/bupaverse/bupaR/)
 [![Lifecycle: stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable/)
