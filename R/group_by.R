@@ -36,11 +36,15 @@ group_by.activitylog <- function(.data, ..., .add = F) {
 group_by.grouped_log <- function(.data, ..., .add = F) {
 	mapping <- mapping(.data)
 	groups <- groups(.data)
-	.data <- as.data.frame(.data)
+	#.data <- as.data.frame(.data)
 	if(.add) {
-		x <- group_by(.data, across(one_of(paste(groups)))) %>% group_by(..., .add = T)
+	  x <- .data %>%
+	    ungroup_eventlog() %>%
+	    group_by(across(c(one_of(paste(groups)), ...))) 
 	} else {
-		x <- group_by(.data, ...)
+	  x <- .data %>%
+	    ungroup_eventlog() %>%
+	    group_by(...)
 	}
 	class(x) <- class(.data)
 
