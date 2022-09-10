@@ -32,13 +32,13 @@ This function is deprecated as of bupaR version 0.5.0. Please use \link{filter} 
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Filter eventlog using attributes
+\item \code{filter_attributes(eventlog)}: Filter eventlog using attributes
 
-\item \code{grouped_eventlog}: Filter grouped eventlog using attributes
+\item \code{filter_attributes(grouped_eventlog)}: Filter grouped eventlog using attributes
 
-\item \code{activitylog}: Filter eventlog using attributes
+\item \code{filter_attributes(activitylog)}: Filter eventlog using attributes
 
-\item \code{grouped_activitylog}: Filter grouped eventlog using attributes
+\item \code{filter_attributes(grouped_activitylog)}: Filter grouped eventlog using attributes
+
 }}
-
 \keyword{internal}

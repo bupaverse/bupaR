@@ -21,9 +21,9 @@ Set timestamp of eventlog
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Set timestamp of eventlog
-}}
+\item \code{set_timestamp(eventlog)}: Set timestamp of eventlog
 
+}}
 \seealso{
 Other Classifiers: 
 \code{\link{activity_id}()},

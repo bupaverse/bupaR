@@ -26,15 +26,15 @@ Get the  timestamp classifier of an object of class \code{eventlog}
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Retrieve timestamp identifier from eventlog
+\item \code{timestamp(eventlog)}: Retrieve timestamp identifier from eventlog
 
-\item \code{eventlog_mapping}: Retrieve timestamp identifier from eventlog mapping
+\item \code{timestamp(eventlog_mapping)}: Retrieve timestamp identifier from eventlog mapping
 
-\item \code{activitylog}: Retrieve timestamp identifier from activitylog
+\item \code{timestamp(activitylog)}: Retrieve timestamp identifier from activitylog
 
-\item \code{activitylog_mapping}: Retrieve timestamp identifier from activitylog mapping
+\item \code{timestamp(activitylog_mapping)}: Retrieve timestamp identifier from activitylog mapping
+
 }}
-
 \seealso{
 \code{\link{eventlog}}, \code{\link{mapping}}
 

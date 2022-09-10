@@ -24,11 +24,11 @@ Recode two or different more activity labels two a uniform activity label
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Unite activity labels in event log
+\item \code{act_unite(log)}: Unite activity labels in event log
 
-\item \code{grouped_log}: Unite activity labels of event log
+\item \code{act_unite(grouped_log)}: Unite activity labels of event log
+
 }}
-
 \seealso{
 \code{\link{eventlog}}, \code{\link{activity_id}}, \code{\link{act_recode}}
 

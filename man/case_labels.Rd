@@ -19,6 +19,6 @@ Retrieve a vector containing all unique case labels
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Retrieve case labels from log
-}}
+\item \code{case_labels(log)}: Retrieve case labels from log
 
+}}

@@ -30,11 +30,9 @@ activitylog.data.frame <- function(activitylog,
 	activitylog <- as_tibble(activitylog)
 	class(activitylog) <- c("activitylog", "log", class(activitylog))
 
-
-	allowed_lifecycles <- c("schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip")
-
 	if(any(!(timestamps %in% allowed_lifecycles))) {
-		stop(glue::glue("Lifecycles {str_subset(timestamps, allowed_lifecycles, negate = F)} are not allowed. Allowed lifecycles: {str_c(allowed_lifecycles, collapse = \", \")}"))
+		stop(glue::glue("Lifecycles {str_flatten(str_subset(timestamps, str_flatten(allowed_lifecycles, collapse = '|'), negate = TRUE), collapse = \", \")} are not allowed.
+		Allowed lifecycles: {str_flatten(allowed_lifecycles, collapse = \", \")}"))
 	}
 
 	args_values <- as.list(environment())[c("case_id","activity_id","resource_id")]
@@ -87,6 +85,8 @@ activitylog.data.frame <- function(activitylog,
 	activitylog
 
 }
+
+#allowed_lifecycles <- c("schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip")
 
 check_wrapper_activitylog  <- function(activitylog, attributes) {
 	check_attributes_activitylog(activitylog, attributes$attribute_name, attributes$attribute_values)

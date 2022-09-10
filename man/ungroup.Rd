@@ -15,9 +15,9 @@
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{activitylog}: Ungroup columns in eventlog
-}}
+\item \code{ungroup(activitylog)}: Ungroup columns in eventlog
 
+}}
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

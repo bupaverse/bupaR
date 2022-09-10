@@ -27,10 +27,10 @@ Select first n activity instances.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Select first n activity instances of an \code{\link{eventlog}}.
+\item \code{first_n(eventlog)}: Select first n activity instances of an \code{\link{eventlog}}.
 
-\item \code{activitylog}: Select first n activity instances of an \code{\link{activitylog}}.
+\item \code{first_n(activitylog)}: Select first n activity instances of an \code{\link{activitylog}}.
 
-\item \code{grouped_log}: Select first n activity instances of a \code{\link{grouped_log}}.
+\item \code{first_n(grouped_log)}: Select first n activity instances of a \code{\link{grouped_log}}.
+
 }}
-

@@ -22,11 +22,11 @@ Returns the number of activities in an event log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Count the number of activities in a log
+\item \code{n_activities(log)}: Count the number of activities in a log
 
-\item \code{grouped_log}: Count the number of activities for a grouped  log
+\item \code{n_activities(grouped_log)}: Count the number of activities for a grouped  log
+
 }}
-
 \seealso{
 Other Counters: 
 \code{\link{n_activity_instances}()},

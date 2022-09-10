@@ -19,6 +19,6 @@ Retrieve a vector containing all unique activity labels
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Retrieve activity labels
-}}
+\item \code{activity_labels(log)}: Retrieve activity labels
 
+}}

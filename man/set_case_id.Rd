@@ -21,9 +21,9 @@ Set case id of log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Set case id
-}}
+\item \code{set_case_id(default)}: Set case id
 
+}}
 \seealso{
 Other Classifiers: 
 \code{\link{activity_id}()},

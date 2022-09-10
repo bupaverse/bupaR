@@ -25,8 +25,8 @@ Construct list of cases
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Return case list
+\item \code{case_list(eventlog)}: Return case list
 
-\item \code{activitylog}: Return case list
+\item \code{case_list(activitylog)}: Return case list
+
 }}
-

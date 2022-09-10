@@ -22,11 +22,11 @@ Returns the number of traces in an event log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Count number of traces for eventlog
+\item \code{n_traces(log)}: Count number of traces for eventlog
 
-\item \code{grouped_log}: Count number of traces for grouped eventlog
+\item \code{n_traces(grouped_log)}: Count number of traces for grouped eventlog
+
 }}
-
 \seealso{
 Other Counters: 
 \code{\link{n_activities}()},

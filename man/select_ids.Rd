@@ -19,9 +19,9 @@ Select identifiers from log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Select identifiers from log
-}}
+\item \code{select_ids(log)}: Select identifiers from log
 
+}}
 \examples{
 
 library(eventdataR)

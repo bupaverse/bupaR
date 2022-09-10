@@ -26,15 +26,15 @@ Get the case classifier of an object of class \code{eventlog}
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Retrieve case identifier from eventlog
+\item \code{case_id(eventlog)}: Retrieve case identifier from eventlog
 
-\item \code{eventlog_mapping}: Retrieve case identifier from eventlog mapping
+\item \code{case_id(eventlog_mapping)}: Retrieve case identifier from eventlog mapping
 
-\item \code{activitylog}: Retrieve case identifier from activitylog
+\item \code{case_id(activitylog)}: Retrieve case identifier from activitylog
 
-\item \code{activitylog_mapping}: Retrieve case identifier from activitylog mapping
+\item \code{case_id(activitylog_mapping)}: Retrieve case identifier from activitylog mapping
+
 }}
-
 \seealso{
 \code{\link{eventlog}}, \code{\link{activitylog}}, \code{\link{mapping}}
 

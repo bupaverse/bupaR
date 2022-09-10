@@ -19,6 +19,6 @@ Retrieve a vector containing all unique resource labels
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Retrieve resource labels from eventlog
-}}
+\item \code{resource_labels(default)}: Retrieve resource labels from eventlog
 
+}}

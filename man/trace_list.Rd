@@ -27,10 +27,10 @@ Construct trace list
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Construct trace list for event log
+\item \code{trace_list(eventlog)}: Construct trace list for event log
 
-\item \code{activitylog}: Construct trace list for activity log
+\item \code{trace_list(activitylog)}: Construct trace list for activity log
 
-\item \code{grouped_log}: Construct list of traces for grouped log
+\item \code{trace_list(grouped_log)}: Construct list of traces for grouped log
+
 }}
-

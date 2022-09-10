@@ -18,6 +18,6 @@ Standardize format of lifecycle types
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Standardize lifecycle types for eventlog
-}}
+\item \code{standardize_lifecycle(eventlog)}: Standardize lifecycle types for eventlog
 
+}}

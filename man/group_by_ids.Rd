@@ -22,6 +22,6 @@ Group log on identifiers
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Group log on identifiers
-}}
+\item \code{group_by_ids(log)}: Group log on identifiers
 
+}}

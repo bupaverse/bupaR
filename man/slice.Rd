@@ -28,21 +28,24 @@
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Slice n cases of a log
+\item \code{slice(log)}: Slice n cases of a log
 
-\item \code{grouped_log}: Slice grouped log: take slice of cases from each group.
+\item \code{slice(grouped_log)}: Slice grouped log: take slice of cases from each group.
 
-\item \code{eventlog}: Take a slice of activity instances from event log
-
-\item \code{activitylog}: Take a slice of activity instances from activity log
-
-\item \code{grouped_log}: Take a slice of activity instances from grouped event log
-
-\item \code{eventlog}: Take a slice of events from event log
-
-\item \code{grouped_eventlog}: Take a slice of events from grouped event log
 }}
+\section{Functions}{
+\itemize{
+\item \code{slice_activities(eventlog)}: Take a slice of activity instances from event log
 
+\item \code{slice_activities(activitylog)}: Take a slice of activity instances from activity log
+
+\item \code{slice_activities(grouped_log)}: Take a slice of activity instances from grouped event log
+
+\item \code{slice_events(eventlog)}: Take a slice of events from event log
+
+\item \code{slice_events(grouped_eventlog)}: Take a slice of events from grouped event log
+
+}}
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

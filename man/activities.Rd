@@ -24,11 +24,11 @@ Returns a \code{tibble}  containing a list of all activity types in the event lo
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{activitylog}: Compute activity frequencies
+\item \code{activities(activitylog)}: Compute activity frequencies
 
-\item \code{grouped_log}: Compute activity frequencies
+\item \code{activities(grouped_log)}: Compute activity frequencies
+
 }}
-
 \seealso{
 \code{\link{activity_id}},\code{\link{activity_instance_id}}, \code{\link{eventlog}}
 }

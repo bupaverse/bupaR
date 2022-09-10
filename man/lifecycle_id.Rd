@@ -20,11 +20,11 @@ Get the life_cycle_id of an object of class \code{eventlog}
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Retrieve lifecycle identifier from eventlog
+\item \code{lifecycle_id(eventlog)}: Retrieve lifecycle identifier from eventlog
 
-\item \code{eventlog_mapping}: Retrieve lifecycle identifier from eventlog mapping
+\item \code{lifecycle_id(eventlog_mapping)}: Retrieve lifecycle identifier from eventlog mapping
+
 }}
-
 \seealso{
 Other Classifiers: 
 \code{\link{activity_id}()},
