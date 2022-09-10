@@ -126,8 +126,6 @@ eventlog.data.frame  <- function(eventlog,
 
 
 
-
-
 check_wrapper  <- function(eventlog, attributes) {
 	check_attributes(eventlog, attributes$attribute_name, attributes$attribute_values)
 }

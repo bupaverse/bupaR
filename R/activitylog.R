@@ -86,8 +86,6 @@ activitylog.data.frame <- function(activitylog,
 
 }
 
-#allowed_lifecycles <- c("schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip")
-
 check_wrapper_activitylog  <- function(activitylog, attributes) {
 	check_attributes_activitylog(activitylog, attributes$attribute_name, attributes$attribute_values)
 }
