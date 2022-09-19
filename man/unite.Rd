@@ -27,13 +27,13 @@
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Unite columns in eventlog
+\item \code{unite(eventlog)}: Unite columns in eventlog
 
-\item \code{activtylog}: Unite columns in activitylog
+\item \code{unite(activtylog)}: Unite columns in activitylog
 
-\item \code{grouped_eventlog}: Unite columns in grouped eventlog
+\item \code{unite(grouped_eventlog)}: Unite columns in grouped eventlog
+
 }}
-
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

@@ -3,14 +3,7 @@
 \docType{class}
 \name{grouped_log}
 \alias{grouped_log}
-\alias{is.grouped_log}
 \title{Grouped log object}
-\usage{
-is.grouped_log(x)
-}
-\arguments{
-\item{x}{Any object}
-}
 \description{
 Lorem ipsum
 }

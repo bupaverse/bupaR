@@ -20,8 +20,8 @@ Remove groups from event log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Remove groups from event log
+\item \code{ungroup_eventlog(eventlog)}: Remove groups from event log
 
-\item \code{grouped_log}: Remove groups from \code{\link{log}}.
+\item \code{ungroup_eventlog(grouped_log)}: Remove groups from \code{\link{log}}.
+
 }}
-

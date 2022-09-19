@@ -13,11 +13,12 @@ traces(log, ..., eventlog = deprecated())
 \method{traces}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
 \item{...}{Deprecated arguments}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 \code{traces} computes the different activity sequences of an event log
@@ -26,11 +27,11 @@ Activity sequences are based on the start timestamp of activities.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Construct traces list for eventlog
+\item \code{traces(log)}: Construct traces list for eventlog
 
-\item \code{grouped_log}: Construct list of traces for grouped log
+\item \code{traces(grouped_log)}: Construct list of traces for grouped log
+
 }}
-
 \seealso{
 \code{\link{cases}}, \code{\link{eventlog}}
 }

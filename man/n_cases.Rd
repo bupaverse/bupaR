@@ -13,20 +13,21 @@ n_cases(log, eventlog = deprecated())
 \method{n_cases}{grouped_log}(log, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Returns the number of cases in an event log.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Count number of cases in a \code{\link{log}}.
+\item \code{n_cases(log)}: Count number of cases in a \code{\link{log}}.
 
-\item \code{grouped_log}: Count number of cases in a \code{\link{grouped_log}}.
+\item \code{n_cases(grouped_log)}: Count number of cases in a \code{\link{grouped_log}}.
+
 }}
-
 \seealso{
 Other Counters: 
 \code{\link{n_activities}()},

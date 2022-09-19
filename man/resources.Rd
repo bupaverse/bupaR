@@ -16,22 +16,23 @@ resources(log, eventlog = deprecated())
 \method{resources}{grouped_log}(log, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Returns a \code{tibble}  containing a list of all resources in the event log, with there absolute and relative frequency
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Generate resource list for eventlog
+\item \code{resources(eventlog)}: Generate resource list for eventlog
 
-\item \code{activitylog}: Generate resource list for activitylog
+\item \code{resources(activitylog)}: Generate resource list for activitylog
 
-\item \code{grouped_log}: Compute activity frequencies
+\item \code{resources(grouped_log)}: Compute activity frequencies
+
 }}
-
 \seealso{
 \code{\link{resource_id}}, \code{\link{eventlog}}
 }

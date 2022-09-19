@@ -33,6 +33,11 @@ load <- c("edeaR", "eventdataR","processmapR","xesreadR", "processmonitR", "petr
 
 }
 
+.onLoad <- function(libname, pkgname) {
+	allowed_lifecycles <- c("schedule","assign","reassign","start","suspend","resume","abort_activity","abort_case","complete","manualskip","autoskip")
+	assign("allowed_lifecycles", allowed_lifecycles, envir = parent.env(environment()))
+}
+
 is_attached <- function(x) {
 	paste0("package:", x) %in% search()
 }

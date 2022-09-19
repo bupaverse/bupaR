@@ -26,15 +26,15 @@ Get the activity instance classifier of an object of class \code{eventlog}.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Retrieve activity instance identifier from eventlog
+\item \code{activity_instance_id(eventlog)}: Retrieve activity instance identifier from eventlog
 
-\item \code{eventlog_mapping}: Retrieve activity instance identifier from eventlog mapping
+\item \code{activity_instance_id(eventlog_mapping)}: Retrieve activity instance identifier from eventlog mapping
 
-\item \code{activitylog}: Retrieve activity instance identifier from activitylog
+\item \code{activity_instance_id(activitylog)}: Retrieve activity instance identifier from activitylog
 
-\item \code{activitylog_mapping}: Retrieve activity instance identifier from activitylog mapping
+\item \code{activity_instance_id(activitylog_mapping)}: Retrieve activity instance identifier from activitylog mapping
+
 }}
-
 \seealso{
 Other Classifiers: 
 \code{\link{activity_id}()},

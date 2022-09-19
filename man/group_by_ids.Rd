@@ -10,7 +10,8 @@ group_by_ids(log, ...)
 \method{group_by_ids}{log}(log, ...)
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
 \item{...}{One or more of the following: activity_id, case_id, activity_instance_id, resource_id, lifecycle_id}
 }
@@ -22,6 +23,6 @@ Group log on identifiers
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Group log on identifiers
-}}
+\item \code{group_by_ids(log)}: Group log on identifiers
 
+}}

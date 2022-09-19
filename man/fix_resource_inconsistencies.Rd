@@ -46,8 +46,8 @@ Fix resource inconsistencies
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{activitylog}: activitylog Fix activitylog
+\item \code{fix_resource_inconsistencies(activitylog)}: activitylog Fix activitylog
 
-\item \code{eventlog}: eventlog Fix eventlog
+\item \code{fix_resource_inconsistencies(eventlog)}: eventlog Fix eventlog
+
 }}
-

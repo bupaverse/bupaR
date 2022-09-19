@@ -13,22 +13,23 @@ act_unite(log, ..., eventlog = deprecated())
 \method{act_unite}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
 \item{...}{A series of named character vectors. The activity labels in each vector will be replaced with the name.}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Recode two or different more activity labels two a uniform activity label
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Unite activity labels in event log
+\item \code{act_unite(log)}: Unite activity labels in event log
 
-\item \code{grouped_log}: Unite activity labels of event log
+\item \code{act_unite(grouped_log)}: Unite activity labels of event log
+
 }}
-
 \seealso{
 \code{\link{eventlog}}, \code{\link{activity_id}}, \code{\link{act_recode}}
 

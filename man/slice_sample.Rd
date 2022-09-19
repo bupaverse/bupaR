@@ -13,11 +13,11 @@
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Sample \code{n} cases of a \code{\link{log}}.
+\item \code{slice_sample(log)}: Sample \code{n} cases of a \code{\link{log}}.
 
-\item \code{grouped_log}: Sample \code{n} cases from a \code{\link{grouped_log}}.
+\item \code{slice_sample(grouped_log)}: Sample \code{n} cases from a \code{\link{grouped_log}}.
+
 }}
-
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

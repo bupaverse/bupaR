@@ -13,22 +13,23 @@ activities(log, ..., eventlog)
 \method{activities}{grouped_log}(log, ..., eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
 \item{...}{Unused.}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Returns a \code{tibble}  containing a list of all activity types in the event log, with their absolute and relative frequency
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{activitylog}: Compute activity frequencies
+\item \code{activities(activitylog)}: Compute activity frequencies
 
-\item \code{grouped_log}: Compute activity frequencies
+\item \code{activities(grouped_log)}: Compute activity frequencies
+
 }}
-
 \seealso{
 \code{\link{activity_id}},\code{\link{activity_instance_id}}, \code{\link{eventlog}}
 }

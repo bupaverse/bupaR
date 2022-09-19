@@ -16,21 +16,22 @@ first_n(log, n, eventlog = deprecated())
 \method{first_n}{grouped_log}(log, n, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
 \item{n}{\code{\link{integer}}: The number of activity instances to select.}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Select first n activity instances.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Select first n activity instances of an \code{\link{eventlog}}.
+\item \code{first_n(eventlog)}: Select first n activity instances of an \code{\link{eventlog}}.
 
-\item \code{activitylog}: Select first n activity instances of an \code{\link{activitylog}}.
+\item \code{first_n(activitylog)}: Select first n activity instances of an \code{\link{activitylog}}.
 
-\item \code{grouped_log}: Select first n activity instances of a \code{\link{grouped_log}}.
+\item \code{first_n(grouped_log)}: Select first n activity instances of a \code{\link{grouped_log}}.
+
 }}
-

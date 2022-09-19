@@ -28,27 +28,31 @@ add_start_activity(log, label, eventlog = deprecated())
 \method{add_start_activity}{grouped_log}(log, label = "Start", eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
 \item{label}{Start/end activity label}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Add artificial start/end activities to case
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Add end activity to event log
+\item \code{add_end_activity(eventlog)}: Add end activity to event log
 
-\item \code{activitylog}: Add end activity to activity log
+\item \code{add_end_activity(activitylog)}: Add end activity to activity log
 
-\item \code{grouped_log}: Add end activity to grouped event log
+\item \code{add_end_activity(grouped_log)}: Add end activity to grouped event log
 
-\item \code{eventlog}: Add start activity to event log
-
-\item \code{activitylog}: Add start activity to activity log
-
-\item \code{grouped_log}: Add start activity to grouped event log
 }}
+\section{Functions}{
+\itemize{
+\item \code{add_start_activity(eventlog)}: Add start activity to event log
 
+\item \code{add_start_activity(activitylog)}: Add start activity to activity log
+
+\item \code{add_start_activity(grouped_log)}: Add start activity to grouped event log
+
+}}

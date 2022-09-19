@@ -10,20 +10,21 @@ set_activity_id(log, activity_id, eventlog = deprecated())
 \method{set_activity_id}{default}(log, activity_id, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
 \item{activity_id}{New activity id}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Set activity id of log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Set activity id
-}}
+\item \code{set_activity_id(default)}: Set activity id
 
+}}
 \seealso{
 Other Classifiers: 
 \code{\link{activity_id}()},
