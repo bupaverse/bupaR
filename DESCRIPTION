@@ -32,7 +32,8 @@ Imports:
 	stringi,
 	lubridate,
 	lifecycle
-URL: https://bupar.net/,
+URL:
+    https://bupar.net/,
     https://github.com/bupaverse/bupaR/,
     https://bupaverse.github.io/bupaR/
 Suggests: 
@@ -40,3 +41,4 @@ Suggests:
     lintr,
     testthat
 Roxygen: list(markdown = TRUE)
+BugReports: https://github.com/bupaverse/bupaR/issues/
