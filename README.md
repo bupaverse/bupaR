@@ -8,7 +8,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/bupaR)](https://CRAN.R-project.org/package=bupaR/)
 [![GitHub
-version](https://img.shields.io/badge/GitHub-0.5.1.9000-blue)](https://github.com/bupaverse/bupaR)
+version](https://img.shields.io/badge/GitHub-0.5.1-blue)](https://github.com/bupaverse/bupaR)
 [![R-CMD-check](https://github.com/bupaverse/bupaR/workflows/R-CMD-check/badge.svg/)](https://github.com/bupaverse/bupaR/actions/)
 [![codecov](https://codecov.io/gh/bupaverse/bupaR/branch/dev/graph/badge.svg?token=40OgWBneWv/)](https://app.codecov.io/gh/bupaverse/bupaR/)
 [![Lifecycle:

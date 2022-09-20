@@ -1,8 +1,8 @@
 Package: bupaR
 Type: Package
 Title: Business Process Analysis in R
-Version: 0.5.1.9000
-Date: 2022-07-05
+Version: 0.5.1
+Date: 2022-09-20
 Authors@R: c(person("Gert","Janssenswillen", email = "gert.janssenswillen@uhasselt.be", role = c("aut","cre")),
 			 person("Gerard","van Hulzen",email = "gerard.vanhulzen@uhasselt.be", role = c("ctb")),
              person("Felix","Mannhardt",email = "f.mannhardt@tue.nl", role = c("ctb")),
