@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">bupaR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,12 +54,13 @@
 <h2 class="pkg-version" data-toc-text="0.5.1" id="bupar-051-dev">bupaR 0.5.1 (dev)<a class="anchor" aria-label="anchor" href="#bupar-051-dev"></a></h2>
 <div class="section level3">
 <h3 id="features-0-5-1">Features<a class="anchor" aria-label="anchor" href="#features-0-5-1"></a></h3>
-<ul><li>Added new functions to check if an object <code>x</code> inherits from a particular event data class (<code>is.log(x)</code>,<code>is.eventlog(x)</code>,<code>is.activitylog(x)</code>,<code>is.grouped_log(x)</code>, <code>is.grouped_eventlog(x)</code>,<code>is.grouped_actiivtylog(x)</code>).</li></ul></div>
+<ul><li>Added new functions to check if an object <code>x</code> inherits from a particular event data class (<code>is.log(x)</code>, <code>is.eventlog(x)</code>, <code>is.activitylog(x)</code>, <code>is.grouped_log(x)</code>, <code>is.grouped_eventlog(x)</code>, <code>is.grouped_actiivtylog(x)</code>).</li></ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-0-5-1">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-5-1"></a></h3>
 <ul><li>
 <code>group_by(.data, ..., .add = F)</code> now works correctly on <code>grouped_eventlog</code>. Previously, applying <code><a href="../reference/group_by.html">group_by()</a></code> to a <code>grouped_eventlog</code> reverted it to a <code>data.frame</code>, which prevented the application of further <strong>bupaR</strong> functions on the returned value.</li>
 <li>The <code>"raw"</code> attribute of metrics in <strong>edeaR</strong> (e.g. <code>throughput_time</code>) containing the original data is now kept after applying <code><a href="../reference/group_by.html">group_by()</a></code>. This can be useful for further analyses on the output of metrics and can be accessed using <code>attr(log, "raw")</code>.</li>
+<li>Fixed bug in <code><a href="../reference/add_end_activity.html">add_start_activity()</a></code> and <code><a href="../reference/add_end_activity.html">add_end_activity()</a></code> which failed when applied to an <code>activitylog</code>.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="other-0-5-1">Other<a class="anchor" aria-label="anchor" href="#other-0-5-1"></a></h3>
