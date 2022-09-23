@@ -1,109 +1,144 @@
-#' Add artificial start/end activities to case
+#' @title Add Artificial Start/End Activities
+#'
+#' @description Adds an artificial start or end activity to each case with the specified `label`.
+#'
+#' @param label [`character`]: Start (default `"Start"`) or end (default `"End"`) activity label. This must be an activity
+#' label that is not already present in `log`.
 #'
 #' @inheritParams act_collapse
-#' @param label Start/end activity label
 #'
-#' @name add_end_activity
-#' @inheritParams act_collapse
-#'
-#' @importFrom forcats fct_expand
 #' @export add_end_activity
-add_end_activity <- function(log, label, eventlog = deprecated()) {
+add_end_activity <- function(log, label = "End", eventlog = deprecated()) {
 	UseMethod("add_end_activity")
 }
 
 #' @rdname add_end_activity
-#' @export
-add_start_activity <- function(log, label, eventlog = deprecated()) {
+#' @export add_start_activity
+add_start_activity <- function(log, label = "Start", eventlog = deprecated()) {
  	UseMethod("add_start_activity")
 }
 
-#' @describeIn add_end_activity Add end activity to event log
+#' @describeIn add_end_activity Adds end activity to an [`eventlog`].
 #' @export
 add_end_activity.eventlog <- function(log, label = "End", eventlog = deprecated()) {
 
-	eventlog <- lifecycle_warning_eventlog(log, eventlog)
-
-	eventlog %>%
-		group_by_case() %>%
-		arrange(desc(!!timestamp_(eventlog))) %>%
-		slice_events(1) %>%
-		ungroup_eventlog() %>%
-		mutate(!!timestamp_(eventlog) := !!timestamp_(eventlog) + 1,
-			   !!activity_id_(eventlog) := factor(label, levels = c(as.character(activity_labels(eventlog)), label)),
-			   !!activity_instance_id_(eventlog) := paste0(!!case_id_(eventlog), "-end")) -> end_states
-
-
-	eventlog %>%
-		mutate(!!activity_id_(eventlog) := fct_expand(!!activity_id_(eventlog), label)) %>%
-	 	bind_rows(end_states) %>%
-	 	re_map(mapping(eventlog))
-
-}
-
-#' @describeIn add_end_activity Add end activity to activity log
-#' @export
-#'
-add_end_activity.activitylog <- function(log, label = "End", eventlog = deprecated()) {
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
-	log %>%
-		to_eventlog %>%
-		add_end_activity.eventlog(label)
+	add_start_end_activity_check_label(log, label)
 
+	log %>%
+		group_by_case() %>%
+		arrange(desc(.data[[timestamp(log)]])) %>%
+		slice_events(1) %>%
+		ungroup_eventlog() %>%
+		mutate(!!timestamp(log) := .data[[timestamp(log)]] + 1,
+			     !!activity_id(log) := factor(label, levels = c(as.character(activity_labels(log)), label)),
+			     !!activity_instance_id(log) := stri_c(.data[[case_id(log)]], "end", sep = "-")) -> end_states
+
+	return(add_start_end_activity_bind_logs(log, end_states, label))
 }
 
+#' @describeIn add_end_activity Adds end activity to an [`activitylog`].
+#' @export
+add_end_activity.activitylog <- function(log, label = "End", eventlog = deprecated()) {
 
-#' @describeIn add_end_activity Add end activity to grouped event log
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	add_start_end_activity_check_label(log, label)
+
+	log %>%
+		mutate("last_timestamp" = pmax(!!!syms(timestamps(log)), na.rm = TRUE)) %>%
+		group_by_case() %>%
+		arrange(desc(.data[["last_timestamp"]])) %>%
+		slice_activities(1) %>%
+		ungroup_eventlog() %>%
+		mutate("complete" := .data[["last_timestamp"]] + 1,
+					 !!activity_id(log) := factor(label, levels = c(as.character(activity_labels(log)), label))) %>%
+		select(-.data[["last_timestamp"]]) -> end_states
+
+	return(add_start_end_activity_bind_logs(log, end_states, label))
+}
+
+#' @describeIn add_end_activity Adds end activity to a [`grouped_log`].
 #' @export
 add_end_activity.grouped_log <- function(log, label = "End", eventlog = deprecated()) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	apply_grouped_fun(log, add_end_activity, label, .ignore_groups = TRUE, .keep_groups = TRUE, .returns_log = TRUE)
-
 }
 
-#' @describeIn add_end_activity Add start activity to event log
+#' @describeIn add_end_activity Adds start activity to an [`eventlog`].
 #' @export
 add_start_activity.eventlog <- function(log, label = "Start", eventlog = deprecated()) {
 
 	eventlog <- lifecycle_warning_eventlog(log, eventlog)
 
-	eventlog %>%
-		group_by_case() %>%
-		arrange(!!timestamp_(eventlog)) %>%
-		slice_events.grouped_eventlog(1) %>%
-		ungroup_eventlog() %>%
-		mutate(!!timestamp_(eventlog) := !!timestamp_(eventlog) - 1,
-			   !!activity_id_(eventlog) := factor(label, levels = c(as.character(activity_labels(eventlog)), label)),
-			   !!activity_instance_id_(eventlog) := paste0(!!case_id_(eventlog), "-start")) -> end_states
-
-	eventlog %>%
-		mutate(!!activity_id_(eventlog) := fct_expand(!!activity_id_(eventlog), label)) %>%
-		bind_rows(end_states) %>%
-		re_map(mapping(eventlog))
-
-}
-
-#' @describeIn add_end_activity Add start activity to activity log
-#' @export
-#'
-add_start_activity.activitylog <- function(log, label = "Start", eventlog = deprecated()) {
-	log <- lifecycle_warning_eventlog(log, eventlog)
+	add_start_end_activity_check_label(log, label)
 
 	log %>%
-		to_eventlog %>%
-		add_start_activity.eventlog(label)
+		group_by_case() %>%
+		arrange(.data[[timestamp(log)]]) %>%
+		slice_events(1) %>%
+		ungroup_eventlog() %>%
+		mutate(!!timestamp(log) := .data[[timestamp(log)]] - 1,
+					 !!activity_id(log) := factor(label, levels = c(as.character(activity_labels(log)), label)),
+					 !!activity_instance_id(log) := stri_c(.data[[case_id(log)]], "start", sep = "-")) -> start_states
+
+	return(add_start_end_activity_bind_logs(log, start_states, label))
 }
 
-#' @describeIn add_end_activity Add start activity to grouped event log
+#' @describeIn add_end_activity Adds start activity to an [`activitylog`].
+#' @export
+add_start_activity.activitylog <- function(log, label = "Start", eventlog = deprecated()) {
+
+	log <- lifecycle_warning_eventlog(log, eventlog)
+
+	add_start_end_activity_check_label(log, label)
+
+	log %>%
+		mutate("first_timestamp" = pmin(!!!syms(timestamps(log)), na.rm = TRUE)) %>%
+		group_by_case() %>%
+		arrange(.data[["first_timestamp"]]) %>%
+		slice_activities(1) %>%
+		ungroup_eventlog() %>%
+		mutate("start" := .data[["first_timestamp"]] - 1,
+					 !!activity_id(log) := factor(label, levels = c(as.character(activity_labels(log)), label))) %>%
+		select(-.data[["first_timestamp"]]) -> start_states
+
+	return(add_start_end_activity_bind_logs(log, start_states, label))
+}
+
+#' @describeIn add_end_activity Adds start activity to a [`grouped_log`].
 #' @export
 add_start_activity.grouped_log <- function(log, label = "Start", eventlog = deprecated()) {
 
 	log <- lifecycle_warning_eventlog(log, eventlog)
 
 	apply_grouped_fun(log, add_start_activity, label, .ignore_groups = TRUE, .keep_groups = TRUE, .returns_log = TRUE)
-
 }
 
+
+add_start_end_activity_check_label <- function(log, label, arg = caller_arg(label), call = caller_env()) {
+
+	if (!is_character(label, n = 1L)) {
+		cli_abort(c("{.arg {arg}} must be a {.cls {class({arg})}}.",
+								"x" = "You supplied a {.cls {class(label)}}: {.val {label}}"),
+							call = call)
+	}
+
+	if (label %in% activity_labels(log)) {
+		cli_abort(c("Invalid {.arg {arg}}.",
+								"x" = "Activity {.val {label}} is already present in log. Please use another label."),
+							call = call)
+	}
+}
+
+add_start_end_activity_bind_logs <- function(log1, log2, label) {
+
+	# Merge the two logs and make sure the eventlog mapping is retained.
+	log1 %>%
+		mutate(!!activity_id(log1) := fct_expand(.data[[activity_id(log1)]], label)) %>%
+		bind_rows(log2) %>%
+		re_map(mapping(log1))
+}

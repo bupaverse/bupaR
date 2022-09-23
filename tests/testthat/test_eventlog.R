@@ -1,6 +1,4 @@
 
-context("Eventlog parsing")
-
 read_testdata <- function () {
   read.csv("./testdata/patients.csv") %>%
     mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%d %H:%M:%S", tz = "UTC"))

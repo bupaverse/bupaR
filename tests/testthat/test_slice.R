@@ -1,8 +1,4 @@
 
-library(bupaR)
-
-context("Slice eventlog")
-
 test_that("slice returns eventlog", {
 	skip("TODO: rewrite slice tests")
 	expect_s3_class(slice(patients, (sample(size = 1, 1:n_cases(patients))):(sample(size = 1, 1:n_cases(patients)))), "eventlog")

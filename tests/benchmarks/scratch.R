@@ -176,3 +176,11 @@ while (!stop) {
 
   i <- i + 1
 }
+
+# No real difference
+bench::mark(
+  .data = eventdataR::patients %>% arrange(desc(.data[[timestamp(.)]])),
+  sym = eventdataR::patients %>% arrange(desc(!!timestamp_(.))),
+  iterations = 1000,
+  check = TRUE
+)
