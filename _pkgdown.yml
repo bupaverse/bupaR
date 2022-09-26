@@ -3,9 +3,15 @@ template:
   bootstrap: 5
 
 home:
+#  sidebar:
+#    structure: [links, license, citation, authors, dev]
   links:
     - text: Getting started
       href: https://bupar.net/getting_started.html
+
+authors:
+  sidebar:
+    roles: [cre, aut, ctb]
 
 news:
   one_page: true
@@ -13,6 +19,3 @@ news:
   releases:
     - text: "bupaR 0.5.0"
       href: https://bupar.net/2022/07/27/bupar-0-5-0-whats-new/
-
-development:
-  mode: auto
