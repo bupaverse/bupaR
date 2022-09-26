@@ -39,16 +39,19 @@ Add artificial start/end activities to case
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Add end activity to event log
+\item \code{add_end_activity(eventlog)}: Add end activity to event log
 
-\item \code{activitylog}: Add end activity to activity log
+\item \code{add_end_activity(activitylog)}: Add end activity to activity log
 
-\item \code{grouped_log}: Add end activity to grouped event log
+\item \code{add_end_activity(grouped_log)}: Add end activity to grouped event log
 
-\item \code{eventlog}: Add start activity to event log
-
-\item \code{activitylog}: Add start activity to activity log
-
-\item \code{grouped_log}: Add start activity to grouped event log
 }}
+\section{Functions}{
+\itemize{
+\item \code{add_start_activity(eventlog)}: Add start activity to event log
 
+\item \code{add_start_activity(activitylog)}: Add start activity to activity log
+
+\item \code{add_start_activity(grouped_log)}: Add start activity to grouped event log
+
+}}

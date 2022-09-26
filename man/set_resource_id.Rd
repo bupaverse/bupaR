@@ -21,9 +21,9 @@ Set resource id of log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Set resource id
-}}
+\item \code{set_resource_id(default)}: Set resource id
 
+}}
 \seealso{
 Other Classifiers: 
 \code{\link{activity_id}()},

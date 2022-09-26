@@ -26,15 +26,15 @@ Get the resource classifier of an object of class \code{eventlog}.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Retrieve resource identifier from eventlog
+\item \code{resource_id(eventlog)}: Retrieve resource identifier from eventlog
 
-\item \code{eventlog_mapping}: Retrieve resource identifier from eventlog mapping
+\item \code{resource_id(eventlog_mapping)}: Retrieve resource identifier from eventlog mapping
 
-\item \code{activitylog}: Retrieve resource identifier from activitylog
+\item \code{resource_id(activitylog)}: Retrieve resource identifier from activitylog
 
-\item \code{activitylog_mapping}: Retrieve resource identifier from activitylog mapping
+\item \code{resource_id(activitylog_mapping)}: Retrieve resource identifier from activitylog mapping
+
 }}
-
 \seealso{
 \code{\link{eventlog}}, \code{\link{mapping}}
 

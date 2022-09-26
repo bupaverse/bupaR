@@ -20,8 +20,8 @@ Convert activitylog to eventlog
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{activitylog}: Convert activitylog to eventlog
+\item \code{to_eventlog(activitylog)}: Convert activitylog to eventlog
 
-\item \code{grouped_activitylog}: Convert grouped activitylog to grouped eventlog
+\item \code{to_eventlog(grouped_activitylog)}: Convert grouped activitylog to grouped eventlog
+
 }}
-

@@ -18,11 +18,11 @@
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{grouped_eventlog}: Arrange an eventlog by group, maintaining all groups
+\item \code{arrange(grouped_eventlog)}: Arrange an eventlog by group, maintaining all groups
 
-\item \code{activitylog}: Arrange an activitylog
+\item \code{arrange(activitylog)}: Arrange an activitylog
+
 }}
-
 \keyword{internal}
 \description{
 These objects are imported from other packages. Follow the links

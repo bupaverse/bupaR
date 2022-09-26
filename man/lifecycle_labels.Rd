@@ -22,11 +22,11 @@ Retrieve a vector containing all unique lifecycle labels.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Retrieve lifecycle labels from an \code{\link{eventlog}}.
+\item \code{lifecycle_labels(eventlog)}: Retrieve lifecycle labels from an \code{\link{eventlog}}.
 
-\item \code{activitylog}: Retrieve lifecycle labels from an \code{\link{activitylog}}.
+\item \code{lifecycle_labels(activitylog)}: Retrieve lifecycle labels from an \code{\link{activitylog}}.
+
 }}
-
 \seealso{
 \code{\link{lifecycle_id}}
 }

@@ -28,15 +28,15 @@ Returns the number of events in an event log.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Count number of events in an \code{\link{eventlog}}.
+\item \code{n_events(eventlog)}: Count number of events in an \code{\link{eventlog}}.
 
-\item \code{grouped_eventlog}: Count number of events in a \code{\link{grouped_eventlog}}.
+\item \code{n_events(grouped_eventlog)}: Count number of events in a \code{\link{grouped_eventlog}}.
 
-\item \code{activitylog}: Count number of events in an \code{\link{activitylog}}.
+\item \code{n_events(activitylog)}: Count number of events in an \code{\link{activitylog}}.
 
-\item \code{grouped_activitylog}: Count number of events in an \code{\link{grouped_activitylog}}.
+\item \code{n_events(grouped_activitylog)}: Count number of events in an \code{\link{grouped_activitylog}}.
+
 }}
-
 \seealso{
 Other Counters: 
 \code{\link{n_activities}()},

@@ -27,10 +27,10 @@ Select last n activity instances
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Select last n activity instances of an \code{\link{eventlog}}.
+\item \code{last_n(eventlog)}: Select last n activity instances of an \code{\link{eventlog}}.
 
-\item \code{activitylog}: Select last n activity instances of an \code{\link{activitylog}}.
+\item \code{last_n(activitylog)}: Select last n activity instances of an \code{\link{activitylog}}.
 
-\item \code{grouped_log}: Select last n activity instances of a \code{\link{grouped_log}}.
+\item \code{last_n(grouped_log)}: Select last n activity instances of a \code{\link{grouped_log}}.
+
 }}
-

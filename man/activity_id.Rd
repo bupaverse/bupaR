@@ -20,11 +20,11 @@ Get the activity classifier of an object of class \code{eventlog}.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Retrieve activity identifier from log
+\item \code{activity_id(default)}: Retrieve activity identifier from log
 
-\item \code{log_mapping}: Retrieve activity identifier from  mapping
+\item \code{activity_id(log_mapping)}: Retrieve activity identifier from  mapping
+
 }}
-
 \seealso{
 \code{\link{eventlog}}, \code{\link{activitylog}}, \code{\link{mapping}}
 

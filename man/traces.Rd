@@ -26,11 +26,11 @@ Activity sequences are based on the start timestamp of activities.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Construct traces list for eventlog
+\item \code{traces(log)}: Construct traces list for eventlog
 
-\item \code{grouped_log}: Construct list of traces for grouped log
+\item \code{traces(grouped_log)}: Construct list of traces for grouped log
+
 }}
-
 \seealso{
 \code{\link{cases}}, \code{\link{eventlog}}
 }

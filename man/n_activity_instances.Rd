@@ -28,15 +28,15 @@ Returns the number of activity instances in an event log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: eventlog
+\item \code{n_activity_instances(eventlog)}: eventlog
 
-\item \code{grouped_eventlog}: grouped_eventlog
+\item \code{n_activity_instances(grouped_eventlog)}: grouped_eventlog
 
-\item \code{activitylog}: eventlog
+\item \code{n_activity_instances(activitylog)}: eventlog
 
-\item \code{grouped_activitylog}: grouped_activitylog
+\item \code{n_activity_instances(grouped_activitylog)}: grouped_activitylog
+
 }}
-
 \seealso{
 Other Counters: 
 \code{\link{n_activities}()},

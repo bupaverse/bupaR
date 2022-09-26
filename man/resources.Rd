@@ -25,13 +25,13 @@ Returns a \code{tibble}  containing a list of all resources in the event log, wi
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Generate resource list for eventlog
+\item \code{resources(eventlog)}: Generate resource list for eventlog
 
-\item \code{activitylog}: Generate resource list for activitylog
+\item \code{resources(activitylog)}: Generate resource list for activitylog
 
-\item \code{grouped_log}: Compute activity frequencies
+\item \code{resources(grouped_log)}: Compute activity frequencies
+
 }}
-
 \seealso{
 \code{\link{resource_id}}, \code{\link{eventlog}}
 }

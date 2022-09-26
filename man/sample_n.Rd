@@ -27,11 +27,11 @@ Weights are automatically standardised to sum to 1.}
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Sample n cases of eventlog
+\item \code{sample_n(eventlog)}: Sample n cases of eventlog
 
-\item \code{grouped_eventlog}: Stratified sampling of a grouped eventlog: sample n cases within each group
+\item \code{sample_n(grouped_eventlog)}: Stratified sampling of a grouped eventlog: sample n cases within each group
+
 }}
-
 \seealso{
 \code{\link{slice_sample}}
 }

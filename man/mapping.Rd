@@ -22,9 +22,9 @@ Prints the mapping of an event log object.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Retrieve identifier mapping from eventlog
+\item \code{mapping(eventlog)}: Retrieve identifier mapping from eventlog
 
-\item \code{activitylog}: Retrieve identifier mapping from activitylog
+\item \code{mapping(activitylog)}: Retrieve identifier mapping from activitylog
+
 }}
-
 \concept{Eventlog classifiers}

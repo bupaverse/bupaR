@@ -29,15 +29,15 @@ with their absolute and relative frequency (# events).
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Generate lifecycle list for an \code{\link{eventlog}}.
+\item \code{lifecycles(eventlog)}: Generate lifecycle list for an \code{\link{eventlog}}.
 
-\item \code{grouped_eventlog}: Generate lifecycle list for a \code{\link{grouped_eventlog}}.
+\item \code{lifecycles(grouped_eventlog)}: Generate lifecycle list for a \code{\link{grouped_eventlog}}.
 
-\item \code{activitylog}: Generate lifecycle list for an \code{\link{activitylog}}.
+\item \code{lifecycles(activitylog)}: Generate lifecycle list for an \code{\link{activitylog}}.
 
-\item \code{grouped_activitylog}: Generate lifecycle list for an \code{\link{grouped_activitylog}}.
+\item \code{lifecycles(grouped_activitylog)}: Generate lifecycle list for an \code{\link{grouped_activitylog}}.
+
 }}
-
 \seealso{
 \code{\link{lifecycle_id}}
 }

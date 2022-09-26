@@ -22,11 +22,11 @@ Returns the number of cases in an event log.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Count number of cases in a \code{\link{log}}.
+\item \code{n_cases(log)}: Count number of cases in a \code{\link{log}}.
 
-\item \code{grouped_log}: Count number of cases in a \code{\link{grouped_log}}.
+\item \code{n_cases(grouped_log)}: Count number of cases in a \code{\link{grouped_log}}.
+
 }}
-
 \seealso{
 Other Counters: 
 \code{\link{n_activities}()},

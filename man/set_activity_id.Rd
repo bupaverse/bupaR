@@ -21,9 +21,9 @@ Set activity id of log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Set activity id
-}}
+\item \code{set_activity_id(default)}: Set activity id
 
+}}
 \seealso{
 Other Classifiers: 
 \code{\link{activity_id}()},

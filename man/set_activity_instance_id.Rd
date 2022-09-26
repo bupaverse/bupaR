@@ -21,9 +21,9 @@ Set activity instance id of log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Set activity_instance_id of eventlog
-}}
+\item \code{set_activity_instance_id(eventlog)}: Set activity_instance_id of eventlog
 
+}}
 \seealso{
 Other Classifiers: 
 \code{\link{activity_id}()},

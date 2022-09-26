@@ -19,6 +19,6 @@ Generic summary function for eventlog class
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{grouped_eventlog}: Summary of grouped event log
-}}
+\item \code{summary(grouped_eventlog)}: Summary of grouped event log
 
+}}

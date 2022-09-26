@@ -24,11 +24,11 @@ Recode one or more activity labels through specifying their old and new label
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Recode activity labels of event log
+\item \code{act_recode(log)}: Recode activity labels of event log
 
-\item \code{grouped_log}: Recode activity labels of event log
+\item \code{act_recode(grouped_log)}: Recode activity labels of event log
+
 }}
-
 \seealso{
 \code{\link{eventlog}}, \code{\link{activity_id}}, \code{\link{act_unite}}
 

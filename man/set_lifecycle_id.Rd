@@ -21,9 +21,9 @@ Set lifecycle id of log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Set lifecycle id
-}}
+\item \code{set_lifecycle_id(default)}: Set lifecycle id
 
+}}
 \seealso{
 Other Classifiers: 
 \code{\link{activity_id}()},

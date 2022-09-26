@@ -22,11 +22,11 @@ Returns the number of resources in an event log
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Count number of resources in log
+\item \code{n_resources(log)}: Count number of resources in log
 
-\item \code{grouped_log}: Count number of resources in grouped log
+\item \code{n_resources(grouped_log)}: Count number of resources in grouped log
+
 }}
-
 \seealso{
 Other Counters: 
 \code{\link{n_activities}()},

@@ -47,13 +47,13 @@ There are different strategies to collapse activity labels (argument ´method´)
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{eventlog}: Collapse activity labels of a subprocess into a single activity
+\item \code{act_collapse(eventlog)}: Collapse activity labels of a subprocess into a single activity
 
-\item \code{activitylog}: Collapse activity labels of a subprocess into a single activity
+\item \code{act_collapse(activitylog)}: Collapse activity labels of a subprocess into a single activity
 
-\item \code{grouped_log}: Collapse activity labels of a subprocess into a single activity
+\item \code{act_collapse(grouped_log)}: Collapse activity labels of a subprocess into a single activity
+
 }}
-
 \seealso{
 Other Activity processing functions: 
 \code{\link{act_recode}()},

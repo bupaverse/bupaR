@@ -28,13 +28,13 @@ the number of activity types, the timespan, the trace, the duration, and the fir
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{log}: Construct list of cases in a \code{\link{log}}.
+\item \code{cases(log)}: Construct list of cases in a \code{\link{log}}.
 
-\item \code{eventlog}: Construct list of cases in an \code{\link{eventlog}}.
+\item \code{cases(eventlog)}: Construct list of cases in an \code{\link{eventlog}}.
 
-\item \code{activitylog}: Construct list of cases in a \code{\link{activitylog}}.
+\item \code{cases(activitylog)}: Construct list of cases in a \code{\link{activitylog}}.
+
 }}
-
 \seealso{
 \code{\link{case_list}},\code{\link{durations}}
 }
