@@ -7,7 +7,8 @@
 group_by_activity(log)
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 }
 \description{
 Group an event log by activity identifier

@@ -8,7 +8,7 @@ test_that("test lifecycle_labels on eventlog", {
   labels <- patients %>%
     lifecycle_labels()
 
-  expect_is(labels, "factor")
+  expect_s3_class(labels, "factor")
   expect_equal(labels, factor(c("complete", "schedule", "start"), levels = c("complete", "schedule", "start")))
 })
 
@@ -19,7 +19,7 @@ test_that("test lifecycle_labels on grouped_eventlog", {
   labels <- patients_grouped %>%
     lifecycle_labels()
 
-  expect_is(labels, "factor")
+  expect_s3_class(labels, "factor")
   expect_equal(labels, factor(c("complete", "schedule", "start"), levels = c("complete", "schedule", "start")))
 })
 
@@ -33,7 +33,7 @@ test_that("test lifecycle_labels on activitylog", {
   labels <- patients_act %>%
     lifecycle_labels()
 
-  expect_is(labels, "factor")
+  expect_s3_class(labels, "factor")
   expect_equal(labels, factor(c("complete", "schedule", "start"), levels = c("complete", "schedule", "start")))
 })
 
@@ -44,6 +44,6 @@ test_that("test lifecycle_labels on grouped_activitylog", {
   labels <- patients_act_grouped %>%
     lifecycle_labels()
 
-  expect_is(labels, "factor")
+  expect_s3_class(labels, "factor")
   expect_equal(labels, factor(c("complete", "schedule", "start"), levels = c("complete", "schedule", "start")))
 })

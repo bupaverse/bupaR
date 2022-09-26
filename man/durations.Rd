@@ -11,12 +11,13 @@ durations(
 )
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
 \item{units}{\code{\link{character}} (default "auto"): The time unit in which the throughput times should be reported. Should be one of the following values:
 "auto" (default), "secs", "mins", "hours", "days", "weeks". See also the \code{units} argument of \code{\link{difftime}}.}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Computes the throughput times of each case.

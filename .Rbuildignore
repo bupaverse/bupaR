@@ -7,3 +7,4 @@
 ^\.idea$
 ^\.lintr$
 ^pkgdown$
+^README\.Rmd$

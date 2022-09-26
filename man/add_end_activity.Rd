@@ -9,11 +9,11 @@
 \alias{add_start_activity.eventlog}
 \alias{add_start_activity.activitylog}
 \alias{add_start_activity.grouped_log}
-\title{Add artificial start/end activities to case}
+\title{Add Artificial Start/End Activities}
 \usage{
-add_end_activity(log, label, eventlog = deprecated())
+add_end_activity(log, label = "End", eventlog = deprecated())
 
-add_start_activity(log, label, eventlog = deprecated())
+add_start_activity(log, label = "Start", eventlog = deprecated())
 
 \method{add_end_activity}{eventlog}(log, label = "End", eventlog = deprecated())
 
@@ -28,30 +28,34 @@ add_start_activity(log, label, eventlog = deprecated())
 \method{add_start_activity}{grouped_log}(log, label = "Start", eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
-\item{label}{Start/end activity label}
+\item{label}{\code{\link{character}}: Start (default \code{"Start"}) or end (default \code{"End"}) activity label. This must be an activity
+label that is not already present in \code{log}.}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
-Add artificial start/end activities to case
+Adds an artificial start or end activity to each case with the specified \code{label}.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{add_end_activity(eventlog)}: Add end activity to event log
 
-\item \code{add_end_activity(activitylog)}: Add end activity to activity log
+\item \code{add_end_activity(eventlog)}: Adds end activity to an \code{\link{eventlog}}.
 
-\item \code{add_end_activity(grouped_log)}: Add end activity to grouped event log
+\item \code{add_end_activity(activitylog)}: Adds end activity to an \code{\link{activitylog}}.
+
+\item \code{add_end_activity(grouped_log)}: Adds end activity to a \code{\link{grouped_log}}.
 
 }}
 \section{Functions}{
 \itemize{
-\item \code{add_start_activity(eventlog)}: Add start activity to event log
 
-\item \code{add_start_activity(activitylog)}: Add start activity to activity log
+\item \code{add_start_activity(eventlog)}: Adds start activity to an \code{\link{eventlog}}.
 
-\item \code{add_start_activity(grouped_log)}: Add start activity to grouped event log
+\item \code{add_start_activity(activitylog)}: Adds start activity to an \code{\link{activitylog}}.
+
+\item \code{add_start_activity(grouped_log)}: Adds start activity to a \code{\link{grouped_log}}.
 
 }}

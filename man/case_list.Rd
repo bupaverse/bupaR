@@ -13,12 +13,13 @@ case_list(log, .keep_trace_list, eventlog = deprecated())
 \method{case_list}{activitylog}(log, .keep_trace_list = FALSE, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
 \item{.keep_trace_list}{Logical (default is \code{FALSE}): If \code{TRUE}, keeps the trace as a \code{list}.
 If \code{FALSE}, only the concatenated string representation of the trace is kept.}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Construct list of cases

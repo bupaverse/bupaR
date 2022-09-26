@@ -10,9 +10,10 @@ case_labels(log, eventlog = deprecated())
 \method{case_labels}{log}(log, eventlog = deprecated())
 }
 \arguments{
-\item{log}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
+\item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
+\code{\link{activitylog}}, etc.).}
 
-\item{eventlog}{Deprecated; please use \code{log} instead.}
+\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Retrieve a vector containing all unique case labels

@@ -1,8 +1,8 @@
 Package: bupaR
 Type: Package
 Title: Business Process Analysis in R
-Version: 0.5.0
-Date: 2022-07-05
+Version: 0.5.1.9000
+Date: 2022-09-30
 Authors@R: c(person("Gert","Janssenswillen", email = "gert.janssenswillen@uhasselt.be", role = c("aut","cre")),
 			 person("Gerard","van Hulzen",email = "gerard.vanhulzen@uhasselt.be", role = c("ctb")),
              person("Felix","Mannhardt",email = "f.mannhardt@tue.nl", role = c("ctb")),
@@ -26,15 +26,22 @@ Imports:
 	tibble,
 	glue, 
 	forcats, 
-	rlang, 
+	rlang (>= 1.0.0),
+	cli (>= 3.2.0),
 	eventdataR (>= 0.2.0),
 	stringr,
 	stringi,
 	lubridate,
 	lifecycle
-URL: https://bupar.net/, https://github.com/bupaverse/bupaR/
+URL:
+    https://bupar.net/,
+    https://github.com/bupaverse/bupaR/,
+    https://bupaverse.github.io/bupaR/
 Suggests: 
     covr,
     lintr,
-    testthat
+    edeaR,
+    testthat (>= 3.1.3)
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+
