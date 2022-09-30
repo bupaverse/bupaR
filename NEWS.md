@@ -12,6 +12,8 @@ reverted it to a `data.frame`, which prevented the application of further **bupa
 * The `"raw"` attribute of metrics in **edeaR** (e.g. `throughput_time`) containing the original data is now kept after
 applying `group_by()`. This can be useful for further analyses on the output of metrics and can be accessed using `attr(log, "raw")`.
 * Fixed bug in `add_start_activity()` and `add_end_activity()` which failed when applied to an `activitylog`. 
+* Fixed bug in `activitylog`. Failed when not both start and complete columns where available. 
+* Fixed bug in `assign_instance_id`. Failed when data had a column with the name `status`. 
 
 ## Other
 
