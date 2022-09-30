@@ -25,9 +25,9 @@ convert_timestamps <- function(x, columns,  format){
 											 "mdy_hms", "mdy_hm", "mdy_h", "mdy")) | length(format) > 1) {
 		stop("format should be one of the following: ymd_hms, ymd_hm, ymd_h, ymd, dmy_hms, dmy_hm, dmy_h, dmy, mdy_hms, mdy_hm, mdy_h, md")
 	}
-	if(!(deparse(substitute(format)) %in% c("ymd_hms", "dmy_hms", "mdy_hms"))) {
-		warning("No seconds available? Timestamps will probably too coarse for reliable analyses.")
-	}
+	# if(!(deparse(substitute(format)) %in% c("ymd_hms", "dmy_hms", "mdy_hms"))) {
+	# 	warning("No seconds available? Timestamps will probably too coarse for reliable analyses.")
+	# }
 
 	x <- mutate_at(x, columns, format)
 
