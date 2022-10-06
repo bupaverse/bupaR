@@ -41,7 +41,6 @@ Adds an artificial start or end activity to each case with the specified \code{l
 }
 \section{Methods (by class)}{
 \itemize{
-
 \item \code{add_end_activity(eventlog)}: Adds end activity to an \code{\link{eventlog}}.
 
 \item \code{add_end_activity(activitylog)}: Adds end activity to an \code{\link{activitylog}}.
@@ -51,7 +50,6 @@ Adds an artificial start or end activity to each case with the specified \code{l
 }}
 \section{Functions}{
 \itemize{
-
 \item \code{add_start_activity(eventlog)}: Adds start activity to an \code{\link{eventlog}}.
 
 \item \code{add_start_activity(activitylog)}: Adds start activity to an \code{\link{activitylog}}.

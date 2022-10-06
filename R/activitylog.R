@@ -57,6 +57,18 @@ activitylog.data.frame <- function(activitylog,
 
 		}
 	}
+	if(!("start" %in% timestamps)) {
+	  timestamps <- c(timestamps, "start")
+	  activitylog$start = NA
+	}
+	if(!("complete" %in% timestamps)) {
+	  timestamps <- c(timestamps, "start")
+	  activitylog$complete = NA
+	}
+	
+	
+	
+	
 	attr(activitylog, "timestamps") <- timestamps
 
 	if(length(order) == 1 && order %in% c("auto","alphabetical",colnames(activitylog))) {
@@ -81,7 +93,7 @@ activitylog.data.frame <- function(activitylog,
 		stop("Order should be a character with value 'auto', 'alphabetical', 'sorted', or a valid column-name")
 	}
 
-
+  
 	activitylog
 
 }

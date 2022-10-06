@@ -69,6 +69,8 @@ scale_color_gradient2_bupaR(
 
 \item{name}{The name of the scale. Used as the axis or legend title. If waiver(), the default, the name of the scale is taken from the first mapping used for that aesthetic. If NULL, the legend title will be omitted.}
 
+\item{palette}{Color palette to be used for scale_._continuous_bupaR. Can be "green" (default) or "orange".}
+
 \item{midpoint}{The midpoint (in data value) of the diverging scale. Defaults to 0.}
 }
 \description{

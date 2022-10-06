@@ -15,17 +15,17 @@
 #'
 assign_instance_id <- function(eventlog, case_id, activity_id, timestamp, lifecycle_id) {
 
-	current_instance <- NULL
+  BUPAR_CURRENT_INSTANCE <- NULL
 
-	status <- list(open_instances = c(), last_instance = 0)
+	BUPAR_STATUS_WIP <- list(open_instances = c(), last_instance = 0)
 
 	eventlog %>%
 		group_by(!!sym(case_id), !!sym(activity_id)) %>%
 		arrange(!!sym(timestamp)) %>%
-		mutate(status = accumulate(!!sym(lifecycle_id), assign_instance_id_EVENT, .init = status)[-1]) %>%
-		mutate(current_instance = map_dbl(status, ~.x$current_instance)) %>%
-		select(-status) %>%
-		mutate(instance = str_c(!!sym(case_id), !!sym(activity_id), current_instance, sep = "-")) %>%
+		mutate(BUPAR_STATUS_WIP = accumulate(!!sym(lifecycle_id), assign_instance_id_EVENT, .init = BUPAR_STATUS_WIP)[-1]) %>%
+		mutate(BUPAR_CURRENT_INSTANCE = map_dbl(BUPAR_STATUS_WIP, ~.x$BUPAR_CURRENT_INSTANCE)) %>%
+		select(-BUPAR_STATUS_WIP) %>%
+		mutate(instance_by_bupaR = str_c(!!sym(case_id), !!sym(activity_id), BUPAR_CURRENT_INSTANCE, sep = "-")) %>%
 		ungroup() %>%
 		as_tibble()
 }
@@ -77,7 +77,7 @@ assign_instance_id_EVENT <- function(status, lifecycle) {
 
 		}
 	}
-	status$current_instance <- instance
+	status$BUPAR_CURRENT_INSTANCE <- instance
 	return(status)
 }
 

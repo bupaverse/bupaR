@@ -25,6 +25,7 @@
 #' @importFrom rlang .data arg_match caller_arg caller_env is_character
 #' @importFrom cli cli_abort
 #' @importFrom stringi stri_c
+#' @importFrom ggplot2 waiver scale_fill_gradient2 scale_fill_gradient scale_color_manual scale_fill_manual scale_color_gradient scale_color_gradient2
 ## usethis namespace: end
 
 globalVariables(c("."))
