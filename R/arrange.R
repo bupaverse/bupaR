@@ -17,7 +17,7 @@ arrange.eventlog <- function(.data, ...) {
 
 #' @describeIn arrange Arrange an eventlog by group, maintaining all groups
 #' @export
-#'
+
 arrange.grouped_eventlog <- function(.data, ...) {
 
 	mapping <- mapping(.data)
