@@ -25,3 +25,21 @@ rename.log <- function(.data, ...) {
     rename(...) %>%
     re_map(mapping)
 }
+
+#' @describeIn rename Rename grouped log 
+#' @export
+
+rename.grouped_log <- function(.data, ...) {
+  
+  groups <- groups(.data)
+  
+  renames <- list(...)
+  mapping <- mapping(.data)
+  mapping[mapping %in% renames] <- names(renames)
+  
+  .data %>%
+    as_tibble() %>%
+    rename(...) %>%
+    re_map(mapping) %>%
+    group_by(pick(as.character(groups)))
+}
