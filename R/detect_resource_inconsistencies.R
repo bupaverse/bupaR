@@ -30,7 +30,7 @@ detect_resource_inconsistencies.eventlog <- function(eventlog, filter_condition 
 
 	if(any(!(lifecycle_labels(eventlog) %in% allowed_lifecycles))) {
 		stop(glue::glue("Lifecycle not conform standard lifecycle model. \nAllowed lifecycles: {str_c(allowed_lifecycles, collapse =', ')}.
-         \nNon-standard lifecycles: {str_subset(lifecycle_labels(eventlog), allowed_lifecycles, negate = TRUE)
+         \nNon-standard lifecycles: {str_subset(lifecycle_labels(eventlog), allowed_lifecycles, negate = TRUE)}
          \nTry function 'standardize_lifecycle' to fix."))
 	}
 	# Store the number of cases for output
