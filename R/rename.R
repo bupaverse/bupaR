@@ -18,7 +18,11 @@ rename.log <- function(.data, ...) {
   
   renames <- list(...)
   mapping <- mapping(.data)
-  mapping[mapping %in% renames] <- names(renames)
+
+  for(i in 1:6) {
+    if(mapping[[i]] %in% renames)
+      mapping[[i]] <- names(renames)[which(renames == mapping[[i]])]
+  }
 
   .data %>%
     as_tibble() %>%
