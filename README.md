@@ -8,7 +8,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/bupaR)](https://CRAN.R-project.org/package=bupaR/)
 [![GitHub
-version](https://img.shields.io/badge/GitHub-0.5.1-blue)](https://github.com/bupaverse/bupaR)
+version](https://img.shields.io/badge/GitHub-0.5.4-blue)](https://github.com/bupaverse/bupaR)
 [![R-CMD-check](https://github.com/bupaverse/bupaR/workflows/R-CMD-check/badge.svg/)](https://github.com/bupaverse/bupaR/actions/)
 [![codecov](https://codecov.io/gh/bupaverse/bupaR/branch/dev/graph/badge.svg?token=40OgWBneWv/)](https://app.codecov.io/gh/bupaverse/bupaR/)
 [![Lifecycle:
@@ -68,14 +68,14 @@ library(eventdataR)
 patients %>%
   cases()
 #> # A tibble: 500 × 10
-#>   patient trace_…¹ numbe…² start_timestamp     complete_timestamp  trace trace…³
-#>   <chr>      <int>   <int> <dttm>              <dttm>              <chr>   <dbl>
-#> 1 1              6       6 2017-01-02 11:41:53 2017-01-09 19:45:45 Regi…       4
-#> 2 10             5       5 2017-01-06 05:58:54 2017-01-10 15:41:59 Regi…       7
-#> 3 100            5       5 2017-04-11 16:34:31 2017-04-22 09:58:07 Regi…       7
-#> 4 101            5       5 2017-04-16 06:38:58 2017-04-23 02:55:23 Regi…       7
-#> 5 102            5       5 2017-04-16 06:38:58 2017-04-22 10:50:04 Regi…       7
-#> # … with 495 more rows, 3 more variables: duration <drtn>,
-#> #   first_activity <fct>, last_activity <fct>, and abbreviated variable names
-#> #   ¹​trace_length, ²​number_of_activities, ³​trace_id
+#>   patient trace_length number_of_activities start_timestamp    
+#>   <chr>          <int>                <int> <dttm>             
+#> 1 1                  6                    6 2017-01-02 11:41:53
+#> 2 10                 5                    5 2017-01-06 05:58:54
+#> 3 100                5                    5 2017-04-11 16:34:31
+#> 4 101                5                    5 2017-04-16 06:38:58
+#> 5 102                5                    5 2017-04-16 06:38:58
+#> # ℹ 495 more rows
+#> # ℹ 6 more variables: complete_timestamp <dttm>, trace <chr>, trace_id <dbl>,
+#> #   duration <drtn>, first_activity <fct>, last_activity <fct>
 ```
