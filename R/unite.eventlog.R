@@ -1,6 +1,6 @@
 #' @title Unite multiple columns into one.
 
-#' @param .data Eventlog
+#' @param data Eventlog
 #' @param col The name of the new column (character value)
 #' @param ... Columns to be united.
 #' @param sep Seperator

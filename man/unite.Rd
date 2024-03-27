@@ -15,6 +15,8 @@
 \method{unite}{grouped_eventlog}(data, col, ..., sep = "_", remove = T)
 }
 \arguments{
+\item{data}{Eventlog}
+
 \item{col}{The name of the new column (character value)}
 
 \item{...}{Columns to be united.}
@@ -22,8 +24,6 @@
 \item{sep}{Seperator}
 
 \item{remove}{Remove original columns}
-
-\item{.data}{Eventlog}
 }
 \section{Methods (by class)}{
 \itemize{
