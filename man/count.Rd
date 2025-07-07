@@ -15,11 +15,7 @@ count(x, ..., wt = NULL, sort = FALSE, name = NULL)
 \arguments{
 \item{x}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{...}{
-  Arguments passed on to \code{\link[dplyr:count]{dplyr::count}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{Additional arguments passed to \link[=count]{dplyr}}
 
 \item{wt}{<\code{\link[rlang:args_data_masking]{data-masking}}> Frequency weights.
 Can be \code{NULL} or a variable:

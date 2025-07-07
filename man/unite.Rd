@@ -27,11 +27,7 @@ and symbols). The name is captured from the expression with
 symbols do not represent actual objects is now discouraged in the
 tidyverse; we support it here for backward compatibility).}
 
-\item{...}{
-  Arguments passed on to \code{\link[tidyr:unite]{tidyr::unite}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{Additional arguments passed to \link[=unite]{tidyr}}
 
 \item{sep}{Separator to use between values.}
 

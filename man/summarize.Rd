@@ -10,11 +10,7 @@ summarise(.data, ..., .by = NULL, .groups = NULL)
 \arguments{
 \item{.data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}}
 
-\item{...}{
-  Arguments passed on to \code{\link[dplyr:summarise]{dplyr::summarize}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{Name-value pairs of summary functions}
 
 \item{.by}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 

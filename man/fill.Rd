@@ -9,11 +9,7 @@ fill(data, ..., .direction = c("down", "up", "downup", "updown"))
 \arguments{
 \item{data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{...}{
-  Arguments passed on to \code{\link[tidyr:fill]{tidyr::fill}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{Additional arguments passed to \link[=fill]{tidyr}}
 
 \item{.direction}{Direction in which to fill missing values. Currently
 either "down" (the default), "up", "downup" (i.e. first down and then up)

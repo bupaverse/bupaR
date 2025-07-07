@@ -9,11 +9,7 @@ filter(.data, ..., .by = NULL, .preserve = FALSE)
 \arguments{
 \item{.data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{...}{
-  Arguments passed on to \code{\link[dplyr:filter]{dplyr::filter}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{Additional arguments passed to \link[=filter]{dplyr}}
 
 \item{.by}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 

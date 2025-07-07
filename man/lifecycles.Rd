@@ -25,7 +25,7 @@ lifecycles(log, eventlog = deprecated())
 \item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
-Returns a \code{\link{tibble}} containing a list of all life cycle types in the log,
+Returns a \code{\link[dplyr]{tibble}} containing a list of all life cycle types in the log,
 with their absolute and relative frequency (# events).
 }
 \section{Methods (by class)}{

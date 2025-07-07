@@ -2,7 +2,7 @@
 
 #' @param data Eventlog
 #' @name unite
-#' @inheritDotParams tidyr::unite
+#' @param ... Additional arguments passed to [tidyr][unite]
 #' @inheritParams tidyr::unite
 #' @importFrom tidyr unite
 #' @export

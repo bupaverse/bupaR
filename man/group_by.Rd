@@ -9,11 +9,7 @@ group_by(.data, ..., .add = FALSE, .drop = group_by_drop_default(.data))
 \arguments{
 \item{.data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{...}{
-  Arguments passed on to \code{\link[dplyr:group_by]{dplyr::group_by}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{Variables to group on}
 
 \item{.add}{Add grouping variables to existing ones}
 

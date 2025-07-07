@@ -11,11 +11,7 @@ mutate(.data, ...)
 lazy data frame (e.g. from dbplyr or dtplyr). See \emph{Methods}, below, for
 more details.}
 
-\item{...}{
-  Arguments passed on to \code{\link[dplyr:mutate]{dplyr::mutate}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{Additional arguments passed to \link[=mutate]{dplyr}}
 }
 \description{
 Mutate event log

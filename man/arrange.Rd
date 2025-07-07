@@ -15,11 +15,7 @@ arrange(.data, ..., .by_group = FALSE)
 \arguments{
 \item{.data}{\code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.}
 
-\item{...}{
-  Arguments passed on to \code{\link[dplyr:arrange]{dplyr::arrange}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{Additional arguments passed to \link[=arrange]{dplyr}}
 
 \item{.by_group}{If \code{TRUE}, will sort first by grouping variable. Applies to
 grouped data frames only.}
