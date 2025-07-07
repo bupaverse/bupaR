@@ -1,7 +1,8 @@
 #' @title Arrange log
 #' @name arrange
 #' @param .data \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
-#' @param ... Variables to arrange on
+#' @inheritParams dplyr::arrange
+#' @param ... Additional arguments passed to [dplyr][arrange]
 #' @importFrom dplyr arrange
 #' @export
 dplyr::arrange
@@ -17,7 +18,7 @@ arrange.eventlog <- function(.data, ...) {
 
 #' @describeIn arrange Arrange an eventlog by group, maintaining all groups
 #' @export
-#'
+
 arrange.grouped_eventlog <- function(.data, ...) {
 
 	mapping <- mapping(.data)

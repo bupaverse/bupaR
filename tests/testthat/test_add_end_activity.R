@@ -131,7 +131,7 @@ test_that("test add_end_activity on activitylog", {
     add_end_activity()
 
   end_activities <- end %>%
-    edeaR::filter_activity("End") %>%
+    filter(.data[[activity_id(patients_act)]] == "End") %>%
     arrange(.data[["complete"]])
 
   # For each case, an additional activity is added.
@@ -154,7 +154,7 @@ test_that("test add_end_activity on activitylog with arg `label`", {
     add_end_activity(label = "end case")
 
   end_activities <- end %>%
-    edeaR::filter_activity("end case") %>%
+    filter(.data[[activity_id(patients_act)]] == "end case") %>%
     arrange(.data[["complete"]])
 
   # For each case, an additional activity instance is added.

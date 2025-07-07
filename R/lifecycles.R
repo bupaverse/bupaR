@@ -1,6 +1,6 @@
 #' @title Life cycles
 #'
-#' @description Returns a \code{\link{tibble}} containing a list of all life cycle types in the log,
+#' @description Returns a \code{\link[dplyr]{tibble}} containing a list of all life cycle types in the log,
 #' with their absolute and relative frequency (# events).
 #'
 #' @inheritParams act_collapse
