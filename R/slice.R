@@ -1,5 +1,7 @@
 #' @title Slice function for event log
 #' @name slice
+#' @inheritDotParams dplyr::slice
+#' @inheritParams dplyr::slice
 #' @importFrom dplyr slice
 #' @export
 dplyr::slice

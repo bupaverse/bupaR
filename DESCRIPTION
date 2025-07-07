@@ -1,7 +1,7 @@
 Package: bupaR
 Type: Package
 Title: Business Process Analysis in R
-Version: 0.5.4
+Version: 0.5.5
 Authors@R: c(person("Gert","Janssenswillen", email = "gert.janssenswillen@uhasselt.be", role = c("aut","cre")),
 			 person("Gerard","van Hulzen",email = "gerard.vanhulzen@uhasselt.be", role = c("ctb")),
              person("Felix","Mannhardt",email = "f.mannhardt@tue.nl", role = c("ctb")),
@@ -10,7 +10,7 @@ Authors@R: c(person("Gert","Janssenswillen", email = "gert.janssenswillen@uhasse
 Description: Comprehensive Business Process Analysis toolkit. Creates S3-class for event log objects, and related handler functions. Imports related packages for filtering event data, computation of descriptive statistics, handling of 'Petri Net' objects and visualization of process maps. See also packages 'edeaR','processmapR', 'eventdataR' and 'processmonitR'.
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Depends:
 	R (>= 3.5.0)
 Imports: 

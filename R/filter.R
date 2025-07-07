@@ -1,7 +1,8 @@
 #' @title Filter event log
 #' @name filter
 #' @param .data \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
-#' @param ... Conditions to filter on
+#' @inheritDotParams dplyr::filter
+#' @inheritParams dplyr::filter
 #' @importFrom dplyr filter
 #' @export
 dplyr::filter

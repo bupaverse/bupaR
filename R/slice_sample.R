@@ -1,5 +1,7 @@
 #' @title Sample function for logs
 #' @name slice_sample
+#' @inheritDotParams dplyr::slice_sample
+#' @inheritParams dplyr::slice_sample
 #' @importFrom dplyr slice_sample
 #' @export
 dplyr::slice_sample

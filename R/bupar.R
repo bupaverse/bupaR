@@ -4,7 +4,7 @@
 #' and related handler functions. Imports related packages for subsetting event data, computation of descriptive statistics,
 #' handling of Petri Net objects and visualization of process maps.
 #'
-#' @docType package
+# @docType package
 #' @name bupaR
 #'
 ## usethis namespace: start

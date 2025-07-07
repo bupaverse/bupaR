@@ -4,7 +4,8 @@
 #' @title Count log
 #' @name count
 #' @param x \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
-#' @param ... Variables to count on
+#' @inheritDotParams dplyr::count
+#' @inheritParams dplyr::count
 #' @importFrom dplyr count
 #' @export
 dplyr::count

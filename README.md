@@ -42,10 +42,6 @@ You can install the development version of **bupaR** from
 devtools::install_github("bupaverse/bupaR")
 ```
 
-## Cheat Sheet
-
-<a href="https://bupar.net/materials/20170904%20poster%20bupaR.pdf"><img src="https://bupar.net/images/poster.PNG" width="630" height="443"/></a>
-
 ## Example
 
 The [bupaR Documentation](https://bupaverse.github.io/docs/) website

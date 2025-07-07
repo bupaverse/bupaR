@@ -1,5 +1,7 @@
 #' @title Mutate event log
 #' @name mutate
+#' @inheritDotParams dplyr::mutate
+#' @inheritParams dplyr::mutate
 #' @importFrom dplyr mutate
 #' @export
 dplyr::mutate

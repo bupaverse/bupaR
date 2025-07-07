@@ -37,7 +37,7 @@ Other Classifiers:
 \code{\link{set_lifecycle_id}()},
 \code{\link{set_resource_id}()},
 \code{\link{set_timestamp}()},
-\code{\link{timestamps}()},
-\code{\link{timestamp}()}
+\code{\link{timestamp}()},
+\code{\link{timestamps}()}
 }
 \concept{Classifiers}

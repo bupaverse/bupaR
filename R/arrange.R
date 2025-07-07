@@ -1,7 +1,8 @@
 #' @title Arrange log
 #' @name arrange
 #' @param .data \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}.
-#' @param ... Variables to arrange on
+#' @inheritDotParams dplyr::arrange
+#' @inheritParams dplyr::arrange
 #' @importFrom dplyr arrange
 #' @export
 dplyr::arrange

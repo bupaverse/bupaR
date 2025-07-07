@@ -3,6 +3,8 @@
 #' @name summarize
 #' @param .data \code{\link{log}}: Object of class \code{\link{eventlog}} or \code{\link{activitylog}}
 #' @param ... Name-value pairs of summary functions
+#' @inheritDotParams dplyr::summarize
+#' @inheritParams dplyr::summarize
 #' @importFrom dplyr summarize
 #' @return
 #' The summarize function returns a tibble, no event log. All groups will be removed.
