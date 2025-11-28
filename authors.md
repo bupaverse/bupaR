@@ -19,7 +19,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/bupaverse/bupaR/blob/dev/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/bupaverse/bupaR/blob/1.0.0/DESCRIPTION)
 
 Janssenswillen G (2025). *bupaR: Business Process Analysis in R*. R
 package version 1.0.0, <https://bupar.net/>.
