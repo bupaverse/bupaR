@@ -6,15 +6,13 @@
 #' @param n \code{\link{integer}}: The number of activity instances to select.
 #'
 #' @export
-last_n <- function(log,  n, eventlog = deprecated()) {
+last_n <- function(log,  n) {
 	UseMethod("last_n")
 }
 
 #' @describeIn last_n Select last n activity instances of an \code{\link{eventlog}}.
 #' @export
-last_n.eventlog <- function(log, n, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+last_n.eventlog <- function(log, n) {
 
 	log %>%
 		arrange(desc(.data[[timestamp(log)]]), -.data[[".order"]]) %>%
@@ -24,9 +22,7 @@ last_n.eventlog <- function(log, n, eventlog = deprecated()) {
 
 #' @describeIn last_n Select last n activity instances of an \code{\link{activitylog}}.
 #' @export
-last_n.activitylog <- function(log, n, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+last_n.activitylog <- function(log, n) {
 
 	log %>%
 		rowwise() %>%
@@ -41,9 +37,7 @@ last_n.activitylog <- function(log, n, eventlog = deprecated()) {
 
 #' @describeIn last_n Select last n activity instances of a \code{\link{grouped_log}}.
 #' @export
-last_n.grouped_log <- function(log, n, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+last_n.grouped_log <- function(log, n) {
 
 	log %>%
 		apply_grouped_fun(last_n, n, .keep_groups = TRUE, .returns_log = TRUE)

@@ -19,7 +19,7 @@ activity_instance_id(x)
 \method{activity_instance_id}{activitylog_mapping}(x)
 }
 \arguments{
-\item{x}{An \code{eventlog} of \code{eventlog_mapping}}
+\item{x}{An \code{eventlog} or \code{eventlog_mapping}}
 }
 \description{
 Get the activity instance classifier of an object of class \code{eventlog}.

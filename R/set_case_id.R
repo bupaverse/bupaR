@@ -8,13 +8,12 @@
 #'
 #' @export
 #'
-set_case_id <- function(log, case_id, eventlog = deprecated()) {
+set_case_id <- function(log, case_id) {
 	UseMethod("set_case_id")
 }
 #'
 #' @describeIn set_case_id Set case id
 #' @export
-set_case_id.default <- function(log, case_id, eventlog = deprecated()) {
-	log <- lifecycle_warning_eventlog(log, eventlog)
+set_case_id.default <- function(log, case_id) {
 	set_id(log, "case_id", case_id)
 }

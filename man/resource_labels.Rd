@@ -5,15 +5,13 @@
 \alias{resource_labels.default}
 \title{Get vector of resource labels}
 \usage{
-resource_labels(log, eventlog = deprecated())
+resource_labels(log)
 
-\method{resource_labels}{default}(log, eventlog = deprecated())
+\method{resource_labels}{default}(log)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Retrieve a vector containing all unique resource labels

@@ -7,28 +7,13 @@
 \alias{act_collapse.grouped_log}
 \title{Collapse activity labels of a sub process into a single activity}
 \usage{
-act_collapse(log, ..., method, eventlog = deprecated())
+act_collapse(log, ..., method)
 
-\method{act_collapse}{eventlog}(
-  log,
-  ...,
-  method = c("entry_points", "consecutive"),
-  eventlog = deprecated()
-)
+\method{act_collapse}{eventlog}(log, ..., method = c("entry_points", "consecutive"))
 
-\method{act_collapse}{activitylog}(
-  log,
-  ...,
-  method = c("entry_points", "consecutive"),
-  eventlog = deprecated()
-)
+\method{act_collapse}{activitylog}(log, ..., method = c("entry_points", "consecutive"))
 
-\method{act_collapse}{grouped_log}(
-  log,
-  ...,
-  method = c("entry_points", "consecutive"),
-  eventlog = deprecated()
-)
+\method{act_collapse}{grouped_log}(log, ..., method = c("entry_points", "consecutive"))
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
@@ -37,8 +22,6 @@ act_collapse(log, ..., method, eventlog = deprecated())
 \item{...}{A series of named character vectors. The activity labels in each vector will be collapsed into one activity with the name of the vector.}
 
 \item{method}{Defines how activities are collapsed: "entry_points" heuristically learns which of the specified activities occur at the start and end of the subprocess and collapses accordingly. "consecutive" collapses consecutive sequences of the activities.}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Collapse activity labels of a sub process into a single activity

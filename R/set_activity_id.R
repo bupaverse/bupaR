@@ -8,13 +8,12 @@
 #'
 #' @export
 #'
-set_activity_id <- function(log, activity_id, eventlog = deprecated()) {
+set_activity_id <- function(log, activity_id) {
 	UseMethod("set_activity_id")
 }
 #'
 #' @describeIn set_activity_id Set activity id
 #' @export
-set_activity_id.default <- function(log, activity_id, eventlog = deprecated()) {
-	log <- lifecycle_warning_eventlog(log, eventlog)
+set_activity_id.default <- function(log, activity_id) {
 	set_id(log, "activity_id", activity_id)
 }

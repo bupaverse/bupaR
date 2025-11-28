@@ -4,25 +4,21 @@
 #' @family Counters
 #' @export n_traces
 
-n_traces <- function(log, eventlog = deprecated()) {
+n_traces <- function(log) {
 	UseMethod("n_traces")
 }
 
 #' @describeIn n_traces Count number of traces for eventlog
 #' @export
 
-n_traces.log <- function(log, eventlog = deprecated()) {
-	eventlog <- lifecycle_warning_eventlog(log, eventlog)
-
-	nrow(trace_list(eventlog))
+n_traces.log <- function(log) {
+	nrow(trace_list(log))
 }
 
 #' @describeIn n_traces Count number of traces for grouped eventlog
 #' @export
-n_traces.grouped_log <- function(log, eventlog = deprecated()) {
-	eventlog <- lifecycle_warning_eventlog(log, eventlog)
-
-	mapping <- mapping(eventlog)
+n_traces.grouped_log <- function(log) {
+	mapping <- mapping(log)
 
 	log %>%
 		# remove grouping

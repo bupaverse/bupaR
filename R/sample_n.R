@@ -1,6 +1,6 @@
 #' @title Sample function for eventlog
 #' @name sample_n
-#' @param tbl Deprecated; please use \code{log} instead.
+#' @param tbl Event log
 #' @param size \code{\link{integer}}: Number of cases to sample
 #' @param replace \code{\link{logical}} (default \code{FALSE}): Sample with replacement \code{TRUE} or without \code{FALSE}.
 #' @param weight Sampling weights. This must evaluate to a vector of non-negative numbers the same length as the input.
@@ -14,7 +14,7 @@
 dplyr::sample_n
 #' @describeIn sample_n Sample n cases of eventlog
 #' @export
-sample_n.eventlog <- function(tbl, size, replace = FALSE, weight = NULL, .env = NULL, ...) {
+sample_n.log <- function(tbl, size, replace = FALSE, weight = NULL, .env = NULL, ...) {
 
 	lifecycle::signal_stage("superseded", "sample_n()")
 
@@ -26,18 +26,16 @@ sample_n.eventlog <- function(tbl, size, replace = FALSE, weight = NULL, .env = 
 
 	case_ids <- case_labels(tbl)
 
-
 	selection <- sample(case_ids, size = size, replace = replace)
 
 	tbl %>%
 		filter((!!as.symbol(case_id(tbl))) %in% selection)
 }
 
-
 #' @describeIn sample_n Stratified sampling of a grouped eventlog: sample n cases within each group
-#' @method sample_n grouped_eventlog
+#' @method sample_n grouped_log
 #' @export
-sample_n.grouped_eventlog <- function(tbl, size, replace = FALSE, weight = NULL, .env = NULL, ...) {
+sample_n.grouped_log <- function(tbl, size, replace = FALSE, weight = NULL, .env = NULL, ...) {
 
 	lifecycle::signal_stage("superseded", "sample_n()")
 

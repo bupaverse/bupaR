@@ -5,7 +5,7 @@
 #' @family Counters
 #' @export
 
-n_activities <- function(log, eventlog = deprecated()) {
+n_activities <- function(log) {
 	UseMethod("n_activities")
 }
 
@@ -13,19 +13,15 @@ n_activities <- function(log, eventlog = deprecated()) {
 #' @export
 
 
-n_activities.log <- function(log, eventlog = deprecated()){
-	eventlog <- lifecycle_warning_eventlog(log, eventlog)
-
-	length(unique(eventlog[[activity_id(eventlog)]]))
+n_activities.log <- function(log){
+	length(unique(log[[activity_id(log)]]))
 }
 
 #' @describeIn n_activities Count the number of activities for a grouped  log
 #' @export
-n_activities.grouped_log <- function(log, eventlog = deprecated()) {
-	eventlog <- lifecycle_warning_eventlog(log, eventlog)
-
-	eventlog %>%
-		summarize(n_activities = n_distinct(.data[[activity_id(eventlog)]]))
+n_activities.grouped_log <- function(log) {
+  log %>%
+		summarize(n_activities = n_distinct(.data[[activity_id(log)]]))
 }
 
 

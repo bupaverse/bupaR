@@ -5,13 +5,12 @@
 #' @seealso \code{\link{eventlog}}, \code{\link{activity_id}}, \code{\link{act_recode}}
 #' @family Activity processing functions
 #' @export act_unite
-act_unite <- function(log, ..., eventlog = deprecated()) {
+act_unite <- function(log, ...) {
 	UseMethod("act_unite")
 }
 #' @describeIn act_unite Unite activity labels in event log
 #' @export
-act_unite.log <- function(log, ..., eventlog = deprecated()) {
-	log <- lifecycle_warning_eventlog(log, eventlog)
+act_unite.log <- function(log, ...) {
 	log %>%
 		mutate(!!activity_id(log) := forcats::fct_collapse((!!as.symbol(activity_id(log))), ...))
 }
@@ -19,11 +18,8 @@ act_unite.log <- function(log, ..., eventlog = deprecated()) {
 #' @describeIn act_unite Unite activity labels of event log
 #' @export
 
-act_unite.grouped_log <- function(log, ..., eventlog = deprecated()) {
-	log <- lifecycle_warning_eventlog(log, eventlog)
-
+act_unite.grouped_log <- function(log, ...) {
 	apply_grouped_fun(log, act_unite, ..., .ignore_groups = TRUE)
-
 }
 
 

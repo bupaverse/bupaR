@@ -9,15 +9,14 @@
 #' @importFrom stringi stri_join
 #'
 #' @export
-case_list <- function(log, .keep_trace_list, eventlog = deprecated()) {
+case_list <- function(log, .keep_trace_list) {
 	UseMethod("case_list")
 }
 
 #' @describeIn case_list Return case list
 #' @export
-case_list.eventlog <- function(log, .keep_trace_list = FALSE, eventlog = deprecated()) {
+case_list.eventlog <- function(log, .keep_trace_list = FALSE) {
 
-	log <- lifecycle_warning_eventlog(log, eventlog)
 	cases <- case_list_dt(log, .keep_trace_list)
 
 	cases %>%
@@ -25,9 +24,7 @@ case_list.eventlog <- function(log, .keep_trace_list = FALSE, eventlog = depreca
 }
 #' @describeIn case_list Return case list
 #' @export
-case_list.activitylog <- function(log, .keep_trace_list = FALSE, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+case_list.activitylog <- function(log, .keep_trace_list = FALSE) {
 	case_list.eventlog(to_eventlog(log), .keep_trace_list = .keep_trace_list)
 }
 

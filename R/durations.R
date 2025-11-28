@@ -6,14 +6,13 @@
 #' @param units \code{\link{character}} (default "auto"): The time unit in which the throughput times should be reported. Should be one of the following values:
 #' "auto" (default), "secs", "mins", "hours", "days", "weeks". See also the \code{units} argument of \code{\link{difftime}}.
 #' @export durations
-durations <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks"), eventlog = deprecated()) {
+durations <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks")) {
 	UseMethod("durations")
 }
 
 #' @export
-durations.log <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks"), eventlog = deprecated()) {
+durations.log <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks")) {
 
-	log <- lifecycle_warning_eventlog(log, eventlog)
 	units <- rlang::arg_match(units)
 
 	durations <- durations_dt(log, units)
@@ -25,18 +24,14 @@ durations.log <- function(log, units = c("auto", "secs", "mins", "hours", "days"
 }
 
 #' @export
-durations.eventlog <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks"), eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+durations.eventlog <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks")) {
 	units <- rlang::arg_match(units)
 
 	durations.log(log, units = units)
 }
 
 #' @export
-durations.activitylog <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks"), eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+durations.activitylog <- function(log, units = c("auto", "secs", "mins", "hours", "days", "weeks")) {
 	units <- rlang::arg_match(units)
 
 	durations.log(to_eventlog(log), units = units)

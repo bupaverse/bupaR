@@ -5,17 +5,15 @@
 \alias{set_case_id.default}
 \title{Set case id of log}
 \usage{
-set_case_id(log, case_id, eventlog = deprecated())
+set_case_id(log, case_id)
 
-\method{set_case_id}{default}(log, case_id, eventlog = deprecated())
+\method{set_case_id}{default}(log, case_id)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{case_id}{New case id}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Set case id of log

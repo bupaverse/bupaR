@@ -5,17 +5,15 @@
 \alias{set_activity_instance_id.eventlog}
 \title{Set activity instance id of log}
 \usage{
-set_activity_instance_id(log, activity_instance_id, eventlog = deprecated())
+set_activity_instance_id(log, activity_instance_id)
 
-\method{set_activity_instance_id}{eventlog}(log, activity_instance_id, eventlog = deprecated())
+\method{set_activity_instance_id}{eventlog}(log, activity_instance_id)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{activity_instance_id}{New activity_instance id}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Set activity instance id of log

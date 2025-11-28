@@ -5,17 +5,15 @@
 \alias{set_resource_id.default}
 \title{Set resource id of log}
 \usage{
-set_resource_id(log, resource_id, eventlog = deprecated())
+set_resource_id(log, resource_id)
 
-\method{set_resource_id}{default}(log, resource_id, eventlog = deprecated())
+\method{set_resource_id}{default}(log, resource_id)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{resource_id}{New resource id}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Set resource id of log

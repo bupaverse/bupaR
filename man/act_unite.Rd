@@ -6,19 +6,17 @@
 \alias{act_unite.grouped_log}
 \title{Unite activity labels}
 \usage{
-act_unite(log, ..., eventlog = deprecated())
+act_unite(log, ...)
 
-\method{act_unite}{log}(log, ..., eventlog = deprecated())
+\method{act_unite}{log}(log, ...)
 
-\method{act_unite}{grouped_log}(log, ..., eventlog = deprecated())
+\method{act_unite}{grouped_log}(log, ...)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{...}{A series of named character vectors. The activity labels in each vector will be replaced with the name.}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Recode two or different more activity labels two a uniform activity label

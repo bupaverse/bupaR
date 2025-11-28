@@ -7,21 +7,19 @@
 \alias{last_n.grouped_log}
 \title{last_n}
 \usage{
-last_n(log, n, eventlog = deprecated())
+last_n(log, n)
 
-\method{last_n}{eventlog}(log, n, eventlog = deprecated())
+\method{last_n}{eventlog}(log, n)
 
-\method{last_n}{activitylog}(log, n, eventlog = deprecated())
+\method{last_n}{activitylog}(log, n)
 
-\method{last_n}{grouped_log}(log, n, eventlog = deprecated())
+\method{last_n}{grouped_log}(log, n)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{n}{\code{\link{integer}}: The number of activity instances to select.}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Select last n activity instances

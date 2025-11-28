@@ -1,6 +1,6 @@
 #' @title Activity instance classifier
 #' @description Get the activity instance classifier of an object of class \code{eventlog}.
-#' @param x An \code{eventlog} of \code{eventlog_mapping}
+#' @param x An \code{eventlog} or \code{eventlog_mapping}
 #' @family Classifiers
 #' @importFrom stringr str_c
 #' @export

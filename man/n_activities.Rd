@@ -6,17 +6,15 @@
 \alias{n_activities.grouped_log}
 \title{n_activities}
 \usage{
-n_activities(log, eventlog = deprecated())
+n_activities(log)
 
-\method{n_activities}{log}(log, eventlog = deprecated())
+\method{n_activities}{log}(log)
 
-\method{n_activities}{grouped_log}(log, eventlog = deprecated())
+\method{n_activities}{grouped_log}(log)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Returns the number of activities in an event log
