@@ -9,16 +9,13 @@
 #'
 #' @export activities
 #'
-activities <- function(log, ..., eventlog) {
+activities <- function(log, ...) {
 	UseMethod("activities")
 }
 
 #' @export
 
-activities.eventlog <- function(log, ... , eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
-
+activities.eventlog <- function(log, ...) {
 	log %>%
 		group_by(.data[[activity_id(log)]]) %>%
 		summarize(absolute_frequency = n_distinct(.data[[activity_instance_id(log)]])) %>%
@@ -28,16 +25,12 @@ activities.eventlog <- function(log, ... , eventlog = deprecated()) {
 #' @describeIn activities Compute activity frequencies
 #' @export
 
-activities.activitylog <- function(log, ... , eventlog = deprecated()) {
-	log <- lifecycle_warning_eventlog(log, eventlog)
-
+activities.activitylog <- function(log, ... ) {
 	activities.eventlog(to_eventlog(log))
 }
 #' @describeIn activities Compute activity frequencies
 #' @export
-activities.grouped_log <- function(log, ..., eventlog = deprecated()) {
-	log <- lifecycle_warning_eventlog(log, eventlog)
-
+activities.grouped_log <- function(log, ...) {
 	apply_grouped_fun(log, activities)
 }
 

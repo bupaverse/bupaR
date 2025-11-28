@@ -7,21 +7,19 @@
 \alias{cases.activitylog}
 \title{Cases}
 \usage{
-cases(log, ..., eventlog = deprecated())
+cases(log, ...)
 
-\method{cases}{log}(log, ..., eventlog = deprecated())
+\method{cases}{log}(log, ...)
 
-\method{cases}{eventlog}(log, ..., eventlog = deprecated())
+\method{cases}{eventlog}(log, ...)
 
-\method{cases}{activitylog}(log, ..., eventlog = deprecated())
+\method{cases}{activitylog}(log, ...)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{...}{Other (optional) arguments passed on to methods. See \code{\link{durations}} for more options.}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Provides a fine-grained summary of an event log with characteristics for each case: the number of events,

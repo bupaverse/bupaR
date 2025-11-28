@@ -8,21 +8,19 @@
 \alias{n_activity_instances.grouped_activitylog}
 \title{n_activity_instances}
 \usage{
-n_activity_instances(log, eventlog = deprecated())
+n_activity_instances(log)
 
-\method{n_activity_instances}{eventlog}(log, eventlog = deprecated())
+\method{n_activity_instances}{eventlog}(log)
 
-\method{n_activity_instances}{grouped_eventlog}(log, eventlog = deprecated())
+\method{n_activity_instances}{grouped_eventlog}(log)
 
-\method{n_activity_instances}{activitylog}(log, eventlog = deprecated())
+\method{n_activity_instances}{activitylog}(log)
 
-\method{n_activity_instances}{grouped_activitylog}(log, eventlog = deprecated())
+\method{n_activity_instances}{grouped_activitylog}(log)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Returns the number of activity instances in an event log
@@ -33,7 +31,7 @@ Returns the number of activity instances in an event log
 
 \item \code{n_activity_instances(grouped_eventlog)}: grouped_eventlog
 
-\item \code{n_activity_instances(activitylog)}: eventlog
+\item \code{n_activity_instances(activitylog)}: activitylog
 
 \item \code{n_activity_instances(grouped_activitylog)}: grouped_activitylog
 

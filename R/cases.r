@@ -9,15 +9,13 @@
 #' @seealso \code{\link{case_list}},\code{\link{durations}}
 #'
 #' @export
-cases <- function(log, ..., eventlog = deprecated()) {
+cases <- function(log, ...) {
 	UseMethod("cases")
 }
 
 #' @describeIn cases Construct list of cases in a \code{\link{log}}.
 #' @export
-cases.log <- function(log, ..., eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+cases.log <- function(log, ...) {
 
 	traces_per_case <- case_list_dt(log, .keep_trace_list = TRUE)
 	durations <- durations_dt(log, ...)
@@ -55,18 +53,12 @@ cases.log <- function(log, ..., eventlog = deprecated()) {
 
 #' @describeIn cases Construct list of cases in an \code{\link{eventlog}}.
 #' @export
-cases.eventlog <- function(log, ..., eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
-
+cases.eventlog <- function(log, ...) {
 	cases.log(log)
 }
 
 #' @describeIn cases Construct list of cases in a \code{\link{activitylog}}.
 #' @export
-cases.activitylog <- function(log, ..., eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
-
+cases.activitylog <- function(log, ...) {
 	cases.log(to_eventlog(log))
 }

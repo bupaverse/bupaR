@@ -8,15 +8,13 @@
 #' @seealso \code{\link{lifecycle_id}}
 #'
 #' @export
-lifecycle_labels <- function(log, eventlog = deprecated()) {
+lifecycle_labels <- function(log) {
   UseMethod("lifecycle_labels")
 }
 
 #' @describeIn lifecycle_labels Retrieve lifecycle labels from an \code{\link{eventlog}}.
 #' @export
-lifecycle_labels.eventlog <- function(log, eventlog = deprecated()) {
-
-  log <- lifecycle_warning_eventlog(log, eventlog)
+lifecycle_labels.eventlog <- function(log) {
 
   log %>%
     #ungroup() %>%
@@ -26,9 +24,7 @@ lifecycle_labels.eventlog <- function(log, eventlog = deprecated()) {
 
 #' @describeIn lifecycle_labels Retrieve lifecycle labels from an \code{\link{activitylog}}.
 #' @export
-lifecycle_labels.activitylog <- function(log, eventlog = deprecated()) {
-
-  log <- lifecycle_warning_eventlog(log, eventlog)
+lifecycle_labels.activitylog <- function(log) {
 
   as.factor(sort(timestamps(log)))
 }

@@ -1,12 +1,12 @@
 #' @title Select event log
 #' @name select
 #' @param force_df If TRUE, result will no longer be a event log when not all id columns are selected.
-#' @inheritDotParams dplyr::select
+# @inheritDotParams dplyr::select
 #' @inheritParams dplyr::select
 #' @importFrom dplyr select
 #' @rdname select
 # #' @export
-#' dplyr::select
+# dplyr::select
 
 #' @export
 select.eventlog <- function(.data, ..., force_df = FALSE) {

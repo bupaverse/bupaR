@@ -6,17 +6,15 @@
 \alias{mapping.activitylog}
 \title{Mapping}
 \usage{
-mapping(log, eventlog = deprecated())
+mapping(log)
 
-\method{mapping}{eventlog}(log, eventlog = deprecated())
+\method{mapping}{eventlog}(log)
 
-\method{mapping}{activitylog}(log, eventlog = deprecated())
+\method{mapping}{activitylog}(log)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Prints the mapping of an event log object.

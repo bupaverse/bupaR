@@ -2,18 +2,18 @@
 % Please edit documentation in R/sample_n.R
 \name{sample_n}
 \alias{sample_n}
-\alias{sample_n.eventlog}
-\alias{sample_n.grouped_eventlog}
+\alias{sample_n.log}
+\alias{sample_n.grouped_log}
 \title{Sample function for eventlog}
 \usage{
 sample_n(tbl, size, replace = FALSE, weight = NULL, .env = NULL, ...)
 
-\method{sample_n}{eventlog}(tbl, size, replace = FALSE, weight = NULL, .env = NULL, ...)
+\method{sample_n}{log}(tbl, size, replace = FALSE, weight = NULL, .env = NULL, ...)
 
-\method{sample_n}{grouped_eventlog}(tbl, size, replace = FALSE, weight = NULL, .env = NULL, ...)
+\method{sample_n}{grouped_log}(tbl, size, replace = FALSE, weight = NULL, .env = NULL, ...)
 }
 \arguments{
-\item{tbl}{Deprecated; please use \code{log} instead.}
+\item{tbl}{Event log}
 
 \item{size}{\code{\link{integer}}: Number of cases to sample}
 
@@ -31,9 +31,9 @@ Sample function for eventlog
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{sample_n(eventlog)}: Sample n cases of eventlog
+\item \code{sample_n(log)}: Sample n cases of eventlog
 
-\item \code{sample_n(grouped_eventlog)}: Stratified sampling of a grouped eventlog: sample n cases within each group
+\item \code{sample_n(grouped_log)}: Stratified sampling of a grouped eventlog: sample n cases within each group
 
 }}
 \seealso{

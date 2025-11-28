@@ -6,7 +6,7 @@
 #' @family Counters
 #' @export
 
-n_activity_instances <- function(log, eventlog = deprecated()) {
+n_activity_instances <- function(log) {
 	UseMethod("n_activity_instances")
 }
 
@@ -14,37 +14,28 @@ n_activity_instances <- function(log, eventlog = deprecated()) {
 #' @describeIn  n_activity_instances eventlog
 #' @export
 
-n_activity_instances.eventlog <- function(log, eventlog = deprecated()) {
-
-	eventlog <- lifecycle_warning_eventlog(log, eventlog)
-
-	length(unique(eventlog[[activity_instance_id(eventlog)]]))
+n_activity_instances.eventlog <- function(log) {
+	length(unique(log[[activity_instance_id(log)]]))
 }
 
 #' @describeIn n_activity_instances grouped_eventlog
 #' @export
-n_activity_instances.grouped_eventlog <- function(log, eventlog = deprecated()) {
-	eventlog <- lifecycle_warning_eventlog(log, eventlog)
-
-	eventlog %>%
-		summarize(n_activity_instances = n_distinct(.data[[activity_instance_id(eventlog)]])) %>%
+n_activity_instances.grouped_eventlog <- function(log) {
+  log %>%
+		summarize(n_activity_instances = n_distinct(.data[[activity_instance_id(log)]])) %>%
 		return()
 }
 
-#' @describeIn  n_activity_instances eventlog
+#' @describeIn  n_activity_instances activitylog
 #' @export
 
-n_activity_instances.activitylog <- function(log, eventlog = deprecated()) {
-	log <- lifecycle_warning_eventlog(log, eventlog)
-
+n_activity_instances.activitylog <- function(log) {
 	nrow(log)
 }
 
 #' @describeIn n_activity_instances grouped_activitylog
 #' @export
-n_activity_instances.grouped_activitylog <- function(log, eventlog = deprecated()) {
-	eventlog <- lifecycle_warning_eventlog(log, eventlog)
-
-	eventlog %>%
+n_activity_instances.grouped_activitylog <- function(log) {
+  log %>%
 		summarize(n_activity_instances = n())
 }

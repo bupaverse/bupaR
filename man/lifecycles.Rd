@@ -8,21 +8,19 @@
 \alias{lifecycles.grouped_activitylog}
 \title{Life cycles}
 \usage{
-lifecycles(log, eventlog = deprecated())
+lifecycles(log)
 
-\method{lifecycles}{eventlog}(log, eventlog = deprecated())
+\method{lifecycles}{eventlog}(log)
 
-\method{lifecycles}{grouped_eventlog}(log, eventlog = deprecated())
+\method{lifecycles}{grouped_eventlog}(log)
 
-\method{lifecycles}{activitylog}(log, eventlog = deprecated())
+\method{lifecycles}{activitylog}(log)
 
-\method{lifecycles}{grouped_activitylog}(log, eventlog = deprecated())
+\method{lifecycles}{grouped_activitylog}(log)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Returns a \code{\link[dplyr]{tibble}} containing a list of all life cycle types in the log,

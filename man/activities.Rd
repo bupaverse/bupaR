@@ -6,19 +6,17 @@
 \alias{activities.grouped_log}
 \title{Activities}
 \usage{
-activities(log, ..., eventlog)
+activities(log, ...)
 
-\method{activities}{activitylog}(log, ..., eventlog = deprecated())
+\method{activities}{activitylog}(log, ...)
 
-\method{activities}{grouped_log}(log, ..., eventlog = deprecated())
+\method{activities}{grouped_log}(log, ...)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{...}{Unused.}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Returns a \code{tibble}  containing a list of all activity types in the event log, with their absolute and relative frequency

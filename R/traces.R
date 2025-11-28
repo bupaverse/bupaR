@@ -13,27 +13,22 @@
 
 #' @export traces
 
-traces <- function(log, ..., eventlog = deprecated()) {
+traces <- function(log, ...) {
 	UseMethod("traces")
 }
 
 #' @describeIn traces Construct traces list for eventlog
 #' @export
 
-traces.log <- function(log, ..., eventlog = deprecated()){
-	eventlog <- lifecycle_warning_eventlog(log, eventlog)
-
-	trace_list(eventlog)
-
+traces.log <- function(log, ...){
+	trace_list(log)
 }
 
 #' @describeIn traces Construct list of traces for grouped log
 #' @export
 #'
-traces.grouped_log <- function(log, ..., eventlog = deprecated()){
-	eventlog <- lifecycle_warning_eventlog(log, eventlog)
-
-	eventlog %>%
+traces.grouped_log <- function(log, ...){
+  log %>%
 		apply_grouped_fun(traces, ...)
 }
 

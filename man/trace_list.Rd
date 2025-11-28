@@ -7,21 +7,19 @@
 \alias{trace_list.grouped_log}
 \title{Trace list}
 \usage{
-trace_list(log, ..., eventlog = deprecated())
+trace_list(log, ...)
 
-\method{trace_list}{eventlog}(log, ..., eventlog = deprecated())
+\method{trace_list}{eventlog}(log, ...)
 
-\method{trace_list}{activitylog}(log, ..., eventlog = deprecated())
+\method{trace_list}{activitylog}(log, ...)
 
-\method{trace_list}{grouped_log}(log, ..., eventlog = deprecated())
+\method{trace_list}{grouped_log}(log, ...)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{...}{Other arguments. Currently not used.}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Construct trace list

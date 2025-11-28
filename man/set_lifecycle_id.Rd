@@ -5,17 +5,15 @@
 \alias{set_lifecycle_id.default}
 \title{Set lifecycle id of log}
 \usage{
-set_lifecycle_id(log, lifecycle_id, eventlog = deprecated())
+set_lifecycle_id(log, lifecycle_id)
 
-\method{set_lifecycle_id}{default}(log, lifecycle_id, eventlog = deprecated())
+\method{set_lifecycle_id}{default}(log, lifecycle_id)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{lifecycle_id}{New lifecycle id. Can be multiple in case of activitylog}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Set lifecycle id of log

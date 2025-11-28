@@ -5,17 +5,15 @@
 \alias{set_timestamp.eventlog}
 \title{Set timestamp of eventlog}
 \usage{
-set_timestamp(log, timestamp, eventlog = deprecated())
+set_timestamp(log, timestamp)
 
-\method{set_timestamp}{eventlog}(log, timestamp, eventlog = deprecated())
+\method{set_timestamp}{eventlog}(log, timestamp)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{timestamp}{New timestamp}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Set timestamp of eventlog

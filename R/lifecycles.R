@@ -8,15 +8,13 @@
 #' @seealso \code{\link{lifecycle_id}}
 #'
 #' @export
-lifecycles <- function(log, eventlog = deprecated()) {
+lifecycles <- function(log) {
 	UseMethod("lifecycles")
 }
 
 #' @describeIn lifecycles Generate lifecycle list for an \code{\link{eventlog}}.
 #' @export
-lifecycles.eventlog <- function(log, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+lifecycles.eventlog <- function(log) {
 
 	log %>%
 		group_by(!!lifecycle_id_(log)) %>%
@@ -27,9 +25,7 @@ lifecycles.eventlog <- function(log, eventlog = deprecated()) {
 
 #' @describeIn lifecycles Generate lifecycle list for a \code{\link{grouped_eventlog}}.
 #' @export
-lifecycles.grouped_eventlog <- function(log, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+lifecycles.grouped_eventlog <- function(log) {
 
 	mapping <- mapping(log)
 
@@ -38,18 +34,14 @@ lifecycles.grouped_eventlog <- function(log, eventlog = deprecated()) {
 
 #' @describeIn lifecycles Generate lifecycle list for an \code{\link{activitylog}}.
 #' @export
-lifecycles.activitylog <- function(log, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+lifecycles.activitylog <- function(log) {
 
 	lifecycles.eventlog(to_eventlog(log))
 }
 
 #' @describeIn lifecycles Generate lifecycle list for an \code{\link{grouped_activitylog}}.
 #' @export
-lifecycles.grouped_activitylog <- function(log, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+lifecycles.grouped_activitylog <- function(log) {
 
 	apply_grouped_fun(to_eventlog(log), lifecycles.eventlog)
 }

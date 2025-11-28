@@ -6,21 +6,19 @@
 #'
 #' @param log \code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 #' \code{\link{activitylog}}, etc.).
-#' @param eventlog `r lifecycle::badge("deprecated")`; please use \code{log} instead.
 #' @param ... A series of named character vectors. The activity labels in each vector will be collapsed into one activity with the name of the vector.
 #' @param method Defines how activities are collapsed: "entry_points" heuristically learns which of the specified activities occur at the start and end of the subprocess and collapses accordingly. "consecutive" collapses consecutive sequences of the activities.
 #' @family Activity processing functions
 #' @export
 #'
-act_collapse <- function(log, ..., method, eventlog = deprecated()) {
+act_collapse <- function(log, ..., method) {
   UseMethod("act_collapse")
 }
 
 #' @describeIn act_collapse Collapse activity labels of a subprocess into a single activity
 #' @export
-act_collapse.eventlog <- function(log, ..., method = c("entry_points","consecutive"), eventlog = deprecated() ) {
+act_collapse.eventlog <- function(log, ..., method = c("entry_points","consecutive")) {
   
-  log <- lifecycle_warning_eventlog(log, eventlog)
   method <- match.arg(method)
   sub_processes <- list(...)
   
@@ -39,18 +37,14 @@ act_collapse.eventlog <- function(log, ..., method = c("entry_points","consecuti
 
 #' @describeIn act_collapse Collapse activity labels of a subprocess into a single activity
 #' @export
-act_collapse.activitylog <- function(log, ..., method = c("entry_points","consecutive"), eventlog = deprecated()) {
-  log <- lifecycle_warning_eventlog(log, eventlog)
-  
+act_collapse.activitylog <- function(log, ..., method = c("entry_points","consecutive")) {
   to_activitylog(act_collapse.eventlog(to_eventlog(log),..., method))
-  
 }
 
 #' @describeIn act_collapse Collapse activity labels of a subprocess into a single activity
 #' @export
 
-act_collapse.grouped_log <- function(log, ..., method = c("entry_points","consecutive"), eventlog = deprecated()) {
-  
+act_collapse.grouped_log <- function(log, ..., method = c("entry_points","consecutive")) {
   apply_grouped_fun(log, act_collapse, ..., method, .ignore_groups = TRUE, .keep_groups = TRUE)
 }
 

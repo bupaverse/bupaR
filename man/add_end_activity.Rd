@@ -11,21 +11,21 @@
 \alias{add_start_activity.grouped_log}
 \title{Add Artificial Start/End Activities}
 \usage{
-add_end_activity(log, label = "End", eventlog = deprecated())
+add_end_activity(log, label = "End")
 
-add_start_activity(log, label = "Start", eventlog = deprecated())
+add_start_activity(log, label = "Start")
 
-\method{add_end_activity}{eventlog}(log, label = "End", eventlog = deprecated())
+\method{add_end_activity}{eventlog}(log, label = "End")
 
-\method{add_end_activity}{activitylog}(log, label = "End", eventlog = deprecated())
+\method{add_end_activity}{activitylog}(log, label = "End")
 
-\method{add_end_activity}{grouped_log}(log, label = "End", eventlog = deprecated())
+\method{add_end_activity}{grouped_log}(log, label = "End")
 
-\method{add_start_activity}{eventlog}(log, label = "Start", eventlog = deprecated())
+\method{add_start_activity}{eventlog}(log, label = "Start")
 
-\method{add_start_activity}{activitylog}(log, label = "Start", eventlog = deprecated())
+\method{add_start_activity}{activitylog}(log, label = "Start")
 
-\method{add_start_activity}{grouped_log}(log, label = "Start", eventlog = deprecated())
+\method{add_start_activity}{grouped_log}(log, label = "Start")
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
@@ -33,8 +33,6 @@ add_start_activity(log, label = "Start", eventlog = deprecated())
 
 \item{label}{\code{\link{character}}: Start (default \code{"Start"}) or end (default \code{"End"}) activity label. This must be an activity
 label that is not already present in \code{log}.}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Adds an artificial start or end activity to each case with the specified \code{label}.

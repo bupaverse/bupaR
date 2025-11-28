@@ -4,24 +4,19 @@
 #' @inheritParams act_collapse
 #' @family Counters
 #' @export
-n_cases <- function(log, eventlog = deprecated()) {
+n_cases <- function(log) {
 	UseMethod("n_cases")
 }
 
 #' @describeIn n_cases Count number of cases in a \code{\link{log}}.
 #' @export
-n_cases.log <- function(log, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
-
+n_cases.log <- function(log) {
 	n_distinct(log[[case_id(log)]])
 }
 
 #' @describeIn n_cases Count number of cases in a \code{\link{grouped_log}}.
 #' @export
-n_cases.grouped_log <- function(log, eventlog = deprecated()) {
-
-	log <- lifecycle_warning_eventlog(log, eventlog)
+n_cases.grouped_log <- function(log) {
 
 	log %>%
 		summarize(n_cases = n_distinct(.data[[case_id(.)]]))

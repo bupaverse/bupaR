@@ -6,19 +6,17 @@
 \alias{act_recode.grouped_log}
 \title{Recode activity labels}
 \usage{
-act_recode(log, ..., eventlog = deprecated())
+act_recode(log, ...)
 
-\method{act_recode}{log}(log, ..., eventlog = deprecated())
+\method{act_recode}{log}(log, ...)
 
-\method{act_recode}{grouped_log}(log, ..., eventlog = deprecated())
+\method{act_recode}{grouped_log}(log, ...)
 }
 \arguments{
 \item{log}{\code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 \code{\link{activitylog}}, etc.).}
 
 \item{...}{A sequence of named character vectors of length one where the names gives the new label and the value gives the old label. Labels not mentioned will be left unchanged.}
-
-\item{eventlog}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; please use \code{log} instead.}
 }
 \description{
 Recode one or more activity labels through specifying their old and new label

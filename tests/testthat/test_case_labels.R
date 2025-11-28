@@ -11,18 +11,6 @@ test_that("test case_labels on eventlog", {
   expect_equal(labels, unique(patients[[case_id(patients)]]))
 })
 
-test_that("test case_labels on eventlog with deprecated eventlog argument", {
-
-  rlang::local_options(lifecycle_verbosity = "warning")
-
-  load("./testdata/patients.rda")
-
-  expect_warning(labels <- case_labels(eventlog = patients),
-                 "*eventlog.*case_labels.*deprecated.*bupaR 0.5.0.*log.")
-
-  expect_equal(labels, unique(patients[[case_id(patients)]]))
-})
-
 test_that("test case_labels on grouped_eventlog", {
 
   load("./testdata/patients_grouped.rda")
