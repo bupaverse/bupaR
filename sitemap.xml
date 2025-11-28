@@ -30,7 +30,6 @@
 <url><loc>https://bupaverse.github.io/bupaR/reference/events_to_activitylog.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/fill.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/filter.html</loc></url>
-<url><loc>https://bupaverse.github.io/bupaR/reference/filter_attributes.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/first_n.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/fix_resource_inconsistencies.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/group_by.html</loc></url>
@@ -40,6 +39,7 @@
 <url><loc>https://bupaverse.github.io/bupaR/reference/group_by_ids.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/group_by_resource.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/group_by_resource_activity.html</loc></url>
+<url><loc>https://bupaverse.github.io/bupaR/reference/group_by_trace.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/grouped_activitylog.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/grouped_eventlog.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/grouped_log.html</loc></url>
@@ -68,6 +68,7 @@
 <url><loc>https://bupaverse.github.io/bupaR/reference/resources.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/sample_n.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/scale_fill_discrete_bupaR.html</loc></url>
+<url><loc>https://bupaverse.github.io/bupaR/reference/select.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/select_ids.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/set_activity_id.html</loc></url>
 <url><loc>https://bupaverse.github.io/bupaR/reference/set_activity_instance_id.html</loc></url>

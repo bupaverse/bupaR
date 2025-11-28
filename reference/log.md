@@ -1,0 +1,3 @@
+# Log object
+
+Lorem ipsum
